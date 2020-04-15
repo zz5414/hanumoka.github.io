@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="자바스크립트의 객체 생성방법 3가지1.객체 리터럴을 이용한 객체 생성 방식 리터럴 방식 객체생성은 하나의 객체를 그 즉시 생성한다.거두절미하고 소스와 주석으로 객체 리터럴을 설명하겠다. 1234567891011121314151617181920212223242526272829303132var filmograyphyList &#x3D; [&#39;도날드덕&#39;, &#39;환타지아&#39;];">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript 객체(Object) 생성방법">
+<meta property="og:url" content="https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-Object-2/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="자바스크립트의 객체 생성방법 3가지1.객체 리터럴을 이용한 객체 생성 방식 리터럴 방식 객체생성은 하나의 객체를 그 즉시 생성한다.거두절미하고 소스와 주석으로 객체 리터럴을 설명하겠다. 1234567891011121314151617181920212223242526272829303132var filmograyphyList &#x3D; [&#39;도날드덕&#39;, &#39;환타지아&#39;];">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/2017-06-11-javascript4_1.png">
+<meta property="article:published_time" content="2017-08-30T18:02:13.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:11.994Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="hanumoka">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="object">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/2017-06-11-javascript4_1.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-Object-2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>javascript 객체(Object) 생성방법 | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-Object-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          javascript 객체(Object) 생성방법
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2017-08-31 03:02:13" itemprop="dateCreated datePublished" datetime="2017-08-31T03:02:13+09:00">2017-08-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="자바스크립트의-객체-생성방법-3가지"><a href="#자바스크립트의-객체-생성방법-3가지" class="headerlink" title="자바스크립트의 객체 생성방법 3가지"></a>자바스크립트의 객체 생성방법 3가지</h2><p>1.객체 리터럴을 이용한 객체 생성 방식</p>
+<p>리터럴 방식 객체생성은 하나의 객체를 그 즉시 생성한다.<br>거두절미하고 소스와 주석으로 객체 리터럴을 설명하겠다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> filmograyphyList = [<span class="string">'도날드덕'</span>, <span class="string">'환타지아'</span>]; <span class="comment">// 배열 객체를 선언한다.</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> man = &#123;&#125;; <span class="comment">// 비어있는 프로퍼티가 없는 리터럴로 man 이라는 객체를 생성</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//duck 이라는 이름의 객체를 객체리터럴을 통해 생성한다.</span></span><br><span class="line"><span class="keyword">var</span> duck = &#123;</span><br><span class="line">	<span class="comment">//객체 내부에는 그 객체의 특징(element)이 되는 프로퍼티를 여러개 갖을수 있으며</span></span><br><span class="line">	<span class="comment">//이 프로퍼티에는 자바스크립트에 존재하는 모든 것을 담을수 있다.(원시값을 포함해 함수, 배열 ...)</span></span><br><span class="line">	name: <span class="string">'도날드 덕'</span>,</span><br><span class="line">	age: <span class="number">82</span>,</span><br><span class="line">	sex : man,      	  <span class="comment">// 프로퍼티에 객체가 할당된다.</span></span><br><span class="line">	별명 : <span class="string">'도날드 트럼프'</span>,    <span class="comment">// 자바스크립트 프로퍼티명은 영어가 아닌 한글도 가능하다.</span></span><br><span class="line"></span><br><span class="line">	filmograyphy : filmograyphyList,   <span class="comment">// 프로퍼티에 객체배열을 할당한다.</span></span><br><span class="line"></span><br><span class="line">	<span class="string">'home adress'</span> : <span class="string">'디지니 랜드'</span>,   <span class="comment">// 일반적으로 프로퍼티 명을 뛰어 쓰기로 사용할수 없으나</span></span><br><span class="line">                                        <span class="comment">//예외적으로 싱글쿼티션(') 또는 더블쿼티션("")으로 감싼 프로퍼티명은 사용이 가능하다.</span></span><br><span class="line">	                                <span class="comment">// 프로퍼티 네이밍은 일반적으로 자바스크립트 변수 네이밍</span></span><br><span class="line">                                        <span class="comment">//규칙을 따른다.(ex:숫자로 시작하는 변수명은 사용할수 없다.)</span></span><br><span class="line">					<span class="comment">// 하지만 싱글쿼티션(') 또는 더블쿼티션("")으로 감싼 프로퍼티명은 이런 자바스크립트의                                                       //변수명 작성 규칙 제한을 받지 않는다.</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> : <span class="string">'test2222'</span>,                   <span class="comment">// for, if 등 시스템 예약어는 변수명으로는 사용할수 없다 하지만 자바스크립트</span></span><br><span class="line">                                            <span class="comment">//객체프로퍼티명으론 사용할수 있다.</span></span><br><span class="line">	<span class="string">'if'</span> : <span class="string">'test111'</span>,                   <span class="comment">// 하지만 이런 예약어들의 사용을 권장하지 않으며, 만약 불가피 하다면 문자열로</span></span><br><span class="line">                                            <span class="comment">//감싸 사용하길 권장한다.</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//프로퍼티에는 함수또한 담길수 있으며, 특이하게 객체의 프로퍼티중 함수를 담고 있는 프로퍼티는 메소드라고 부른다.</span></span><br><span class="line">    say : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'꽥 꽥'</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>리터럴이라는 말을 위키피디아에서 찾아보니 컴퓨터 과학분야에서, 소스코드의 고정된 값을 대표하는 용어라고한다.( 즉 객체 리터럴 방식은 객체를 생성하는 표기법 정도로 이해하고 넘어가자. 리터널에 대해서는 인터넷에 한번 찾아보길 바란다.)</p>
+<p>위 소스는 obj1이라는 이름의 객체를 리터럴 방식으로 생성한 것이다.<br>객체 리터럴은 중괄호 { } 를 이용하여 프로퍼티명과 프로퍼티의 값을 감싼 형태로 생성 된다.<br>{ ‘프로퍼티이름’ : ‘프로퍼티값’ }</p>
+<p>더 자세한 내용은 위의 동영상을 참고하길 바란다.</p>
+<p>2.생성자를 이용한 객체 생성</p>
+<p>생성자 함수를 이용해 반복적으로 동일한 형태(프로퍼티를 갖는)객체를 생성하는 일반적인 방법.</p>
+<p>일단 자바스크립트의 생성자란 객체를 반복적으로 생성할수 있는 함수이다.<br>대중적인 객체지향 언어인 java, c++ 같은 언어에서는 class라는 객체의 설계도 내부의 생성자라는 함수를 가지고 있는데, 자바스크립트에서는 클래스라는 객체의 설계서가 따로 존재하지 않으며 이 생성자 내부에서 객체의 설계내용을 작성한다.</p>
+<p>그리고 자바스크립트에서는 기본적인 함수와 생성자간의 문법적 구별이 없다. A라는 함수가 있다면 이것을 그냥 함수처럼 호출할수도 있고, new라는 키워드로 생성자로 호출할수도 있다.</p>
+<p>역시 거두절미하고 소스를 보자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">var</span> obj1 = <span class="keyword">new</span> <span class="built_in">Object</span>();        <span class="comment">// 자바스크립트에 내장된 기본 Object 생성자를 이용해 빈 객체를 생성.</span></span><br><span class="line"><span class="keyword">var</span> arrayObj1 = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">10</span>);  <span class="comment">// 자바스크립트에 내장된 기본 Array 생성자를 이용해 빈 배열 객체를 생성.</span></span><br><span class="line"><span class="keyword">var</span> dateObj1 = <span class="keyword">new</span> <span class="built_in">Date</span>();      <span class="comment">// 자바스크립트에 내장된 기본 Date 생성자를 이용해 날짜 정보를 담은 Date 객체를 생성.</span></span><br><span class="line">                                <span class="comment">// Object, Array, Date 뿐만아니라 여러 다른 기본 내장 객체 생성자가 존재한다.</span></span><br></pre></td></tr></table></figure>
+
+<p>위처럼 내장된 생성자 객체들을 이용하여 객체를 생성할수 있다.<br>이런 내장된 생성자 말고 프로그래머가 직접 원하는 객체를 생성할수 있도록 생성자를 만들수 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Duck이라는 생성자를 만든다. 자바스크립트에서는 일반 함수와 생성자의 문법적 차이가 없다.(개인적으로 불만이다.)</span></span><br><span class="line"><span class="comment">//생성자와 함수를 구별하기 위해 보통 생성자의 이름은 대문자로 선언한다.</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Duck</span>(<span class="params">dName, dAge</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//생성자 함수의 내부에 있는 this라는 키워드는 이 함수가 new로 호출되었을때 생성해서 리턴하는 객체를 가리키며</span></span><br><span class="line">	<span class="comment">//this.name은 그 생성될 객체의 프로퍼티를 생성하겠다라는 의미이다.</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.name = dName;  <span class="comment">// 생성자 함수를 호출시 전달받는 전달인자를 name이라는 프로퍼티에 할당한다.</span></span><br><span class="line">	<span class="keyword">this</span>.age = dAge;    <span class="comment">// 생성자 함수를 호출시 전달받는 전달인자를 age이라는 프로퍼티에 할당한다.</span></span><br><span class="line">	<span class="keyword">this</span>.종 = <span class="string">'오리'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//객체 리터럴과 다르게 아래처럼은 객체 프로퍼티의 프로퍼티명을 문자열로 만들수 없다.</span></span><br><span class="line">	<span class="comment">//this."home adress" = '디지니 랜드';</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">//하지만 이런식으로 객체가 유사배열인 것을 이용하여, 배열 형태로 프로퍼티를 생성할 시 문자열로 프로퍼티명을 생성할수 있다.</span></span><br><span class="line">	<span class="keyword">this</span>[<span class="string">"home adress"</span>] = <span class="string">'디지니 랜드'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.for = <span class="string">'하하하?'</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">this</span>.say = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">'꽥 꽥'</span>);</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">&#125;<span class="comment">// Duck end</span></span><br></pre></td></tr></table></figure>
+<p>자 위 소스로 객채를 생성할수 있는 함수 즉 생성자를 선언했다.<br>이제 위 생성자를 통해 객체를 생성해 보자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//new 라는 키워드의 의미는 new 다음에 올 함수를 생성자로서 호출하겠다는 의미이다.</span></span><br><span class="line"><span class="comment">//여기서 중요한 것은 new로 호출된 모든 함수는 객체를 반드시 생성해서 리턴하게 된다.</span></span><br><span class="line"><span class="comment">//생성자는 어떤 형태의 객체를 만들 목적으로 만들어 진 것일뿐 일반함수와 같다.</span></span><br><span class="line"><span class="keyword">var</span> duck1 = <span class="keyword">new</span> Duck(<span class="string">'도날드 덕'</span>, <span class="number">82</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.dir(duck1);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2017-06-11-javascript4_1.png" alt></p>
+<p>생성된 객체를 console.dir로 열어보면 Duck생성자로 생성된 객체의 프로퍼티를 확인 할 수 있다.</p>
+<p>일단 생성자를 하나 만들었다면,</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> duck2 = <span class="keyword">new</span> Duck(<span class="string">'레임 덕'</span>, <span class="number">5</span>);</span><br><span class="line"><span class="keyword">var</span> duck2 = <span class="keyword">new</span> Duck(<span class="string">'베이징 덕'</span>, <span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+
+<p>이처럼 반복적으로 객체를 생성하는 것이 가능하다.</p>
+<p>지금 설명하는 생성자를 사용하여 객체를 생성하는 이유는 동일 형태의 객체를 반복적으로 생성할 수 있기 때문이다.<br>(물론 필요에 따라 객체리터럴로 객체를 생성해도 된다. 뭐가 좋고 나쁘다는 말이 아니다.)</p>
+<p>자바스크립트에서 생성자가 다른 객체지향 언어와 개념적 차이가 있는데, 일반적인 객체지향언어에서 클래스라는 개념이 있다.<br>이 클래스라는 개념은 객체의 설계도 역할을 한다. 예를 들어 객체가 가져야 할 프로퍼티들을 정의 하는데, 자바스크립트에서는 이 클래스라는 개념이 없으며,그 대신 자바스크립트에서 생성자에서 this.프로퍼티명 을 이용하여 이 클래스의 설계도와 같은 기능을 포함하고 있다.</p>
+<ol start="3">
+<li>Object.create 매소드를 이용해한 객체 생성</li>
+</ol>
+<p>자바스크립트의 객체의 상속을 따라가다보면 최상위 객체가 존재하신다.(필자는 god object라고 장난스래 부른다)<br>그리고 이 최상위 객체를 이용하여 자바스크립트에서 객체를 생산하시는 성모마리아님 같은 최상위 생성자(자바스크립트 내장 상성자)가 역시 존재하는데, 그 분이 Object()생성자 이시다.<br>이 Object생성자 객체의 create 메소드를 이용하면, 객체 생성과 동시 객체 상속을 조금더 손쉽게 할수 있다.<br>이 기능은 ecma5(이끄마파이브) 부터 지원하며, 자세한 내용은 아래 MDN을 참고!</p>
+<p><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create" target="_blank" rel="external nofollow noopener noreferrer">https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/create</a></p>
+<p>절대 귀찮아서 Object.create 설명은 글로 안쓴것이 아니다. 솔직히 나도 잘 모ㄹ…. 콜록콜록</p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/hanumoka/" rel="tag"># hanumoka</a>
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/tags/object/" rel="tag"># object</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/08/31/javascript-20170831-javascript-Object-1/" rel="prev" title="javascript 객체(Object)란?">
+      <i class="fa fa-chevron-left"></i> javascript 객체(Object)란?
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/08/31/javascript-20170831-javascript-closure-1/" rel="next" title="javascript 클로저(closure)란(1편)?">
+      javascript 클로저(closure)란(1편)? <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#자바스크립트의-객체-생성방법-3가지"><span class="nav-number">1.</span> <span class="nav-text">자바스크립트의 객체 생성방법 3가지</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="아마추어 개발자의 블로그">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hanumoka, IT Blog">
+<meta property="og:url" content="https://www.hanumoka.net/page/11/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="아마추어 개발자의 블로그">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:author" content="Hanumoka">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.hanumoka.net/page/11/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/18/chrome-20180818-google-app-Restlet-Client/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/18/chrome-20180818-google-app-Restlet-Client/" class="post-title-link" itemprop="url">Chrome 웹스토어 - Restlet Client(REST 요청결과 받을수 있는 툴)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-18 22:00:31" itemprop="dateCreated datePublished" datetime="2018-08-18T22:00:31+09:00">2018-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/chrome/" itemprop="url" rel="index">
+                    <span itemprop="name">chrome</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>REST를 개발할때에는 웹 페이지가 존재하지 않을 경우가 있다.<br>하지만 구글 크롬에서 REST요청에 대한 결과를 받아볼수 있는 도구가 있어 간편하게 테스트가 가능하다.</p>
+<p>Chrome 웹스토어 스토어에서 rest client 라고 검색해보자.</p>
+<p><img src="/images/20180818-google-app-Restlet-Client_1.png" alt="확장 프로그램으로 Restlet Client - REST API Testing이라는 도구가 있다 설치하자."></p>
+<p><img src="/images/20180818-google-app-Restlet-Client_2.png" alt="설치하면 크롬창에 작은 아이콘이 생긴다."></p>
+<p>아이콘을 클릭해서 들어가면 다음과 같은 창이 나오는데, 여기에 원하는 REST응답을 해줄 URL을 입력하고 send를 보내면 그 결과를 받아 볼수 있다.<br>테스트 해본결과 REST뿐만 아니라 일반 URI 요청에서도 동작을 한다. </p>
+<p><img src="/images/20180818-google-app-Restlet-Client_3.png" alt="REST요청에 대한 결과 확인."></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/18/web-20180818-web-http-status-code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/18/web-20180818-web-http-status-code/" class="post-title-link" itemprop="url">많이 사용되는 http 상태 코드(http status code)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-18 21:41:22" itemprop="dateCreated datePublished" datetime="2018-08-18T21:41:22+09:00">2018-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="100번대-데이터의-처리중인-상태"><a href="#100번대-데이터의-처리중인-상태" class="headerlink" title="100번대: 데이터의 처리중인 상태"></a>100번대: 데이터의 처리중인 상태</h3><ul>
+<li>100: 데이터의 일부를 서버가 받은 상태</li>
+</ul>
+<h3 id="200번대-정상적인-응답"><a href="#200번대-정상적인-응답" class="headerlink" title="200번대: 정상적인 응답"></a>200번대: 정상적인 응답</h3><ul>
+<li>200: 에러 없이 정상처리</li>
+<li>204: 정상처리 되었으나 서버에서 보내줄 데이터 없음</li>
+</ul>
+<h3 id="300번대-다른-URL-처리"><a href="#300번대-다른-URL-처리" class="headerlink" title="300번대: 다른 URL 처리"></a>300번대: 다른 URL 처리</h3><ul>
+<li>301: 요청된 페이지가 새 URL로 변경되었음</li>
+<li>304: 이미 기존의 데이터와 변경된 것이 없음</li>
+</ul>
+<h3 id="400번대-서버에서-인식할-수-없음"><a href="#400번대-서버에서-인식할-수-없음" class="headerlink" title="400번대: 서버에서 인식할 수 없음"></a>400번대: 서버에서 인식할 수 없음</h3><ul>
+<li>400: 전송된 Request에 문제가 있어서 서버에가 인식할 수 없음</li>
+<li>403: 서버에서 허락되지 않음</li>
+<li>404: URL에 해당하는 자원을 찾을 수 없음</li>
+<li>406: 전송 방식이 허락되지 않음 (REST에서 자주 발생)</li>
+</ul>
+<p><img src="/images/20180818-web-http-status-code_1.png" alt="가장 많이 보는 404"></p>
+<h3 id="500번대-서버-내부의-문제"><a href="#500번대-서버-내부의-문제" class="headerlink" title="500번대: 서버 내부의 문제"></a>500번대: 서버 내부의 문제</h3><ul>
+<li>500: 서버에서 처리 시 문제가 발생</li>
+<li>502: 게이트웨이나ㅐ 프록시 상태의 문제(과부하 등)</li>
+<li>503: 일시적인 과부하나 서비스 중단 상태</li>
+<li>504: 지정된 처리시간이 지나서 처리되지 못함</li>
+</ul>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/18/spring-20180818-spring-RestController/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/18/spring-20180818-spring-RestController/" class="post-title-link" itemprop="url">Spring @RestController</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-18 21:01:47" itemprop="dateCreated datePublished" datetime="2018-08-18T21:01:47+09:00">2018-08-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Rest-Representational-State-Transfer-란"><a href="#Rest-Representational-State-Transfer-란" class="headerlink" title="Rest(Representational State Transfer)란?"></a>Rest(Representational State Transfer)란?</h1><p>하나의 URI는 하나의 고유한 리소스(Resource)를 대표하도록 설계된다는 개념이다.<br>최근에는 서버에 접근하는 기기의 종류가 다양해 지면서 다양한 기기에서 공통으로 데이터를 처리할 수 있는 규칙을 만들려고 하는데 이러한 시도가 REST방식이다.</p>
+<p>REST 방식은 특정한 URI는 반드시 그에 상응하는 데이터 자체라는 점을 의미하는 방식이다.<br>예를 들어 /boards/123 이라는 URI는 게시물 중 123번이라는 고유한 의미를 가지도록 설계하고, 이에 대한 처리는 GET, POST 방식과 같이 추가적인 정보를 통해 결정한다.</p>
+<p>REST API는 외부에서 위와 같은 방식으로 특정 URI를 통해서 사용자가 원하는 정보를 제공하는 방식이다.<br>최근 Open API에서 많이 사용되면서 REST 방식으로 제공되는 외부 연결 URI를 REST API라고 하고, REST 방식의 서비스 제공이 가능한 것을 ‘Restfull’하다고 표현한다.</p>
+<hr>
+<h1 id="Spring과-REST"><a href="#Spring과-REST" class="headerlink" title="Spring과 REST"></a>Spring과 REST</h1><p>스프링3 버전부터 @ResponseBody 애노테이션을 지원하면서 본격적으로 REST 방삭의 처리를 지원하고 했다.<br>스프링4 버전에서는 REST전용 컨트롤러인 @RestController가 도입되었다.</p>
+<hr>
+<h1 id="RestController-예제"><a href="#RestController-예제" class="headerlink" title="@RestController 예제"></a>@RestController 예제</h1><p>스프링 3버전에서는 컨트롤러에 특정한 메소드에 @RseponseBody 어노테이션을 적용했다.<br>스프링 4버전부터 지원하는 @RestController라는 어노테이션을 컨트롤러에 지정하면, 해당 컨트롤러의 모든 메소드는 자동적으로 @RseponseBody 어노테이션이 적용된 것처럼 동작한다.<br>즉 @RestController가 적용된 컨트롤러의 모든 메소드는 jsp등의 뷰를 생성하지 않고 데이터만 반환하게 된다.<br>이 데이터는 크게 단순문자열, JSON, XML 등으로 나누어진다.</p>
+<p>스프링에서 JSON 데이터를 처리하기 위해서는 일단 jackson 라이브러리가 필요하다.<br>pom.xml에 jackson 라이브러리를 추가하자.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- json 데이터 처리용 --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.8.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>그리고 아래는 @RestController가 적용된 테스트 컨트롤러이다.<br>단순 텍스트, json, list, map등을 REST로 반환하는 예제에다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hanumoka.sample.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/resttest"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RestTestController</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"test"</span>, produces = <span class="string">"text/html; charset=utf8"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">restText</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"rest 단순 문자열 반환"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/json"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> SampleVO <span class="title">restJson</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		SampleVO sampleVO = <span class="keyword">new</span> SampleVO();</span><br><span class="line">		sampleVO.setNo(<span class="number">1</span>);</span><br><span class="line">		sampleVO.setName(<span class="string">"제이슨 객체입니다."</span>);</span><br><span class="line">		<span class="keyword">return</span> sampleVO;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/jsonList"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> List&lt;SampleVO&gt; <span class="title">sendList</span><span class="params">()</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">		List&lt;SampleVO&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">			SampleVO sampleVO = <span class="keyword">new</span> SampleVO();</span><br><span class="line">			sampleVO.setName( (i+<span class="number">1</span>) +<span class="string">"번 데이터"</span>);</span><br><span class="line">			sampleVO.setNo(i+<span class="number">1</span>);</span><br><span class="line">			list.add(sampleVO);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> list;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/sendMap"</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Map&lt;Integer, SampleVO&gt; <span class="title">sendMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">		</span><br><span class="line">		Map&lt;Integer, SampleVO&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">			SampleVO sampleVO = <span class="keyword">new</span> SampleVO();</span><br><span class="line">			sampleVO.setName( (i+<span class="number">1</span>) +<span class="string">"번 데이터"</span>);</span><br><span class="line">			sampleVO.setNo(i+<span class="number">1</span>);</span><br><span class="line">			map.put(i, sampleVO);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> map;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SampleVO</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> Integer no;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getNo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNo</span><span class="params">(Integer no)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.no = no;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20180818-spring-RestController_1.png" alt="RestController에서 map을 반환하는 결과확인"></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/17/web-20180817-web-how-to-make-favicon-images/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/17/web-20180817-web-how-to-make-favicon-images/" class="post-title-link" itemprop="url">favicon 이미지 쉽게 만들기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-17 06:35:36" itemprop="dateCreated datePublished" datetime="2018-08-17T06:35:36+09:00">2018-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="favicon-이미지-쉽게-만들기"><a href="#favicon-이미지-쉽게-만들기" class="headerlink" title="favicon 이미지 쉽게 만들기"></a>favicon 이미지 쉽게 만들기</h1><p>favicon이란 브라우저 주소창에 표시되는 웹사이트의 대표 아이콘을 말한다.</p>
+<p>일단 favicon으로 만들 이미지를 준비한다.</p>
+<p>그리고 구글에 favicon generator라고 검색해보자.</p>
+<p>이것저것 많은 사이트가 나오지만, 맨위의 <a href="https://www.favicon-generator.org/" target="_blank" rel="external nofollow noopener noreferrer">https://www.favicon-generator.org/</a> 로 이동하자</p>
+<p>간단하다. 필요한 이미지를 파일 선택하고 create Favicon 버튼을 클릭하면 favicon이 자동으로 생성되며, 다운받아서 사용하면 된다.</p>
+<p><img src="/images/20180817-web-how-to-make-favicon-images_1.png" alt="이미지 파일을 선택하고 create Favicon 버튼을 누르자."></p>
+<p><img src="/images/20180817-web-how-to-make-favicon-images_2.png" alt="favicon파일이 생성되며 노란 부분을 클릭하여 압축파일을 받으면 된다."></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/15/web-20180815-web-virtual-dom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/15/web-20180815-web-virtual-dom/" class="post-title-link" itemprop="url">가상돔(Virtual DOM)?</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-15 10:47:39" itemprop="dateCreated datePublished" datetime="2018-08-15T10:47:39+09:00">2018-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Vue.js를 공부하면서 가상돔(Virtual DOM)라는 생소한 용어를 접하고 그 내용을 정리한 글이다.</p>
+<hr>
+<h1 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h1><p><strong>간단히 후려치면, 가상돔(Virtual DOM)이란 브라우저를 위한 버퍼정도라고 생각된다.</strong></p>
+<hr>
+<h1 id="가상돔-Virtual-DOM-이란"><a href="#가상돔-Virtual-DOM-이란" class="headerlink" title="가상돔(Virtual DOM)이란?"></a>가상돔(Virtual DOM)이란?</h1><p>Vue.js를 공부하다 보니, Vue.js 2.0버전 이후로 가상돔(Virtual DOM)을 사용하기 때문에 빠르고 효과적으로 html 화면을 렌더링 한다고 나와있다.</p>
+<p>여기서 이 가상돔은 Vue.js 만의 고유한 기술이 아니다.<br>React 진영에서 앞서 사용했으며, W3C에서도 Shadow DOM 이라는 가상돔 표준안을 가지고 있다고 한다.</p>
+<p>가상돔을 이해하기 위해서는 일단 브라우저가 hmtl을 화면에 그리는 일련에 과정을 알아야 한다.<br><strong>브라우저는 html를 읽어서 DOM 트리, CSS 트리를 만들고 DOM이 화면에 있어야할 위치를 잡고 거기에 그리고 색을 채운다.</strong></p>
+<p><img src="/images/20180815-web-virtual-dom_1.png" alt="브라우저가 HTML을 그리는 과정"></p>
+<p>여기 까지는 전혀 문제가 없다.<br>DOM이 아무리 많던, 복잡하던 상관 없다.<br>브라우저는 위와 같은 일을 위해 만들어진 녀석이니깐</p>
+<p>하지만 여기 브라우저를 위협하는 요소가 생겼다.<br>예전과 같이 그냥 단순히 HTML을 서버에서 받아서 한번에 그리고 땡 하는것이 아니라.<br>SPA(Single page application) 같은 것들이 생겨나면서, html녀석이 자바스크립트와 그의 친구들을 이용해서 자꾸 DOM을 수시로 변경해달라고 브라우저에게 요청한다.</p>
+<p>브라우저는 착한녀석이라 요청이 오는대로 일을 하려한다.<br>노드가 1000개쯤(예를들어)있는 DOM 트리를 뒤져서 특정 노드를 찾아 width를 조금 넓혀주고 다시 CSS트리를 만들고 합치고, 화면에 스케치하고 색을 채운다.<br>DOM 수정요청이 100번 온다면 브라우저는 위와 같은 짓을 100번 한다.</p>
+<p><strong>즉 브라우저는 실시간 DOM 수정요청으로 그림을 다시 그리는데, 그닥 효율적이지 못하다.</strong></p>
+<p>이런 브라우저의 단점을 도와주는 녀석이 가상돔(Virtual DOM)이다.<br>만약 100번의 DOM 수정 요청이 오면, 가상돔은 브라우저 대신 DOM 변경을 인지하고 그 내용을 가상돔에 반영한다.(아직 화면에 그리지 않음)<br>이 변화를 반영한 가상돔의 내용을 브라우저에게 전달하여 그리게 한다.(100번 그리던 것을 1번만 그린다.)</p>
+<p>사실 가상돔(Virtual DOM)이라는 말이 어려워서 그렇지, 그냥 브라우저의 DOM과 렌더링을 위한 버퍼역할을 하는 것이다.</p>
+<p>컴퓨터 그래픽스에서 연산되어 출력되는 영상의 화면 끊김을 방지하기 위해 2중버퍼, 3중버퍼 같은 것을 가지고 있는데 가상돔(Virtual DOM)가 브라우저에서 그 역할을 하는듯 보인다.</p>
+<hr>
+<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="https://www.youtube.com/watch?v=BYbgopx44vo" target="_blank" rel="external nofollow noopener noreferrer">React 가상돔 설명 유튜브</a><br><a href="https://velopert.com/3236" target="_blank" rel="external nofollow noopener noreferrer">React 가상돔 관련글 번역 포스트</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/15/vue-20180815-vue-what-is-the-vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/15/vue-20180815-vue-what-is-the-vue/" class="post-title-link" itemprop="url">Vue.js 란?</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-15 07:54:18" itemprop="dateCreated datePublished" datetime="2018-08-15T07:54:18+09:00">2018-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>3~4년전 Anuglar1이 나왔을때 한번 프로젝트에 적용하기 위해 공부했었던 적이 있다.<br>당시 Angular의 신박한 기능은 매력적이었지만, 한글 이슈등 다양한 문제점이 있어서 포기하고, 그냥 jsp + jquery 로 개발한 기억이 난다.</p>
+<p>요즘 다시 프론트엔드에 대한 관심이 생겨 이것저것 찾아보던중 Vue.js 라는 프론트엔드 프레임워크가 있어서 공부하는중이다.</p>
+<p>그래서 Vue.js는 머냐?</p>
+<p><img src="/images/20180815-vue-what-is-the-vue_1.png" alt="Vue.js로고"></p>
+<hr>
+<h1 id="Vue-js란"><a href="#Vue-js란" class="headerlink" title="Vue.js란?"></a>Vue.js란?</h1><p>Vue.js는 Anuglar, React와 같이 웹 페이지 화면을 개발하기 위한 프론트엔드 MVVM 프레임워크 중 하나이다.<br>여기저기 찾아보니 Vue는 프레임워크가 아니라 라이브러리라는 말도 있다.</p>
+<p>뷰 코어 라이브러리는 화면단 데이터 표현에 관한 기능들을 중점적으로 지원하지만 프레임워크의 기능인 라우터, 상태 관리, 테스팅 등을 쉽게 결합할 수 있는 형태로도 제공된다.</p>
+<p>따라서 구조상은 몰라도 기능상은 프레임워크의 기능을 하고 있는거 같기에 프레임워크가 맞다고 개인적으로 생각한다.</p>
+<hr>
+<h1 id="Vue의-장점"><a href="#Vue의-장점" class="headerlink" title="Vue의 장점"></a>Vue의 장점</h1><p><strong>1.일단 쉽단다.</strong></p>
+<p>프론트엔드의 대표적인 프레임워크인 Angular, React에 비해 쉽다고 한다.<br>angualr는 타입스크립트(TypeScript), ES6(ECMAScript 2015)에 대한 지식이 필요하다.<br>react또한 ES6와 JSX라는 리액트 전용 탬플릿 작성 언어를 알아야 한다.<br>Vue.js는 HTML, javascript, CSS 정도를 알면 배워볼만 하다.(물론 웹에 대한 지식이 필요하다.)<br>쉬운것은 항상 옳다고 본다.</p>
+<p><strong>2.타 프레임워크에 비해 성능면에서 빠르다.</strong></p>
+<p>뷰 제작팀에서 리액트와 앵귤러를 가지고 같은 테스트 케이스(test case)에서 성능을 비교한 결과 뷰가 가장 빨랐다고 한다.<br>(뷰 제작팀이 진행한 테스트라 별로 신빙성은 안가지만…)</p>
+<p>Vue.js 2버전 부터 스냅돔(snabbdom)기반의 가상돔을 통해 빠른 속도로 문서를 렌더링 하며, 메모리 소비 효율도가 최대 2~3배 정도 나온다고 하니 근거가 전혀 없는 것은 아닌것 같다.</p>
+<p><strong>3. 리액트의 장점과 앵귤러의 장점을 갖는다.</strong></p>
+<p>앵귤러의 데이터 바인딩과 리액트의 가상돔(Vitual DOM) 기반 렌더링의 특징을 모두 가지고 있다.<br>따라서 앵귤러, 리액트보다 쉽지만 기능상 뒤쳐지지 않는다.</p>
+<p><strong>4.Vue.js 공식 페이지에서 재공하는 한글문서</strong></p>
+<p>vue.js 공식페이지의 한글화가 잘 되어있어서, 별도의 책을 구입하지 않아도 공부하는데 용이 하다.</p>
+<p><a href="https://kr.vuejs.org/v2/guide/index.html" target="_blank" rel="external nofollow noopener noreferrer">Vue.js 공식 홈페이지 가이드 문서</a></p>
+<hr>
+<h1 id="Vue-js의-단점"><a href="#Vue-js의-단점" class="headerlink" title="Vue.js의 단점"></a>Vue.js의 단점</h1><p><strong>1.규모가 큰 웹 어플리케이션 구현이 어렵다.</strong></p>
+<p><strong>2.react.js 보다 생태계가 작다.</strong></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/10/spring-20180810-spring-board-paging/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/10/spring-20180810-spring-board-paging/" class="post-title-link" itemprop="url">Spring MVC로 만드는 게시판 페이징 요점 정리(Thymeleaf기반 게시판)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-10 06:29:18" itemprop="dateCreated datePublished" datetime="2018-08-10T06:29:18+09:00">2018-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <table>
+<thead>
+<tr>
+<th>항목</th>
+<th>개발환경</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>운영체제</td>
+<td>Widnwos10(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>백엔드프레임워크</td>
+<td>Spring MVC 4</td>
+<td></td>
+</tr>
+<tr>
+<td>개발언어</td>
+<td>java1.8</td>
+<td></td>
+</tr>
+<tr>
+<td>WAS</td>
+<td>Tomcat9</td>
+<td></td>
+</tr>
+<tr>
+<td>템플릿엔진</td>
+<td>Thymeleaf3</td>
+<td></td>
+</tr>
+<tr>
+<td>템플릿엔진레이아웃</td>
+<td>Tymeleaf-laout-dialect2</td>
+<td></td>
+</tr>
+<tr>
+<td>DB</td>
+<td>mysql8</td>
+<td></td>
+</tr>
+<tr>
+<td>ORM</td>
+<td>mybatis</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>난 내가 나름 개발짬좀 먹었다고 생각했다.<br>그런데 아직도 게시판 만드는것이 어렵게 느껴진다.<br>특히 어려운 부분은 페이징에 관련된 것이라 생각된다.</p>
+<p>그래서 이번에 스프링 책을 보며 페이징이 적용된 게시판 예제를 만들어 보았다.<br>이 글은 이번에 공부한 게시판의 페이징 부분에 포인트만 정리한 글이다.<br>게시판 자체의 CURD는 생략했다.</p>
+<p><img src="/images/20180810-spring-board-paging_1.png" alt="페이징이 적용된 게시판 모습"></p>
+<hr>
+<h1 id="게시판-페이징-처리원칙"><a href="#게시판-페이징-처리원칙" class="headerlink" title="게시판 페이징 처리원칙"></a>게시판 페이징 처리원칙</h1><p>게시판의 페이지는 다른 사람에게 URL로 전달하는 경우가 많기 때문에, <strong>반드시 GET 방식으로만 처리된다.</strong><br>하지만 GET방식으로 게시판을 구현하다 보면, 어쩔수 없이 귀찮은 것이 생긴다.</p>
+<p>화면을 변경할때 마다 기본적으로 유지해야 할 상태 값들을 쿼리스트링으로 URL에 달고 다녀야 하는 것이 문제다.<br>예를 들어 글을 읽으러 들어갈때, 게시판 페이징의 상태 값인 <strong>현재 페이지 번호</strong>와, <strong>한번에 보여줄 페이지 개수</strong>, <strong>한번에 보여줄 글의 개수</strong> 등을 가지고 다녀야 한다.<br>그래야 글을 다 읽고 게시판 목록으로 나올때 게시판 페이지상태를 유지할 수가 있기 때문이다.</p>
+<p>위와 같은 이유로 게시판을 만들때 발생하는 다양한 링크를 생성할 때 주의해야 한다.</p>
+<p>일단 게시판의 페이징은 크개 두개의 로직으로 나누어 진다.<br>하나는 <strong>Criteria</strong> 또 하나는 <strong>PageMaker</strong> 이다.<br>참고로 PageMaker는 Criteria를 기반한다.</p>
+<hr>
+<h1 id="특정-페이지의-게시판을-조회하기-위한-도우미-클래스-Criteria-java"><a href="#특정-페이지의-게시판을-조회하기-위한-도우미-클래스-Criteria-java" class="headerlink" title="특정 페이지의 게시판을 조회하기 위한 도우미 클래스 Criteria.java"></a>특정 페이지의 게시판을 조회하기 위한 도우미 클래스 Criteria.java</h1><p>일단 Criteria라는 말은 검색을 위한 기준데이터를 의미한다.<br>페이징이 적용된 게시판을 조회하기 위한 최소 <strong>필요 데이터</strong> 다음과 같다.</p>
+<p><strong>한 페이지당 보여줄 게시글의 개수</strong> 그리고 <strong>어떤 페이지 번호</strong>를 보여줄 것인가?</p>
+<p>위 데이터와 mysql 의 limit를 이용해서 특정 페이지를 조회하는 쿼리를 만들면 다음과 같다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">      *</span><br><span class="line">  <span class="keyword">from</span> 게시판테이블</span><br><span class="line">  <span class="keyword">where</span> <span class="number">1</span>=<span class="number">1</span></span><br><span class="line">  <span class="keyword">and</span> 게시글번호 &gt; <span class="number">0</span></span><br><span class="line">  <span class="keyword">order</span> <span class="keyword">by</span> 게시글번호 <span class="keyword">desc</span>, 등록일자 <span class="keyword">desc</span></span><br><span class="line">  <span class="keyword">limit</span> (현재 보여줄 페이지 번호 - <span class="number">1</span>) * 한 페이지당 보여줄 게시글의 개수, 한 페이지당 보여줄 게시글의 개수</span><br></pre></td></tr></table></figure>
+
+<p>그리고 위 쿼리를 실제 mybatis 매핑 쿼리로 보면 다음과 같다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- criteria 를 적용한 게시판 페이징 조회 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"listCriteria"</span> <span class="attr">resultType</span>=<span class="string">"BoardVO"</span>&gt;</span></span><br><span class="line">&lt;![CDATA[</span><br><span class="line">select</span><br><span class="line">    bno, title, content, writer, regdate, viewcnt</span><br><span class="line">from</span><br><span class="line">    tbl_board</span><br><span class="line">where bno &gt; 0</span><br><span class="line">order by bno desc, regdate desc</span><br><span class="line">limit #&#123;pageStart&#125;, #&#123;perPageNum&#125;</span><br><span class="line">]]&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><strong>pageStart:</strong> (현재 보여줄 페이지 번호 - 1) * 한 페이지당 보여줄 게시글의 개수 이다. 이 값은 Criteria.java로 부터 전달 받을 것이다.<br><strong>perPageNum:</strong> 한 페이지당 보여줄 게시글의 개수이다.</p>
+<p>시스템에 게시판은 여러종류가 있을수 있으며, 이런 페이징 부분은 공통적으로 사용해야 하므로 페이징 관련 기능은 특정 게시판 로직에 넣지 말고 별도의 클래스로 분리한다.</p>
+<p>Criteria.java는 페이징을 위해 분리한 VO종류의 클래스이며, 위 listCriteria 마이바티스 쿼리 동작시 전달될 파라미터가 된다.<br>내용은 아래와 같다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hanumoka.sample.vo;</span><br><span class="line"></span><br><span class="line"><span class="comment">//게시판 페이징 전용 클래스</span></span><br><span class="line"><span class="comment">//Criteria : 사전적 의미로는 검색기준, 분류기준</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Criteria</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> page;  		    <span class="comment">// 보여줄 페이지 번호</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> perPageNum;   <span class="comment">// 페이지당 보여줄 게시글의 개수</span></span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Criteria</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="comment">//최초 게시판에 진입할 때를 위해서 기본 값을 설정 해야 한다.</span></span><br><span class="line">		<span class="keyword">this</span>.page = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">this</span>.perPageNum = <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> page;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPage</span><span class="params">(<span class="keyword">int</span> page)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(page &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>.page = <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">this</span>.page = page;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPerPageNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> perPageNum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPerPageNum</span><span class="params">(<span class="keyword">int</span> perPageNum)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(perPageNum &lt;= <span class="number">0</span> || perPageNum &gt; <span class="number">100</span>) &#123;</span><br><span class="line">			<span class="keyword">this</span>.perPageNum = <span class="number">10</span>;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">this</span>.perPageNum = perPageNum;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">/* limit 구문에서 시작 위치를 지정할 때 사용된다. 예를 들어 10개씩 출력하는 경우 3페이지의 데이터는 linit 20, 10 과 같은 형태가 되어야 한다. */</span></span><br><span class="line">	<span class="comment">/* this.page 가 1이면 0이 되어야 한다 mysql limit 0, 10 해야 처음부터 10개씩 나온다. */</span></span><br><span class="line">  <span class="comment">/* 마이바티스 조회쿼리의 #&#123;pageStart&#125;에 전달된다. */</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPageStart</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (<span class="keyword">this</span>.page -<span class="number">1</span>) * perPageNum;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"Criteria [page="</span> + page + <span class="string">", perPageNum="</span> + perPageNum + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Criteria.java 와 위 조회쿼리를 이용하면 게시판을 한 페이지 씩 조회하는 것은 가능하다.<br>3번 페이지를 조회하고 10개 데이터를 추릴수가 있게 된 것이다. </p>
+<p><img src="/images/20180810-spring-board-paging_2.png" alt="Criteria의 도움으로 특정 페이지를 조회한 모습"></p>
+<hr>
+<h1 id="게시판-페이징을-실제-담당하는-클래스-PageMaker-java"><a href="#게시판-페이징을-실제-담당하는-클래스-PageMaker-java" class="headerlink" title="게시판 페이징을 실제 담당하는 클래스 PageMaker.java"></a>게시판 페이징을 실제 담당하는 클래스 PageMaker.java</h1><p>Criteria.java의 도움으로 게시판의 특정 페이지를 조회하기 위한 준비는 끝났다.<br>이제 해야 할 것은 게시판 하단에 있을 페이징 관련 부분을 만드는 기능이 필요하다.</p>
+<p><img src="/images/20180810-spring-board-paging_3.png" alt="게시판 페이징의 핵심인 페이징 버튼"></p>
+<p>이 부분은 이전페이지버튼, 다음페이지버튼 그리고 페이지번호 버튼 크게 3부분으로 나뉜다.<br>즉 이 세부분을 다루어야 하며 이것을 위한 필요 데이터가 있다.</p>
+<p><strong>필요 데이터</strong>는 다음과 같다.</p>
+<p><strong>Criteria를 통한 현재페이지번호, 한페이지 당 게시글개수</strong></p>
+<p>그리고 <strong>게시판 화면에서 한번에 보여질 페이지 번호의 개수</strong> 이다.</p>
+<p>Criteria는 이미 생성했으니 PageMaker에서는 Criteria를 그대로 사용하면 된다.</p>
+<p>위 필요데이터를 사용하여 PageMaker가 생성할 데이터는 다음과 같다. </p>
+<p><strong>생성순서1 totalCount</strong> 게시판 글 전체 개수.<br><strong>생성순서2 tempEndPage:</strong> 게시판의 실제 마지막 페이지 번호.<br><strong>생성순서3 endPage:</strong> 게시판을 화면에 보여질 마지막 페이지 번호.<br><strong>생성순서4 startPage:</strong> 게시판을 화면에 보여질 첫번째 페이지 번호.<br><strong>생성순서5 prev:</strong> 이전 페이지 버튼 활성화 여부.<br><strong>생성순서6 next:</strong> 다음 페이지 버튼 활성화 여부. </p>
+<p>생성순서는 중요하다. 뒤 순서 데이터는 앞 순서 데이터를 참조하기 때문이다.<br>데이터 생성 공식은 다음과 같다.</p>
+<p><strong>totlaCount 공식:</strong> 조회 쿼리 count(*)를 이용해서 전체 게시글 개수를 구한다.</p>
+<p><strong>tempEndPage 공식:</strong> (int)(Math.ceil(totalCount / (double)Criteria의 한페이지 당 게시글 개수))</p>
+<p><strong>endPage 공식:</strong> (int)(Math.ceil(현재 페이지번호 / (double)한번에 보여질 페이지 번호개수) * 한번에 보여질 페이지번호 개수).<br>하지만 여기서 <strong>endPage의 값은 tempEndPage보다 클수 없어야 한다.</strong></p>
+<p><strong>startPage 공식:</strong> (endPage - 한번에 보여질 페이지 번호 개수) + 1</p>
+<p><strong>prev 공식:</strong> startPage가 1이 아니면 활성화, 1이 면 비활성화</p>
+<p><strong>next 공식:</strong> (endPage * Criteria의 한페이지 당 게시글 개수) 가 totlaCount보다 크거나 같으면 비활성화, 아니면 활성화이다.<br>next공식은 책에서 나온 것인데, 그냥 endPage가 tempEndPage보다 작으면 활성화 아니면 비활성화 하는것이 더 간단해 보인다.</p>
+<p>PageMaker.java의 내용은 아래와 같다.<br>calcData메소드에서 필요한 데이터를 생성하는 것을 확인 할 수 있따.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hanumoka.sample.vo;</span><br><span class="line"></span><br><span class="line"><span class="comment">//게시판 페이징 하단 부문 담당</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PageMaker</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> totalCount;     <span class="comment">// 게시판 전체 데이터 개수</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> displayPageNum = <span class="number">10</span>;   <span class="comment">// 게시판 화면에서 한번에 보여질 페이지 번호의 개수 ( 1,2,3,4,5,6,7,9,10)</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> startPage;      <span class="comment">// 현재 화면에서 보이는 startPage 번호</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> endPage;        <span class="comment">// 현재 화면에 보이는 endPage 번호</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span> prev;       <span class="comment">// 페이징 이전 버튼 활성화 여부</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">boolean</span> next;       <span class="comment">// 페이징 다음 버튼 활서화 여부</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">private</span> Criteria cri;       <span class="comment">// 앞서 생성한 Criteria를 주입받는다.</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getTotalCount</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> totalCount;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setTotalCount</span><span class="params">(<span class="keyword">int</span> totalCount)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.totalCount = totalCount;</span><br><span class="line">		</span><br><span class="line">		calcData();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">calcData</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		endPage = (<span class="keyword">int</span>) (Math.ceil(cri.getPage() / (<span class="keyword">double</span>) displayPageNum) * displayPageNum);</span><br><span class="line">		</span><br><span class="line">		startPage = (endPage - displayPageNum) + <span class="number">1</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">int</span> tempEndPage = (<span class="keyword">int</span>) (Math.ceil(totalCount / (<span class="keyword">double</span>) cri.getPerPageNum()));</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">if</span>(endPage &gt; tempEndPage) &#123;</span><br><span class="line">			endPage = tempEndPage;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		prev = startPage == <span class="number">1</span> ? <span class="keyword">false</span> : <span class="keyword">true</span>;</span><br><span class="line">		</span><br><span class="line">		next = endPage * cri.getPerPageNum() &gt;= totalCount ? <span class="keyword">false</span> : <span class="keyword">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getStartPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> startPage;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setStartPage</span><span class="params">(<span class="keyword">int</span> startPage)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.startPage = startPage;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getEndPage</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> endPage;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setEndPage</span><span class="params">(<span class="keyword">int</span> endPage)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.endPage = endPage;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isPrev</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> prev;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPrev</span><span class="params">(<span class="keyword">boolean</span> prev)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.prev = prev;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> next;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNext</span><span class="params">(<span class="keyword">boolean</span> next)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.next = next;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getDisplayPageNum</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> displayPageNum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setDisplayPageNum</span><span class="params">(<span class="keyword">int</span> displayPageNum)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.displayPageNum = displayPageNum;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Criteria <span class="title">getCri</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> cri;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCri</span><span class="params">(Criteria cri)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.cri = cri;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"PageMaker [totalCount="</span> + totalCount + <span class="string">", startPage="</span> + startPage + <span class="string">", endPage="</span> + endPage + <span class="string">", prev="</span></span><br><span class="line">				+ prev + <span class="string">", next="</span> + next + <span class="string">", displayPageNum="</span> + displayPageNum + <span class="string">", cri="</span> + cri + <span class="string">"]"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이제 게시판 페이징을 위한 준비물은 끝났다. </p>
+<hr>
+<h1 id="페이징-게시판-컨트롤러"><a href="#페이징-게시판-컨트롤러" class="headerlink" title="페이징 게시판 컨트롤러"></a>페이징 게시판 컨트롤러</h1><p>컨트롤러는 앞서 말한듯이 get 방식이고 파라미터는 Criteria이다.<br>Criteria에 파라미터가 없을시에 생성자에서 기본값을 셋팅될 것이다.<br>그리고 Criteria을 이용해서 특정 페이지의 게시판 리스트를 조회한다.</p>
+<p>마지막으로 게시판 하단의 페이징을 담당하는 PageMaker를 생성하고 화면에 전달한다.<br>pageMaker의 setTotalCount메소드가 호출되면서 페이징에 필요한 데이터가 생성된다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/listPage"</span>, method = RequestMethod.GET)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">listPage</span><span class="params">(@ModelAttribute(<span class="string">"cri"</span>)</span> Criteria cri, Model model) <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		</span><br><span class="line">		logger.info(cri.toString());</span><br><span class="line">		</span><br><span class="line">		model.addAttribute(<span class="string">"list"</span>, service.listCriteria(cri));  <span class="comment">// 게시판의 글 리스트</span></span><br><span class="line">		PageMaker pageMaker = <span class="keyword">new</span> PageMaker();</span><br><span class="line">		pageMaker.setCri(cri);</span><br><span class="line">		pageMaker.setTotalCount(service.listCountCriteria(cri));</span><br><span class="line">		</span><br><span class="line">		model.addAttribute(<span class="string">"pageMaker"</span>, pageMaker);  <span class="comment">// 게시판 하단의 페이징 관련, 이전페이지, 페이지 링크 , 다음 페이지</span></span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"/samples/board/listPage"</span>;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="페이징-게시판-화면단"><a href="#페이징-게시판-화면단" class="headerlink" title="페이징 게시판 화면단"></a>페이징 게시판 화면단</h1><p>이 예제의 화면단은 jsp가 아니라 Thymeleaf3 템플릿엔진을 사용한다.<br>따라서 뷰는 html 페이지이다.<br>그리고 부트스트렙 테마를 사용중이라 소스가 좀 길다.</p>
+<p>그 내용은 다음과 같다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:layout</span>=<span class="string">"http://www.ultraq.net.nz/thymeleaf/layout"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">data-layout-decorate</span>=<span class="string">"~&#123;samples/layout/sampleLayout&#125;"</span></span></span><br><span class="line"><span class="tag">	&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>게시판예제-페이징<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:inline</span>=<span class="string">"javascript"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line">	</span><br><span class="line"><span class="actionscript">	<span class="keyword">var</span> result =<span class="comment">/*[[$&#123;msg&#125;]]*/</span> <span class="string">'default'</span>;</span></span><br><span class="line">	</span><br><span class="line"><span class="actionscript">	<span class="keyword">if</span>(result == <span class="string">'success'</span>)&#123;</span></span><br><span class="line"><span class="actionscript">		alert(<span class="string">"처리가 완료되었습니다. result:"</span> + result);</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">layout:fragment</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Content Wrapper. Contains page content --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content-wrapper"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Content Header (Page header) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"content-header"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        게시판 페이징 적용</span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>advanced tables<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ol</span> <span class="attr">class</span>=<span class="string">"breadcrumb"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-dashboard"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Tables<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"active"</span>&gt;</span>Data tables<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Main content --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xs-12"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box-header with-border"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">"box-title"</span>&gt;</span>게시판 + 페이징<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box-tools"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"input-group input-group-sm"</span> <span class="attr">style</span>=<span class="string">"width: 150px;"</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"table_search"</span> <span class="attr">class</span>=<span class="string">"form-control pull-right"</span> <span class="attr">placeholder</span>=<span class="string">"Search"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"input-group-btn"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-search"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- /.box-header --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box-body"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-bordered"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">th</span> <span class="attr">style</span>=<span class="string">"width: 10px"</span>&gt;</span>BNO<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">th</span>&gt;</span>TITLE<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">th</span> <span class="attr">style</span>=<span class="string">"width: 200px"</span>&gt;</span>WRITER<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">th</span> <span class="attr">style</span>=<span class="string">"width: 200px"</span>&gt;</span>REGDATE<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">th</span> <span class="attr">style</span>=<span class="string">"width: 40px"</span>&gt;</span>VIEWCNT<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                </span><br><span class="line">                <span class="tag">&lt;<span class="name">tr</span> <span class="attr">th:each</span>=<span class="string">"boardVO : $&#123;list&#125;"</span>&gt;</span></span><br><span class="line">	                  <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;boardVO.bno&#125;"</span>&gt;</span>BNO<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	                  <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/samplehome/board/readPage(bno=$&#123;boardVO.bno&#125;,page=$&#123;pageMaker.cri.page&#125;,perPageNum=$&#123;pageMaker.cri.perPageNum&#125;)&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;boardVO.title&#125;"</span>&gt;</span>TITLE<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	                  <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;boardVO.writer&#125;"</span>&gt;</span>WRITER<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	                  <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#dates.format(boardVO.regdate, 'yyyy-MM-dd HH:mm')&#125;"</span>&gt;</span>REGDATE<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	                  <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;boardVO.viewcnt&#125;"</span>&gt;</span>VIEWCNT<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	             <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">               </span><br><span class="line">              <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- /.box-body --&gt;</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">&lt;!-- 게시판 하단의 페이징 버튼 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box-footer clearfix"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"pagination pagination-sm no-margin pull-right"</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">              <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:if</span>=<span class="string">"$&#123;pageMaker.prev&#125; == true"</span>&gt;</span></span><br><span class="line">              	<span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/samplehome/board/listPage(page=$&#123;pageMaker.startPage&#125;-1,perPageNum=$&#123;pageMaker.cri.perPageNum&#125;)&#125;"</span>&gt;</span><span class="symbol">&amp;laquo;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">              <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:each</span>=<span class="string">"idx,iterStat : $&#123;#numbers.sequence(pageMaker.startPage,pageMaker.endPage)&#125;"</span>  <span class="attr">th:classappend</span>=<span class="string">"$&#123;pageMaker.cri.page&#125; == $&#123;idx&#125; ? active : null"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/samplehome/board/listPage(page=$&#123;idx&#125;,perPageNum=$&#123;pageMaker.cri.perPageNum&#125;)&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;idx&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                </span><br><span class="line">              <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:if</span>=<span class="string">"$&#123;pageMaker.next&#125; == true and $&#123;pageMaker.endPage &gt; 0&#125;"</span>&gt;</span></span><br><span class="line">              	<span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/samplehome/board/listPage(page=$&#123;pageMaker.endPage&#125;+1,perPageNum=$&#123;pageMaker.cri.perPageNum&#125;)&#125;"</span>&gt;</span><span class="symbol">&amp;raquo;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">              <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- /.box --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- /.col --&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- /.row --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- /.content --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- /.content-wrapper --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>뷰 단에서 중요한 점을 <strong>첫째는 모든 링크는 get방식의 링크이며, 항상 현재 페이지 정보와 페이지당 보여줄 게시글 개수 데이터를 가지고 다녀야 한다.</strong></p>
+<p>게시판에서 다른페이지로 이동, 다음 페이지로 이동, 글을 읽다가 글 목록으로 나올때 등등 페이지 상태를 유지해야 하기 때문에 이 부분을 유념해야 한다.</p>
+<p>끝!!!!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/10/spring-20180810-spring-UriComponentsBuilder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/10/spring-20180810-spring-UriComponentsBuilder/" class="post-title-link" itemprop="url">Spring MVC UriComponentsBuilder(서버단에서 쉽게 URI 만들기)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-10 06:12:29" itemprop="dateCreated datePublished" datetime="2018-08-10T06:12:29+09:00">2018-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>아주 간혹 Spring 서버단에서 문자열 URI를 만들어야 할때가 있다.<br>그냥 자바 String으로 만들어도 되지만, Spring MVC의 org.springframework.web.util 패키지의 UriComponentsBuilder를 사용하면 조금더 쉽고, 명확하게 URI 문자열을 생성 할 수 있다.</p>
+<h1 id="UriComponentsBuilder-예제"><a href="#UriComponentsBuilder-예제" class="headerlink" title="UriComponentsBuilder 예제"></a>UriComponentsBuilder 예제</h1><p>아래처럼 사용하면된다.<br>URI같은 것을 동적으로 만드는 거 자체가 짜증나긴 하지만, Java String으로 만드는 것보다야 편한듯 하다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testURI</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		</span><br><span class="line">		UriComponents uriComponents = UriComponentsBuilder.newInstance()</span><br><span class="line">				.path(<span class="string">"/samplehome/board/read"</span>)</span><br><span class="line">				.queryParam(<span class="string">"bno"</span>, <span class="number">12</span>)</span><br><span class="line">				.queryParam(<span class="string">"perPageNum"</span>, <span class="number">20</span>)</span><br><span class="line">				.build();</span><br><span class="line">		</span><br><span class="line">		logger.info(<span class="string">"/samplehome/board/read?bno=12&amp;perPageNum=20"</span>);</span><br><span class="line">		logger.info(uriComponents.toString());  <span class="comment">// /samplehome/board/read?bno=12&amp;perPageNum=20 가 생성된다.</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testURI2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		UriComponents uriComponents = UriComponentsBuilder.newInstance()</span><br><span class="line">				.path(<span class="string">"/&#123;a&#125;/&#123;b&#125;/&#123;c&#125;"</span>)</span><br><span class="line">				.queryParam(<span class="string">"bno"</span>, <span class="number">12</span>)</span><br><span class="line">				.queryParam(<span class="string">"perPageNum"</span>, <span class="number">20</span>)</span><br><span class="line">				.build()</span><br><span class="line">				.expand(<span class="string">"samplehome"</span>, <span class="string">"board"</span>, <span class="string">"read"</span>)</span><br><span class="line">				.encode();</span><br><span class="line">		</span><br><span class="line">		logger.info(<span class="string">"/samplehome/board/read?bno=12&amp;perPageNum=20"</span>);  </span><br><span class="line">		logger.info(uriComponents.toString()); <span class="comment">// /samplehome/board/read?bno=12&amp;perPageNum=20 가 생성된다.</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/07/spring-20180807-spring-thymeleaf-layout-dialect2-head/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/07/spring-20180807-spring-thymeleaf-layout-dialect2-head/" class="post-title-link" itemprop="url">Spring - thymeleaf-layout-dialect 2버전의 head 태그설정</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-07 09:42:19" itemprop="dateCreated datePublished" datetime="2018-08-07T09:42:19+09:00">2018-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <table>
+<thead>
+<tr>
+<th>항목</th>
+<th>개발환경</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>운영체제</td>
+<td>Widnwos10(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>백엔드프레임워크</td>
+<td>Spring MVC 4</td>
+<td></td>
+</tr>
+<tr>
+<td>개발언어</td>
+<td>java1.8</td>
+<td></td>
+</tr>
+<tr>
+<td>WAS</td>
+<td>Tomcat9</td>
+<td></td>
+</tr>
+<tr>
+<td>템플릿엔진</td>
+<td>Thymeleaf3</td>
+<td></td>
+</tr>
+<tr>
+<td>템플릿엔진레이아웃</td>
+<td>Tymeleaf-laout-dialect2</td>
+<td></td>
+</tr>
+<tr>
+<td>DB</td>
+<td>mysql8</td>
+<td></td>
+</tr>
+<tr>
+<td>ORM</td>
+<td>mybatis</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Spring4에 Tymeleaf 3버전과 thymeleaf-layout-dialect 2버전으로 개발중 콘솔에서 아래와 같은 경고가 발생했다.</p>
+<p><img src="/images/20180807-spring-thymeleaf-layout-dialect2-head_1.png" alt="경고내용"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARN : nz.net.ultraq.thymeleaf.fragments.FragmentProcessor - You don&#39;t need to put the layout:fragment&#x2F;data-layout-fragment attribute into the &lt;head&gt; section</span><br></pre></td></tr></table></figure>
+
+<p>발생하는 이유는 내 thymeleaf-layout-dialect 예제 소스가 1버전 소스를 사용하고 있어서 나오는 것이었다.<br>특히 head 태그 부분인데…</p>
+<p>기존 버전에서는 레이아웃.html에 아래처럼 head 태그전용 어트리뷰트를 선언해서 사용했었다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">th:replace</span>=<span class="string">"fragments/head :: headFragment"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>그리고 별도의 head fragments 전용 html을 생성했었고, 거기에 컨텐츠.html에서는 아래처럼<br>head 영역에 자신만의 css 나 js 등의 리소스를 적용했었다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 사용자 CSS 추가 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">th:block</span> <span class="attr">layout:fragment</span>=<span class="string">"css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">th:block</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 사용자 스크립트 추가 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">th:block</span> <span class="attr">layout:fragment</span>=<span class="string">"script"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:inline</span>=<span class="string">"javascript"</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">/*&lt;![CDATA[*/</span></span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">  alert(<span class="string">"여긴 컨텐츠 영역 스크립트!"</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="comment">/*]]&gt;*/</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">th:block</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>하지만 thymeleaf-layout-dialect 2버전으로 올라가면서 이럴필요가 없었고, 이것 때문에 경고문구가 나온 것이다.</p>
+<hr>
+<h1 id="해결방법"><a href="#해결방법" class="headerlink" title="해결방법"></a>해결방법</h1><p>아래가 레이아웃 페이지다. 보시다 시피 그냥 head 태그를 사용하면 된다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Layout page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"common-script.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>My website<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">layout:fragment</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>Page content goes here<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>My footer<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">layout:fragment</span>=<span class="string">"custom-footer"</span>&gt;</span>Custom footer here<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>아래는 컨텐츠 html이다</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">layout:decorate</span>=<span class="string">"~&#123;layout.html&#125;"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Content page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"content-script.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span> <span class="attr">layout:fragment</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a paragraph from the content page<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">layout:fragment</span>=<span class="string">"custom-footer"</span>&gt;</span>This is some footer content from the content page<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>그리고 아래는 둘이 합쳐져 렌더링 된 결과이다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Content page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"common-script.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"content-script.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>My website<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is a paragraph from the content page<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>My footer<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>This is some footer content from the content page<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">footer</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>결과적으로 보면 중복되는 title태그는 컨텐츠.html 것으로 교체되고, 레이아웃에 없는 script 태그가 자동으로 추가된다.<br>전보다는 훨씬 손될 부분이 적어졌다.</p>
+<hr>
+<h1 id="참고로-현재-내-예제는-다음과-같다"><a href="#참고로-현재-내-예제는-다음과-같다" class="headerlink" title="참고로 현재 내 예제는 다음과 같다."></a>참고로 현재 내 예제는 다음과 같다.</h1><p><strong>1.레이아웃.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">th:lang</span> = <span class="string">"ko"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:layout</span>=<span class="string">"http://www.ultraq.net.nz/thymeleaf/layout"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>MokaBoard<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Tell the browser to be responsive to screen width --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"</span> <span class="attr">name</span>=<span class="string">"viewport"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/resources/bower_components/bootstrap/dist/css/bootstrap.min.css&#125;"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Font Awesome --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/resources/bower_components/font-awesome/css/font-awesome.min.css&#125;"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Ionicons --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/resources/bower_components/Ionicons/css/ionicons.min.css&#125;"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- DataTables --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/resources/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css&#125;"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Theme style --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/resources/dist/css/AdminLTE.min.css&#125;"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- AdminLTE Skins. We have chosen the skin-blue for this starter</span></span><br><span class="line"><span class="comment">        page. However, you can choose any other skin. Make sure you</span></span><br><span class="line"><span class="comment">        apply the skin class to the body tag so the changes take effect. --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--  &lt;link rel="stylesheet" th:href="@&#123;/resources/dist/css/skins/skin-blue.min.css&#125;"&gt; --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/resources/dist/css/skins/_all-skins.min.css&#125;"</span>&gt;</span></span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- WARNING: Respond.js doesn't work if you view the page via file:// --&gt;</span></span><br><span class="line"><span class="comment">&lt;!--[if lt IE 9]&gt;</span></span><br><span class="line"><span class="comment">  &lt;script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">  &lt;script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="comment">  &lt;![endif]--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Google Font --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">href</span>=<span class="string">"https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- jQuery 3 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">"@&#123;/resources/bower_components/jquery/dist/jquery.min.js&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- Bootstrap 3.3.7 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">"@&#123;/resources/bower_components/bootstrap/dist/js/bootstrap.min.js&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- DataTables --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">"@&#123;/resources/bower_components/datatables.net/js/jquery.dataTables.min.js&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">"@&#123;/resources/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- SlimScroll --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">"@&#123;/resources/bower_components/jquery-slimscroll/jquery.slimscroll.min.js&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- FastClick --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">"@&#123;/resources/bower_components/fastclick/lib/fastclick.js&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- AdminLTE App --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">"@&#123;/resources/dist/js/adminlte.min.js&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- AdminLTE for demo purposes --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:src</span>=<span class="string">"@&#123;/resources/dist/js/demo.js&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">BODY TAG OPTIONS:</span></span><br><span class="line"><span class="comment">=================</span></span><br><span class="line"><span class="comment">Apply one or more of the following classes to get the</span></span><br><span class="line"><span class="comment">desired effect</span></span><br><span class="line"><span class="comment">|---------------------------------------------------------|</span></span><br><span class="line"><span class="comment">| SKINS         | skin-blue                               |</span></span><br><span class="line"><span class="comment">|                  | skin-black                              |</span></span><br><span class="line"><span class="comment">|                  | skin-purple                             |</span></span><br><span class="line"><span class="comment">|                  | skin-yellow                             |</span></span><br><span class="line"><span class="comment">|                  | skin-red                                |</span></span><br><span class="line"><span class="comment">|                  | skin-green                              |</span></span><br><span class="line"><span class="comment">|---------------------------------------------------------|</span></span><br><span class="line"><span class="comment">|LAYOUT OPTIONS | fixed                                   |</span></span><br><span class="line"><span class="comment">|               | layout-boxed                            |</span></span><br><span class="line"><span class="comment">|               | layout-top-nav                          |</span></span><br><span class="line"><span class="comment">|               | sidebar-collapse                        |</span></span><br><span class="line"><span class="comment">|               | sidebar-mini                            |</span></span><br><span class="line"><span class="comment">|---------------------------------------------------------|</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">class</span>=<span class="string">"hold-transition skin-blue sidebar-mini"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrapper"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">		<span class="tag">&lt;<span class="name">header</span> <span class="attr">th:replace</span>=<span class="string">"fragments/header :: headerFragment"</span>&gt;</span><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">aside</span> <span class="attr">th:replace</span>=<span class="string">"samples/fragments/leftAside :: leftAsideFragment"</span>&gt;</span><span class="tag">&lt;/<span class="name">aside</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">layout:fragment</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span>  <span class="comment">&lt;!-- 실제 콘텐츠  --&gt;</span></span><br><span class="line">	</span><br><span class="line">		<span class="tag">&lt;<span class="name">footer</span> <span class="attr">th:replace</span>=<span class="string">"fragments/footer:: footerFragment"</span>&gt;</span><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line">		</span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">th:replace</span>=<span class="string">"fragments/controlDiv :: controlDivFragment"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> <span class="comment">&lt;!-- 모바일 버전에서 하단과 우측에 나오는 사이즈 조정바 --&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- ./wrapper --&gt;</span></span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- Optionally, you can add Slimscroll and FastClick plugins.</span></span><br><span class="line"><span class="comment">	     Both of these plugins are recommended to enhance the</span></span><br><span class="line"><span class="comment">	     user experience. --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2.컨텐츠.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:layout</span>=<span class="string">"http://www.ultraq.net.nz/thymeleaf/layout"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">data-layout-decorate</span>=<span class="string">"~&#123;samples/layout/sampleLayout&#125;"</span></span></span><br><span class="line"><span class="tag">	&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>게시판예제-페이징<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:inline</span>=<span class="string">"javascript"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line">	</span><br><span class="line"><span class="actionscript">	<span class="keyword">var</span> result =<span class="comment">/*[[$&#123;msg&#125;]]*/</span> <span class="string">'default'</span>;</span></span><br><span class="line">	</span><br><span class="line"><span class="actionscript">	<span class="keyword">if</span>(result == <span class="string">'success'</span>)&#123;</span></span><br><span class="line"><span class="actionscript">		alert(<span class="string">"처리가 완료되었습니다."</span>);</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">layout:fragment</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- Content Wrapper. Contains page content --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"content-wrapper"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Content Header (Page header) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"content-header"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><br><span class="line">        게시판 페이징 적용</span><br><span class="line">        <span class="tag">&lt;<span class="name">small</span>&gt;</span>advanced tables<span class="tag">&lt;/<span class="name">small</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">ol</span> <span class="attr">class</span>=<span class="string">"breadcrumb"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-dashboard"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span> Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Tables<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"active"</span>&gt;</span>Data tables<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Main content --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">class</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"row"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"col-xs-12"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box-header with-border"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">h3</span> <span class="attr">class</span>=<span class="string">"box-title"</span>&gt;</span>게시판 + 페이징<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">              <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box-tools"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"input-group input-group-sm"</span> <span class="attr">style</span>=<span class="string">"width: 150px;"</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"table_search"</span> <span class="attr">class</span>=<span class="string">"form-control pull-right"</span> <span class="attr">placeholder</span>=<span class="string">"Search"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"input-group-btn"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">class</span>=<span class="string">"btn btn-default"</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-search"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- /.box-header --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box-body"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">table</span> <span class="attr">class</span>=<span class="string">"table table-bordered"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">tr</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">th</span> <span class="attr">style</span>=<span class="string">"width: 10px"</span>&gt;</span>BNO<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">th</span>&gt;</span>TITLE<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">th</span> <span class="attr">style</span>=<span class="string">"width: 200px"</span>&gt;</span>WRITER<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">th</span> <span class="attr">style</span>=<span class="string">"width: 200px"</span>&gt;</span>REGDATE<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                  <span class="tag">&lt;<span class="name">th</span> <span class="attr">style</span>=<span class="string">"width: 40px"</span>&gt;</span>VIEWCNT<span class="tag">&lt;/<span class="name">th</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">                </span><br><span class="line">                <span class="tag">&lt;<span class="name">tr</span> <span class="attr">th:each</span>=<span class="string">"boardVO : $&#123;list&#125;"</span>&gt;</span></span><br><span class="line">	                  <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;boardVO.bno&#125;"</span>&gt;</span>BNO<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	                  <span class="tag">&lt;<span class="name">td</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/samplehome/board/read(bno=$&#123;boardVO.bno&#125;)&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;boardVO.title&#125;"</span>&gt;</span>TITLE<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	                  <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;boardVO.writer&#125;"</span>&gt;</span>WRITER<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	                  <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;#dates.format(boardVO.regdate, 'yyyy-MM-dd HH:mm')&#125;"</span>&gt;</span>REGDATE<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	                  <span class="tag">&lt;<span class="name">td</span> <span class="attr">th:text</span>=<span class="string">"$&#123;boardVO.viewcnt&#125;"</span>&gt;</span>VIEWCNT<span class="tag">&lt;/<span class="name">td</span>&gt;</span></span><br><span class="line">	             <span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span><br><span class="line">               </span><br><span class="line">              <span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- /.box-body --&gt;</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">&lt;!-- 게시판 하단의 페이징 버튼 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box-footer clearfix"</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">span</span> <span class="attr">th:text</span>=<span class="string">"$&#123;pageMaker.cri.page&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"pagination pagination-sm no-margin pull-right"</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">              <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:if</span>=<span class="string">"$&#123;pageMaker.prev&#125; == true"</span>&gt;</span></span><br><span class="line">              	<span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/samplehome/board/listPage(page=$&#123;pageMaker.startPage&#125;-1)&#125;"</span>&gt;</span><span class="symbol">&amp;laquo;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">              <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:each</span>=<span class="string">"idx,iterStat : $&#123;#numbers.sequence(pageMaker.startPage,pageMaker.endPage)&#125;"</span>  <span class="attr">th:classappend</span>=<span class="string">"$&#123;pageMaker.cri.page&#125; == $&#123;idx&#125; ? active : userclass"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/samplehome/board/listPage(page=$&#123;idx&#125;)&#125;"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;idx&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">                </span><br><span class="line">              <span class="tag">&lt;<span class="name">li</span> <span class="attr">th:if</span>=<span class="string">"$&#123;pageMaker.next&#125; == true and $&#123;pageMaker.endPage &gt; 0&#125;"</span>&gt;</span></span><br><span class="line">              	<span class="tag">&lt;<span class="name">a</span> <span class="attr">th:href</span>=<span class="string">"@&#123;/samplehome/board/listPage(page=$&#123;pageMaker.endPage&#125;+1)&#125;"</span>&gt;</span><span class="symbol">&amp;raquo;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">              <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">              </span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- /.box --&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- /.col --&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- /.row --&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- /.content --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- /.content-wrapper --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>아래 th:inline 어트리뷰트는 스프링 컨트롤러로 부터 전달 받은 값을 javascript영역에 전달하기 위해 사용되었다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>게시판예제-페이징<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">th:inline</span>=<span class="string">"javascript"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">$(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line">	</span><br><span class="line"><span class="actionscript">	<span class="keyword">var</span> result =<span class="comment">/*[[$&#123;msg&#125;]]*/</span> <span class="string">'default'</span>;</span></span><br><span class="line">	</span><br><span class="line"><span class="actionscript">	<span class="keyword">if</span>(result == <span class="string">'success'</span>)&#123;</span></span><br><span class="line"><span class="actionscript">		alert(<span class="string">"처리가 완료되었습니다."</span>);</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">    </span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>현재 head 태그 자체를 fragment 할수 없어서 레이아웃.html의 head 내용이 엄청 길어졌다.<br>저 부분을 별도의 config.html 파일로 분리하고 싶은데 조금더 고민해봐야 할것 같다.</p>
+<h3 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h3><p><a href="https://github.com/ultraq/thymeleaf-layout-dialect" target="_blank" rel="external nofollow noopener noreferrer">“thymeleaf-layout-dialect 깃허브페이지”</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/07/spring-20180807-spring-bean-scan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/07/spring-20180807-spring-bean-scan/" class="post-title-link" itemprop="url">Spring MVC에서 xml환경에서 bean scan 방법</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-07 01:57:13" itemprop="dateCreated datePublished" datetime="2018-08-07T01:57:13+09:00">2018-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>자꾸 까먹는 부분이다.<br>특히 Junit 테스트 돌릴 때 이 bean scan을 잘 몰라서 해맨적이 있었다.</p>
+<p>스프링 MVC에는 크게 root-context.xml 과 servet-context.xml로 나뉜다.<br>둘다 스프링 컨테이너를 위한 설정파일이다.</p>
+<p>root-context.xml는 WEB과는 관련이 없는 설정을 담당하며, servet-context.xml는 WEB에 관련된 설정을 담당한다.</p>
+<h1 id="root-context-xml의-bean-scan-설정"><a href="#root-context-xml의-bean-scan-설정" class="headerlink" title="root-context.xml의 bean scan 설정"></a>root-context.xml의 bean scan 설정</h1><p>아래는 내 샘플 프로젝트의 root-context.xml이다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:jdbc</span>=<span class="string">"http://www.springframework.org/schema/jdbc"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:mybatis-spring</span>=<span class="string">"http://mybatis.org/schema/mybatis-spring"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- Root Context: defines shared resources visible to all other web components --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 	&lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;</span></span><br><span class="line"><span class="comment">	    &lt;property name="driverClassName" value="com.mysql.cj.jdbc.Driver"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="url" value="jdbc:mysql://127.0.0.1:3306/mokaboard_dev?useSSL=false"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="username" value="mokaboard"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="password" value="password"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">	&lt;/bean&gt; --&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"net.sf.log4jdbc.sql.jdbcapi.DriverSpy"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:log4jdbc:mysql://127.0.0.1:3306/mokaboard_dev?useSSL=false"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"mokaboard"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 	&lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="dataSource" ref="dataSource"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="configLocation" value="classpath:/mybatis-config.xml"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="mapperLocations" value="classpath:mappers/**/*.xml"&gt;&lt;/property&gt; MyBatis mapper 경로 지정한다.</span></span><br><span class="line"><span class="comment">	&lt;/bean&gt; --&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"configLocation"</span> <span class="attr">value</span>=<span class="string">"classpath:/mybatis-config.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mapperLocations"</span>&gt;</span></span><br><span class="line">			 <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">			   <span class="tag">&lt;<span class="name">value</span>&gt;</span>classpath:mappers/**/*.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">			   <span class="tag">&lt;<span class="name">value</span>&gt;</span>classpath:sampleMappers/**/*.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">			  <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- SqlSessionTemplate은 MyBatis의 SqlSession인터페이스를 구현한 클래스로 기본적인 트랜잭션의 관리나 쓰레드 처리의 안정성 등을 보장해주고, 데이터베이스의 연겨로가 종료를 책임진다. --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSession"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionTemplate"</span> <span class="attr">destroy-method</span>=<span class="string">"clearCache"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sqlSessionFactory"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.hanumoka.mokaboard, com.hanumoka.sample"</span> &gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- &lt;context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" /&gt; --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">"annotation"</span> <span class="attr">expression</span>=<span class="string">"org.springframework.stereotype.Controller"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>bean scan 부분은 아래와 같다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.hanumoka.mokaboard, com.hanumoka.sample"</span> &gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">"annotation"</span> <span class="attr">expression</span>=<span class="string">"org.springframework.stereotype.Controller"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>base-package를 보면 두개의 패키지의 bean들을 스캔한다.<br>exclude-filter 를 이용하여 org.springframework.stereotype.Controller 즉 @Controller 빈들을 제외한 bean만 스캔한다.</p>
+<h1 id="servlet-context-xml의-bean-scan-설정"><a href="#servlet-context-xml의-bean-scan-설정" class="headerlink" title="servlet-context.xml의 bean scan 설정"></a>servlet-context.xml의 bean scan 설정</h1><p>아래 역시 내 샘플 프로젝트의 servlet-context.xml 파일 전체이다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans:beans</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:beans</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- DispatcherServlet Context: defines this servlet's request-processing </span></span><br><span class="line"><span class="comment">		infrastructure --&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- Enables the Spring MVC @Controller programming model --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">annotation-driven</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- Handles HTTP GET requests for /resources/** by efficiently serving </span></span><br><span class="line"><span class="comment">		up static resources in the $&#123;webappRoot&#125;/resources directory --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">resources</span> <span class="attr">mapping</span>=<span class="string">"/resources/**"</span> <span class="attr">location</span>=<span class="string">"/resources/"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- Resolves views selected for rendering by @Controllers to .jsp resources </span></span><br><span class="line"><span class="comment">		in the /WEB-INF/views directory --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- &lt;beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt; </span></span><br><span class="line"><span class="comment">		&lt;beans:property name="prefix" value="/WEB-INF/views/" /&gt; &lt;beans:property </span></span><br><span class="line"><span class="comment">		name="suffix" value=".jsp" /&gt; &lt;/beans:bean&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- thymeleaf View 설정 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">beans:bean</span> <span class="attr">id</span>=<span class="string">"templateResolver"</span> <span class="attr">class</span>=<span class="string">"org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/views/"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".html"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"templateMode"</span> <span class="attr">value</span>=<span class="string">"HTML"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"characterEncoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"cacheable"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">beans:bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- thymeleaf laytout을 쓰기위해 3rd Party 추가 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">beans:bean</span> <span class="attr">id</span>=<span class="string">"templateEngine"</span> <span class="attr">class</span>=<span class="string">"org.thymeleaf.spring4.SpringTemplateEngine"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"templateResolver"</span> <span class="attr">ref</span>=<span class="string">"templateResolver"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"additionalDialects"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">beans:set</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">beans:bean</span> <span class="attr">class</span>=<span class="string">"nz.net.ultraq.thymeleaf.LayoutDialect"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">beans:set</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">beans:property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">beans:bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- thymeleaf laytout ViewResolver 설정 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">beans:bean</span></span></span><br><span class="line"><span class="tag">		<span class="attr">class</span>=<span class="string">"org.thymeleaf.spring4.view.ThymeleafViewResolver"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"templateEngine"</span> <span class="attr">ref</span>=<span class="string">"templateEngine"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"characterEncoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"order"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">beans:bean</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.hanumoka.mokaboard, com.hanumoka.sample"</span> <span class="attr">use-default-filters</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">context:include-filter</span> <span class="attr">type</span>=<span class="string">"annotation"</span> <span class="attr">expression</span>=<span class="string">"org.springframework.stereotype.Controller"</span>/&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- &lt;context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" /&gt; --&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span> </span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans:beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>baen scan 설정부분을 추려보면 아래와 같다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.hanumoka.mokaboard, com.hanumoka.sample"</span> <span class="attr">use-default-filters</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:include-filter</span> <span class="attr">type</span>=<span class="string">"annotation"</span> <span class="attr">expression</span>=<span class="string">"org.springframework.stereotype.Controller"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>root-context.xml와 같이 두개의 패키지를 스캔한다.<br>use-default-filters=”false” 의 의미는 component-scan의 기본 필터를 사용하지 않겠다는 의미이다.<br>기본필터는 @Component, @Repository, @Service, @Controller 어노테이션이 붙은 클래스들을 자동 탐지한다.</p>
+<p>그리고 include-filter를 통해서 @Controller 가 지정된 빈만 스캔하게 설정한다.</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

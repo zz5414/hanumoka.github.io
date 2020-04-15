@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="들어가기windows10 64 환경에 mongoDB와 compass를 설치하는 글이다.mongodb에 대해 자세히 모르기때문에, 계정생성과 mongodb compass로 접속하기 까지의 내용이다. mongoDB 설치하기https:&#x2F;&#x2F;www.mongodb.com&#x2F;download-center#community 로 이동해서 설치를 원하는 환경을 선택하고 설치파일">
+<meta property="og:type" content="article">
+<meta property="og:title" content="windows에 mongoDB , mongodb compass 설치하기">
+<meta property="og:url" content="https://www.hanumoka.net/2018/10/18/mongodb-20181018-mongodb-install-at-windows/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="들어가기windows10 64 환경에 mongoDB와 compass를 설치하는 글이다.mongodb에 대해 자세히 모르기때문에, 계정생성과 mongodb compass로 접속하기 까지의 내용이다. mongoDB 설치하기https:&#x2F;&#x2F;www.mongodb.com&#x2F;download-center#community 로 이동해서 설치를 원하는 환경을 선택하고 설치파일">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_1.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_2.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_3.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_4.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_5.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_9.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_10.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_11.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_6.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_7.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_8.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_12.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows_13.png">
+<meta property="article:published_time" content="2018-10-18T08:59:35.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:12.004Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="mongodb">
+<meta property="article:tag" content="mongo.exe">
+<meta property="article:tag" content="mongod.exe">
+<meta property="article:tag" content="mongodb compass">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/20181018-mongodb-install-at-windows.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2018/10/18/mongodb-20181018-mongodb-install-at-windows/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>windows에 mongoDB , mongodb compass 설치하기 | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/10/18/mongodb-20181018-mongodb-install-at-windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          windows에 mongoDB , mongodb compass 설치하기
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-10-18 17:59:35" itemprop="dateCreated datePublished" datetime="2018-10-18T17:59:35+09:00">2018-10-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/mongodb/" itemprop="url" rel="index">
+                    <span itemprop="name">mongodb</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>windows10 64 환경에 mongoDB와 compass를 설치하는 글이다.<br>mongodb에 대해 자세히 모르기때문에, 계정생성과 mongodb compass로 접속하기 까지의 내용이다.</p>
+<h1 id="mongoDB-설치하기"><a href="#mongoDB-설치하기" class="headerlink" title="mongoDB 설치하기"></a>mongoDB 설치하기</h1><p><a href="https://www.mongodb.com/download-center#community" target="_blank" rel="external nofollow noopener noreferrer">https://www.mongodb.com/download-center#community</a> 로 이동해서 설치를 원하는 환경을 선택하고 설치파일을 다운로드 한다.</p>
+<p><img src="/images/20181018-mongodb-install-at-windows.png" alt="mongodb 설치파일 다운로드"></p>
+<p>다운로드 한 설치파일을 실행하자.</p>
+<p><img src="/images/20181018-mongodb-install-at-windows_1.png" alt="mongodb 설치 1"></p>
+<p><img src="/images/20181018-mongodb-install-at-windows_2.png" alt="mongodb 설치 2"></p>
+<p><img src="/images/20181018-mongodb-install-at-windows_3.png" alt="mongodb 설치 3"></p>
+<p><img src="/images/20181018-mongodb-install-at-windows_4.png" alt="mongodb 설치 4"></p>
+<p><img src="/images/20181018-mongodb-install-at-windows_5.png" alt="mongodb 설치 5 - install MongoDB Compass 부분을 체크한다."></p>
+<p>이건 내가 잘 모르겠는데, 원래 mongodb 설치할때 같이 Compass(mongodb gui tool)를 설치할수 있다고 한다.<br>그런데 대체 어디에 설치되는지 모르겠어서 나중에 Compass만 추가로 설치할 것이다.</p>
+<p>나머지 부분은 그냥 next, next 하다보면 설치가 완료된다.</p>
+<h1 id="mongoDB-동작준비"><a href="#mongoDB-동작준비" class="headerlink" title="mongoDB 동작준비"></a>mongoDB 동작준비</h1><p>반드시 <strong>C:\data\db 폴더를 생성해야 한다.</strong><br>이부분도 정확히는 모르겠으나, Windows환경에서 mongodb가 동작하면서 생성하는 데이터베이스 정보를 관리하는 파일시스템 경로인것 같다.</p>
+<p><img src="/images/20181018-mongodb-install-at-windows_9.png" alt="C:\data\db 폴더를 생성하자."><br>위 이미지에 폴더 내부에 생성된 파일들은 mongodb 서버가 동작하면서 자동으로 생성해준 파일이다.<br>지금은 폴더를 만들었으니, 비어져 있어야 할 것이다.</p>
+<h1 id="mongoDB-서버-동작-시키기"><a href="#mongoDB-서버-동작-시키기" class="headerlink" title="mongoDB 서버 동작 시키기"></a>mongoDB 서버 동작 시키기</h1><p>mongoDB를 설치해서 그 경로에 가보면 C:\Program Files\MongoDB\Server\4.0\bin<br>크게 mongoDB 서버를 실행하는 mongod.exe와 클라이언트 쉘을 실행하는 mongo.exe를 볼 수 있다.<br>음 찾아보니 mongo.exe 쉡을 실행하려면 mongod.exe를 먼저 실행해야 한다고 한다.</p>
+<p><img src="/images/20181018-mongodb-install-at-windows_10.png" alt="mongdo.exe파일과 mongod.exe파일"></p>
+<p>cmd 창에서 mongod.exe를 먼저 실행하자.<br>주의 할 점은 C:\data\db 폴더를 미리 생성했어야 한다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd C:\Program Files\MongoDB\Server\4.0\bin</span><br><span class="line">mongod</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181018-mongodb-install-at-windows_11.png" alt="mongod.exe 실행화면 "></p>
+<p>로컬호스트의 27017포트로 서버가 실행되는 것을 확인 할수 있으며, 쉘로 진입한다.<br>이때 아까 생성했던 C:\data\db 폴더내부에 파일들이 생성되는 것을 확인 할 수 있다.</p>
+<p>이 쉘에서 관리자 모드로 접속해서 관리자권한이 있는 계정을 하나 만들어보자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">use admin</span><br><span class="line">db.createUser(&#123;user:'hanumoka', pwd:'password', roles:['root']&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>mongo.exe 명령으로 방금 만든 계정으로 접속이 가능하나, 명령어를 사용하는 부분은 아직 잘 몰라 넘어가고 mongoDB Compass를 사용해보자.</p>
+<h1 id="mongoDB-Compass-설치하기"><a href="#mongoDB-Compass-설치하기" class="headerlink" title="mongoDB Compass 설치하기"></a>mongoDB Compass 설치하기</h1><p><a href="https://www.mongodb.com/download-center#compass" target="_blank" rel="external nofollow noopener noreferrer">https://www.mongodb.com/download-center#compass</a> 로 이동해서 versions를 Community Edition Stable을 선택하고 platforms를 선택하고, 설치파일을 다운로드 하자.</p>
+<p><img src="/images/20181018-mongodb-install-at-windows_6.png" alt="mongodb compass 설치 1"></p>
+<p><img src="/images/20181018-mongodb-install-at-windows_7.png" alt="설치파일을 실행하면 바로 설치가 자동으로 되며, compass가 실행된다."></p>
+<p><img src="/images/20181018-mongodb-install-at-windows_8.png" alt="mongodb compass가 설치된것을 확인 할 수 있다."></p>
+<p>mongodb 설치할 때, mongodb compass를 같이 설치할때는 위처럼 설치된 내용을 확인 할수 없었다. 크흠….. 뭐지</p>
+<p>여튼 mongoDB Compass도 설치가 완료되었다.</p>
+<h1 id="mongoDB-Compass로-서버에-접속하기"><a href="#mongoDB-Compass로-서버에-접속하기" class="headerlink" title="mongoDB Compass로 서버에 접속하기"></a>mongoDB Compass로 서버에 접속하기</h1><p>설치한 mongoDB Compass를 실행하고 위에서 생성한 계정으로 접속해 보자.</p>
+<p><img src="/images/20181018-mongodb-install-at-windows_12.png" alt="New Connection을 선택하고 정보를 입력하고 Connect를 클릭하자."></p>
+<p><img src="/images/20181018-mongodb-install-at-windows_13.png" alt="접속이 되는 것을 확인 할 수있다."></p>
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>mongodb에 정확히 모르고 node를 배우는 겸, 그 내용을 정리한 글이라 엉성하다.</p>
+<p>위 작업을 할때 발생한 이슈가 좀 있다.</p>
+<p>mongod.exe는 mongodb 서버를 실행하는 파일이다.<br>따라서 pc를 켜고 mongod.exe를 실행하고 mongo.exe 쉘을 통해 db 서버를 사용해야 한다.</p>
+<p>하지만 mongodb compass를 실행하면 mongodb compass 특성인지 실행시 자동으로 mongo server를 실행시켜주는 느낌이다.<br>이것저것 테스트 해본다고 mongodb compass와 mongod.exe를 만지다보니 connection이 꼬였는지 먹통이 되기도 한다.<br>이럴때에는 작업관리자에서 mongodb compass와 mongodb관련 프로세스, 서비스를 다 죽이고 mongoDB 서비스를 재시작후에 mongodb compass를 사용하면 접속이 된다.<br>하지만 이때 mongod.exe를 실행하니 접속을 못하고 있다.<br>음 뭔가 더 공부해보고 싶은데, 일단 보던 node 부터 마무리 지어야 겠다.</p>
+<p>책을 한권 사볼까 하는데 이제 4버전이 나왔다. 4버전 책이나오면 한권 읽어봐야 겠다.<br>4버전 부터 트랜젝션 기능을 제공한다고 하니….</p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/mongodb/" rel="tag"># mongodb</a>
+              <a href="/tags/mongo-exe/" rel="tag"># mongo.exe</a>
+              <a href="/tags/mongod-exe/" rel="tag"># mongod.exe</a>
+              <a href="/tags/mongodb-compass/" rel="tag"># mongodb compass</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/06/javascript-20181006-javascript-callback/" rel="prev" title="Javascript - 동기(synchronous), 비동기(asynchronous) 프로그래밍">
+      <i class="fa fa-chevron-left"></i> Javascript - 동기(synchronous), 비동기(asynchronous) 프로그래밍
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/10/21/mysql-20181021-mysql-install-at-windows/" rel="next" title="Mysql Windows10에 설치하기">
+      Mysql Windows10에 설치하기 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#들어가기"><span class="nav-number">1.</span> <span class="nav-text">들어가기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mongoDB-설치하기"><span class="nav-number">2.</span> <span class="nav-text">mongoDB 설치하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mongoDB-동작준비"><span class="nav-number">3.</span> <span class="nav-text">mongoDB 동작준비</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mongoDB-서버-동작-시키기"><span class="nav-number">4.</span> <span class="nav-text">mongoDB 서버 동작 시키기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mongoDB-Compass-설치하기"><span class="nav-number">5.</span> <span class="nav-text">mongoDB Compass 설치하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mongoDB-Compass로-서버에-접속하기"><span class="nav-number">6.</span> <span class="nav-text">mongoDB Compass로 서버에 접속하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#마무리"><span class="nav-number">7.</span> <span class="nav-text">마무리</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

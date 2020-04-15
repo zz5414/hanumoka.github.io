@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="크롬브라우저에서 Vue 개발자 도구 설치하기크롬 웹 스토어에서 vue를 검색해서 Vue.js devtools 를 설치하자.   Vue를 개발할 개발툴 Atom 을 설치하고, 개발에 필요한 패키지등을 설치하기뭐 이건 개인이 편한걸 되지만, Atom써보니 썩 괜찮은 툴인거 같다.뭔가 툴이 찰지다고 해야 하나? 타이핑하면서 툴의 반응이 찰지다.  설치가 완료되면">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js 개발환경 잡기(Widnwos10)">
+<meta property="og:url" content="https://www.hanumoka.net/2018/08/21/vue-20180821-vue-develoment-enviroments-at-windows10/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="크롬브라우저에서 Vue 개발자 도구 설치하기크롬 웹 스토어에서 vue를 검색해서 Vue.js devtools 를 설치하자.   Vue를 개발할 개발툴 Atom 을 설치하고, 개발에 필요한 패키지등을 설치하기뭐 이건 개인이 편한걸 되지만, Atom써보니 썩 괜찮은 툴인거 같다.뭔가 툴이 찰지다고 해야 하나? 타이핑하면서 툴의 반응이 찰지다.  설치가 완료되면">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_1.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_2.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_3.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_4.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_5.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_6.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_7.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_8.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_9.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_10.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_11.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_12.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_13.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_14.png">
+<meta property="article:published_time" content="2018-08-21T01:46:34.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:12.037Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="atom">
+<meta property="article:tag" content="개발환경">
+<meta property="article:tag" content="vue cli">
+<meta property="article:tag" content="Vue.js">
+<meta property="article:tag" content="nodejs">
+<meta property="article:tag" content="cli">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/20180821-vue-develoment-enviroments-at-windows10_1.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2018/08/21/vue-20180821-vue-develoment-enviroments-at-windows10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Vue.js 개발환경 잡기(Widnwos10) | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/21/vue-20180821-vue-develoment-enviroments-at-windows10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue.js 개발환경 잡기(Widnwos10)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-21 10:46:34" itemprop="dateCreated datePublished" datetime="2018-08-21T10:46:34+09:00">2018-08-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="크롬브라우저에서-Vue-개발자-도구-설치하기"><a href="#크롬브라우저에서-Vue-개발자-도구-설치하기" class="headerlink" title="크롬브라우저에서 Vue 개발자 도구 설치하기"></a>크롬브라우저에서 Vue 개발자 도구 설치하기</h3><p>크롬 웹 스토어에서 vue를 검색해서 Vue.js devtools 를 설치하자.</p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_1.png" alt="난 이미 설치가 되어있어서 평가하기 버튼으로 설치버튼이 평가하기 버튼으로 나온다."></p>
+<hr>
+<h3 id="Vue를-개발할-개발툴-Atom-을-설치하고-개발에-필요한-패키지등을-설치하기"><a href="#Vue를-개발할-개발툴-Atom-을-설치하고-개발에-필요한-패키지등을-설치하기" class="headerlink" title="Vue를 개발할 개발툴 Atom 을 설치하고, 개발에 필요한 패키지등을 설치하기"></a>Vue를 개발할 개발툴 Atom 을 설치하고, 개발에 필요한 패키지등을 설치하기</h3><p>뭐 이건 개인이 편한걸 되지만, Atom써보니 썩 괜찮은 툴인거 같다.<br>뭔가 툴이 찰지다고 해야 하나? 타이핑하면서 툴의 반응이 찰지다.</p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_2.png" alt="그냥 홈페이지 가서 설치하면 된다."></p>
+<p>설치가 완료되면, 테마를 바꿔보자.</p>
+<h4 id="아톰-테마-설치"><a href="#아톰-테마-설치" class="headerlink" title="아톰 테마 설치"></a>아톰 테마 설치</h4><p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_3.png" alt="file -&gt; settings -&gt; Install 로 이동하여 Themes 를 선택하고 seti-ui 를 검색하여 Install 하자."></p>
+<p>seti-ui를 설치한뒤 atom-material-syntax-dark 도 검색하여 설치하자.<br>seti-ui는 직관적인 파일아이콘등을 표시해주는 테마이고, atom-material-syntax-dark는 자바스크립트 코드 구문을 강조해주는 테마이다.</p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_4.png" alt="atom-material-syntax-dark 테마도 설치하자."></p>
+<p>Atom에서는 설치한 테마를 수동으로 적용해 줘야 한다.<br>Settins의 Themes로 이동하여 Ui Theme에 방금 설치한 seti를 선택하자.</p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_5.png" alt="선택하면 그 즉시 테마가 적용된다. 기본테마보다는 뭔가 뚜렷하고 색감이 진해져서 보기가 좋다."></p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_6.png" alt="Syntax Theme도 방금 설치한 atom material dark로 변경해주자. 이녀석은 소스 구문테마라 지금 딱히 변화는 없다."></p>
+<h4 id="아톰-패키지-설치"><a href="#아톰-패키지-설치" class="headerlink" title="아톰 패키지 설치"></a>아톰 패키지 설치</h4><p>이번에는 Atom에서 Vue 개발시 쓸만한 패키지를 설치해보자.<br>Settings의 Install 탭으로 가서 Packages 버튼을 클릭하자.<br>검색어로 language-vue 를 검색해서 설치하자.</p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_7.png" alt="패키지는 테마와 달리 설치히 바로 적용이 된다."></p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_8.png" alt="테마가 적용되어 파일확장자에 따라 아이콘이 다른것을 확인 할수 있다."></p>
+<p>그리고 language-vue 가 아주 편한점이 있는데, 이 패키지는 vue 파일에서 태그를 아주 쉽게 생성해준다.<br>vue 파일에서 작성을 하고 싶은 태그를 그냥 타이핑하다가 tab을 누르면 자동으로 생성해준다.</p>
+<p>예를 들어 html태그를 생성하고 싶다면, 그냥 htm까지만(꺽쇠는 빼고) 치고 탭을 누르면 아래처럼 자동으로 생성해준다.</p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_9.png" alt="원하는 태그를 꺽쇠 없이 치다가 tab을 눌러주면"></p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_10.png" alt="이렇게 자동으로 만들어준다."></p>
+<p>vue에서 tempate, script, style 태그등을 자주 사용하는데 아주 편한 기능인 것 같다.</p>
+<hr>
+<h3 id="Node-js-설치하기"><a href="#Node-js-설치하기" class="headerlink" title="Node.js 설치하기"></a>Node.js 설치하기</h3><p>뭐 Angular오 마찬가지로 Vue의 다양한 프로토타이핑 프로젝트를 CLI로 생성하기 위해서 반드시 필요하다.<br>이것도 그냥 홈페이지 가서 설치하면 된다.<br>다만 LTS 버전 설치를 추천한다.</p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_11.png" alt="그냥 설치해주면 된다."></p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_12.png" alt="설치가 끝난다음, cmd 에서 node -v 를 입력해서 버전확인을 할 수 있다."></p>
+<h3 id="Vue-CLI-설치하고-간단한-Vue-프로젝트를-만들어-실행해보자"><a href="#Vue-CLI-설치하고-간단한-Vue-프로젝트를-만들어-실행해보자" class="headerlink" title="Vue CLI 설치하고 간단한 Vue 프로젝트를 만들어 실행해보자."></a>Vue CLI 설치하고 간단한 Vue 프로젝트를 만들어 실행해보자.</h3><p>cmd 창을 열고 <strong>install vue-cli -global</strong>을 입력하여 Vue CLI를 설치하자.<br>이것을 설치하면 터미널에서 커맨드 명령어로 다양한 Vue 프로토타입 프로젝트를 생성 할 수있다.</p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_13.png" alt="터미널을 열고 install vue-cli -global를 입력하여 설치."></p>
+<p>설치가 끝나면 vue명령어를 입력해보자.<br>vue list를 입력하면 생성할수 있는 vue 프로토타입 프로젝트의 종류가 보인다.</p>
+<p><img src="/images/20180821-vue-develoment-enviroments-at-windows10_14.png" alt="vue 명령어로 vue 설치 확인."></p>
+<p><strong>Vue.js 개발환경 만들기 끝!!!</strong></p>
+<hr>
+<h3 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h3><p>다음 글에서는 Vue CLI 로 간단한 프로젝트를 만드는 방법에 대해서 알아보겠다.</p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/atom/" rel="tag"># atom</a>
+              <a href="/tags/%EA%B0%9C%EB%B0%9C%ED%99%98%EA%B2%BD/" rel="tag"># 개발환경</a>
+              <a href="/tags/vue-cli/" rel="tag"># vue cli</a>
+              <a href="/tags/Vue-js/" rel="tag"># Vue.js</a>
+              <a href="/tags/nodejs/" rel="tag"># nodejs</a>
+              <a href="/tags/cli/" rel="tag"># cli</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/08/19/programing-etc-20180819-log4j-logback-log4j2-SLF4J/" rel="prev" title="Log4j, Log4j2, Logback, SLF4J 간단 용어정리">
+      <i class="fa fa-chevron-left"></i> Log4j, Log4j2, Logback, SLF4J 간단 용어정리
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/08/22/vue-20180822-vue-Vue-CLI/" rel="next" title="Vue CLI를 이용해서 프로젝트 만들어보기.">
+      Vue CLI를 이용해서 프로젝트 만들어보기. <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#크롬브라우저에서-Vue-개발자-도구-설치하기"><span class="nav-number">1.</span> <span class="nav-text">크롬브라우저에서 Vue 개발자 도구 설치하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue를-개발할-개발툴-Atom-을-설치하고-개발에-필요한-패키지등을-설치하기"><span class="nav-number">2.</span> <span class="nav-text">Vue를 개발할 개발툴 Atom 을 설치하고, 개발에 필요한 패키지등을 설치하기</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#아톰-테마-설치"><span class="nav-number">2.1.</span> <span class="nav-text">아톰 테마 설치</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#아톰-패키지-설치"><span class="nav-number">2.2.</span> <span class="nav-text">아톰 패키지 설치</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-js-설치하기"><span class="nav-number">3.</span> <span class="nav-text">Node.js 설치하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-CLI-설치하고-간단한-Vue-프로젝트를-만들어-실행해보자"><span class="nav-number">4.</span> <span class="nav-text">Vue CLI 설치하고 간단한 Vue 프로젝트를 만들어 실행해보자.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#마무리"><span class="nav-number">5.</span> <span class="nav-text">마무리</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

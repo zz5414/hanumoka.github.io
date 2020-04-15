@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="들어가기내가 VirtualBox에 Ubuntu 18.04를 설치하려는 이유는… VirtualBox에 Ubuntu OS에 개발환경을 셋팅을 하려 하기 때문이다. VirtualBox에 Ubuntu 개발환경을 이미지로 만들면, 회사에서 인터넷 망이든 개발망이든 자유롭게 내가 원하는 상태의 개발환경을 가질수 있을거라 생각된다.(지금은… 일단 구축해보고, 성능과 문">
+<meta property="og:type" content="article">
+<meta property="og:title" content="VirtualBox에 Ubuntu 18.04 설치하기">
+<meta property="og:url" content="https://www.hanumoka.net/2019/08/15/ubuntu-20190815-ubuntu-1084-virtualbox/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="들어가기내가 VirtualBox에 Ubuntu 18.04를 설치하려는 이유는… VirtualBox에 Ubuntu OS에 개발환경을 셋팅을 하려 하기 때문이다. VirtualBox에 Ubuntu 개발환경을 이미지로 만들면, 회사에서 인터넷 망이든 개발망이든 자유롭게 내가 원하는 상태의 개발환경을 가질수 있을거라 생각된다.(지금은… 일단 구축해보고, 성능과 문">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-29b6f9a6-216a-4645-abb5-87db7e0b63b2.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-7393009b-2b34-45b6-8d3b-c817fe930e99.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-9d1722ab-a739-475d-8733-075189a579d5.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-5559f8b2-4110-45b6-976e-221bde82f672.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-b007f218-c903-429f-99ad-da0367089374.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-8218d459-2e1b-49de-8a2d-e096a0d2132b.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-8d9ea907-aae8-48a6-9e7a-f5809137708e.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-cdb526e2-48d8-4c5b-b366-1bef208f5c8f.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-49c89ee1-535a-4602-85c2-23742375ace8.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-85c0459e-e668-48ef-be24-1583862c8a47.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-ac21b6bd-2fd3-4c52-8b1c-e9dba6a405fd.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-bf1cd512-0bd2-4379-b4f9-9abee85bbd6b.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-729249a5-e65b-4da7-86b2-316e8d80257d.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-8bfd7ed4-4f7b-434c-bd7b-51d4c426770b.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-c2d7233f-05ea-42dd-ab0b-ca96eb83ba21.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-4c116825-11d9-4342-aee3-549a5f24009b.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-507dc6c2-60ca-40cd-9881-440a23c3a5c7.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-2e748880-2771-4c36-8319-0c3baa68dca6.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-84ff1b7f-1efb-4cb8-b5f1-5cd48054f884.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-3a016c5c-33d8-47fa-b385-8fd5dfcde503.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-847b5a5a-2dae-4e0c-b25e-7ec456b2c327.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-43bd09da-f10e-48b6-8dee-4cf094dfaea9.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-6bc246fd-4c56-4e11-a4bf-c6472ef159cd.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-898b0944-0259-41c1-943c-5dcfe7e98e5c.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-fcc302ad-e4e3-4cc4-a85a-b9d4a2fb4228.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-13090dd9-a216-449d-a527-c731012efa63.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-a8506d71-4435-4f5d-9735-1f86dd848aba.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-377d379b-33b7-4fa8-933d-449406b9f1b4.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-3d5286c7-ab43-4110-81a7-5861b47462a9.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-4f81c62d-e35a-46f4-9714-c13a6b039d08.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-bad2e82b-c643-44c0-a72f-c3281f6fe9c3.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-d8de05f8-dbb7-4197-956d-2d7c226c672d.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-1aab587b-31fb-4e81-8f97-4909610da099.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-0c6f7598-0462-4e3a-96b4-237b4f849a43.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-67ceb2ed-2ad5-4917-ab7f-8fce7cf2a050.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-a7ed1d3e-0196-41b7-a8d5-d2944fb0136a.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-d5c013a0-bcb1-4b2d-ade8-fce856dd7adc.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-4e8dc80a-b3f4-4c76-988c-ca6d4bc49e23.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-51b92880-5238-4ed9-a0c7-754bd269c095.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-638dc4a3-5bf1-4084-931e-4a957f9dda9f.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-37c49464-4001-49e6-8dc9-d3cacc4b0c4c.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-0aa88e53-7935-430a-823f-ddd0c2928b75.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-fde8c7e6-08ec-4b7e-afbf-e40c9bd8192b.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-19b7952a-290b-4054-b1e5-392065b29a94.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-b633b552-5c04-4a63-a763-92feba157ac6.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-f7a73600-7809-4498-91bd-c3638298fc3c.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-7ae3e4d9-edbd-4f63-b020-a0c33d6569b2.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-3af7d2d3-4099-4814-8ef7-2247c5b9ca8d.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-82b6b3ce-f242-4601-aa64-8215ca5d0e18.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-9e2c1e49-483a-45e8-9e79-db5e62f594bd.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-8e694a7f-b2bc-4cb4-ad00-0ca219b9dca2.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-64ebf1d9-605e-4ccd-83f5-29c971289172.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-20a1651b-e860-41c4-9de2-30d9cc0ced26.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-3a61933d-32ad-437e-8533-95faaaed1e0d.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-0a0e5383-0d79-4fc2-9eff-3fc36f5bfacc.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-d67a4216-3aae-4b46-a8ab-3d2a94baebb3.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-92169f2d-d1ac-4109-a9f3-2eca82860b57.png">
+<meta property="article:published_time" content="2019-08-15T07:04:05.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:12.030Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="virtualbox">
+<meta property="article:tag" content="해상도">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/2019/Untitled-29b6f9a6-216a-4645-abb5-87db7e0b63b2.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2019/08/15/ubuntu-20190815-ubuntu-1084-virtualbox/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>VirtualBox에 Ubuntu 18.04 설치하기 | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/15/ubuntu-20190815-ubuntu-1084-virtualbox/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          VirtualBox에 Ubuntu 18.04 설치하기
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-15 16:04:05" itemprop="dateCreated datePublished" datetime="2019-08-15T16:04:05+09:00">2019-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>내가 VirtualBox에 Ubuntu 18.04를 설치하려는 이유는…</p>
+<p>VirtualBox에 Ubuntu OS에 개발환경을 셋팅을 하려 하기 때문이다.</p>
+<p>VirtualBox에 Ubuntu 개발환경을 이미지로 만들면, 회사에서 인터넷 망이든 개발망이든 자유롭게 내가 원하는 상태의 개발환경을 가질수 있을거라 생각된다.(지금은… 일단 구축해보고, 성능과 문제점, 사용상 불편함 등을 체크해 봐야 할것 같다.)</p>
+<hr>
+<h3 id="준비물"><a href="#준비물" class="headerlink" title="준비물"></a>준비물</h3><p>Vitualbox (공짜이니 구글에서 검색해서 windows10에 설치)</p>
+<p>Ubuntu18.04.iso 파일(역시 구글에 금색해서 다운로드)</p>
+<hr>
+<h1 id="virtualbox에-Ubuntu1804-설치하기"><a href="#virtualbox에-Ubuntu1804-설치하기" class="headerlink" title="virtualbox에 Ubuntu1804 설치하기"></a>virtualbox에 Ubuntu1804 설치하기</h1><h3 id="virtualbox-이미지를-준비하자"><a href="#virtualbox-이미지를-준비하자" class="headerlink" title="virtualbox 이미지를 준비하자."></a>virtualbox 이미지를 준비하자.</h3><p>일단 먼저 설치된 virtualbox를 열고 머신 → 새로만들기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-29b6f9a6-216a-4645-abb5-87db7e0b63b2.png" alt></p>
+<p>그러면 다음과 같은 창이 열릴것이다.</p>
+<p><img src="/images/2019/Untitled-7393009b-2b34-45b6-8d3b-c817fe930e99.png" alt></p>
+<p>머신폴더는 여유공간이 넉넉한 드라이브를 선택해야 한다.</p>
+<p>나는 50GB의 이미지를 생성할 예정이다.</p>
+<p>종류와 버전은 그냥 두고 다음을 누르자.</p>
+<p><img src="/images/2019/Untitled-9d1722ab-a739-475d-8733-075189a579d5.png" alt></p>
+<p>메모리 크기를 8192MB로 잡았다. 나중에 수정이 가능하니 상황에 따라 적절하게 잡아주자.</p>
+<p>다음을 눌러주자.</p>
+<p><img src="/images/2019/Untitled-5559f8b2-4110-45b6-976e-221bde82f672.png" alt></p>
+<p>지금 새 가상 하드 디스크 만들기를 선택하고 만들기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-b007f218-c903-429f-99ad-da0367089374.png" alt></p>
+<p>VDI를 선택하고 다음을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-8218d459-2e1b-49de-8a2d-e096a0d2132b.png" alt></p>
+<p>고정 크기를 선택하고 다음을 누르자.</p>
+<p><img src="/images/2019/Untitled-8d9ea907-aae8-48a6-9e7a-f5809137708e.png" alt></p>
+<p>내 경우에는 개발환경을 위해 어느정도 넉넉한 공간이 필요할 것이라 생각되어 50GB를 고정으로 잡았다.</p>
+<p>만들기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-cdb526e2-48d8-4c5b-b366-1bef208f5c8f.png" alt></p>
+<p>위 화면이 나오면서 이미지를 만들기 시작한다. 시간이 20분 정도 걸리니 커피를 한잔 하고 오자.</p>
+<p><img src="/images/2019/Untitled-49c89ee1-535a-4602-85c2-23742375ace8.png" alt></p>
+<p>시간이 지나면 이미지가 완성되고 위처럼 이미지가 생성된 것을 확인 할 수 있다.</p>
+<p><img src="/images/2019/Untitled-85c0459e-e668-48ef-be24-1583862c8a47.png" alt></p>
+<p>혹시 모르니 일단 안전을 위해 이미지 스냅샷을 만들어 놓자.</p>
+<p><img src="/images/2019/Untitled-ac21b6bd-2fd3-4c52-8b1c-e9dba6a405fd.png" alt></p>
+<p>스냅산 이름을 입력하고 확인을 누르자.</p>
+<p><img src="/images/2019/Untitled-bf1cd512-0bd2-4379-b4f9-9abee85bbd6b.png" alt></p>
+<p>위처럼 스냅샷을 확인 할수있다.</p>
+<p>시간이 오래걸리는 작업등은 virtualbox의 스냅샷을 이용해 미리미리 저장해 놓다.</p>
+<p>혹시나 뭔가 작업하다가 망가졌을 경우 아주 편리하다.</p>
+<h3 id="우분투-설치전-이미지의-설정-조정"><a href="#우분투-설치전-이미지의-설정-조정" class="headerlink" title="우분투 설치전 이미지의 설정 조정."></a>우분투 설치전 이미지의 설정 조정.</h3><p><img src="/images/2019/Untitled-729249a5-e65b-4da7-86b2-316e8d80257d.png" alt></p>
+<p>생성된 이미지를 마우스 우클릭 후 설정을 선택하자.</p>
+<p><img src="/images/2019/Untitled-8bfd7ed4-4f7b-434c-bd7b-51d4c426770b.png" alt></p>
+<p>설정 창에서 시스템으로 이동해서 마더보드 탭으로 진입하고 부팅순서에 플로피 디스크 항목을 선택 해재하자.</p>
+<p><img src="/images/2019/Untitled-c2d7233f-05ea-42dd-ab0b-ca96eb83ba21.png" alt></p>
+<p>프로세서 탭으로 이동해서 프로세서 개수를 최대치로 올려준다.</p>
+<p>위에서 이미지 프로세스 설정으로 호스트 컴퓨터의 프로세스를 공유해서 같이 사용한다고 한다.</p>
+<p><img src="/images/2019/Untitled-4c116825-11d9-4342-aee3-549a5f24009b.png" alt></p>
+<p>디스플레이 항목으로 이동해서 화면탭으로 이동 후 비디오 메모리를 최대치로 올려준다.</p>
+<p>그리고 확인을 눌러 설정창을 닫아 설정을 저장하자.</p>
+<h3 id="이미지에-Ubuntu1804-설치하기"><a href="#이미지에-Ubuntu1804-설치하기" class="headerlink" title="이미지에 Ubuntu1804 설치하기"></a>이미지에 Ubuntu1804 설치하기</h3><p><img src="/images/2019/Untitled-507dc6c2-60ca-40cd-9881-440a23c3a5c7.png" alt></p>
+<p>이미지를 우클릭후 시작 → 일반시작을 선택하자.</p>
+<p><img src="/images/2019/Untitled-2e748880-2771-4c36-8319-0c3baa68dca6.png" alt></p>
+<p>위처럼 이미지가 시동되면서 시동디스크를 선택하라는 창이 나온다. </p>
+<p>미리 다운 받은 Ubuntu18.04.iso 파일을 선택하고 시작을 눌러주자.</p>
+<p><img src="/images/2019/Untitled-84ff1b7f-1efb-4cb8-b5f1-5cd48054f884.png" alt></p>
+<p>언어에서 한국어를 설치하고 Ubuntu 체험하기를 선택하자.</p>
+<p>바로 Ubuntu를 설치하지 않고 체험하기를 선택하는 이유는 virtualbox에서 ubuntu를 설치할때 해상도가 맞지 않아 문제가 있기 때문에, 미리 해상도를 조절하고 설치하기 위함이다.</p>
+<p><img src="/images/2019/Untitled-3a016c5c-33d8-47fa-b385-8fd5dfcde503.png" alt></p>
+<p>위처럼 체험용 우분투가 열리고 파란식 표시를 따라서 환경설정으로 이동하자.</p>
+<p><img src="/images/2019/Untitled-847b5a5a-2dae-4e0c-b25e-7ec456b2c327.png" alt></p>
+<p>위처럼 환경 설정 창이 열리는데, 오른쪽 위의 네모를 선택해서 창을 작은창으로 변경한다.</p>
+<p><img src="/images/2019/Untitled-43bd09da-f10e-48b6-8dee-4cf094dfaea9.png" alt></p>
+<p>작아진 설정창에서 Devices를 찾아 선택하자.</p>
+<p><img src="/images/2019/Untitled-6bc246fd-4c56-4e11-a4bf-c6472ef159cd.png" alt></p>
+<p>Resolution을 선택하고 1360 x 768을 선택하자. 임시로 설치를 위한 해상도 이다 나중에 호스트 머신에 딱맞는 해상도 셋팅을 따로 할 것이다.</p>
+<p><img src="/images/2019/Untitled-898b0944-0259-41c1-943c-5dcfe7e98e5c.png" alt></p>
+<p>이 환경설정 창이 너무 커서 화면에 잘 안보이는 경우가 있는데 앞서 창의 크기를 작게 만들었기 때문에 창의 크기를 마우스로 적절하게 이동 시켜서 내용을 입력하고 적용 버튼을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-fcc302ad-e4e3-4cc4-a85a-b9d4a2fb4228.png" alt></p>
+<p>위처럼 해상도가 변경된 것을 확인할 수 있다. Keep Changes를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-13090dd9-a216-449d-a527-c731012efa63.png" alt></p>
+<p>바탕화면에 있는 Ubuntu 설치 아이콘을 선택하자.</p>
+<p><img src="/images/2019/Untitled-a8506d71-4435-4f5d-9735-1f86dd848aba.png" alt></p>
+<p>다시 언어 선택창이 나오는데, 한국어를 선택하고 계속하기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-377d379b-33b7-4fa8-933d-449406b9f1b4.png" alt></p>
+<p>키보드 레이아웃이 나오는데 기본설정을 그대로 두고 계속하기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-3d5286c7-ab43-4110-81a7-5861b47462a9.png" alt></p>
+<p>일반설치 선택을 유지하고 계속하기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-4f81c62d-e35a-46f4-9714-c13a6b039d08.png" alt></p>
+<p>설치형식에서 기타를 선택하고 계속하기를 누르자</p>
+<p><img src="/images/2019/Untitled-bad2e82b-c643-44c0-a72f-c3281f6fe9c3.png" alt></p>
+<p>/dev/sda 를 우클릭후 새 파티션 테이블을 선택하자.</p>
+<p><img src="/images/2019/Untitled-d8de05f8-dbb7-4197-956d-2d7c226c672d.png" alt></p>
+<p>계속하기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-1aab587b-31fb-4e81-8f97-4909610da099.png" alt></p>
+<p>위처럼 남은공간이라는 것이 생성된다.</p>
+<p>우클릭 하고 추가를 눌러주자.</p>
+<p><img src="/images/2019/Untitled-0c6f7598-0462-4e3a-96b4-237b4f849a43.png" alt></p>
+<p>510mb, 주, 이공간이 시작되는 지점, EXT4 저널링 파일 시스템, /boot를 선택하고 OK를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-67ceb2ed-2ad5-4917-ab7f-8fce7cf2a050.png" alt></p>
+<p>위처럼 /boot 마운트가 생성 되었다. </p>
+<p>여기서 잠깐 버그 같은것이 있는데, 적용된 내용이 잘 안보이는 경우가 있다. 마우스 커서를 문질러주면 화면이 갱신되면서 보인다.</p>
+<p><img src="/images/2019/Untitled-a7ed1d3e-0196-41b7-a8d5-d2944fb0136a.png" alt></p>
+<p>다시 남은 공간을 우클릭하고 추가를 누른뒤 8192mb, 주, 이  공간이 시작되는 지점, 스왑영역을 선택하고 OK를 클릭하자.</p>
+<p>이 설정은 가상메모리를 설정하는 부분이다. 일반적으로 메모리의 2배를 지정하지만 그냥 8192로 셋팅했다. 이미지의 메모리 셋팅을 8gb이상으로 사용할 예정이라 별 무리가 없어보인다.</p>
+<p><img src="/images/2019/Untitled-d5c013a0-bcb1-4b2d-ade8-fce856dd7adc.png" alt></p>
+<p>또 남은공간을 우클릭 → 추가를 누르고 10078, 논리, 이공간이 시작되는 지점 EXT4저널링 파일 시스템, /home 을 선택하고 OK를 눌러주자.</p>
+<p><img src="/images/2019/Untitled-4e8dc80a-b3f4-4c76-988c-ca6d4bc49e23.png" alt></p>
+<p>남은 공간을 마우스 우클릭 → 추가 후 크기는 손대지 않고, 주, 이공간이 시작되는 지점</p>
+<p>EXT4 저널링 파일 시스템, / 를 선택하고 OK를 눌러주자.</p>
+<p><img src="/images/2019/Untitled-51b92880-5238-4ed9-a0c7-754bd269c095.png" alt></p>
+<p>위처럼 설정이 완료가 되었다.</p>
+<p>지금 설치를 클릭하자.(화면에는 비활성화 처럼 보이는데 클릭하면 클릭이 된다.)</p>
+<p><img src="/images/2019/Untitled-638dc4a3-5bf1-4084-931e-4a957f9dda9f.png" alt></p>
+<p>위처럼 창이 열리고 계속하기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-37c49464-4001-49e6-8dc9-d3cacc4b0c4c.png" alt></p>
+<p>여기서 버그가 좀 있는데 우분투의 pc 이름과 root 비밀번호 입력창이 나오는데 위처럼 잘 안나오는 버그가 있다. </p>
+<p><img src="/images/2019/Untitled-0aa88e53-7935-430a-823f-ddd0c2928b75.png" alt></p>
+<p>왼쪽 상단에 파란색 아이콘을 선택하면 위처럼 재대로 보인다.</p>
+<p>이름을 작성하고 root 비밀번호를 작성하고 로그인할때 암호입력을 선택하고 계속하기를 클릭하자.</p>
+<p>그러면 이제 우분투 설치가 진행된다.</p>
+<p>이것도 약 20~30분 걸리니 또 커피나 마시러 다녀오자.</p>
+<p><img src="/images/2019/Untitled-fde8c7e6-08ec-4b7e-afbf-e40c9bd8192b.png" alt></p>
+<p>설치가 완료되면 위처럼 창이 뜨는데 지금 다시시작을 클릭하여 리부트 하자.</p>
+<p><img src="/images/2019/Untitled-19b7952a-290b-4054-b1e5-392065b29a94.png" alt></p>
+<p>가상머신이 리부트 되면서 위처럼 Error가 발생하긴 하는데, 정상적으로 우분투가 시작되니 걱정하지 말자 위 error는 나중에 잡을 것이다.</p>
+<p><img src="/images/2019/Untitled-b633b552-5c04-4a63-a763-92feba157ac6.png" alt></p>
+<p>설치전 입력했던 root 비밀번호를 입력하고 로그인을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-f7a73600-7809-4498-91bd-c3638298fc3c.png" alt></p>
+<p>위처럼 설치된 우분투가 실행된다.</p>
+<p>이제 바로 할 것은, 우분투의 업그레이드다.</p>
+<p><img src="/images/2019/Untitled-7ae3e4d9-edbd-4f63-b020-a0c33d6569b2.png" alt></p>
+<p>보통 위처럼 소프트웨어 업데이터가 열리는데 지금 설치를 눌러 설치하자.</p>
+<p>만약 수동으로 업데이트를 하려면 터미널을 열고 아래 명령어로 업데이트를 할 수 있다.</p>
+<p><img src="/images/2019/Untitled-3af7d2d3-4099-4814-8ef7-2247c5b9ca8d.png" alt></p>
+<p>터미널 창은 바탕화면을 마우스 우클릭하면 실행할수 있는 항목이 나온다.</p>
+<pre><code>sudo apt-get update
+sudo apt-get upgrade</code></pre><p><img src="/images/2019/Untitled-82b6b3ce-f242-4601-aa64-8215ca5d0e18.png" alt></p>
+<p><img src="/images/2019/Untitled-9e2c1e49-483a-45e8-9e79-db5e62f594bd.png" alt></p>
+<p>upgrade명령 이후 위처럼 물어본다. y를 눌러 진행시키자.</p>
+<p>upgrade 명령으로 실제 OS가 업데이트가 되는데, 이것도 시간이 한참 걸린다.</p>
+<p>upgrade 도중 뭔가 문제가 있다고 나올수가 있는데</p>
+<p>나의 경우 아래 명령어를 한번씩 더해서 다시 업데이트를 해주니 정상적으로 완료가 되었다.</p>
+<pre><code>sudo apt-get update
+sudo apt-get upgrade</code></pre><p><img src="/images/2019/Untitled-8e694a7f-b2bc-4cb4-ad00-0ca219b9dca2.png" alt></p>
+<p>OS가 업그레이드가 완료되면 우분투를 재시작 하자.</p>
+<h3 id="VirtualBox-Ubuntu1804의-해상도-셋팅"><a href="#VirtualBox-Ubuntu1804의-해상도-셋팅" class="headerlink" title="VirtualBox Ubuntu1804의 해상도 셋팅"></a>VirtualBox Ubuntu1804의 해상도 셋팅</h3><p><img src="/images/2019/Untitled-64ebf1d9-605e-4ccd-83f5-29c971289172.png" alt></p>
+<p>OS 업그레이드 완료후 재시작 하면, virtualbox에서 장치 → 게스트 확장 CD 이미지 삽입을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-20a1651b-e860-41c4-9de2-30d9cc0ced26.png" alt></p>
+<p>위와 같은 창이 열린다 실행을 클릭하면 자동으로 터미널이 열리고 무언가 설치가 된다.</p>
+<p><img src="/images/2019/Untitled-3a61933d-32ad-437e-8533-95faaaed1e0d.png" alt></p>
+<p>위처럼 Press Return to close this windows 라는 문구가 나오면 터미널에서 엔터를 클릭해서 터미널을 닫아주자.</p>
+<p>그리고 우분투를 종료하자.</p>
+<p><img src="/images/2019/Untitled-0a0e5383-0d79-4fc2-9eff-3fc36f5bfacc.png" alt></p>
+<p>virtualbox에서 이미지 설정으로 진입해서 디스플레이항목으로 들어가자.</p>
+<p>그래픽 컨트롤러에서 VBoxVGA를 선택하고 확인을 눌러주자.</p>
+<p>그리고 다시 이미지를 시작 시키자.</p>
+<p><img src="/images/2019/Untitled-d67a4216-3aae-4b46-a8ab-3d2a94baebb3.png" alt></p>
+<p>이번에 이미지가 시동될 때에는 아까 처음에 발생했던 error 메세지 문구가 사라졌다.</p>
+<p><img src="/images/2019/Untitled-92169f2d-d1ac-4109-a9f3-2eca82860b57.png" alt></p>
+<p>그리고 부팅이 완료되면 자동으로 virtualbox창의 크기에 맞게 자동으로 해상도가 변경되는 것을 확인 할 수 있다.</p>
+<p>이제 virtualbox에서 우분투를 사용할 준비가 되어있다.</p>
+<p>완료가 된 김에 virtualbox에서 스냅샷을 찍어 두도록 하자.</p>
+<p>끝!!!!</p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/virtualbox/" rel="tag"># virtualbox</a>
+              <a href="/tags/%ED%95%B4%EC%83%81%EB%8F%84/" rel="tag"># 해상도</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/04/27/react-20190427-react-setting-up-react-devloment-enviroment/" rel="prev" title="리엑트(react) windows10 개발환경 셋팅">
+      <i class="fa fa-chevron-left"></i> 리엑트(react) windows10 개발환경 셋팅
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-copy-paste/" rel="next" title="버추얼박스 ubuntu에 복사 붙여넣기(클립보드)">
+      버추얼박스 ubuntu에 복사 붙여넣기(클립보드) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#들어가기"><span class="nav-number">1.</span> <span class="nav-text">들어가기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#준비물"><span class="nav-number">1.0.1.</span> <span class="nav-text">준비물</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#virtualbox에-Ubuntu1804-설치하기"><span class="nav-number">2.</span> <span class="nav-text">virtualbox에 Ubuntu1804 설치하기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#virtualbox-이미지를-준비하자"><span class="nav-number">2.0.1.</span> <span class="nav-text">virtualbox 이미지를 준비하자.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#우분투-설치전-이미지의-설정-조정"><span class="nav-number">2.0.2.</span> <span class="nav-text">우분투 설치전 이미지의 설정 조정.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#이미지에-Ubuntu1804-설치하기"><span class="nav-number">2.0.3.</span> <span class="nav-text">이미지에 Ubuntu1804 설치하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#VirtualBox-Ubuntu1804의-해상도-셋팅"><span class="nav-number">2.0.4.</span> <span class="nav-text">VirtualBox Ubuntu1804의 해상도 셋팅</span></a></li></ol></li></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

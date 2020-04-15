@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="개발환경springboot jdk1.8 mysql mybatis 들어가기spring 개발을 할때, 난 일반적으로 mybatis를 사용했다. 음 빨리 JPA도 공부를 해야 할거 같다. 일반적으로 mybatis를 사용할 경우 ${param1}, #{param2} 이렇게 두가지 방식으로  파라미터를 받을 수 있다. 나는 보통 #{param2} 를 사용해서, 파라">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot mybatis ${} 사용시 sql injection 방어하기">
+<meta property="og:url" content="https://www.hanumoka.net/2019/09/21/spring-20190921-spring-mybatis-sqlinjectionsafe/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="개발환경springboot jdk1.8 mysql mybatis 들어가기spring 개발을 할때, 난 일반적으로 mybatis를 사용했다. 음 빨리 JPA도 공부를 해야 할거 같다. 일반적으로 mybatis를 사용할 경우 ${param1}, #{param2} 이렇게 두가지 방식으로  파라미터를 받을 수 있다. 나는 보통 #{param2} 를 사용해서, 파라">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/2019/Untitled-f94f04e9-1bf2-441e-b4bd-370d5bd88c77.png">
+<meta property="article:published_time" content="2019-09-21T04:51:59.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:12.026Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="spring">
+<meta property="article:tag" content="mybatis">
+<meta property="article:tag" content="sqlinjection">
+<meta property="article:tag" content="sqlijnectionsafe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/2019/Untitled-f94f04e9-1bf2-441e-b4bd-370d5bd88c77.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2019/09/21/spring-20190921-spring-mybatis-sqlinjectionsafe/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>springboot mybatis ${} 사용시 sql injection 방어하기 | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/09/21/spring-20190921-spring-mybatis-sqlinjectionsafe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          springboot mybatis ${} 사용시 sql injection 방어하기
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-09-21 13:51:59" itemprop="dateCreated datePublished" datetime="2019-09-21T13:51:59+09:00">2019-09-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h1><p>springboot</p>
+<p>jdk1.8</p>
+<p>mysql</p>
+<p>mybatis</p>
+<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>spring 개발을 할때, 난 일반적으로 mybatis를 사용했다.</p>
+<p>음 빨리 JPA도 공부를 해야 할거 같다.</p>
+<p>일반적으로 mybatis를 사용할 경우 ${param1}, #{param2} 이렇게 두가지 방식으로  파라미터를 받을 수 있다.</p>
+<p>나는 보통 #{param2} 를 사용해서, 파라미터를 받는다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">USERS</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="number">1</span>=<span class="number">1</span></span><br><span class="line"><span class="keyword">AND</span> USER_ID = <span class="comment">#&#123;userId&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>#{} 는 내부적으로 PreparedStatement를 사용하기 때문에  SQLInjection 공격에 안전하기 때문이다.</p>
+<p>참고로 PreparedStatement는 값을 바인딩 하는 시점에서 전달된 값에 대한 특수문자, 쿼리등을 필터링하여 SQLinjection을 막는다.</p>
+<p>이렇게 mybatis를 사용할때 보통 #{}를 사용하면 평화롭고, 안전한 코딩을 할 수 있다.</p>
+<p>하지만 간혹 ${}를 사용하고 싶을 때가 있다.</p>
+<p>바로 쿼리의 파라미터로 컬럼명을 화면에서 받고 싶은 경우인데,</p>
+<p>보통 select 쿼리에 호출시 정렬을 하고 싶을 때 이다.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    	USER_ID</span><br><span class="line">     ,USER_NAME</span><br><span class="line">     ,USER_AGE</span><br><span class="line">    <span class="keyword">FROM</span> <span class="keyword">USERS</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="number">1</span>=<span class="number">1</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> $&#123;sort_column&#125; $&#123;sort_type&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>위처럼 동적으로 파라미터를 외부에 주입 받기 위해서는 #{}가 아닌 ${}를 사용 해야 한다.</p>
+<p>${}는 입력받은 파라미터를 쿼리에 직접 치환해주기 때문이다.</p>
+<p>하지만 여기에는 SQLInjection에 대한 위험이 존재한다.</p>
+<p>어떻게 하면 ${}를 사용하면서, SQL Injection을 방어 할 수 있을까?</p>
+<p>스프링 필터를 사용해야하나?  AOP를 사용해야 하나?</p>
+<p>고민하다가 인터넷에서 괜찮은 라이브리러를 찾았다.</p>
+<h1 id="어노테이션으로-SQL-Injection-방어"><a href="#어노테이션으로-SQL-Injection-방어" class="headerlink" title="어노테이션으로 SQL Injection 방어"></a>어노테이션으로 SQL Injection 방어</h1><p><a href="https://github.com/rkpunjal/sql-injection-safe/" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/rkpunjal/sql-injection-safe/</a></p>
+<p>sql-injection-safe 라는 라이브러리이다. </p>
+<p>아이디어는 어노테이션으로 VO의 필드에 SqlInjection을 방어하는 방법이다.</p>
+<p>아래로 가보면 간단하게 테스트 할수 있는 예제 샘플도 있다.</p>
+<p><a href="https://github.com/rkpunjal/sql-safe-annotation-example" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/rkpunjal/sql-safe-annotation-example</a></p>
+<p>일단 동적으로 sql의 컬럼을 받을 VO를 만들어보자.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GridDto</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> String sortColumn;</span><br><span class="line">  <span class="keyword">private</span> String sortType;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//getter, setter 생략</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomethingGridDto</span> <span class="keyword">extends</span> <span class="title">GridDto</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> column_1;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> column_2;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> column_3;</span><br><span class="line">  <span class="comment">//getter, setter 생략</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>위처럼 대충 DTO를 만들었다. </p>
+<p>자 이제 라이브러리를 추가하자. pom.xml 아래처럼 추가하자.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.github.rkpunjal.sqlsafe<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>sql-injection-safe<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>라이브러리가 추가 되었다면, Sql Injection 위험이 있는 DTO의 필드에 @SQLInjectionSafe 어노테이션을 추가해준다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GridDto</span></span>&#123;</span><br><span class="line">    	<span class="keyword">private</span> <span class="meta">@SQLInjectionSafe</span> String sortColumn;</span><br><span class="line">      <span class="keyword">private</span> <span class="meta">@SQLInjectionSafe</span> String sortType;</span><br><span class="line">    </span><br><span class="line">      <span class="comment">//getter, setter 생략</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>그리고 해당 DTO를 받은 컨트롤러에서 @valid를 적용해주면 된다.</p>
+<p>굉장히 간단하게 스프링 컨트롤러에서 전달되는 파라미터에 어노테이션으로 SQL Injection을 방어 할 수 있다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/queryGrid"</span>, produces=APPLICATION_JSON_UTF_8)</span><br><span class="line"><span class="keyword">public</span> <span class="meta">@ResponseBody</span> <span class="function">WebResponse <span class="title">queryGrid</span><span class="params">(@Valid @ModelAttribute()</span> SomethingGridDto paramDto) </span>&#123;</span><br><span class="line">    		<span class="comment">// ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>@Valid 가 동작하면서 @SQLInjectionSafe 동작한다.</p>
+<p>만약 sortColumn 멤버변수에 SQL Injection의 위험이 되는 문구가 있는 경우 BindException 이 발생하게된다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ExceptionHandler</span>(BindException<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class"><span class="title">public</span> @<span class="title">ResponseBody</span> <span class="title">WebResponse</span> <span class="title">handleBindException</span>(<span class="title">BindException</span> <span class="title">be</span> )</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> MyResponseObject(<span class="keyword">false</span>,</span><br><span class="line">  	getBindExceptionMessage(be) <span class="comment">// custom method to find and send an appropriate response</span></span><br><span class="line">  );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p><a href="https://github.com/rkpunjal/sql-safe-annotation-example" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/rkpunjal/sql-safe-annotation-example</a></p>
+<p>위 예제 샘플을 받아서 구동해보면 아래처럼 @SQLInjectionSafe 내용을 확인 할 수 있다.</p>
+<p>SQLInjection을 정규식으로 잡아내는 것을 확인 할 수 있다.</p>
+<p>뭔가 부족하다면 커스텀 하면 될거 같다.</p>
+<p><img src="/images/2019/Untitled-f94f04e9-1bf2-441e-b4bd-370d5bd88c77.png" alt="SQLInjectionSafe"></p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://lng1982.tistory.com/246" target="_blank" rel="external nofollow noopener noreferrer">https://lng1982.tistory.com/246</a></p>
+<p><a href="https://m.blog.naver.com/PostView.nhn?blogId=blogpyh&logNo=220675109307&proxyReferer=https%3A%2F%2Fwww.google.com%2F" target="_blank" rel="external nofollow noopener noreferrer">https://m.blog.naver.com/PostView.nhn?blogId=blogpyh&amp;logNo=220675109307&amp;proxyReferer=https%3A%2F%2Fwww.google.com%2F</a></p>
+<p><a href="https://hackbyr0k.tistory.com/2" target="_blank" rel="external nofollow noopener noreferrer">https://hackbyr0k.tistory.com/2</a></p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/spring/" rel="tag"># spring</a>
+              <a href="/tags/mybatis/" rel="tag"># mybatis</a>
+              <a href="/tags/sqlinjection/" rel="tag"># sqlinjection</a>
+              <a href="/tags/sqlijnectionsafe/" rel="tag"># sqlijnectionsafe</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/08/17/ubuntu-20190817-ubuntu-docker/" rel="prev" title="Ubuntu1804에 docker 설치">
+      <i class="fa fa-chevron-left"></i> Ubuntu1804에 docker 설치
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/09/26/ubuntu-20190926-ubuntu-grant-root/" rel="next" title="ubuntu 일반계정에 root권한 부여하기">
+      ubuntu 일반계정에 root권한 부여하기 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#개발환경"><span class="nav-number">1.</span> <span class="nav-text">개발환경</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#들어가기"><span class="nav-number">2.</span> <span class="nav-text">들어가기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#어노테이션으로-SQL-Injection-방어"><span class="nav-number">3.</span> <span class="nav-text">어노테이션으로 SQL Injection 방어</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#참고자료"><span class="nav-number">3.0.1.</span> <span class="nav-text">참고자료</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

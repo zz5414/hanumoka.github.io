@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="아마추어 개발자의 블로그">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hanumoka, IT Blog">
+<meta property="og:url" content="https://www.hanumoka.net/page/4/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="아마추어 개발자의 블로그">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:author" content="Hanumoka">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.hanumoka.net/page/4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-ssh/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-ssh/" class="post-title-link" itemprop="url">ubuntu virtualbox ssh</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 18:40:28" itemprop="dateCreated datePublished" datetime="2019-08-17T18:40:28+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>virtualbox에 설치한 ubuntu1804에 ssh를 설치하고 호스트PC에서 putty로 접근하는 접을 알아보자.</p>
+<h3 id="virtualbox-network-설정"><a href="#virtualbox-network-설정" class="headerlink" title="virtualbox network 설정"></a>virtualbox network 설정</h3><p>나는 virtualbox ubuntu 네트워크 설정을 nat로 설정하고 사용중이다.</p>
+<p>일단 virtualbox ubuntu 에 접속해서 아이피를 확인해보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ifconfig</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-27e68e51-b5a1-4425-b309-8e90bc43ba60.png" alt></p>
+<p>위를 보면 디폴트로 10.0.2.15로 지정되어 있는 것을 확인 할 수 있다.</p>
+<p>VirtualBox에서 해당 이미지으 설정에 네트워크로 들어가자.</p>
+<p><img src="/images/2019/Untitled-43075031-83dd-49e8-9b14-6e186f6b1007.png" alt></p>
+<p>고급을 눌러주자.</p>
+<p>참고로 가상머신 OS를 종료하지 않고 설정해도 바로 적용된다.</p>
+<p><img src="/images/2019/Untitled-7084f1e4-7e42-4a9a-a07e-ddea670f8933.png" alt></p>
+<p>포트 포워딩을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-afa803a6-b917-4019-b56a-540004d08d2c.png" alt></p>
+<p>위 처럼 입력해주자.</p>
+<p>의미는 127.0.0.1:22로 접근시도시 Virtualbox에 가상머신의 10.0.2.15:22 로 포트포워딩 해준다는 의미이다.</p>
+<p>확인 버튼으로 설정을 저장하자.</p>
+<h3 id="Ubuntu18-04-ssh-설치하기"><a href="#Ubuntu18-04-ssh-설치하기" class="headerlink" title="Ubuntu18.04 ssh 설치하기"></a>Ubuntu18.04 ssh 설치하기</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ssh</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-73f72e7a-2a36-4d4f-9111-fa35d0daf141.png" alt></p>
+<p>위 명령으로 ubuntu에 ssh를 설치하자.</p>
+<p>설치된 ssh에 상세 설정을 변경하려면 아래 내용으로 수정해주자.</p>
+<p>나는 그냥 디폴트 설정을 쓰려 하기때문에 생략하겠다.(포트 변경등을 하려면 수정해야한다.)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim &#x2F;etc&#x2F;ssh&#x2F;sshd_config</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-8d467d52-fc52-4474-ad7f-b82d45210575.png" alt></p>
+<p>해당 파일을 보면 디폴트 설정이 보이며 수정하려면 주석을 해제하고 수정하면 된다.</p>
+<h3 id="호스트PC에서-게스트-Ubuntu에-ssh-접속하기"><a href="#호스트PC에서-게스트-Ubuntu에-ssh-접속하기" class="headerlink" title="호스트PC에서 게스트 Ubuntu에 ssh 접속하기"></a>호스트PC에서 게스트 Ubuntu에 ssh 접속하기</h3><p>호스트 pc인 windows10에서 putty라는 ssh 접속 프로그램을 사용할 것이다.</p>
+<p>putty는 무료 프로그램이니 구글에서 검색해서 다운 받으면 된다.</p>
+<p><img src="/images/2019/Untitled-3646d9ff-8a3a-4a6a-af2b-1f17c4c650e5.png" alt></p>
+<p>위처럼 로컬호스트에 22번 포트로 접속경로를 입력하고 open을 눌러주자.</p>
+<p><img src="/images/2019/Untitled-efcf3fe5-a26f-419f-a039-18260ef96aee.png" alt></p>
+<p>정상적으로 접속이 된다면 위처럼 화면이 나올것이다 예를 눌러주자.</p>
+<p><img src="/images/2019/Untitled-3a3bfc19-75b3-4eca-8544-76d6ae44d1ff.png" alt></p>
+<p>위처럼 접속이 되는 것을 확인 할 수 있다.</p>
+<p>아 참고로 ubuntu18.04 에서 root에 대한 정책이 변경되었는지, 디폴트로 접속이 되질 않는다.</p>
+<p>뭔가 설정으로 root계정을 강제로 활성화 시켜줘야 사용이 가능한가보다.</p>
+<p>그냥 아래 명령어로 ubuntu에 접속 계정을 확인한 다음에 접속하면 된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whoami</span><br></pre></td></tr></table></figure>
+
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://sancs.tistory.com/110" target="_blank" rel="external nofollow noopener noreferrer">https://sancs.tistory.com/110</a></p>
+<p><a href="https://thdev.net/555" target="_blank" rel="external nofollow noopener noreferrer">https://thdev.net/555</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-copy-paste/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-copy-paste/" class="post-title-link" itemprop="url">버추얼박스 ubuntu에 복사 붙여넣기(클립보드)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 18:32:30" itemprop="dateCreated datePublished" datetime="2019-08-17T18:32:30+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Virtualbox에 Ubuntu1804를 설치했다.</p>
+<p>호스트 PC인 Windows10에서 복사한 내용을 게스트PC인 Virtualbox의 Ubuntu에 붙여넣기가 하고 싶은데, 되지가 않는다. </p>
+<p>인터넷을 찾아보니 아주 간단하게 해결이 된다.</p>
+<p>일단 Virtualbox Ubuntu에서 게스트 확장 프로그램을 설치해야한다.</p>
+<p>장치 - 게스트 확장 CD 이미지 삽입을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-64ebf1d9-605e-4ccd-83f5-29c971289172.png" alt></p>
+<p>OS 업그레이드 완료후 재시작 하면, virtualbox에서 장치 → 게스트 확장 CD 이미지 삽입을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-20a1651b-e860-41c4-9de2-30d9cc0ced26.png" alt></p>
+<p>위와 같은 창이 열린다 실행을 클릭하면 자동으로 터미널이 열리고 무언가 설치가 된다.</p>
+<p><img src="/images/2019/Untitled-3a61933d-32ad-437e-8533-95faaaed1e0d.png" alt></p>
+<p>위처럼 Press Return to close this windows 라는 문구가 나오면 터미널에서 엔터를 클릭해서 터미널을 닫아주자.</p>
+<p>그리고 우분투를 종료하자.</p>
+<p>그리고 이미지의 설정에 들어가서 클립보드 공유를 양방향으로 설정하면 된다.</p>
+<p><img src="/images/2019/Untitled-b0ca558c-612f-4882-8b91-d93540817187.png" alt></p>
+<p>아래처럼 윈도우의 note에서 텍스트를 복사해서 게스트 우분투 터미널에 복사가 되는 것을 확인 할 수 있다.</p>
+<p><img src="/images/2019/Untitled-de71bf43-65aa-4424-abc7-95d326d55d9a.png" alt></p>
+<p><img src="/images/2019/Untitled-8affdab9-eb74-4b42-a5cb-352b5b05a019.png" alt></p>
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://extrememanual.net/8257" target="_blank" rel="external nofollow noopener noreferrer">https://extrememanual.net/8257</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/15/ubuntu-20190815-ubuntu-1084-virtualbox/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/15/ubuntu-20190815-ubuntu-1084-virtualbox/" class="post-title-link" itemprop="url">VirtualBox에 Ubuntu 18.04 설치하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-15 16:04:05" itemprop="dateCreated datePublished" datetime="2019-08-15T16:04:05+09:00">2019-08-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>내가 VirtualBox에 Ubuntu 18.04를 설치하려는 이유는…</p>
+<p>VirtualBox에 Ubuntu OS에 개발환경을 셋팅을 하려 하기 때문이다.</p>
+<p>VirtualBox에 Ubuntu 개발환경을 이미지로 만들면, 회사에서 인터넷 망이든 개발망이든 자유롭게 내가 원하는 상태의 개발환경을 가질수 있을거라 생각된다.(지금은… 일단 구축해보고, 성능과 문제점, 사용상 불편함 등을 체크해 봐야 할것 같다.)</p>
+<hr>
+<h3 id="준비물"><a href="#준비물" class="headerlink" title="준비물"></a>준비물</h3><p>Vitualbox (공짜이니 구글에서 검색해서 windows10에 설치)</p>
+<p>Ubuntu18.04.iso 파일(역시 구글에 금색해서 다운로드)</p>
+<hr>
+<h1 id="virtualbox에-Ubuntu1804-설치하기"><a href="#virtualbox에-Ubuntu1804-설치하기" class="headerlink" title="virtualbox에 Ubuntu1804 설치하기"></a>virtualbox에 Ubuntu1804 설치하기</h1><h3 id="virtualbox-이미지를-준비하자"><a href="#virtualbox-이미지를-준비하자" class="headerlink" title="virtualbox 이미지를 준비하자."></a>virtualbox 이미지를 준비하자.</h3><p>일단 먼저 설치된 virtualbox를 열고 머신 → 새로만들기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-29b6f9a6-216a-4645-abb5-87db7e0b63b2.png" alt></p>
+<p>그러면 다음과 같은 창이 열릴것이다.</p>
+<p><img src="/images/2019/Untitled-7393009b-2b34-45b6-8d3b-c817fe930e99.png" alt></p>
+<p>머신폴더는 여유공간이 넉넉한 드라이브를 선택해야 한다.</p>
+<p>나는 50GB의 이미지를 생성할 예정이다.</p>
+<p>종류와 버전은 그냥 두고 다음을 누르자.</p>
+<p><img src="/images/2019/Untitled-9d1722ab-a739-475d-8733-075189a579d5.png" alt></p>
+<p>메모리 크기를 8192MB로 잡았다. 나중에 수정이 가능하니 상황에 따라 적절하게 잡아주자.</p>
+<p>다음을 눌러주자.</p>
+<p><img src="/images/2019/Untitled-5559f8b2-4110-45b6-976e-221bde82f672.png" alt></p>
+<p>지금 새 가상 하드 디스크 만들기를 선택하고 만들기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-b007f218-c903-429f-99ad-da0367089374.png" alt></p>
+<p>VDI를 선택하고 다음을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-8218d459-2e1b-49de-8a2d-e096a0d2132b.png" alt></p>
+<p>고정 크기를 선택하고 다음을 누르자.</p>
+<p><img src="/images/2019/Untitled-8d9ea907-aae8-48a6-9e7a-f5809137708e.png" alt></p>
+<p>내 경우에는 개발환경을 위해 어느정도 넉넉한 공간이 필요할 것이라 생각되어 50GB를 고정으로 잡았다.</p>
+<p>만들기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-cdb526e2-48d8-4c5b-b366-1bef208f5c8f.png" alt></p>
+<p>위 화면이 나오면서 이미지를 만들기 시작한다. 시간이 20분 정도 걸리니 커피를 한잔 하고 오자.</p>
+<p><img src="/images/2019/Untitled-49c89ee1-535a-4602-85c2-23742375ace8.png" alt></p>
+<p>시간이 지나면 이미지가 완성되고 위처럼 이미지가 생성된 것을 확인 할 수 있다.</p>
+<p><img src="/images/2019/Untitled-85c0459e-e668-48ef-be24-1583862c8a47.png" alt></p>
+<p>혹시 모르니 일단 안전을 위해 이미지 스냅샷을 만들어 놓자.</p>
+<p><img src="/images/2019/Untitled-ac21b6bd-2fd3-4c52-8b1c-e9dba6a405fd.png" alt></p>
+<p>스냅산 이름을 입력하고 확인을 누르자.</p>
+<p><img src="/images/2019/Untitled-bf1cd512-0bd2-4379-b4f9-9abee85bbd6b.png" alt></p>
+<p>위처럼 스냅샷을 확인 할수있다.</p>
+<p>시간이 오래걸리는 작업등은 virtualbox의 스냅샷을 이용해 미리미리 저장해 놓다.</p>
+<p>혹시나 뭔가 작업하다가 망가졌을 경우 아주 편리하다.</p>
+<h3 id="우분투-설치전-이미지의-설정-조정"><a href="#우분투-설치전-이미지의-설정-조정" class="headerlink" title="우분투 설치전 이미지의 설정 조정."></a>우분투 설치전 이미지의 설정 조정.</h3><p><img src="/images/2019/Untitled-729249a5-e65b-4da7-86b2-316e8d80257d.png" alt></p>
+<p>생성된 이미지를 마우스 우클릭 후 설정을 선택하자.</p>
+<p><img src="/images/2019/Untitled-8bfd7ed4-4f7b-434c-bd7b-51d4c426770b.png" alt></p>
+<p>설정 창에서 시스템으로 이동해서 마더보드 탭으로 진입하고 부팅순서에 플로피 디스크 항목을 선택 해재하자.</p>
+<p><img src="/images/2019/Untitled-c2d7233f-05ea-42dd-ab0b-ca96eb83ba21.png" alt></p>
+<p>프로세서 탭으로 이동해서 프로세서 개수를 최대치로 올려준다.</p>
+<p>위에서 이미지 프로세스 설정으로 호스트 컴퓨터의 프로세스를 공유해서 같이 사용한다고 한다.</p>
+<p><img src="/images/2019/Untitled-4c116825-11d9-4342-aee3-549a5f24009b.png" alt></p>
+<p>디스플레이 항목으로 이동해서 화면탭으로 이동 후 비디오 메모리를 최대치로 올려준다.</p>
+<p>그리고 확인을 눌러 설정창을 닫아 설정을 저장하자.</p>
+<h3 id="이미지에-Ubuntu1804-설치하기"><a href="#이미지에-Ubuntu1804-설치하기" class="headerlink" title="이미지에 Ubuntu1804 설치하기"></a>이미지에 Ubuntu1804 설치하기</h3><p><img src="/images/2019/Untitled-507dc6c2-60ca-40cd-9881-440a23c3a5c7.png" alt></p>
+<p>이미지를 우클릭후 시작 → 일반시작을 선택하자.</p>
+<p><img src="/images/2019/Untitled-2e748880-2771-4c36-8319-0c3baa68dca6.png" alt></p>
+<p>위처럼 이미지가 시동되면서 시동디스크를 선택하라는 창이 나온다. </p>
+<p>미리 다운 받은 Ubuntu18.04.iso 파일을 선택하고 시작을 눌러주자.</p>
+<p><img src="/images/2019/Untitled-84ff1b7f-1efb-4cb8-b5f1-5cd48054f884.png" alt></p>
+<p>언어에서 한국어를 설치하고 Ubuntu 체험하기를 선택하자.</p>
+<p>바로 Ubuntu를 설치하지 않고 체험하기를 선택하는 이유는 virtualbox에서 ubuntu를 설치할때 해상도가 맞지 않아 문제가 있기 때문에, 미리 해상도를 조절하고 설치하기 위함이다.</p>
+<p><img src="/images/2019/Untitled-3a016c5c-33d8-47fa-b385-8fd5dfcde503.png" alt></p>
+<p>위처럼 체험용 우분투가 열리고 파란식 표시를 따라서 환경설정으로 이동하자.</p>
+<p><img src="/images/2019/Untitled-847b5a5a-2dae-4e0c-b25e-7ec456b2c327.png" alt></p>
+<p>위처럼 환경 설정 창이 열리는데, 오른쪽 위의 네모를 선택해서 창을 작은창으로 변경한다.</p>
+<p><img src="/images/2019/Untitled-43bd09da-f10e-48b6-8dee-4cf094dfaea9.png" alt></p>
+<p>작아진 설정창에서 Devices를 찾아 선택하자.</p>
+<p><img src="/images/2019/Untitled-6bc246fd-4c56-4e11-a4bf-c6472ef159cd.png" alt></p>
+<p>Resolution을 선택하고 1360 x 768을 선택하자. 임시로 설치를 위한 해상도 이다 나중에 호스트 머신에 딱맞는 해상도 셋팅을 따로 할 것이다.</p>
+<p><img src="/images/2019/Untitled-898b0944-0259-41c1-943c-5dcfe7e98e5c.png" alt></p>
+<p>이 환경설정 창이 너무 커서 화면에 잘 안보이는 경우가 있는데 앞서 창의 크기를 작게 만들었기 때문에 창의 크기를 마우스로 적절하게 이동 시켜서 내용을 입력하고 적용 버튼을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-fcc302ad-e4e3-4cc4-a85a-b9d4a2fb4228.png" alt></p>
+<p>위처럼 해상도가 변경된 것을 확인할 수 있다. Keep Changes를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-13090dd9-a216-449d-a527-c731012efa63.png" alt></p>
+<p>바탕화면에 있는 Ubuntu 설치 아이콘을 선택하자.</p>
+<p><img src="/images/2019/Untitled-a8506d71-4435-4f5d-9735-1f86dd848aba.png" alt></p>
+<p>다시 언어 선택창이 나오는데, 한국어를 선택하고 계속하기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-377d379b-33b7-4fa8-933d-449406b9f1b4.png" alt></p>
+<p>키보드 레이아웃이 나오는데 기본설정을 그대로 두고 계속하기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-3d5286c7-ab43-4110-81a7-5861b47462a9.png" alt></p>
+<p>일반설치 선택을 유지하고 계속하기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-4f81c62d-e35a-46f4-9714-c13a6b039d08.png" alt></p>
+<p>설치형식에서 기타를 선택하고 계속하기를 누르자</p>
+<p><img src="/images/2019/Untitled-bad2e82b-c643-44c0-a72f-c3281f6fe9c3.png" alt></p>
+<p>/dev/sda 를 우클릭후 새 파티션 테이블을 선택하자.</p>
+<p><img src="/images/2019/Untitled-d8de05f8-dbb7-4197-956d-2d7c226c672d.png" alt></p>
+<p>계속하기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-1aab587b-31fb-4e81-8f97-4909610da099.png" alt></p>
+<p>위처럼 남은공간이라는 것이 생성된다.</p>
+<p>우클릭 하고 추가를 눌러주자.</p>
+<p><img src="/images/2019/Untitled-0c6f7598-0462-4e3a-96b4-237b4f849a43.png" alt></p>
+<p>510mb, 주, 이공간이 시작되는 지점, EXT4 저널링 파일 시스템, /boot를 선택하고 OK를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-67ceb2ed-2ad5-4917-ab7f-8fce7cf2a050.png" alt></p>
+<p>위처럼 /boot 마운트가 생성 되었다. </p>
+<p>여기서 잠깐 버그 같은것이 있는데, 적용된 내용이 잘 안보이는 경우가 있다. 마우스 커서를 문질러주면 화면이 갱신되면서 보인다.</p>
+<p><img src="/images/2019/Untitled-a7ed1d3e-0196-41b7-a8d5-d2944fb0136a.png" alt></p>
+<p>다시 남은 공간을 우클릭하고 추가를 누른뒤 8192mb, 주, 이  공간이 시작되는 지점, 스왑영역을 선택하고 OK를 클릭하자.</p>
+<p>이 설정은 가상메모리를 설정하는 부분이다. 일반적으로 메모리의 2배를 지정하지만 그냥 8192로 셋팅했다. 이미지의 메모리 셋팅을 8gb이상으로 사용할 예정이라 별 무리가 없어보인다.</p>
+<p><img src="/images/2019/Untitled-d5c013a0-bcb1-4b2d-ade8-fce856dd7adc.png" alt></p>
+<p>또 남은공간을 우클릭 → 추가를 누르고 10078, 논리, 이공간이 시작되는 지점 EXT4저널링 파일 시스템, /home 을 선택하고 OK를 눌러주자.</p>
+<p><img src="/images/2019/Untitled-4e8dc80a-b3f4-4c76-988c-ca6d4bc49e23.png" alt></p>
+<p>남은 공간을 마우스 우클릭 → 추가 후 크기는 손대지 않고, 주, 이공간이 시작되는 지점</p>
+<p>EXT4 저널링 파일 시스템, / 를 선택하고 OK를 눌러주자.</p>
+<p><img src="/images/2019/Untitled-51b92880-5238-4ed9-a0c7-754bd269c095.png" alt></p>
+<p>위처럼 설정이 완료가 되었다.</p>
+<p>지금 설치를 클릭하자.(화면에는 비활성화 처럼 보이는데 클릭하면 클릭이 된다.)</p>
+<p><img src="/images/2019/Untitled-638dc4a3-5bf1-4084-931e-4a957f9dda9f.png" alt></p>
+<p>위처럼 창이 열리고 계속하기를 클릭하자.</p>
+<p><img src="/images/2019/Untitled-37c49464-4001-49e6-8dc9-d3cacc4b0c4c.png" alt></p>
+<p>여기서 버그가 좀 있는데 우분투의 pc 이름과 root 비밀번호 입력창이 나오는데 위처럼 잘 안나오는 버그가 있다. </p>
+<p><img src="/images/2019/Untitled-0aa88e53-7935-430a-823f-ddd0c2928b75.png" alt></p>
+<p>왼쪽 상단에 파란색 아이콘을 선택하면 위처럼 재대로 보인다.</p>
+<p>이름을 작성하고 root 비밀번호를 작성하고 로그인할때 암호입력을 선택하고 계속하기를 클릭하자.</p>
+<p>그러면 이제 우분투 설치가 진행된다.</p>
+<p>이것도 약 20~30분 걸리니 또 커피나 마시러 다녀오자.</p>
+<p><img src="/images/2019/Untitled-fde8c7e6-08ec-4b7e-afbf-e40c9bd8192b.png" alt></p>
+<p>설치가 완료되면 위처럼 창이 뜨는데 지금 다시시작을 클릭하여 리부트 하자.</p>
+<p><img src="/images/2019/Untitled-19b7952a-290b-4054-b1e5-392065b29a94.png" alt></p>
+<p>가상머신이 리부트 되면서 위처럼 Error가 발생하긴 하는데, 정상적으로 우분투가 시작되니 걱정하지 말자 위 error는 나중에 잡을 것이다.</p>
+<p><img src="/images/2019/Untitled-b633b552-5c04-4a63-a763-92feba157ac6.png" alt></p>
+<p>설치전 입력했던 root 비밀번호를 입력하고 로그인을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-f7a73600-7809-4498-91bd-c3638298fc3c.png" alt></p>
+<p>위처럼 설치된 우분투가 실행된다.</p>
+<p>이제 바로 할 것은, 우분투의 업그레이드다.</p>
+<p><img src="/images/2019/Untitled-7ae3e4d9-edbd-4f63-b020-a0c33d6569b2.png" alt></p>
+<p>보통 위처럼 소프트웨어 업데이터가 열리는데 지금 설치를 눌러 설치하자.</p>
+<p>만약 수동으로 업데이트를 하려면 터미널을 열고 아래 명령어로 업데이트를 할 수 있다.</p>
+<p><img src="/images/2019/Untitled-3af7d2d3-4099-4814-8ef7-2247c5b9ca8d.png" alt></p>
+<p>터미널 창은 바탕화면을 마우스 우클릭하면 실행할수 있는 항목이 나온다.</p>
+<pre><code>sudo apt-get update
+sudo apt-get upgrade</code></pre><p><img src="/images/2019/Untitled-82b6b3ce-f242-4601-aa64-8215ca5d0e18.png" alt></p>
+<p><img src="/images/2019/Untitled-9e2c1e49-483a-45e8-9e79-db5e62f594bd.png" alt></p>
+<p>upgrade명령 이후 위처럼 물어본다. y를 눌러 진행시키자.</p>
+<p>upgrade 명령으로 실제 OS가 업데이트가 되는데, 이것도 시간이 한참 걸린다.</p>
+<p>upgrade 도중 뭔가 문제가 있다고 나올수가 있는데</p>
+<p>나의 경우 아래 명령어를 한번씩 더해서 다시 업데이트를 해주니 정상적으로 완료가 되었다.</p>
+<pre><code>sudo apt-get update
+sudo apt-get upgrade</code></pre><p><img src="/images/2019/Untitled-8e694a7f-b2bc-4cb4-ad00-0ca219b9dca2.png" alt></p>
+<p>OS가 업그레이드가 완료되면 우분투를 재시작 하자.</p>
+<h3 id="VirtualBox-Ubuntu1804의-해상도-셋팅"><a href="#VirtualBox-Ubuntu1804의-해상도-셋팅" class="headerlink" title="VirtualBox Ubuntu1804의 해상도 셋팅"></a>VirtualBox Ubuntu1804의 해상도 셋팅</h3><p><img src="/images/2019/Untitled-64ebf1d9-605e-4ccd-83f5-29c971289172.png" alt></p>
+<p>OS 업그레이드 완료후 재시작 하면, virtualbox에서 장치 → 게스트 확장 CD 이미지 삽입을 클릭하자.</p>
+<p><img src="/images/2019/Untitled-20a1651b-e860-41c4-9de2-30d9cc0ced26.png" alt></p>
+<p>위와 같은 창이 열린다 실행을 클릭하면 자동으로 터미널이 열리고 무언가 설치가 된다.</p>
+<p><img src="/images/2019/Untitled-3a61933d-32ad-437e-8533-95faaaed1e0d.png" alt></p>
+<p>위처럼 Press Return to close this windows 라는 문구가 나오면 터미널에서 엔터를 클릭해서 터미널을 닫아주자.</p>
+<p>그리고 우분투를 종료하자.</p>
+<p><img src="/images/2019/Untitled-0a0e5383-0d79-4fc2-9eff-3fc36f5bfacc.png" alt></p>
+<p>virtualbox에서 이미지 설정으로 진입해서 디스플레이항목으로 들어가자.</p>
+<p>그래픽 컨트롤러에서 VBoxVGA를 선택하고 확인을 눌러주자.</p>
+<p>그리고 다시 이미지를 시작 시키자.</p>
+<p><img src="/images/2019/Untitled-d67a4216-3aae-4b46-a8ab-3d2a94baebb3.png" alt></p>
+<p>이번에 이미지가 시동될 때에는 아까 처음에 발생했던 error 메세지 문구가 사라졌다.</p>
+<p><img src="/images/2019/Untitled-92169f2d-d1ac-4109-a9f3-2eca82860b57.png" alt></p>
+<p>그리고 부팅이 완료되면 자동으로 virtualbox창의 크기에 맞게 자동으로 해상도가 변경되는 것을 확인 할 수 있다.</p>
+<p>이제 virtualbox에서 우분투를 사용할 준비가 되어있다.</p>
+<p>완료가 된 김에 virtualbox에서 스냅샷을 찍어 두도록 하자.</p>
+<p>끝!!!!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/04/27/react-20190427-react-setting-up-react-devloment-enviroment/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/27/react-20190427-react-setting-up-react-devloment-enviroment/" class="post-title-link" itemprop="url">리엑트(react) windows10 개발환경 셋팅</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-04-27 16:33:39" itemprop="dateCreated datePublished" datetime="2019-04-27T16:33:39+09:00">2019-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/react/" itemprop="url" rel="index">
+                    <span itemprop="name">react</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>windows10에 react 개발환경 설정을 하는법을 설명하는 글이다.</p>
+<p>순서는 다음과 같다.</p>
+<ol>
+<li>nodeJs, npm 설치</li>
+<li>yarn 설치</li>
+<li>visual studio code 설치</li>
+<li>react 개발용 visual studio code 확자 플러그인 설치</li>
+<li>create-react-app 도구 설치</li>
+<li>create-react-app 도구로 react 프로젝트 생성하고 실행 확인</li>
+</ol>
+<h1 id="NodeJs와-npm-설치"><a href="#NodeJs와-npm-설치" class="headerlink" title="NodeJs와 npm 설치"></a>NodeJs와 npm 설치</h1><p><a href="https://nodejs.org/ko/" target="_blank" rel="external nofollow noopener noreferrer">https://nodejs.org/ko/</a> </p>
+<p>위 사이트에서 LTS 버전 node를 다운 받아서 설치하자.</p>
+<p>설치한 뒤 powershell에서 다음 명령으로 node, npm의 버전을 확인해보자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure>
+
+<p>버전 정보가 잘 나온다면 설치가 잘 된 것이다.</p>
+<h1 id="yarn-설치"><a href="#yarn-설치" class="headerlink" title="yarn 설치"></a>yarn 설치</h1><p>yarn이란 npm과 비슷한 패키지 관리자이다. </p>
+<p>다만 npm의 느린 속도등의 단점을 조금더 보안한 패키지 매니저 라고 한다.</p>
+<p>npm만으로도 이번 실습을 진행할 수 있지만, yarn명령어를 사용할 예정이므로 설치해보자.</p>
+<p><a href="https://yarnpkg.com/lang/en/" target="_blank" rel="external nofollow noopener noreferrer">https://yarnpkg.com/lang/en/</a></p>
+<p>위 사이트로 이동해서 yarn을 다운 받아서 설치하자.<br>설치가 끝난 뒤에 powershell에서 다음 명령으로 yarn 버전을 확인해보자</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn -v</span><br></pre></td></tr></table></figure>
+
+<p>버전 정보가 잘 나온다면 설치가 잘 된 것이다.</p>
+<h1 id="Visual-Studio-code-설치"><a href="#Visual-Studio-code-설치" class="headerlink" title="Visual Studio code 설치"></a>Visual Studio code 설치</h1><p><a href="https://code.visualstudio.com/" target="_blank" rel="external nofollow noopener noreferrer">https://code.visualstudio.com/</a></p>
+<p>위 사이트로 이동하여 visual studio code를 설치하자.</p>
+<h1 id="crate-react-app-도구-설치"><a href="#crate-react-app-도구-설치" class="headerlink" title="crate-react-app 도구 설치"></a>crate-react-app 도구 설치</h1><p>powershell에서 다음 명령으로 create-react-app 도구를 설치하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn global add create-react-app</span><br></pre></td></tr></table></figure>
+
+<p>위 명령을 입력하면 powershell에서 무언가 다운받고 설치하게 된다. 완료를 기다리자.</p>
+<h1 id="create-react-app-도구를-이용해서-react-프로젝트를-생성하고-실행해보자"><a href="#create-react-app-도구를-이용해서-react-프로젝트를-생성하고-실행해보자" class="headerlink" title="create-react-app 도구를 이용해서 react 프로젝트를 생성하고 실행해보자."></a>create-react-app 도구를 이용해서 react 프로젝트를 생성하고 실행해보자.</h1><p>이제 모든 준비는 끝났다.</p>
+<p>powershell에서 다음 명령을 입력해서 react 프로젝트를 생성하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app hello-react</span><br></pre></td></tr></table></figure>
+
+<p>위 명령을 실행하면 무언가 진행이 되며, 완료가 되면 현재 경로에 hello-react 폴더가 생길 것이다.</p>
+<p>만약 위 명령어가 동작하지 않는다면 다음 명령어로 시도해 보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm create-react-app hello-react</span><br></pre></td></tr></table></figure>
+
+<p>혹시 위 명령어도 안된다면 아래 명령어로 프로젝트를 생성해보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app hello-react</span><br></pre></td></tr></table></figure>
+
+
+
+<p>파워쉘에서 생성된 hello-react 폴더로 진입하고 다음명령어로 visual studio code를 실행하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+
+<p>다음과 같이 create-react-app 도구가 생성산 react 프로젝트의 내부가 보일 것이다.</p>
+<p><img src="/images/2019/20190427-react-setting-up-react-devloment-enviroment_1.png" alt="생성한 react 프로젝트 내부"></p>
+<p>비주얼 스튜디오에서 터미널을 열고 아래 명령어를 실행하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn start</span><br></pre></td></tr></table></figure>
+
+<p>그러면 자동으로 dev 웹서버가 동작하면서 지금 생성한 리액트 프로젝트구 구동된다.</p>
+<p>그리고 역시 자동으로 기본 브라우저가 열리며 다음처럼 초기 화면이 나올것이다.</p>
+<p><img src="/images/2019/20190427-react-setting-up-react-devloment-enviroment_2.png" alt="react 프로젝트 실행결과"></p>
+<p>기본 포트는 3000번으로 설정 되어있다.</p>
+<h1 id="react개발용-visual-studio-code-플러그인-설치"><a href="#react개발용-visual-studio-code-플러그인-설치" class="headerlink" title="react개발용 visual studio code 플러그인 설치"></a>react개발용 visual studio code 플러그인 설치</h1><p>설치 할 플러그인 항목</p>
+<ul>
+<li>EsLint : 자바스크립트 문법 체크</li>
+<li>Relative Path : 상대 경로에 있는 파일경로를 편하게 작성</li>
+<li>Guides : 들여쓰기 가이드라인 그려줌</li>
+<li>ReactJs code snippents : 리액테 관련 스니펫 모음</li>
+</ul>
+<p>끝!!!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/04/11/node-20190411-node-update-dependencies/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/04/11/node-20190411-node-update-dependencies/" class="post-title-link" itemprop="url">Node 프로젝트 dependencies 일괄 버전 업데이트</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-04-11 20:35:50" itemprop="dateCreated datePublished" datetime="2019-04-11T20:35:50+09:00">2019-04-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>node 프로젝트의 package.json 에는 node 프로젝트가 사용하는 여러개의 의존 라이브러리가 버전과 함께 명시되어있다.</p>
+<p>시간이 지남에 따라 이 라이브러리들의 버전을 자연히 올라가게 된다.</p>
+<p>이 글에서는 node 프로젝트에서 만료된 dependencies 를 확인하고 일괄적으로 최신 버전으로 업데이트 하는 방법을 기록하겠다.</p>
+<h1 id="Node-프로젝트에서-만료된-dependency-확인하기"><a href="#Node-프로젝트에서-만료된-dependency-확인하기" class="headerlink" title="Node 프로젝트에서 만료된 dependency 확인하기"></a>Node 프로젝트에서 만료된 dependency 확인하기</h1><p>노드 프로젝트에서 다음 명령어로 만료된 의존 라이브러리들을 확인하자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm outdated</span><br></pre></td></tr></table></figure>
+
+<p>내 헥소 블로그에서 실행해 보니 다음과 같이 말료된 라이브러리들이 보인다.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">amagr@DESKTOP-RTCBUCP MINGW64 ~/projects/hexo_blog (master)</span><br><span class="line">$ npm outdated</span><br><span class="line">Package                              Current  Wanted  Latest  Location</span><br><span class="line">hexo-deployer-git                      0.3.1   0.3.1   1.0.0  hexo-site</span><br><span class="line">hexo-generator-json-content            3.0.1   3.0.1   4.1.3  hexo-site</span><br><span class="line">hexo-generator-seo-friendly-sitemap   0.0.22  0.0.22  0.0.25  hexo-site</span><br><span class="line">hexo-server</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Node-프로젝트에서-라이브러리-일괄-버전-업데이트-하기"><a href="#Node-프로젝트에서-라이브러리-일괄-버전-업데이트-하기" class="headerlink" title="Node 프로젝트에서 라이브러리 일괄 버전 업데이트 하기"></a>Node 프로젝트에서 라이브러리 일괄 버전 업데이트 하기</h1><p>다음 명령어 3줄을 순서대로 때려주자.</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i -g npm-check-updates</span><br><span class="line">ncu -u</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p>결과</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">amagr@DESKTOP-RTCBUCP MINGW64 ~/projects/hexo_blog (master)</span><br><span class="line">$ npm i -g npm-check-updates</span><br><span class="line">C:\Users\amagr\AppData\Roaming\npm\ncu -&gt; C:\Users\amagr\AppData\Roaming\npm\node_modules\npm-check-updates\bin\ncu</span><br><span class="line">C:\Users\amagr\AppData\Roaming\npm\npm-check-updates -&gt; C:\Users\amagr\AppData\Roaming\npm\node_modules\npm-check-updates\bin\npm-check-updates</span><br><span class="line">+ npm-check-updates@3.1.7</span><br><span class="line">added 154 packages from 80 contributors <span class="keyword">in</span> 9.7s</span><br><span class="line"></span><br><span class="line">amagr@DESKTOP-RTCBUCP MINGW64 ~/projects/hexo_blog (master)</span><br><span class="line">$ ncu -u</span><br><span class="line">Upgrading C:\Users\amagr\projects\hexo_blog\package.json</span><br><span class="line">[====================] 19/19 100%</span><br><span class="line"></span><br><span class="line"> hexo-deployer-git                    ^0.3.1  →  ^1.0.0</span><br><span class="line"> hexo-generator-archive               ^0.1.4  →  ^0.1.5</span><br><span class="line"> hexo-generator-index                 ^0.2.0  →  ^0.2.1</span><br><span class="line"> hexo-generator-json-content          ^3.0.1  →  ^4.1.3</span><br><span class="line"> hexo-generator-seo-friendly-sitemap  0.0.22  →  0.0.25</span><br><span class="line"> hexo-renderer-ejs                    ^0.3.0  →  ^0.3.1</span><br><span class="line"> hexo-renderer-stylus                 ^0.3.1  →  ^0.3.3</span><br><span class="line"> hexo-server                          ^0.2.0  →  ^0.3.3</span><br><span class="line"></span><br><span class="line">Run npm install to install new versions.</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">amagr@DESKTOP-RTCBUCP MINGW64 ~/projects/hexo_blog (master)</span><br><span class="line">$ npm install</span><br><span class="line">npm WARN babel-eslint@10.0.1 requires a peer of eslint@&gt;= 4.12.1 but none is installed. You must install peer dependencies yourself.</span><br><span class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules\fsevents):</span><br><span class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform <span class="keyword">for</span> fsevents@1.2.4: wanted &#123;<span class="string">"os"</span>:<span class="string">"darwin"</span>,<span class="string">"arch"</span>:<span class="string">"any"</span>&#125; (current: &#123;<span class="string">"os"</span>:<span class="string">"win32"</span>,<span class="string">"arch"</span>:<span class="string">"x64"</span>&#125;)</span><br><span class="line">npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.7 (node_modules\hexo-deployer-git\node_modules\fsevents):</span><br><span class="line">npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform <span class="keyword">for</span> fsevents@1.2.7: wanted &#123;<span class="string">"os"</span>:<span class="string">"darwin"</span>,<span class="string">"arch"</span>:<span class="string">"any"</span>&#125; (current: &#123;<span class="string">"os"</span>:<span class="string">"win32"</span>,<span class="string">"arch"</span>:<span class="string">"x64"</span>&#125;)</span><br><span class="line"></span><br><span class="line">added 158 packages from 69 contributors, removed 28 packages, updated 30 packages and audited 3798 packages <span class="keyword">in</span> 12.346s</span><br><span class="line">found 11 vulnerabilities (6 low, 5 moderate)</span><br><span class="line">  run `npm audit fix` to fix them, or `npm audit` <span class="keyword">for</span> details</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h2><p> <a href="https://stackoverflow.com/questions/16073603/how-do-i-update-each-dependency-in-package-json-to-the-latest-version" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/16073603/how-do-i-update-each-dependency-in-package-json-to-the-latest-version</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/03/21/typescript-20190321-typescript-webpack-build/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/03/21/typescript-20190321-typescript-webpack-build/" class="post-title-link" itemprop="url">typescript-webpack으로 빌드하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-03-21 23:40:53" itemprop="dateCreated datePublished" datetime="2019-03-21T23:40:53+09:00">2019-03-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/typescript/" itemprop="url" rel="index">
+                    <span itemprop="name">typescript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>어쩌다보니 typescript sdk를 사용할 일이 있었다.</p>
+<p>내가 문제는 typescript를 잘 모른다는 것이다. ㅋㅋㅋ</p>
+<p>angular 때문에 말은 많이 들었지만, 이거 신기한 녀석이다.</p>
+<p>typescript로 만든 소스를 tsc를 이용해서 build를 하면 그 결과가 javascript 소스가 된다.</p>
+<p>여기서 build할때 이 빌드 결과물을 es3으로 빌드할지 아님 es5, es6로 빌드할지 결정 할 수도 있다.</p>
+<p>기본적으로 tsc(typescript 컴파일러)로 빌드를 하지만 webpack으로도 빌드가 가능하다.</p>
+<p>이번 글에서는 간단한 typescript 코드와 그것을 webpack으로 빌드해서 하나의 js파일로 만들어 html에서 호출하는 것을 해보려한다.</p>
+<p>정확하 typescript와 webpack을 공부한게 아니라 엉성한것을 감안하길 바란다.</p>
+<h1 id="node-프로젝트-만들고-typescript-소스작성"><a href="#node-프로젝트-만들고-typescript-소스작성" class="headerlink" title="node 프로젝트 만들고 typescript 소스작성"></a>node 프로젝트 만들고 typescript 소스작성</h1><p>npm init으로 node 프로젝트를 생성한다.</p>
+<p>내가 생성한 <em>package.json</em>은 다음과 같다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"tsc-test"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"main"</span>: <span class="string">"index.js"</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"transpile"</span>: <span class="string">"tsc"</span>,</span><br><span class="line">    <span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">""</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"ISC"</span>,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"es6-shim"</span>: <span class="string">"^0.35.5"</span>,</span><br><span class="line">    <span class="attr">"path"</span>: <span class="string">"^0.12.7"</span>,</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^4.29.6"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"@types/node"</span>: <span class="string">"^11.11.0"</span>,</span><br><span class="line">    <span class="attr">"ts-loader"</span>: <span class="string">"^5.3.3"</span>,</span><br><span class="line">    <span class="attr">"typescript"</span>: <span class="string">"^3.3.3333"</span>,</span><br><span class="line">    <span class="attr">"webpack-cli"</span>: <span class="string">"^3.2.3"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>사실 위 <em>package.json*은 *npm</em> 디펜던시 관리만 하게 될 것이다.</p>
+<p>빌드는 <em>wepack</em>으로 할 것이다.</p>
+<p>위 파일을가지고 <em>npm install</em> 명령어를 이용해서 모듈을 설치하자.</p>
+<p><img src="/images/2019/20190321-typescript-webpack-build/1553182778149.png" alt="프로젝트 구조는 다음과 같다."></p>
+<p>AccountService.ts 는 AccountVO.ts를 import해서 사용하고, main.ts 는 AccountService.ts를 inport해서 export 한다.</p>
+<p>main.ts를 중심으로 외부에서 사용할 service를 노출시킨다.</p>
+<p>main.ts는 일종의 service 컨트롤러 역할을 할 것이다.</p>
+<p>이 main.ts를 entry point로 정해서 webpack에서 빌드하게되면 하나의 js파일이 생성되고 이 js파일을 index.html 파일에서 불러와서 main.ts에 등록된 AccountService.ts의 기능을 사용할수 있게 될 것이다.</p>
+<p>파일을 하나씩 살펴보자.</p>
+<p>/src/domain/AccountVO.ts</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> AccountI &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AccountVO <span class="keyword">implements</span> AccountI &#123;</span><br><span class="line">    <span class="keyword">private</span> _privateKey : <span class="built_in">string</span>;</span><br><span class="line">    <span class="keyword">private</span> _publicKey : <span class="built_in">string</span>;</span><br><span class="line">    <span class="keyword">private</span> _address : <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">privateKey : <span class="built_in">string</span> , publicKey : <span class="built_in">string</span>, address : <span class="built_in">string</span></span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>._privateKey = privateKey;</span><br><span class="line">        <span class="keyword">this</span>._publicKey = publicKey;</span><br><span class="line">        <span class="keyword">this</span>._address = address;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> getPrivateKey() : <span class="built_in">string</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._privateKey;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> getPublicKey() : <span class="built_in">string</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._publicKey;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> getAddress() : <span class="built_in">string</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>._publicKey;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>굳이 인터페이스는 없어도 된다. 공부하느라…</p>
+<p>/src/service/AccountServiceVO.ts</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    AccountVO</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">"../domain/AccountVO"</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> AccountService &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> createAccount () : <span class="built_in">void</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"createAcount called..."</span>);</span><br><span class="line">        <span class="keyword">const</span> user1 : AccountVO = <span class="keyword">new</span> AccountVO(<span class="string">"this is private key"</span>, <span class="string">"this is public key"</span>, <span class="string">"this is address"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>별 내용은 없다 그냥 typescript 소스가 서로 import하면서 엮기는 모습을 보여주고 싶었다.</p>
+<p>이렇게 그물처럼 엮인 소스를 webpack으로 빌드해서 하나의 단일 js 파일로 만드는 것이 신기하기 때문이다.</p>
+<p>다음은 가장 중요한 main.ts</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    AccountService</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">"./services/AccountService"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> _AccountService = <span class="keyword">new</span> AccountService();</span><br><span class="line"><span class="comment">//export const something = new somthing();</span></span><br></pre></td></tr></table></figure>
+
+<p>webpack이 빌드할 entry point로 가장 중요한  typescript 파일이지만 내용은 별거 없다.</p>
+<p>만약 여러개의 service를 등록하고 싶다면, 위 주석처럼 추가로 import해서 등록 하면 된다.</p>
+<h1 id="typescript를-빌드할-webpack관련-파일"><a href="#typescript를-빌드할-webpack관련-파일" class="headerlink" title="typescript를 빌드할 webpack관련 파일"></a>typescript를 빌드할 webpack관련 파일</h1><p><img src="/images/2019/20190321-typescript-webpack-build/1553183379901.png" alt="webpack 관련파일"></p>
+<p>위 이미지에서 표시된 두개의 파일이 typescript를 빌드할때 사용될 파일이다.</p>
+<p>먼저 webpack.config.js 파일을 보자</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// webpack.config.js</span></span><br><span class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</span><br><span class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">	entry: &#123;</span><br><span class="line">		<span class="string">'main'</span>: <span class="string">'./src/main.ts'</span></span><br><span class="line">	&#125;,</span><br><span class="line">	output: &#123;</span><br><span class="line">		<span class="comment">//filename: '[name].js',</span></span><br><span class="line">		filename: <span class="string">'MAIN_TYPESCRIPT_SDK.js'</span>,</span><br><span class="line">		path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">		libraryTarget: <span class="string">'var'</span>,</span><br><span class="line">    	library: <span class="string">'MAIN_TYPESCRIPT_SDK'</span></span><br><span class="line">  &#125;,</span><br><span class="line">  mode :<span class="string">'development'</span>,</span><br><span class="line">	devtool: <span class="string">'source-map'</span>,</span><br><span class="line">	<span class="built_in">module</span>: &#123;</span><br><span class="line">		rules: [</span><br><span class="line">			&#123;</span><br><span class="line">				test: <span class="regexp">/\.ts$/</span>,</span><br><span class="line">				use: [<span class="string">'ts-loader'</span>]</span><br><span class="line">			&#125;</span><br><span class="line">		]</span><br><span class="line">	&#125;,</span><br><span class="line">	resolve : &#123;</span><br><span class="line">		<span class="comment">//root: __dirname,   </span></span><br><span class="line">		modules: [</span><br><span class="line">			<span class="string">'node_modules'</span>,</span><br><span class="line">			<span class="comment">//'./src/components'</span></span><br><span class="line">		],</span><br><span class="line">		extensions: [<span class="string">'.js'</span>, <span class="string">'.ts'</span>]</span><br><span class="line">	&#125;,</span><br><span class="line">	node: &#123; <span class="attr">fs</span>: <span class="string">'empty'</span> , <span class="attr">net</span> : <span class="string">'empty'</span>, <span class="attr">tls</span> : <span class="string">'empty'</span>&#125;   <span class="comment">// 웹팩 compile 시 오류 처리</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>여기서 중요한 설정이 몇개 존재한다.</p>
+<p>일단 webpack으로 typescript를 build하기 때문에 module에 ts-loader가 등록이 되어있어야 한다.</p>
+<p>이 로더가 tsconfig.json을 참조하게 된다. tsconfig.json은 typescript를 어떻게 build할 것인가에 대한 설정이다.</p>
+<p>위 파일에서 entry와 output을 주의깊게 봐야 한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">		<span class="string">'main'</span>: <span class="string">'./src/main.ts'</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+<p>main.ts 파일을 entry point로 정한다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">		<span class="comment">//filename: '[name].js',</span></span><br><span class="line">		filename: <span class="string">'MAIN_TYPESCRIPT_SDK.js'</span>,</span><br><span class="line">		path: path.resolve(__dirname, <span class="string">'dist'</span>),</span><br><span class="line">		libraryTarget: <span class="string">'var'</span>,</span><br><span class="line">    	library: <span class="string">'MAIN_TYPESCRIPT_SDK'</span></span><br></pre></td></tr></table></figure>
+
+<p>main.ts 를 기준으로 main.ts에 import된 모든 ts파일을 같이 빌드해서 하나의 js파일을 만드는데, 그 결과물 파일명은 MAIN_TYPESCRIPT_SDK.js 로 정했다.</p>
+<p>그리고 이 파일이 생성되는 위치는 dist 폴더이다.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">libraryTarget: <span class="string">'var'</span>,</span><br><span class="line">library: <span class="string">'MAIN_TYPESCRIPT_SDK'</span></span><br></pre></td></tr></table></figure>
+
+<p>그리고 MAIN_TYPESCRIPT_SDK.js 파일에 변수를 하나 내보낼 것인데 변수 var MAIN_TYPESCRIPT_SDK = 빌드된 main.ts 이렇게 정했다.</p>
+<p>이제 tsconfig.json 파일을 보자.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"compilerOptions"</span>: &#123;</span><br><span class="line">    <span class="attr">"module"</span>: <span class="string">"commonjs"</span>,</span><br><span class="line">    <span class="attr">"target"</span>: <span class="string">"es5"</span>,</span><br><span class="line">    <span class="attr">"removeComments"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">"noImplicitAny"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"sourceMap"</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//"outFile": "./build/build.js",</span></span><br><span class="line">    <span class="comment">//"sourceRoot": "./src/",</span></span><br><span class="line">    <span class="comment">//"rootDir": "./src/",</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"compileOnSave"</span>: <span class="literal">true</span>, </span><br><span class="line">  <span class="attr">"buildOnSave"</span>: <span class="literal">true</span> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>이 파일은 typescirpt를 컴파일할때 사용하는 설정 파일 같다.</p>
+<p>사실 이부부은 나도 잘 몰라서 뭐라 말을 못하겠다.</p>
+<p>다만 빌드 결과물이 es5로 정했다.</p>
+<h1 id="webpack으로-typescript-빌드하기"><a href="#webpack으로-typescript-빌드하기" class="headerlink" title="webpack으로 typescript 빌드하기"></a>webpack으로 typescript 빌드하기</h1><p>만약 webpack을 global로 설치했다면, 프로젝트 폴더에서 webpack명령어를 입력하면 된다.</p>
+<p>나 같은 경우에는 global로 설치하지 않았기 때문에, node_module폴더에 webpack이 숨어있다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node_modules/.bin/webpack</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어를 입력하게 되면 아래처럼 webpack이 typescript를 빌드한다.</p>
+<p><img src="/images/2019/20190321-typescript-webpack-build/1553184414251.png" alt="webpack 명령어 결과"></p>
+<p>그럼 dist폴더를 보면 webpack.config.js에서 설정한 것 처럼 js 파일이 생긴다.</p>
+<p> <img src="/images/2019/20190321-typescript-webpack-build/1553184482694.png" alt="dist폴더"></p>
+<p>js파일 한개가 생성된 것을 확인했다.</p>
+<h1 id="html에서-생성된-js파일을-불러와서-typescript에서-선언한-객체를-호출"><a href="#html에서-생성된-js파일을-불러와서-typescript에서-선언한-객체를-호출" class="headerlink" title="html에서 생성된 js파일을 불러와서 typescript에서 선언한 객체를 호출"></a>html에서 생성된 js파일을 불러와서 typescript에서 선언한 객체를 호출</h1><p>index.html 파일을 아래처럼 만들었다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>test<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"dist/MAIN_TYPESCRIPT_SDK.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.dir(MAIN_TYPESCRIPT_SDK);</span></span><br><span class="line">                MAIN_TYPESCRIPT_SDK._AccountService.createAccount();</span><br><span class="line"></span><br><span class="line">            &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>별거 없다. </p>
+<p>webpack.config.js에 설정한대로 생성된 js파일을 src로 가져오고 var로 내보낸 라이브러리 명으로 main.ts에 export한 typescript객체의 메소드를 호출한다.</p>
+<p><img src="/images/2019/20190321-typescript-webpack-build/1553184647594.png" alt="크롬 브라우저 콘솔창"></p>
+<p>위처럼 크롬 콘솔에서 잘 호출되는 것을 확인했다.</p>
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>휴 어렵다.</p>
+<p>타입스크립트도 잘모르고, 특히 지옥같은 웹팩은 더더욱 몰라서 어려웠다.</p>
+<p>gradle도 그렇고 webpack도 진짜 설정이 어려운거 같다.</p>
+<p>위 소스 github 주소는 아래와 같다.<br><a href="https://github.com/hanumoka/demo_typescript_webpack" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/hanumoka/demo_typescript_webpack</a></p>
+<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="https://trustyoo86.github.io/typescript/2018/01/09/typescript-webpack.html" target="_blank" rel="external nofollow noopener noreferrer">https://trustyoo86.github.io/typescript/2018/01/09/typescript-webpack.html</a></p>
+<p><a href="https://medium.com/dailyjs/inserting-variables-into-html-and-javascript-with-webpack-80f33625edc6" target="_blank" rel="external nofollow noopener noreferrer">https://medium.com/dailyjs/inserting-variables-into-html-and-javascript-with-webpack-80f33625edc6</a></p>
+<p><a href="https://stackoverflow.com/questions/34357489/calling-webpacked-code-from-outside-html-script-tag" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/34357489/calling-webpacked-code-from-outside-html-script-tag</a><br>특히 마지막 자료가 많이 도움되었다.</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/31/docker-20190131-docker-toolbox-docker-machine-ip-default/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/31/docker-20190131-docker-toolbox-docker-machine-ip-default/" class="post-title-link" itemprop="url">docker- docker toolbox 기본 ip 확인</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-01-31 00:29:38" itemprop="dateCreated datePublished" datetime="2019-01-31T00:29:38+09:00">2019-01-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>기존에 docker for windows를 사용하다가 virtual box를 사용하고 싶어서.</p>
+<p>docker tool box로 갈아탔다.( docker for windows보다는 불편하지만, 윈도우에서 ubuntu를 온전하게 사용하기 위해서는 어쩔수 없었다.)</p>
+<p>문제는 docker toolbox로 생성한 컨티에너에 접속이 localhost로 안되는 것이었다.</p>
+<h1 id="해결방법"><a href="#해결방법" class="headerlink" title="해결방법"></a>해결방법</h1><p>다양한 방법이 있겠지만, 복잡하게 네트워크를 변경하는 것보다 기본 도커아이피로 접속하면 된다.</p>
+<p><strong>docker-machine ip default</strong> 를 입력하면</p>
+<p>192.168.99.100 다음과 같은 ip 가 나온다 이 아이피로 접속하면된다.</p>
+<p><img src="/images/20190131-docker-toolbox-docker-machine-ip-default_1.png" alt="docker toolbox ip확인하기"></p>
+<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="https://stackoverflow.com/questions/42866013/docker-toolbox-localhost-not-working/42886035" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/42866013/docker-toolbox-localhost-not-working/42886035</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/30/java-20190130-java8-system-out-println/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/30/java-20190130-java8-system-out-println/" class="post-title-link" itemprop="url">java8 - system.out::println(double colone, method reference)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-01-30 12:47:50" itemprop="dateCreated datePublished" datetime="2019-01-30T12:47:50+09:00">2019-01-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>::(double conlon operator)이라고도 부르는것 같은데, 정식 명칭은 method reference라고 부른다.</p>
+<h1 id="method-reference-이해하기"><a href="#method-reference-이해하기" class="headerlink" title="method reference 이해하기"></a>method reference 이해하기</h1><p>메소드 참조(method reference)는 메소드를 참조해서 매개변수의 정보 및 리턴 타입을 미리 알아내어, 람다식에서 사용하는 매개 변수를 생략하는 방식의 표현법이다.</p>
+<p>말로 조금 풀어보자면 대상::메소드 가 있다면, 대상에서 메소드의 정보를 추출하여 람다식 처럼 익명 구현객체를 생성하는 것이다. 다만 참조하는 메소드의 매개변수를 생략 할 수 있다.</p>
+<p>아래 단계별로 소스로 method reference를 알아보자.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	List&lt;Integer&gt; testList = Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//1단계: 함수인터페이스를 익명구현객체로 구현</span></span><br><span class="line">	testList.forEach(<span class="keyword">new</span> Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Integer x)</span> </span>&#123;</span><br><span class="line">			System.out.println(x);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//2단계: 1단계를 람다식으로 간단하게 표현</span></span><br><span class="line">	testList.forEach((x) -&gt; System.out.println(x));</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//3단계: 2단계를 더 간단하게 표현 : methed reference </span></span><br><span class="line">	testList.forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//method reference도 익명구현객체를 생상하므로 이처럼 참조변수에 할당 할 수 있다.</span></span><br><span class="line">   Consumer&lt;Integer&gt; c = System.out::println;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>1~3단계 모두 익명구현객체를 생성하는 코드이다. 점점 약식화된 표현식이며 3단계가 method refernece이다.</p>
+<p>람다식도 굉장시 간단하지만, 위처럼 참조하는 메소드의 매개변수에 어떠한 변화 없이 그냥 사용할경우 매개변수를 생략할 수 있다.</p>
+<p>처음에는 뭔가 코드 가독성이 떨어지는 것 같았지만, 보다보니 간편한거 같기도 하다.</p>
+<h1 id="사용법1"><a href="#사용법1" class="headerlink" title="사용법1"></a>사용법1</h1><p>메소드 참조는 정적 또는 인스턴스 메소드, 그리고 생성자도 참조 할 수 있다.</p>
+<p><strong>참조할 메소드가 정적메소드인경우</strong></p>
+<p>클래스::정적메소드</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">talk</span><span class="params">(String x)</span></span>&#123;</span><br><span class="line">    System.out.println( x + <span class="string">"하하하"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Consumer&lt;String&gt; c2 = Test::talk;</span><br></pre></td></tr></table></figure>
+
+<p><strong>참조할 메소드가 인스턴스 메소드인경우</strong></p>
+<p>먼저 클래스 이용하여 객체를 생성한뒤, 아래처럼 참조변수를 이용해서 메소드를 참조한다.</p>
+<p>참조변수::메소드</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">talk</span><span class="params">(String x)</span></span>&#123;</span><br><span class="line">    System.out.println( x + <span class="string">"하하하"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Test t1 = <span class="keyword">new</span> Test();</span><br><span class="line"></span><br><span class="line">Consumer&lt;String&gt; c3 = t1::talk;</span><br></pre></td></tr></table></figure>
+
+<h1 id="사용법2"><a href="#사용법2" class="headerlink" title="사용법2"></a>사용법2</h1><p>람다식에서 실행될 코드 컨텍스트 내부에는 람다식 외부의 클래스 멤버의 메소드를 사용할 수도 있고, 람다식에 매개변수의 멤버 메소드를 사용할 수도 있다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a, b) -&gt; &#123; a.instanceMethod(b); &#125;</span><br></pre></td></tr></table></figure>
+
+<p>메소드 참조에서 위 코드를 아래처럼 표현할 수 있다.</p>
+<p>클래스 :: instanceMethod</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">testB</span><span class="params">(B b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		A a = <span class="keyword">new</span> A();</span><br><span class="line">		B b = <span class="keyword">new</span> B();</span><br><span class="line">    <span class="comment">//람다방식</span></span><br><span class="line">		ToIntBiFunction&lt;A, B&gt; f1 = (x, y) -&gt; x.testB(y);</span><br><span class="line">		System.out.println(f1.applyAsInt(a, b));</span><br><span class="line">		<span class="comment">//메소드 참조방식</span></span><br><span class="line">		ToIntBiFunction&lt;A, B&gt; f2 = A::testB;</span><br><span class="line">		System.out.println(f2.applyAsInt(a, b));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="생성자-참조"><a href="#생성자-참조" class="headerlink" title="생성자 참조"></a>생성자 참조</h1><p>람도식으로 생성자를 호출해서 객체를 생성할 수 있다.</p>
+<p>(a, b) -&gt; { return new 클래스(a, b); }</p>
+<p>메소드 참조역시 람다처럼 생성자 참조가 가능하다.</p>
+<p>클래스 :: new</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	String name;</span><br><span class="line">	String id;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Account</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.id = <span class="string">"test"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Account</span><span class="params">(String name, String id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test3</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//람다 방식</span></span><br><span class="line">		Function&lt;String, Account&gt; f1 = (x) -&gt; &#123; <span class="keyword">return</span> <span class="keyword">new</span> Account(x); &#125;;</span><br><span class="line">		Account ac1 = f1.apply(<span class="string">"오레오"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//메소드참조방식, 함수적인터페이스 타입을 이용해서 오버로딩된 생성자를 선택적 호출할수 있다.(Function)</span></span><br><span class="line">		Function&lt;String, Account&gt; f2 = Account::<span class="keyword">new</span>;</span><br><span class="line">		Account ac2 = f2.apply(<span class="string">"메로나"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//메소드참조방식, 함수적인터페이스 타입을 이용해서 오버로딩된 생성자를 선택적 호출할수 있다.(BiFunction)</span></span><br><span class="line">		BiFunction&lt;String, String ,Account&gt; f3 = Account::<span class="keyword">new</span>;</span><br><span class="line">		Account ac3 = f3.apply(<span class="string">"초코파이"</span>, <span class="string">"오예스"</span>);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>method referece는 람다를 더 간결하게 표현하는 문법니다.<br>하지만 개인적으로 너무 간결하여 코드의 가독성이 떨어지는 것이 아닌가 생각해본다.<br>List의 foreach에 System.out::println 정도 쓰기에는 좋아보이긴 한다.</p>
+<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="https://stackoverflow.com/questions/31020269/what-is-the-use-of-system-outprintln-in-java-8" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/31020269/what-is-the-use-of-system-outprintln-in-java-8</a></p>
+<p><a href="https://stackoverflow.com/questions/20001427/double-colon-operator-in-java-8" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/20001427/double-colon-operator-in-java-8</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/29/ubuntu-20190129-ubuntu-install-docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/29/ubuntu-20190129-ubuntu-install-docker/" class="post-title-link" itemprop="url">ubuntu에 docker 설치하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-01-29 16:52:30" itemprop="dateCreated datePublished" datetime="2019-01-29T16:52:30+09:00">2019-01-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>virtual box에 설치한 ubuntu에 docker를 한번 설치해보자.</p>
+<p>docker가 ubuntu에 최적헤 되어있다고 해서, docker for windows를 포기하고 virtual box에 ubuntu를 설치해서 사용해 보려고 한다.</p>
+<h1 id="ubuntu에서-docker-설치하기"><a href="#ubuntu에서-docker-설치하기" class="headerlink" title="ubuntu에서 docker 설치하기"></a>ubuntu에서 docker 설치하기</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl - fsSL http://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20190129-ubuntu-install-docker_1.png" alt="명령1"></p>
+<p>위  명령어를 입력하면 OK라고 나올 것이다.<br>아 물론 curl 이 없으면 미리 설치하자.</p>
+<p>그리고 아래 명령어를 입력하자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20190129-ubuntu-install-docker_2.png" alt="명령2"></p>
+<p>그리고 아래 명령어를 입력해서 docker-ce를 설치하자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure>
+
+<h1 id="docker-확인"><a href="#docker-확인" class="headerlink" title="docker 확인"></a>docker 확인</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker info</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어를 입력하면 설치된 docker의 정보가 보일것이다. (안보인다면 문제가 있는 것)</p>
+<p>끝!!!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/29/ubuntu-20190129-ubuntu-install-vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/29/ubuntu-20190129-ubuntu-install-vim/" class="post-title-link" itemprop="url">ubuntu - vim설치(vi 방향키 입력오류 해결)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-01-29 16:35:14" itemprop="dateCreated datePublished" datetime="2019-01-29T16:35:14+09:00">2019-01-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Virtual box에 ubuntu를 설치한뒤, vi를 열어보니 이상하게도 키보드의 방향키 입력시 A, B 등의 알파뱃 대문자가 입력되었다.<br>인터넷을 찾아보니 골치아픈 vi를 버리고 vim을 설치해서 사용하라는 글을 확인했다.<br>ubuntu에 vim을 설치하고 vi보다는 좋은 vim 기능을 사용해보자.</p>
+<h1 id="ubuntu-vim-설치"><a href="#ubuntu-vim-설치" class="headerlink" title="ubuntu vim 설치"></a>ubuntu vim 설치</h1><p>ubuntu 터미널에서 아래 명령어로 vim을 설치하자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install</span><br></pre></td></tr></table></figure>
+
+<p>이제 vi 대신 vim을 사용할 수 있다. 다행스럽게도 방향키는 정상적으로 입력된다.</p>
+<h1 id="vim-편리한-기능-활성화"><a href="#vim-편리한-기능-활성화" class="headerlink" title="vim 편리한 기능 활성화"></a>vim 편리한 기능 활성화</h1><p>아래 명렁어를 터미널에 입력하여 vim 설정파일을 생성하자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">vim ~/.vimrc</span><br></pre></td></tr></table></figure>
+
+<p>그리고 방금 생성한 vimrc 파일에 아래 내용채워 vim 기능을 활성화 하자.</p>
+<p>set number            “ 줄 번호 표시<br>set tabstop=4         “ tab을 4칸으로<br>set ignorecase      “ 검색시 대소문자 구별하지 않음<br>set hlsearch         “ 검색시 하이라이트<br>set fileencodings=utf-8,euc-kr    “ 파일인코딩 형식<br>set bs=indent,eol,start    “ backspace 키 사용<br>set ruler              “ 상태표시줄 커서 위치 표시<br>set title               “ 제목 표시<br>set showmatch    “ 매칭되는 괄호 표시<br>set nowrap         “ 자동 줄바꿈 해제<br>set wmnu           “ tab 자동완성시 가능한 목록 표시</p>
+<p>syntax on        “ 문법 하이라이트</p>
+<p><img src="/images/20190129-ubuntu-install-vim_1.png" alt="vimrc 파일"></p>
+<p>설정이 활성화 되며 위처럼 줄번호 등 편리한 기능이 적용된다.</p>
+<p>끝!!! </p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="프로그래밍에서 컨텍스트란?컨텍스트(context)란 프로그래밍을 하다보면 자주 접하게 되는 단어이다.   영어뜻 context(명사) : 1. (어떤일의)맥락, 전후 사정 2.(글의)맥락, 문맥  일반적인 의미로서 컨텍스트는 어떤 일,글 따위에 대한 전체적인 내용을 포괄적으로 말하는 것이다. 즉 어떤것의 모든 것을 컨텍스트라고 볼 수 있다. 프로그래밍에 c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android - Conxtext란?">
+<meta property="og:url" content="https://www.hanumoka.net/2017/10/11/android-20171011-android-context/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="프로그래밍에서 컨텍스트란?컨텍스트(context)란 프로그래밍을 하다보면 자주 접하게 되는 단어이다.   영어뜻 context(명사) : 1. (어떤일의)맥락, 전후 사정 2.(글의)맥락, 문맥  일반적인 의미로서 컨텍스트는 어떤 일,글 따위에 대한 전체적인 내용을 포괄적으로 말하는 것이다. 즉 어떤것의 모든 것을 컨텍스트라고 볼 수 있다. 프로그래밍에 c">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/20171011-android-context.png">
+<meta property="article:published_time" content="2017-10-10T22:37:25.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:11.966Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="Context">
+<meta property="article:tag" content="this">
+<meta property="article:tag" content="컨텍스트">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/20171011-android-context.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2017/10/11/android-20171011-android-context/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Android - Conxtext란? | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/10/11/android-20171011-android-context/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android - Conxtext란?
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2017-10-11 07:37:25" itemprop="dateCreated datePublished" datetime="2017-10-11T07:37:25+09:00">2017-10-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/android/" itemprop="url" rel="index">
+                    <span itemprop="name">android</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="프로그래밍에서-컨텍스트란"><a href="#프로그래밍에서-컨텍스트란" class="headerlink" title="프로그래밍에서 컨텍스트란?"></a>프로그래밍에서 컨텍스트란?</h4><p>컨텍스트(context)란 프로그래밍을 하다보면 자주 접하게 되는 단어이다. </p>
+<blockquote>
+<p>영어뜻 context(명사) : 1. (어떤일의)맥락, 전후 사정 2.(글의)맥락, 문맥</p>
+</blockquote>
+<p>일반적인 의미로서 컨텍스트는 어떤 일,글 따위에 대한 전체적인 내용을 포괄적으로 말하는 것이다. 즉 어떤것의 모든 것을 컨텍스트라고 볼 수 있다.</p>
+<p>프로그래밍에 context라는 말도 비슷한 의미이다. 다른 것이 있다면 주어가 항상 프로그램 그 차제로 고정되어 있다는 것이다.<br>프로그래밍에서 컨텍스트를 아주 일반화해서 말하면 프로그램 그 자체라고 볼수있다. 조금 더 세세하게 표현하자면 프로그램 전체를 아우르며 접근 및 제어(컨트롤) 할 수 있는 코어라고 볼수 있다. </p>
+<hr>
+<h4 id="안드로이드의-컨텍스트란"><a href="#안드로이드의-컨텍스트란" class="headerlink" title="안드로이드의 컨텍스트란?"></a>안드로이드의 컨텍스트란?</h4><p>안드로이드에서도 안드로이드 어플리케이션 전체를 아우르며 컨트롤 할수 있는 컨텍스트가 존재하며, 그것을 추상클래스로 구현해 놓았다. 다음은 안드로이드의 context의 사전적 의미이다.</p>
+<blockquote>
+<p>어플리케이션 환경에 관한 글로벌 정보를 접근하기 위한 인터페이스. Abstract 클래스이며 실재 구현은 안드로이드 시스템에 의해 제공된다. Context 를 통해, 어플리케이션에 특화된 리소스나 클래스에 접근할 수 있을 뿐만 아니라, 추가적으로, 어플리케이션 레벨의 작업 - Activity 실행, Intent 브로드캐스팅, Intent 수신 등, 을 수행하기 위한 API 를 호출 할 수도 있다.</p>
+</blockquote>
+<p>예를 들어 대저택(안드로이드 앱)이 있고 그 집의 주인(개발자) 가 있다면, 안드로이드 컨텍스트는 대저택의 집사쯤 된다고 생각 할수 있겠다. 주인(개발자)은 본인 대신 대저택(개발중인 앱)의 관리를 집사에게 맞기고 필요한 것들을 집사(컨텍스트)에게 명령 하기만 하면된다.<br>실제 코딩에서 개발자는 안드로이드 앱의 리소스에 접근하기 위해 특정 리소스의 파일 경로등에 직접 접근할 필요 없이, 아래처럼 컨텍스트에게 리소스 정보를 달라고 요청만 하면 그만이다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.getResources();</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="컨텍스트의-종류"><a href="#컨텍스트의-종류" class="headerlink" title="컨텍스트의 종류"></a>컨텍스트의 종류</h4><p><strong>Application Context</strong> – 이 컨텍스트는 실행중인 안드로이드 어플리케이션 프로세스의 <strong>Singletone instances</strong> 이다.<br>즉, 안드로이드 Application 프로세스가 생성될 때 Application Context 생성되고, 안드로이드 Application 프로세스가 종료될 때  Application Context가 같이 사라진다.<br>Activity이나 Service에서는 getApplication() 메소드를 통해 getApplicationContext()로 이 Application Context를 얻어 올 수 있다. 이 컨텍스트는 안드로이드 어플리케이션 프로세스의 Singletone instances이므로 어디서나 동일한 인스턴스를 받게 된다.</p>
+<p><strong>(Activity / Service) Context</strong> – Activity 와 Service는 본인 그 자체가 context이다. Activity와 Service 모두 ContextWrapper를 상속받기 때문이다.<br>(Activity / Service) Context는 Application Context를 확장한 개념이며, Activity또는 Service자신의 라이프사이클을 따라간다. Activity또는 Service는 자신이 그 자체가 Context이니 당연한 말일 것이다.<br>Activity Context인경우 자신의 뷰 컴포넌트를 관리하기 위해서는 Application Context가 아니라 자신의 Activity Context에 접근해야 한다. Activity java코드에서 <strong>this키워드</strong>가 바로 이것이다.</p>
+<hr>
+<h4 id="BroadcastReceiver와-ContentProvider에서의-Context"><a href="#BroadcastReceiver와-ContentProvider에서의-Context" class="headerlink" title="BroadcastReceiver와 ContentProvider에서의 Context"></a>BroadcastReceiver와 ContentProvider에서의 Context</h4><p><strong>BroadcastReceiver</strong> – 위의 2가지와 다르게 자기자신이 Context자체는 아니다. 하지만 onRecevie()시 Context를 가져올 수 있는데, 이때의 Context는 ReveiverRestrictedContext이며 두가지 기능 registerReceiver()와 bindService()를 사용 할 수 없다. <strong>리시버가 브로드캐스트를 처리 할때마다 새로운 Context가 생성 된다.</strong></p>
+<p><strong>ContentProvider</strong> – 브로드캐스트와 마찬가지로 자기자신이 Context를 상속 받은것은 아니다. 하지만 액세스후 getContext()를 통해 Application Context를 가져 올 수 있다. ContentProvider 동일한 응용프로그램에 대해 호출시, 동일한 응용프로그램의 Singletone instances를 반환하게 된다. 하지만 별도의 프로세스에 있는 경우(서로다른 다른 앱), 프로바이더가 실행되는 응용프로그램의 instances가 반환된다</p>
+<hr>
+<h4 id="컨텍스트-사용시-주의점"><a href="#컨텍스트-사용시-주의점" class="headerlink" title="컨텍스트 사용시 주의점"></a>컨텍스트 사용시 주의점</h4><p>Application Context와 (Activity / Service) Context는 라이프 사이클이 다르다.<br>Application Context는 프로그램 프로세스가 종료되지 않는한 메모리에서 사라지지 않는반면, (Activity / Service) Context는 수업이 생성과 소멸을 반복한다.<br>Context를 참조할 때, (Activity / Service) Context를 참조하는 경우 이미 메모리에서 삭제된 Context를 참조하는 경우가 발생할 수 있다.<br>경우에 따라 다르겠지만, Context를 참조할 때에는 Application Context 참조해야 메모리누수를 피할수 있다.</p>
+<hr>
+<h4 id="컨텍스트-종류에-따라-다른-기능구분-표"><a href="#컨텍스트-종류에-따라-다른-기능구분-표" class="headerlink" title="컨텍스트 종류에 따라 다른 기능구분 표"></a>컨텍스트 종류에 따라 다른 기능구분 표</h4><p><img src="/images/20171011-android-context.png" alt="컨텍스트기능구분표"></p>
+<h3 id="참조한-사이트목록"><a href="#참조한-사이트목록" class="headerlink" title="참조한 사이트목록"></a>참조한 사이트목록</h3><p><a href="http://sunphiz.me/wp/archives/483" target="_blank" rel="external nofollow noopener noreferrer">http://sunphiz.me/wp/archives/483</a><br><a href="http://arabiannight.tistory.com/entry/272" target="_blank" rel="external nofollow noopener noreferrer">http://arabiannight.tistory.com/entry/272</a><br><a href="http://dev.youngkyu.kr/36" target="_blank" rel="external nofollow noopener noreferrer">http://dev.youngkyu.kr/36</a><br><a href="http://wengdiiiy.tistory.com/1" target="_blank" rel="external nofollow noopener noreferrer">http://wengdiiiy.tistory.com/1</a><br><a href="http://www.kmshack.kr/2013/10/android-context-what-context/" target="_blank" rel="external nofollow noopener noreferrer">http://www.kmshack.kr/2013/10/android-context-what-context/</a><br><a href="https://blog.mindorks.com/understanding-context-in-android-application-330913e32514" target="_blank" rel="external nofollow noopener noreferrer">https://blog.mindorks.com/understanding-context-in-android-application-330913e32514</a></p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/Context/" rel="tag"># Context</a>
+              <a href="/tags/this/" rel="tag"># this</a>
+              <a href="/tags/%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/" rel="tag"># 컨텍스트</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/10/04/androidStudio-20171004-androidstudio-korean-problem/" rel="prev" title="안드로이드스튜디오 한글깨짐 해결방법">
+      <i class="fa fa-chevron-left"></i> 안드로이드스튜디오 한글깨짐 해결방법
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/10/12/android-20171012-android-RGBA-chart/" rel="next" title="android - RGBA chart">
+      android - RGBA chart <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#프로그래밍에서-컨텍스트란"><span class="nav-number">1.</span> <span class="nav-text">프로그래밍에서 컨텍스트란?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#안드로이드의-컨텍스트란"><span class="nav-number">2.</span> <span class="nav-text">안드로이드의 컨텍스트란?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#컨텍스트의-종류"><span class="nav-number">3.</span> <span class="nav-text">컨텍스트의 종류</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BroadcastReceiver와-ContentProvider에서의-Context"><span class="nav-number">4.</span> <span class="nav-text">BroadcastReceiver와 ContentProvider에서의 Context</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#컨텍스트-사용시-주의점"><span class="nav-number">5.</span> <span class="nav-text">컨텍스트 사용시 주의점</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#컨텍스트-종류에-따라-다른-기능구분-표"><span class="nav-number">6.</span> <span class="nav-text">컨텍스트 종류에 따라 다른 기능구분 표</span></a></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#참조한-사이트목록"><span class="nav-number"></span> <span class="nav-text">참조한 사이트목록</span></a></li></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

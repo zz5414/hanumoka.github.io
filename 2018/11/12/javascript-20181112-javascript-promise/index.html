@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="Promise란Promise는 javascript의 callback의 단점을 해결 하기 위한 1단계 진화형 형태이다.프라미스가 콜백을 대체하는 것은 아니다. 사실 프라미스에서도 콜백을 사용한다.프라미스는 콜백을 예측 가능한 패턴으로 사용할수 있게 하며, 프라미스 없이 콜백만 사용했을 때 나타날 수 있는 엉뚱한 현상이나 찾기 힘든 버그를 해결할수 있다.특히">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript - Promise(콜백의 진화형)">
+<meta property="og:url" content="https://www.hanumoka.net/2018/11/12/javascript-20181112-javascript-promise/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="Promise란Promise는 javascript의 callback의 단점을 해결 하기 위한 1단계 진화형 형태이다.프라미스가 콜백을 대체하는 것은 아니다. 사실 프라미스에서도 콜백을 사용한다.프라미스는 콜백을 예측 가능한 패턴으로 사용할수 있게 하며, 프라미스 없이 콜백만 사용했을 때 나타날 수 있는 엉뚱한 현상이나 찾기 힘든 버그를 해결할수 있다.특히">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181112-javascript-promise_1.png">
+<meta property="article:published_time" content="2018-11-11T15:32:09.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:12.000Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="callback">
+<meta property="article:tag" content="callbackhell">
+<meta property="article:tag" content="promise">
+<meta property="article:tag" content="프라미스">
+<meta property="article:tag" content="promise chain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/20181112-javascript-promise_1.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2018/11/12/javascript-20181112-javascript-promise/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>javascript - Promise(콜백의 진화형) | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/12/javascript-20181112-javascript-promise/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          javascript - Promise(콜백의 진화형)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-11-12 00:32:09" itemprop="dateCreated datePublished" datetime="2018-11-12T00:32:09+09:00">2018-11-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Promise란"><a href="#Promise란" class="headerlink" title="Promise란"></a>Promise란</h1><p>Promise는 javascript의 callback의 단점을 해결 하기 위한 1단계 진화형 형태이다.<br><strong>프라미스가 콜백을 대체하는 것은 아니다. 사실 프라미스에서도 콜백을 사용한다.</strong><br>프라미스는 콜백을 예측 가능한 패턴으로 사용할수 있게 하며, 프라미스 없이 콜백만 사용했을 때 나타날 수 있는 엉뚱한 현상이나 찾기 힘든 버그를 해결할수 있다.<br><strong>특히 보기싫은 중첩콜백과 콜백헬을 해결해준다.</strong></p>
+<hr>
+<h1 id="Promise의-기본개념"><a href="#Promise의-기본개념" class="headerlink" title="Promise의 기본개념"></a>Promise의 기본개념</h1><p><strong>프라미스 기반 비동기적 함수를 호출하면 그 함수는 Promise 인스턴스를 반환한다.</strong><br>프라미스는 성공(fulfilled)하거나, 실패(rejected)하거나 단 두 가지뿐이다.<br>프라미스는 성공 혹은 실패 둘 중 하나만 일어난다고 확신할 수 있다.<br>성공한 프라미스가 나중에 실패하는 일 같은 건 절대 없다.<br>또한, 성공이든 실패든 단 한 번만 일어난다.<br>프라미스가 성공하거나 실패하면 그 프라미스를 결정됬다(settled)고 한다.</p>
+<p>프라미스는 객체이므로 어디든 전달할 수 있다는 점도 콜백에 비해 간편한 장점이다.<br>비동기적 처리를 여기서 하지 않고 다른 함수에게(또는 다른 동료가) 처리하게 하고 싶다면 프라미스를 넘기기만 하면 된다.</p>
+<p>사실 이렇게 말로만 들으면 Promise에 대한 감이 전혀 오질 않을수도 있다.</p>
+<p>일단 만들어 보자.</p>
+<hr>
+<h1 id="Promise-만들고-실행하기"><a href="#Promise-만들고-실행하기" class="headerlink" title="Promise 만들고 실행하기"></a>Promise 만들고 실행하기</h1><p>setTimeout을 이용하여 10초 이하 카운팅하는 Promise를 만들어보자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countdown</span>(<span class="params">seconds</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> timeoutIds = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = seconds; i&gt;=<span class="number">0</span>; i--)&#123;</span><br><span class="line">      timeoutIds.push(setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(i &gt; <span class="number">10</span>) &#123;</span><br><span class="line">          timeoutIds.forEach(clearTimeout);   <span class="comment">// 등록된 setTimeout 스케쥴을 다 지워버린다.</span></span><br><span class="line">          <span class="keyword">return</span> reject(<span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"10초를 초과하는 수는 셀수 없다. 입력받은 초:"</span> + i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;<span class="number">0</span>) <span class="built_in">console</span>.log(i + <span class="string">'...'</span>);</span><br><span class="line">        <span class="keyword">else</span> resolve(<span class="built_in">console</span>.log(<span class="string">"GO!"</span>));</span><br><span class="line">      &#125;, (seconds-i)*<span class="number">1000</span>));</span><br><span class="line">    &#125; <span class="comment">//-for</span></span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>비동기적 동작을 원하는 내용을 콜백으로 new Promise의 인자로 넘긴다.</p>
+<p>중요한 문법적 요소는 Promise의 인자로 넘겨지는 콜백함수의 매개변수 resolve(성공), reject(실패)이다.</p>
+<p>resolve(성공)는 Promise에 인자인 콜백이 정상동작을 했을 경우 동작할 로직이고, reject(실패)는 그 반대로 콜백이 실패한경우 동작할 로직이다.</p>
+<p>즉 resolve, reject도 콜백이다.</p>
+<p><strong>그리고 resolve, reject의 중요한 특징은 여러번 호출하든, 섞어서 호출하든 첫번째로 호출한 것만 의미가 있다는 것이다.</strong></p>
+<p>자 그러면 이제 반환된 Promise를 호출하는 부분이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">countdown(<span class="number">13</span>).then(</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"countdown 정상 종료"</span>); <span class="comment">// resolve 호출시 동작</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"countdown 동작 에러:"</span>+ err.message); <span class="comment">// reject 호출시 동작</span></span><br><span class="line">  &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>then의 첫번째 인자가 resolve, 두번째 인자가 reject를 대체하는 것을 알수 있다.</p>
+<p><strong>Promise의 인자콜백에서 로직상으로 reject는 없을수 있지만, 반드시 성공했을 경우 resolve를 명시적으로 호출해 줘야 한다.</strong></p>
+<p>그래야만 Promise에서 호출하는 부분에서 정상적으로 동작했는지 여부를 확인 할 수 있다.</p>
+<p>아래처럼  resolve, reject를 둘로 나눠서 사용할 수도 있다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = countdown(<span class="number">13</span>);</span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"countdown 정상 종료"</span>); <span class="comment">// resolve 호출시 동작</span></span><br><span class="line">&#125;);</span><br><span class="line">p.catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"countdown 동작 에러:"</span>+ err.message); <span class="comment">// reject 호출시 동작</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>또는 아래처럼 더 간단하게도 사용이 가능하다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = countdown(<span class="number">13</span>);</span><br><span class="line">p.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"countdown 정상 종료"</span>); <span class="comment">// resolve 호출시 동작</span></span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"countdown 동작 에러:"</span>+ err.message); <span class="comment">// reject 호출시 동작</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>Promise를 실행하는 방법중 위 방법을 가장 추천한다.</p>
+<p>그 이유는 <strong>then의 콜백에서 발생하는 error도 맨 마지막 catch에서 처리할 수 있기 때문이다.</strong></p>
+<p>그리고 콜백헬을 대체 할 Promise체인을 사용하기 편하다.</p>
+<hr>
+<h1 id="Promise-Chain-프라미스-체인"><a href="#Promise-Chain-프라미스-체인" class="headerlink" title="Promise Chain(프라미스 체인)"></a>Promise Chain(프라미스 체인)</h1><p>프라미스가 완료되면 그 다음단계 진행해야할 로직들을 묶어서 순차적으로 실행할수 있다.</p>
+<p>이 체인기능은 callback hell 이라는 문제점을 해결해준다.</p>
+<p>예를 들어 a.txt, b.txt, c.txt 파일을 순서대로 읽어야 한다고 가정하자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//파일을 읽는 Promise</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readFile</span>(<span class="params">fileName</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    fs.readFile(fileName, <span class="string">"utf-8"</span> ,<span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(err) <span class="keyword">return</span> reject(err);</span><br><span class="line">      resolve(<span class="built_in">console</span>.log(data));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//파일을 읽는 Promise</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">readFileBBBBB</span>(<span class="params">fileName</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>)</span>&#123;</span><br><span class="line">    fs.readFile(fileName, <span class="string">"utf-8"</span> ,<span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(err) <span class="keyword">return</span> reject(err);</span><br><span class="line">      resolve(<span class="built_in">console</span>.log(data));</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> p = readFile(<span class="string">"a.txt"</span>);</span><br><span class="line"></span><br><span class="line">p.then(readFileBBBBB(<span class="string">"b.txt"</span>))</span><br><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//Promise 채인에 일반 콜백 연결</span></span><br><span class="line">  fs.readFile(<span class="string">"c.txt"</span>, <span class="string">"utf-8"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(err) <span class="keyword">return</span> <span class="built_in">console</span>.error(<span class="string">"c.txt 파일 읽기 실패"</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.error(<span class="string">"에렁:"</span> + err.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181112-javascript-promise_1.png" alt="위 코드 결과"></p>
+<p>위 코드는 많은 것을 보여주고 있다.</p>
+<ul>
+<li><p>최초 호출된 Promise를 통해서 비동기적으로 동작하는 로직을 순서대로 묶을수 있다.</p>
+</li>
+<li><p>최초 호출을 제외하고 그 다음 단계부터 Promise와 콜벡을 혼용해서 순서를 만들수 있다.</p>
+</li>
+<li><p>Promise체인 어디에서든 에러가 생기면 체인 전체가 멈추고 그 에러 처리를 마지막의 catch 핸들러 한 곳에서 처리 할 수 있다.</p>
+</li>
+<li><p>callback hell의 중첩으로 쌓인 코드보다 훨씬 보기가 쉽다.</p>
+</li>
+</ul>
+<p>프로미스 체인기능은 아주 직관적이고 강력한 기능이라 생각된다.</p>
+<p><strong>위 예제에는 없지만 resolve의 매개인자를 통해서 앞선 단계의 데이터를 다음단계로 계속 넘길수도 있다.</strong></p>
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>일단 여기까지만… 이게 공부해보니 상당히 어려운 javascript 문법기술이다.<br>결정되지 않는 프라미스 방지나, 프라미스 체인에서 재귀적으로 promise를 호출했을 경우등…. 아직 공부해야 할 부분이 많아 보인다.<br>이 글에서는 promise의 개념과 간단한 사용법 정도만 보고 넘어가야 겠다.</p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/tags/callback/" rel="tag"># callback</a>
+              <a href="/tags/callbackhell/" rel="tag"># callbackhell</a>
+              <a href="/tags/promise/" rel="tag"># promise</a>
+              <a href="/tags/%ED%94%84%EB%9D%BC%EB%AF%B8%EC%8A%A4/" rel="tag"># 프라미스</a>
+              <a href="/tags/promise-chain/" rel="tag"># promise chain</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/08/docker-20181108-docker-nginx/" rel="prev" title="docker - Nginx에 webserver연동하기">
+      <i class="fa fa-chevron-left"></i> docker - Nginx에 webserver연동하기
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/13/vue-20181113-vue-how-to-make-vue-express-project/" rel="next" title="Vue와 Express를 합쳐서 통합 프로젝트 만들기">
+      Vue와 Express를 합쳐서 통합 프로젝트 만들기 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise란"><span class="nav-number">1.</span> <span class="nav-text">Promise란</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise의-기본개념"><span class="nav-number">2.</span> <span class="nav-text">Promise의 기본개념</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-만들고-실행하기"><span class="nav-number">3.</span> <span class="nav-text">Promise 만들고 실행하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Promise-Chain-프라미스-체인"><span class="nav-number">4.</span> <span class="nav-text">Promise Chain(프라미스 체인)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#마무리"><span class="nav-number">5.</span> <span class="nav-text">마무리</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

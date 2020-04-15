@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="들어가기Express 프로젝트에 sequelize(시퀄라이저)를 이용하여 로컬에 있는 mysql에 접속하는 예제를 정리해본다. 미리 로컬에 mysql을 설치하고, 스키마와 계정을 생성 해놨다. 테스트용 Express 프로젝트 생성하기1express backend --view&#x3D;pug  위 명령어로 express 프로젝트를 생성한다. 시퀄라이저(sequeliz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node Express에 sequelize를 이용해 mysql접속하기">
+<meta property="og:url" content="https://www.hanumoka.net/2018/11/23/node-20181123-express-setting-sequelize/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="들어가기Express 프로젝트에 sequelize(시퀄라이저)를 이용하여 로컬에 있는 mysql에 접속하는 예제를 정리해본다. 미리 로컬에 mysql을 설치하고, 스키마와 계정을 생성 해놨다. 테스트용 Express 프로젝트 생성하기1express backend --view&#x3D;pug  위 명령어로 express 프로젝트를 생성한다. 시퀄라이저(sequeliz">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_1.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_2.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_3.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_4.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_5.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_6.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_7.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_8.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_9.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_10.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_11.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_12.png">
+<meta property="article:published_time" content="2018-11-23T08:01:37.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:12.005Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="Node">
+<meta property="article:tag" content="Express">
+<meta property="article:tag" content="시퀄라이저">
+<meta property="article:tag" content="sequelize">
+<meta property="article:tag" content="sequelize-auto">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/20181123-express-setting-sequelize_1.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2018/11/23/node-20181123-express-setting-sequelize/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Node Express에 sequelize를 이용해 mysql접속하기 | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/23/node-20181123-express-setting-sequelize/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Node Express에 sequelize를 이용해 mysql접속하기
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-11-23 17:01:37" itemprop="dateCreated datePublished" datetime="2018-11-23T17:01:37+09:00">2018-11-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/node/" itemprop="url" rel="index">
+                    <span itemprop="name">node</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Express 프로젝트에 sequelize(시퀄라이저)를 이용하여 로컬에 있는 mysql에 접속하는 예제를 정리해본다.</p>
+<p>미리 로컬에 mysql을 설치하고, 스키마와 계정을 생성 해놨다.</p>
+<h1 id="테스트용-Express-프로젝트-생성하기"><a href="#테스트용-Express-프로젝트-생성하기" class="headerlink" title="테스트용 Express 프로젝트 생성하기"></a>테스트용 Express 프로젝트 생성하기</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">express backend --view=pug</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어로 express 프로젝트를 생성한다.</p>
+<h1 id="시퀄라이저-sequelize-란"><a href="#시퀄라이저-sequelize-란" class="headerlink" title="시퀄라이저(sequelize)란"></a>시퀄라이저(sequelize)란</h1><p>promise기반 Node.js환경의 ORM(Object-relational Mapping)이다.</p>
+<p>이것을 통해 Exrpess와 MariaDB, PostgreSQL, SQLite, MSSQL등과 연동이 가능하다.</p>
+<p>내가 알고 있던 Mybatis와 같은 ORM과는 약간 DB에 대한 접근방식이 다르다.</p>
+<p>Mybatis같은 경우 sql 쿼리를 xml로 관리하고, 이 파일을 이용하여 DB의 entity와 자바의 객체를 맵핑하는 방법으로 DB에 접근한다.</p>
+<p>Express서버의 시퀄라이저 설정으로 DB의 entity와 entity간의 관계를 javascript로 선언하고, Express에서 시퀄라이저 문법을 통해서 DB에 접근한다.</p>
+<p>Mybatis에 익숙한 나에게는 굉장히 낮선 방식이다.</p>
+<h2 id="시퀄라이저의-특징"><a href="#시퀄라이저의-특징" class="headerlink" title="시퀄라이저의 특징"></a>시퀄라이저의 특징</h2><p>1.DB Entity정의를 시퀄라이저의 model(js파일)로 정의할수 있다.<br>2.DB의 Entity의 관계역시 시퀄라이저에서 정의할수 있다.<br>3.Express에서 시퀄라이저의 Model을 이용하여 DB의 entity에 접근 하여 CRUD등을 할 수 있다.<br>4.Express 서버에서 시퀄라이저에 선언된 Entity정의와 그 관계정의(테이블간 fk등…)을 이용하여 서버에 테이블과 그 관계를 생성할수 있다.</p>
+<p>여기서 애매한 것이 4번인데, 예를들어 Express서버를 실행할때 시퀄라이저에 선언된 DB의 model정보를 통해 DB에 테이블을 생성하고 그 Model간의 관계까지 생성할수 있다.<br>즉 개발자가 DB에 접근하여 DDL을 직접 날려 테이블을 생성하는 것이 아니라, 서버에 DB설계를 시퀄라이저를 통해 하고 서버가 start할때마다 DB에 그 내용을 반영 할수 있는 것이다.</p>
+<p>이것은 어떻게 보면 굉장히 편리한 방법일수도 있지만, 특히 개인프로젝트인 경우에는 더더욱…<br>하지만 팀으로 개발을 하거나, DB설계를 ERD를 이용하여 하는 경우 필요 없는 기능이라 생각된다.</p>
+<h1 id="Express서버에-시퀄라이저-sequelize-연동하기"><a href="#Express서버에-시퀄라이저-sequelize-연동하기" class="headerlink" title="Express서버에 시퀄라이저(sequelize) 연동하기"></a>Express서버에 시퀄라이저(sequelize) 연동하기</h1><p>Express 프로젝트 폴더인 backend폴더에 cmd로 이동하여 아래 명령어로 시퀄라이저를 설치하고 시퀄라이저 초기화 셋팅을 하자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i sequelize mysql2</span><br><span class="line">npm i -g sequelize-cli</span><br><span class="line">sequelize init</span><br></pre></td></tr></table></figure>
+
+<p>현재 나는 Express프로젝트인 backend폴더에서 위 명령어로 필요한 모듈을 설치하고 마지막 sequelize init명령어를 통해서 express 서버에 sequelize환경을 셋팅한다.</p>
+<p>sequelize init명령어를 실행하면 프로젝트 폴더에서 config, models, migrations, seeders 폴더라 생성된다.</p>
+<p><img src="/images/20181123-express-setting-sequelize_1.png" alt="sequelize init 실행결과로 생성된 폴더"></p>
+<p>여기에서 시퀄라이저의 기본적인 동작 과정을 집고 넘어가자.</p>
+<p><img src="/images/20181123-express-setting-sequelize_2.png" alt="Express와 sequelize연동시 동작과정"></p>
+<p>크게 1번과, 2번 루트로 나눌수 있다.</p>
+<p>1번일경우 DB의 스키마 엔티티관리를 고전적인? 방법으로 DB에서 관리 할때</p>
+<p>2번일 경우 DB의 스키마 엔티티관리를 Express서버에서 models폴더에 js파일로 선언한 엔티티(테이블)와 그 관계들(테이블간 1:1, 1:n, n:M관계)를 읽어서 DB 스키마에 적용한다.</p>
+<p>2번일 경우 express서버가 시작될때 추가 옵션을 통해서 DB 스키마를 깨끗이 지우고(테이블과 그 관계등을), 시퀄라이저에서 js파일로 선언된 엔티티로 테이블과 그 관계를 성성할수 있다.</p>
+<p>즉 DB 스키마 관리를 express내부에서 자바스크립트로 관리 할수 있다는 장점이 있다.</p>
+<p>그러나, 난 꼰대라서 DB는 분리해서 entity를 관리하는것아 편하다. </p>
+<p>ERD로 DB를 설계하는 것이 편하기 때문이다.</p>
+<h2 id="1번-방법-시퀄라이저-연동-시퀄라이저에서-DB-Entity를-관리하는-방식"><a href="#1번-방법-시퀄라이저-연동-시퀄라이저에서-DB-Entity를-관리하는-방식" class="headerlink" title="1번 방법 시퀄라이저 연동(시퀄라이저에서 DB Entity를 관리하는 방식)"></a>1번 방법 시퀄라이저 연동(시퀄라이저에서 DB Entity를 관리하는 방식)</h2><p>config/config.json 파일은 시퀄라이저가 DB에 접근하는 정보를 저장한다.</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"development"</span>: &#123;</span><br><span class="line">    <span class="attr">"username"</span>: <span class="string">"hanumoka"</span>,</span><br><span class="line">    <span class="attr">"password"</span>: <span class="string">"password"</span>,</span><br><span class="line">    <span class="attr">"database"</span>: <span class="string">"band_of_coder"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">    <span class="attr">"dialect"</span>: <span class="string">"mysql"</span>,</span><br><span class="line">    <span class="attr">"operatorsAliases"</span>: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"test"</span>: &#123;</span><br><span class="line">    <span class="attr">"username"</span>: <span class="string">"root"</span>,</span><br><span class="line">    <span class="attr">"password"</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">"database"</span>: <span class="string">"database_test"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">    <span class="attr">"dialect"</span>: <span class="string">"mysql"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"production"</span>: &#123;</span><br><span class="line">    <span class="attr">"username"</span>: <span class="string">"root"</span>,</span><br><span class="line">    <span class="attr">"password"</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">"database"</span>: <span class="string">"database_production"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">    <span class="attr">"dialect"</span>: <span class="string">"mysql"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>나는 위처럼 development에 로컬 mysql 정보를 입력했다.<br>이 파일은 접근할 DB 접건정보 뿐만 아니라 define이라는 시퀄라이저 부가옵션을 추가적으로 줄 수도 있다.</p>
+<p>models/index.js 파일을 아래처럼 수정하자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> Sequelize = <span class="built_in">require</span>(<span class="string">'sequelize'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> env = process.env.NODE_ENV || <span class="string">'development'</span>;</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(path.join(__dirname, <span class="string">'..'</span>, <span class="string">'config'</span>, <span class="string">'config.json'</span>))[env];</span><br><span class="line"><span class="keyword">const</span> db = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sequelize = <span class="keyword">new</span> Sequelize(config.database, config.username, config.password, config);</span><br><span class="line"></span><br><span class="line">db.sequelize = sequelize;</span><br><span class="line">db.Sequelize = Sequelize;</span><br><span class="line"></span><br><span class="line"><span class="comment">//모델정보를 읽어온다.</span></span><br><span class="line">db.User = <span class="built_in">require</span>(<span class="string">'./user'</span>)(sequelize, Sequelize);</span><br><span class="line">db.Comment = <span class="built_in">require</span>(<span class="string">'./comment'</span>)(sequelize, Sequelize);</span><br><span class="line"></span><br><span class="line"><span class="comment">//모델간의 관계를 정의한다.</span></span><br><span class="line">db.User.hasMany(db.Comment, &#123; <span class="attr">foreignKey</span>: <span class="string">'commenter'</span>, <span class="attr">sourceKey</span>: <span class="string">'id'</span> &#125;);</span><br><span class="line">db.Comment.belongsTo(db.User, &#123; <span class="attr">foreignKey</span>: <span class="string">'commenter'</span>, <span class="attr">targetKey</span>: <span class="string">'id'</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = db;</span><br></pre></td></tr></table></figure>
+
+<p>위 모델관계는 user : comment = 1:N 관계정의이다.</p>
+<p>1:1, 1:n, n:m관계등을 정의 가능하며, 이렇게 정의한 것들을 express서버가 동작할때 DB에 DDL로 적용할수 있다.</p>
+<p>자세한 내용은 시퀄라이저 공식문서를 참고하자.</p>
+<p>models/user.js 파일은 아래와 같다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">sequelize, DataTypes</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> sequelize.define(<span class="string">'user'</span>, &#123;</span><br><span class="line">    name: &#123;</span><br><span class="line">      type: DataTypes.STRING(<span class="number">20</span>),</span><br><span class="line">      allowNull: <span class="literal">false</span>,</span><br><span class="line">      unique: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    age: &#123;</span><br><span class="line">      type: DataTypes.INTEGER.UNSIGNED,</span><br><span class="line">      allowNull: <span class="literal">false</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    married: &#123;</span><br><span class="line">      type: DataTypes.BOOLEAN,</span><br><span class="line">      allowNull: <span class="literal">false</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    comment: &#123;</span><br><span class="line">      type: DataTypes.TEXT,</span><br><span class="line">      allowNull: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    created_at: &#123;</span><br><span class="line">      type: DataTypes.DATE,</span><br><span class="line">      allowNull: <span class="literal">false</span>,</span><br><span class="line">      defaultValue: sequelize.literal(<span class="string">'now()'</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    timestamps: <span class="literal">false</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>models/comment.js 파일은 아래와 같다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function">(<span class="params">sequelize, DataTypes</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> sequelize.define(<span class="string">'comment'</span>, &#123;</span><br><span class="line">    comment: &#123;</span><br><span class="line">      type: DataTypes.STRING(<span class="number">100</span>),</span><br><span class="line">      allowNull: <span class="literal">false</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    created_at: &#123;</span><br><span class="line">      type: DataTypes.DATE,</span><br><span class="line">      allowNull: <span class="literal">true</span>,</span><br><span class="line">      defaultValue: sequelize.literal(<span class="string">'now()'</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    timestamps: <span class="literal">false</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>models/user.js와 models/comment.js는 DB의 엔티티 즉, 테이블을 정의 하는 것이다.</p>
+<p>데이터 타입, key, not null등 다양한 기능들을 시퀄라이저 문법을 통해 정의 해야 한다.<br>ORM을 위해 시퀄라이저에서 엔티티를 정의하는 문법을 새로 배워야 한다는 것은, 좀 문제가 있다고 본다.</p>
+<p>이것은 2번 방법에서 좀더 나은방법으로 해결해보자.</p>
+<p>시퀄라이저의 자세한 문법은 구글에서 공식페이지에서 확인해보길 바란다.</p>
+<p>Express프로젝트의 app.js폴더로 이동해서 시퀄라이저를 등록하자.</p>
+<p>아래 내용을 app.js에 추가하자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sequelize = <span class="built_in">require</span>(<span class="string">'./models'</span>).sequelize;   <span class="comment">// mysql 시퀄라이저 모델</span></span><br><span class="line">sequelize.sync();    <span class="comment">//서버가 실행될때 시퀄라이저의 스키마를 DB에 적용시킨다.</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181123-express-setting-sequelize_3.png" alt="app.js에 시퀄라이저 적용"></p>
+<p>위 두줄의 명령으로인해, express 프로젝트가 start될때 시퀄라이저 models/index.js와 models/user.js, models/comment.js를 이용하여 DB 스키마에 테이블과 그 관계를 DDL로 생선한다.</p>
+<p>그럼 한번 express start를 시작해보자.</p>
+<p><img src="/images/20181123-express-setting-sequelize_4.png" alt="깨끗한 DB상황"></p>
+<p>위를 보면 현재 테이블이 하나도 없는 것이 보인다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DEBUG=backend:* npm start</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어를 실행하자.</p>
+<p><img src="/images/20181123-express-setting-sequelize_5.png" alt="express 실행결과"></p>
+<p>서버가 실행되면서 Create table등의 로그가 보일것이다. </p>
+<p>sequelize.sync();가 동작하면서 앞서 시퀄라이저로 정의한 것들이 DB에 테이블따위로 생성되는 것이다.</p>
+<p>다시 DB를 확인해보자.</p>
+<p><img src="/images/20181123-express-setting-sequelize_6.png" alt="생성된 테이블 확인"></p>
+<p>위처럼 models폴더에 js파일로 선언한 시퀄라이저 엔티티가 DB에 테이블로 생성된 것을 확인 할 수 있다.</p>
+<p>주의할점은 시퀄라이저가 생성한 table명을 보면 뒤에 s가 붙어있다. 즉 model명의 복수형태로 테이블을 만든다.</p>
+<p>일단 테스트를 위해 user테이블에 더미데이터를 하나 추가하고 pug에서 조회해 보자.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">values</span>(<span class="string">'1'</span>, <span class="string">'hanumoka'</span>, <span class="number">32</span>, <span class="literal">false</span>, <span class="string">'코딩은 재밌어'</span>, <span class="keyword">now</span>());</span><br></pre></td></tr></table></figure>
+
+<p>/routes/userManager.js 파일을 생성하자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> User = <span class="built_in">require</span>(<span class="string">'../../models'</span>).User;</span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>, <span class="keyword">async</span>(req, res, next) =&gt;&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> users = <span class="keyword">await</span> User.findAll();  </span><br><span class="line">    res.render(<span class="string">'userManager'</span>, &#123;users&#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(error);</span><br><span class="line">    next(error);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+
+<p>require로 models에 접근해 User라는 모델을 가져온다.<br>User의 첫걸자가 대문자인것을 주의하자.<br>시퀄라이저는 promise, async 방식 두가지 방법을 지원하며 위 예제는 ansyc방식의 전체 조회예제이다.</p>
+<p>아래는 userManager.pug 파일이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">doctype html</span><br><span class="line">html</span><br><span class="line">  head</span><br><span class="line">    meta(charset&#x3D;&#39;utf-8&#39;)</span><br><span class="line">    title 시퀄라이즈 서버</span><br><span class="line">    style.</span><br><span class="line">      table &#123;</span><br><span class="line">        border: 1px solid black;</span><br><span class="line">        border-collapse: collapse;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      table th, table td &#123;</span><br><span class="line">        border: 1px solid black;</span><br><span class="line">      &#125;</span><br><span class="line">  body</span><br><span class="line">    table#user-list</span><br><span class="line">      thead</span><br><span class="line">        tr</span><br><span class="line">          th ID</span><br><span class="line">          th 이름</span><br><span class="line">      tbody</span><br><span class="line">        for user in users</span><br><span class="line">          tr</span><br><span class="line">            td&#x3D; user.id</span><br><span class="line">            td&#x3D; user.name</span><br><span class="line">    br</span><br></pre></td></tr></table></figure>
+
+<p>express의 app.js에 라우터 routes/userManager.js를 등록하자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> userManagerRouter = <span class="built_in">require</span>(<span class="string">'./routes/backend_pug/userManager'</span>);</span><br><span class="line">app.use(<span class="string">'/usermanager'</span>, userManagerRouter);</span><br></pre></td></tr></table></figure>
+
+<p>그리고 서버를 재시작후 url로 접근하면 다음과 같이 조회되는것을 확인 할수 있다.</p>
+<p><img src="/images/20181123-express-setting-sequelize_7.png" alt="생성된 테이블 확인"></p>
+<p>지금까지 간단하게 Express와 시퀄라이저를 연동해서 mysql에 테이블을 조회하는 예제를 진행해 보았다.</p>
+<p>하지만 서버에서 엔티티를 관리하고 생성하는 방법은 개인적으로 불편해서 2번방법을 생각해 보았다.</p>
+<h2 id="2번-방법-진화된-시퀄라이저-연동-DB는-DB에서-따로-관리하는-방식"><a href="#2번-방법-진화된-시퀄라이저-연동-DB는-DB에서-따로-관리하는-방식" class="headerlink" title="2번 방법 진화된 시퀄라이저 연동(DB는 DB에서 따로 관리하는 방식)"></a>2번 방법 진화된 시퀄라이저 연동(DB는 DB에서 따로 관리하는 방식)</h2><p>1번 방법처럼 Expess에서 시퀄라이저를 이용하여 엔티티를 생성하고 그 관계를 만들어서 프로젝트 개발과 DB를 통합으로 개발 관리하는것은 일견 유용해보인다.</p>
+<p>하지만 보편적으로 팀으로 프로젝트를 개발하고, DB는 DBA나 별도 관리자가 따로 관리할 것이다.</p>
+<p>개인적으로 가장큰 문재는 ERD로 DB를 설계하는 것이 편한데, 1번 방법일 경우 ERD를 개발에 쓰기가 어렵다는 것이다.</p>
+<p>그리고 시퀄라이저에서 엔티티를 생성하기 위한 모델정의 문법을 따로 배워야 한다는 것은…. 뭔가 영양가가 없어보이는 공부라고 생각되었다.</p>
+<p>2번 방법으로 연동한 express sequelize연동 환경에서 개발프로세스는 다음과 같다.</p>
+<ol>
+<li>1번 방법에서는 express서버가 실행될 때 sequelize모델을 DB에 생성했지만, 이것을 제거한다. 즉 DB스키마는 Express에서 건드리지 않는다.</li>
+<li>1번 방법에서는 models폴더에 각각 테이블이 될 model들을 js파일로 생성했지만, 거꾸로 DB에서 그정보를 읽어 자동으로 js파일을 생성한다.(sequelize-auto)</li>
+<li>workbench를 이용하여 ERD를 생성하고 DB스키마는 ERD로 생성관리한다.</li>
+<li>테이블명과 필드명은 underscore를 사용한다.</li>
+</ol>
+<p>하나하나 실습으로 해보자.</p>
+<h3 id="workbench로-ERD로-DB-스키마-정의"><a href="#workbench로-ERD로-DB-스키마-정의" class="headerlink" title="workbench로 ERD로 DB 스키마 정의"></a>workbench로 ERD로 DB 스키마 정의</h3><p>일단 기존 테이블을 다 drop 하고 다음처럼 ERD를 간단하게 만들었다.</p>
+<p><img src="/images/20181123-express-setting-sequelize_8.png" alt="예제 ERD"></p>
+<p>workbench로 ERD를 만드는 방법은 구글링을 하길 바란다.</p>
+<p>database-forward to Database를 이용해서 ERD를 이용해 테이블을 생성했다.</p>
+<p><img src="/images/20181123-express-setting-sequelize_9.png" alt="ERD로 생성된 테이블"></p>
+<h3 id="Express가-시작될-때-table생성-못하게-설정"><a href="#Express가-시작될-때-table생성-못하게-설정" class="headerlink" title="Express가 시작될 때 table생성 못하게 설정"></a>Express가 시작될 때 table생성 못하게 설정</h3><p>간단하다.</p>
+<p>Express의 app.js에 위에서 설정한 시퀄라이저 부분을 다 제거하자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//var sequelize = require('./models').sequelize;   // mysql 시퀄라이저 모델</span></span><br><span class="line"><span class="comment">//sequelize.sync();    //서버가 실행될때 시퀄라이저의 스키마를 DB에 적용시킨다.</span></span><br></pre></td></tr></table></figure>
+
+<p>난 위처럼 둘다 주석처리 했다.<br>이제 Express가 시작될 때 DB 스키마를 건드리는 걱정을 안해도 된다.</p>
+<h3 id="DB-테이블을-자동으로-models폴더에-js파일로-생성하기"><a href="#DB-테이블을-자동으로-models폴더에-js파일로-생성하기" class="headerlink" title="DB 테이블을 자동으로 models폴더에 js파일로 생성하기."></a>DB 테이블을 자동으로 models폴더에 js파일로 생성하기.</h3><p>sequelize-auto라는 라이브러리를 사용하면 된다.<br><a href="https://github.com/sequelize/sequelize-auto" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/sequelize/sequelize-auto</a></p>
+<p>express 프로젝트에 sequelize-auto를 설치하자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g sequelize-auto</span><br><span class="line">npm install -g mysql</span><br></pre></td></tr></table></figure>
+
+<p>그리도 다음과 같은 형태의 명령으로 현재 mysql 로컬 DB의 테이블을 이용하여 시퀄라이저 models폴더에 js들을 자동으로 생성할수 있다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sequelize-auto -o "./models" -d sequelize_auto_test -h localhost -u my_username -p 5432 -x my_password -e postgres</span><br></pre></td></tr></table></figure>
+
+<p>내 로컬의 경우 다음과 같다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sequelize-auto -o "./models" -d band_of_coder -h localhost -u hanumoka -p 3306 -x password -e mysql</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181123-express-setting-sequelize_10.png" alt="sequelize-auto 실형결과1"></p>
+<p>models폴더에 index.js파일 하나뿐이 없는 상태에서 위 명령어를 실행 했다.<br>로그에서 무언가 쿼리같은것이 실행되는 것을 확인 할 수 있다.</p>
+<p><img src="/images/20181123-express-setting-sequelize_11.png" alt="sequelize-auto 실형결과2"></p>
+<p>위처럼 자동으로 user.js, user_post.js 파일이 자동으로 models폴더 내부에 생성된 것을 확인 할수 있다.</p>
+<p>DB스키마 관리는 그냥 기존의 SQL, workbench, erd등으로 관리하고 sequelize-auto라이브러리를 이용하여 시퀄라이저의 문법을 공부할 필요가 없어진다.</p>
+<h3 id="sequelize-models-index-js-업그레이드"><a href="#sequelize-models-index-js-업그레이드" class="headerlink" title="sequelize models/index.js 업그레이드"></a>sequelize models/index.js 업그레이드</h3><p>models/index.js 파일은 시퀄라이저 핵심 엔트리 파일이다.</p>
+<p>자동으로 models폴더를 읽어서 js파일을 적재할수 있게 수정하자.</p>
+<p>수정된 models/index.js 파일은 다음과 같다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"><span class="keyword">const</span> Sequelize = <span class="built_in">require</span>(<span class="string">'sequelize'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> env = process.env.NODE_ENV || <span class="string">'development'</span>;</span><br><span class="line"><span class="keyword">const</span> config = <span class="built_in">require</span>(path.join(__dirname, <span class="string">'..'</span>, <span class="string">'config'</span>, <span class="string">'config.json'</span>))[env];</span><br><span class="line"><span class="keyword">const</span> db = &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> sequelize = <span class="keyword">new</span> Sequelize(config.database, config.username, config.password, config);</span><br><span class="line"></span><br><span class="line">fs</span><br><span class="line">  .readdirSync(__dirname)</span><br><span class="line">  .filter(<span class="function"><span class="keyword">function</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (file.indexOf(<span class="string">"."</span>) !== <span class="number">0</span>) &amp;&amp; (file !== <span class="string">"index.js"</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">  .forEach(<span class="function"><span class="keyword">function</span>(<span class="params">file</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> model = sequelize.import(path.join(__dirname, file));</span><br><span class="line">    db[model.name] = model;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'model.name:'</span> + model.name);  <span class="comment">// 테스트로그 model명..</span></span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">Object</span>.keys(db).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">modelName</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="string">"associate"</span> <span class="keyword">in</span> db[modelName]) &#123;</span><br><span class="line">    db[modelName].associate(db);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">db.sequelize = sequelize;</span><br><span class="line">db.Sequelize = Sequelize;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = db;</span><br></pre></td></tr></table></figure>
+
+<h3 id="시퀄라이저-config-config-json-수정"><a href="#시퀄라이저-config-config-json-수정" class="headerlink" title="시퀄라이저 config/config.json 수정"></a>시퀄라이저 config/config.json 수정</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"development"</span>: &#123;</span><br><span class="line">    <span class="attr">"username"</span>: <span class="string">"hanumoka"</span>,</span><br><span class="line">    <span class="attr">"password"</span>: <span class="string">"password"</span>,</span><br><span class="line">    <span class="attr">"database"</span>: <span class="string">"band_of_coder"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">    <span class="attr">"dialect"</span>: <span class="string">"mysql"</span>,</span><br><span class="line">    <span class="attr">"operatorsAliases"</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"define"</span>: &#123;</span><br><span class="line">        <span class="attr">"timestamps"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"underscored"</span> : <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"test"</span>: &#123;</span><br><span class="line">    <span class="attr">"username"</span>: <span class="string">"root"</span>,</span><br><span class="line">    <span class="attr">"password"</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">"database"</span>: <span class="string">"database_test"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">    <span class="attr">"dialect"</span>: <span class="string">"mysql"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"production"</span>: &#123;</span><br><span class="line">    <span class="attr">"username"</span>: <span class="string">"root"</span>,</span><br><span class="line">    <span class="attr">"password"</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">"database"</span>: <span class="string">"database_production"</span>,</span><br><span class="line">    <span class="attr">"host"</span>: <span class="string">"127.0.0.1"</span>,</span><br><span class="line">    <span class="attr">"dialect"</span>: <span class="string">"mysql"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>define을 추가했다. timestamps가 true이면 시퀄라이저가 생성하는 DDL, DML에 createAt, updateAt, deleteAt 컬럼들을 자동으로 생성한다.<br>난 필요가 없어 제거했다.</p>
+<p>그리고 테이블명과 컬럼명을 스네이크케이스로 선언하므로 underscored를 true로 선언했다.<br>사실 현재는 필요없는 설정이다. 이 설정은 시퀄라이저가 DB에 DDL을 날릴때 적용되는 옵션같다.<br>DML에서는 필요없는듯…</p>
+<p>/routes/userManager.js 파일을 다음과 같이 조금 수정</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</span><br><span class="line"><span class="keyword">var</span> userModel = <span class="built_in">require</span>(<span class="string">'../../models'</span>).user;</span><br><span class="line"><span class="comment">//var User = require('../../models').User;</span></span><br><span class="line"><span class="keyword">var</span> router = express.Router();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>, <span class="keyword">async</span>(req, res, next) =&gt;&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> users = <span class="keyword">await</span> userModel.findAll();</span><br><span class="line">    res.render(<span class="string">'userManager'</span>, &#123;users&#125;);</span><br><span class="line">  &#125; <span class="keyword">catch</span>(error) &#123;</span><br><span class="line">    <span class="built_in">console</span>.error(error);</span><br><span class="line">    next(error);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = router;</span><br></pre></td></tr></table></figure>
+
+<p>model require부분만 조금 수정되었다. 이번에는 user가 모두 소문자인것을 주의하자.</p>
+<p>userManager.pug 아주 조금 수정 id대신 email로 변경</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">doctype html</span><br><span class="line">html</span><br><span class="line">  head</span><br><span class="line">    meta(charset&#x3D;&#39;utf-8&#39;)</span><br><span class="line">    title 시퀄라이즈 서버</span><br><span class="line">    style.</span><br><span class="line">      table &#123;</span><br><span class="line">        border: 1px solid black;</span><br><span class="line">        border-collapse: collapse;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      table th, table td &#123;</span><br><span class="line">        border: 1px solid black;</span><br><span class="line">      &#125;</span><br><span class="line">  body</span><br><span class="line">    table#user-list</span><br><span class="line">      thead</span><br><span class="line">        tr</span><br><span class="line">          th email</span><br><span class="line">          th 이름</span><br><span class="line">      tbody</span><br><span class="line">        for user in users</span><br><span class="line">          tr</span><br><span class="line">            td&#x3D; user.email</span><br><span class="line">            td&#x3D; user.name</span><br><span class="line">    br</span><br></pre></td></tr></table></figure>
+
+<p>서버를 실행하고 그 결과를 확인해보자.</p>
+<p><img src="/images/20181123-express-setting-sequelize_12.png" alt="2번방법 시퀄라이저연동 최종결과"></p>
+<p>데이터가 없어서 조회결과는 없지만, 정상동작하는 것을 확인 할 수 있다.</p>
+<p>로그에서도 model.name이 잘 나온다.</p>
+<p>그리고 조회 했을때 select 쿼리도 잘 찍히는 것을 확인 할 수 있다.</p>
+<h3 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h3><p>대충 시퀄라이저를 내 입맛에 맞게 수정했다.<br>아직 남아있는 것은 2번 시퀄라이저 연동환경에서 테이블관의 관계, 즉 엔티티의 관계도 자동으로 설정되었으면 좋겠는데… 이건 아직 테스트를 안해보았다.</p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/Node/" rel="tag"># Node</a>
+              <a href="/tags/Express/" rel="tag"># Express</a>
+              <a href="/tags/%EC%8B%9C%ED%80%84%EB%9D%BC%EC%9D%B4%EC%A0%80/" rel="tag"># 시퀄라이저</a>
+              <a href="/tags/sequelize/" rel="tag"># sequelize</a>
+              <a href="/tags/sequelize-auto/" rel="tag"># sequelize-auto</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/16/atom-20181116-atom-hide-wrap-guide/" rel="prev" title="Atom 세로선 제거하기(disable wrap-guide)">
+      <i class="fa fa-chevron-left"></i> Atom 세로선 제거하기(disable wrap-guide)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/24/java-20181124-java-lambda2/" rel="next" title="java - 함수형 인터페이스 API(람다의 활용1)">
+      java - 함수형 인터페이스 API(람다의 활용1) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#들어가기"><span class="nav-number">1.</span> <span class="nav-text">들어가기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#테스트용-Express-프로젝트-생성하기"><span class="nav-number">2.</span> <span class="nav-text">테스트용 Express 프로젝트 생성하기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#시퀄라이저-sequelize-란"><span class="nav-number">3.</span> <span class="nav-text">시퀄라이저(sequelize)란</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#시퀄라이저의-특징"><span class="nav-number">3.1.</span> <span class="nav-text">시퀄라이저의 특징</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Express서버에-시퀄라이저-sequelize-연동하기"><span class="nav-number">4.</span> <span class="nav-text">Express서버에 시퀄라이저(sequelize) 연동하기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1번-방법-시퀄라이저-연동-시퀄라이저에서-DB-Entity를-관리하는-방식"><span class="nav-number">4.1.</span> <span class="nav-text">1번 방법 시퀄라이저 연동(시퀄라이저에서 DB Entity를 관리하는 방식)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2번-방법-진화된-시퀄라이저-연동-DB는-DB에서-따로-관리하는-방식"><span class="nav-number">4.2.</span> <span class="nav-text">2번 방법 진화된 시퀄라이저 연동(DB는 DB에서 따로 관리하는 방식)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#workbench로-ERD로-DB-스키마-정의"><span class="nav-number">4.2.1.</span> <span class="nav-text">workbench로 ERD로 DB 스키마 정의</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Express가-시작될-때-table생성-못하게-설정"><span class="nav-number">4.2.2.</span> <span class="nav-text">Express가 시작될 때 table생성 못하게 설정</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DB-테이블을-자동으로-models폴더에-js파일로-생성하기"><span class="nav-number">4.2.3.</span> <span class="nav-text">DB 테이블을 자동으로 models폴더에 js파일로 생성하기.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sequelize-models-index-js-업그레이드"><span class="nav-number">4.2.4.</span> <span class="nav-text">sequelize models&#x2F;index.js 업그레이드</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#시퀄라이저-config-config-json-수정"><span class="nav-number">4.2.5.</span> <span class="nav-text">시퀄라이저 config&#x2F;config.json 수정</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#마무리"><span class="nav-number">4.2.6.</span> <span class="nav-text">마무리</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

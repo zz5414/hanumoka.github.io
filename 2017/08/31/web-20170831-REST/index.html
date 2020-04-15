@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="REST(REpresentational State Transfer: 표현 상태 전송)는 웹 아키텍처 스타일이다. HTTP 스펙 설계에 참여했던 로이필딩이라는 사람이 2000년대 발표한 네트워크(웹) 아키텍처 스타일이다.여기서 네트워크 아키텍처 스타일이란 한가지의 웹 아키텍쳐 가 아니라 여러 가지 복수의 아키텍쳐의 공통된 성질, 양식 규정 혹은 독특항 방식의">
+<meta property="og:type" content="article">
+<meta property="og:title" content="REST의 정의">
+<meta property="og:url" content="https://www.hanumoka.net/2017/08/31/web-20170831-REST/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="REST(REpresentational State Transfer: 표현 상태 전송)는 웹 아키텍처 스타일이다. HTTP 스펙 설계에 참여했던 로이필딩이라는 사람이 2000년대 발표한 네트워크(웹) 아키텍처 스타일이다.여기서 네트워크 아키텍처 스타일이란 한가지의 웹 아키텍쳐 가 아니라 여러 가지 복수의 아키텍쳐의 공통된 성질, 양식 규정 혹은 독특항 방식의">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/20170831-REST%EB%9E%80_1.png">
+<meta property="article:published_time" content="2017-08-30T18:07:34.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:12.039Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="web">
+<meta property="article:tag" content="REST">
+<meta property="article:tag" content="RESTFul">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/20170831-REST%EB%9E%80_1.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2017/08/31/web-20170831-REST/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>REST의 정의 | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/08/31/web-20170831-REST/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          REST의 정의
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2017-08-31 03:07:34" itemprop="dateCreated datePublished" datetime="2017-08-31T03:07:34+09:00">2017-08-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web/" itemprop="url" rel="index">
+                    <span itemprop="name">web</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>REST(REpresentational State Transfer: 표현 상태 전송)는 웹 아키텍처 스타일이다.</strong></p>
+<p>HTTP 스펙 설계에 참여했던 로이필딩이라는 사람이 2000년대 발표한 네트워크(웹) 아키텍처 스타일이다.<br>여기서 네트워크 아키텍처 스타일이란 한가지의 웹 아키텍쳐 가 아니라 여러 가지 복수의 아키텍쳐의 공통된 성질, 양식 규정 혹은 독특항 방식의 집합을 네트워크 아키텍쳐 스타일이라고 한다.<br>REST를 네트워크 아키텍쳐 스타일이라고 하지만, 사실 HTTP 기반위에 존재하는 아키텍쳐 스타일이므로 웹 아키텍처 스타일이라고 부르는 것도 틀린 표현은 아닌 것 같다.</p>
+<p>RESTful은 어떤 대상이 REST 의 제약에 따르고 있고, 그래서 상당히 REST스럽다? REST답다 라는 형용사적 의미이다.</p>
+<p>예를 들어 어떤 서버 A가 존재 한다고 하자. 이 A서버는 REST라는 아키텍츠 스타일의 제약을 충실히 따르고 있다면, 이 A 서버를 RESTful 한 서버라 부를 수 있다.</p>
+<blockquote>
+<p><img src="/images/20170831-REST%EB%9E%80_1.png" alt></p>
+</blockquote>
+<p><strong>REST의 의미</strong></p>
+<blockquote>
+<p>REST는 수많은 아키텍처 스타일 중에서도, 특히 네트워크 시스템의 아키텍처 스타일 이다.<br>그리고 REST는 웹의 대표적인 아키택처 스타일인 클라이언트/서버를 기반으로 하는 복합 아키텍처 스타일이다.<br>, 즉 로이필딩은 REST 기반으로 네트워크를 설계하면 효과적이라고 생각했다.</p>
+</blockquote>
+<p><strong>REST = 클라이언트/서버 + 스테이트리스 서버(Stateless Server) + 캐시(cache) + 유니폼 인터페이스(uniform Interface) + 계층화 시스템 + 코드 온 디맨</strong></p>
+<p><strong>클라이언트/서버</strong><br>말그대로 클라이언트 와 서버로 구성되어 있으며 클라이언트에서 request하면 서버에서 response한다.</p>
+<p><strong>스테이트리스 서버</strong><br>클라이언트의 어플리케이션 상태를 서버에서 관리하지 않는다는 의미이다. 서버가 어플리케이션의 상태를 가지지 않게되면, 그만큼 서버 측의 구현이 갈결해지는 장점이 있다.<br>하지만 현실적으로 스테이트리스가 아닌 웹 서비스와 웹 API가 많이 사용된다. 특히 HTTP를 스테이트풀 하게 만드는 대표적인 것은 Cookie를 사용한 세션관리이다.<br>REST의 관점에서 본다면, Cookie를 사용한 세션관리는 HTTP의 잘못된 확장이다. 다만 REST의 기준으로 잘못되었다고 해서, Cookie를 사용한 폼 인증을 그만둘 수 없는 것도 현실이다. Cookie는 스테이트리스 서버의 이점을 버린다는 것을 이해한 후 최소한으로 이용 해야 한다.</p>
+<p><strong>캐시</strong><br>리소스의 신선도에 기초해, 한번 가져온 리소스를 클라이언트 쪽에서 돌려쓰는 방식.</p>
+<p><strong>유니폼 인터페이스 (리소스, http 메소드, 메세지)</strong><br>URI로 지정한 리소스에 대한 조작을 통일되고 한정적인 인터페이스로 수행하는 아키텍처 스타일을 말한다.<br>예를 들어 HTTP1.1 에서 GET, POST등 8개의 메소드만 정의되어 있고, 보통은 이 이상 늘어나지 않는다. 어떻게 보면 확장성이 떨어진다고 보여지지만 이런 제약이 현재 웹의 통일된 인터페이스를 만들어 낸 것이다.</p>
+<p>REST에서는 모든 것을 명사형 리소스로 표현하며, 의미가 명확한 한정된 HTTP 메소드를 사요하고, 메세지를 담아서 통신한다.<br>아래는 대표적으로 사용하는 메소드 4개이다.</p>
+<table>
+<tr><td>메소드명</td><td>기능</td></tr>
+<tr><td>get</td><td>search</td></tr>
+<tr><td>post</td><td>create</td></tr>
+<tr><td>put</td><td>update</td></tr>
+<tr><td>delete</td><td>delete</td></tr>
+</table>
+
+
+<p>아래는 실제 REST 메세지의 표현 형테이다.<br><a href="http://somthingweb/user/" target="_blank" rel="external nofollow noopener noreferrer">http://somthingweb/user/</a> 주소(리소스 url)에 POST(CREATE)해라 rocky라는 이름으 user를 이라는 의미를 갖는 메세지이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">HTTP POST , http:&#x2F;&#x2F;somthingweb&#x2F;user&#x2F;</span><br><span class="line">&#123;</span><br><span class="line">   &quot;user&quot;:&#123;</span><br><span class="line">       &quot;name&quot;:&quot;rocky&quot;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>계층화 시스템</strong></p>
+<p>유니폼 인터페이스로 인해 발생되는 이점중 하나이다. 통일된 인터페이스로 인해 시스템 전체를 계층화 하기 쉽다. 프록시 서버, 로드벨런서 등등을 http 인터페이스로 통일하여 계층화 하여 사용 할수 있다.</p>
+<p><strong>코드 온 디맨드(code on demand)</strong></p>
+<p>프로그램 코드를 서버에서 다운 받아 클라이언트에서 실행하는 아키텍처 스타일이다.<br>처음에 이 개념은 서버에서 발생하는 부하를 클라이언트쪽으로 부담시켜 서버의 부하를 낮추것이 목적이었다.</p>
+<p>예를 들어 javascript나 flash, java 애플릿 등이 여기에 해당한다.<br>반대로 jsp, asp 같이 백엔드에서 페이지를 렌더링해서 클라이언트에 보내는 경우, 수많은 화면 페이지들은  *.jsp 또는 *.asp 이런 확장자를 가지게 된다. 이는 화면단 소스가 백엔드 기술에 종속된다는 것을 의미한다.<br>jsp, asp 이런 기술들은 백엔드에 프론트엔드가 기술적으로 종속된다는 단점이 있지만, 이런 단점을 무색하게 할 정도로 강력한 기능을 제공해 왔다.</p>
+<p>하지만 근래 javascript의 눈부신 발달, jquery, ajax 기타 수많은 블라블라.js 등으로 인해 이런 백엔드 서버페이지 기술, jsp, asp이런 것들이 제공하는 기술들을 대체하는 시대가 되었다. 본래의 서버의 부하를 낮추는 기능 뿐만 아니라 프론트 엔드가 서버에 독립적으로 동작할수 있는 특성이 생겨버렸다.</p>
+<p>요즘의 REST, RESTful 하다라는 말이 유행하게 된 가장 큰 이유는 발전된 javascript, jquery, ajax를 통해 백엔드에 독립적인 프론트엔드 개발이 가능한 환경 즉 코드 온 디멘드가 가능한 환경이 되었기 때문이라고 생각된다.<br>특히 ajax통신은 http + xml or json 형태의 통신형태로 인해 REST가 지향하는 유니폼 인터페이스를 구현하는 기반이 되었다고 생각된다.</p>
+<p>jquery, ajax를 이용하여 프론트엔드는 백엔드에 종속되지 않고 백엔드 시스템과 통신할수 있다.<br>이런 시점에서 적절한 웹 아키텍처가 필요했고 로이필딩이 2000년대 논문을 통해 발표한 REST라는 웹 아키텍처 스타일이 트랜드상 선호되는것 같다.</p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/web/" rel="tag"># web</a>
+              <a href="/tags/REST/" rel="tag"># REST</a>
+              <a href="/tags/RESTFul/" rel="tag"># RESTFul</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/08/31/javascript-20170831-javascript-closure-3/" rel="prev" title="javascript 클로저(closure)사용시 주의사항(3편)">
+      <i class="fa fa-chevron-left"></i> javascript 클로저(closure)사용시 주의사항(3편)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/08/31/apache-20170831-apache-install-windows/" rel="next" title="apache웹서버 윈도우에 설치하기">
+      apache웹서버 윈도우에 설치하기 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

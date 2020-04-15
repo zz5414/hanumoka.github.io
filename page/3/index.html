@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="아마추어 개발자의 블로그">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hanumoka, IT Blog">
+<meta property="og:url" content="https://www.hanumoka.net/page/3/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="아마추어 개발자의 블로그">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:author" content="Hanumoka">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.hanumoka.net/page/3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-nvm-node/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-nvm-node/" class="post-title-link" itemprop="url">ubuntu nvm node</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 19:18:16" itemprop="dateCreated datePublished" datetime="2019-08-17T19:18:16+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>우분투에 nvm을 이용해서 node를 설치해보자.</p>
+<p>nvm은 Node.js version manager로 여러가지 버전을 손쉽게 설치하고 거기서 원하는 버전을 골라서 사용할수 있게 해준다.</p>
+<p>우분투 저장소에서 vnm에 필요한 패키지를 설치하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install build-essential libssl-dev</span><br></pre></td></tr></table></figure>
+
+<p>그리고 nvm 설치 스크립트를 다운로드 후 실행하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -sL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;creationix&#x2F;nvm&#x2F;v0.31.0&#x2F;install.sh -o install_nvm.sh </span><br><span class="line">bash install_nvm.sh </span><br><span class="line">source ~&#x2F;.profile</span><br></pre></td></tr></table></figure>
+
+<p>nvm 설치가 완료가 되었다면, 아래 명령어를 입력하여 설치 가능한 node.js 버전들을 확인할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm ls-remote</span><br></pre></td></tr></table></figure>
+
+<p>현재 LTS 버전인 10.16.2 버전을 설치해보겠다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm install 10.16.2</span><br></pre></td></tr></table></figure>
+
+<p>설치가 끝나면 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어로 설치된 node의 버전을 확인 할 수 있다.</p>
+<p>추가로 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm use 6.0.0</span><br></pre></td></tr></table></figure>
+
+<p>위처럼 만약 다른 버전의 node가 설치되어 있다면 버전을 바꿔서 사용할 수도 있다.</p>
+<p>설치된 node 버전을 보려면 아래 명령어로 확인 할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvm ls</span><br></pre></td></tr></table></figure>
+
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://itstory.tk/entry/Ubuntu-1604-nodejs-%EC%99%80-npm-%EC%84%A4%EC%B9%98" target="_blank" rel="external nofollow noopener noreferrer">https://itstory.tk/entry/Ubuntu-1604-nodejs-와-npm-설치</a></p>
+<p><a href="https://zetawiki.com/wiki/%EC%9A%B0%EB%B6%84%ED%88%AC_curl_%EC%84%A4%EC%B9%98" target="_blank" rel="external nofollow noopener noreferrer">https://zetawiki.com/wiki/우분투_curl_설치</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-visual-studio-code/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-visual-studio-code/" class="post-title-link" itemprop="url">Ubuntu1804 VisualStudioCode 설치</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 19:15:20" itemprop="dateCreated datePublished" datetime="2019-08-17T19:15:20+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>이번에는 우분투에 VisualStudioCode를 설치해보겠다.</p>
+<p>다 필요 없고 아래 명령어를 순서대로 주욱 입력하면 된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">curl https:&#x2F;&#x2F;packages.microsoft.com&#x2F;keys&#x2F;microsoft.asc | gpg --dearmor &gt; microsoft.gpg</span><br><span class="line"></span><br><span class="line">sudo mv microsoft.gpg &#x2F;etc&#x2F;apt&#x2F;trusted.gpg.d&#x2F;microsoft.gpg</span><br><span class="line"></span><br><span class="line">sudo sh -c &#39;echo &quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;packages.microsoft.com&#x2F;repos&#x2F;vscode stable main&quot; &gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;vscode.list&#39;</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install code</span><br><span class="line"></span><br><span class="line">sudo rm &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;vscode.list</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/5/Untitled-98ac3bd7-2b8b-4b30-a077-884178fb9ce6.png" alt></p>
+<p>위처럼 설치를 확인 할 수 있다.</p>
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://yjcode.tistory.com/1" target="_blank" rel="external nofollow noopener noreferrer">https://yjcode.tistory.com/1</a></p>
+<p>[<a href="https://lukelee91.github.io/blog/vscode-installation-on-ubuntu/]" target="_blank" rel="external nofollow noopener noreferrer">https://lukelee91.github.io/blog/vscode-installation-on-ubuntu/]</a>(</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-git/" class="post-title-link" itemprop="url">Ubuntu1804 Git 설치하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 19:10:25" itemprop="dateCreated datePublished" datetime="2019-08-17T19:10:25+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>요즘 개발하면서 과연 git없이 개발이 가능할까?</p>
+<p>솔직히 git을 잘쓴다고는 말할 수 없지만, svn과는 차원이 다른 강력함을 가지고 있는 프로그램이다.</p>
+<p>이번에는 우분투에 git을 설치해보자.</p>
+<p>일단 터미널을 열고 아래 명령어로 git을 설치하자</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/4/Untitled-b20d6239-b1a3-4c97-a21f-718bdeee614d.png" alt></p>
+<p>설치가 완료되면 아래 명령어로 git의 버전을 확인하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/4/Untitled-4bc40cae-89a0-4f57-935a-5328335cfc21.png" alt></p>
+<p>위처럼 나온다면 설치가 잘 된 것이다.</p>
+<p>이제 git의 global config를 하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;유저명&quot;</span><br><span class="line">git config --global user.email &quot;아이디@이메일.com&quot;</span><br></pre></td></tr></table></figure>
+
+<p>그리고 아래 명령어로 방금 설정을 확인하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list</span><br></pre></td></tr></table></figure>
+
+<p>끝!!!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-intellij/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-intellij/" class="post-title-link" itemprop="url">Ubuntu1804에 IntelliJ 설치하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 19:07:33" itemprop="dateCreated datePublished" datetime="2019-08-17T19:07:33+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>버추얼박스에 설치된 Ubuntu1804에 본격적으로 개발환경을 잡아봐야겠다.</p>
+<p>일단 주로 사용하는 intelliJ comunity 를 설치할 생각이다.</p>
+<h3 id="우분투에-JDK-설치하기"><a href="#우분투에-JDK-설치하기" class="headerlink" title="우분투에 JDK 설치하기"></a>우분투에 JDK 설치하기</h3><p>일단 우분투에 intellij를 설치하기 전에 jdk를 먼저 설치해야 한다.</p>
+<p>아래 명령어를 입력해서 jdk가 없는 것을 확인했다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac -version</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/3/Untitled-e7abc99f-1ad8-43c6-8053-c6387fd57dbd.png" alt></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openjdk-11-jdk</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어를 입력해서 openjdk11을 설치해보자.</p>
+<p><img src="/images/2019/3/Untitled-5d353c8a-a013-4241-91ba-4c154ea11b8f.png" alt></p>
+<p><img src="/images/2019/3/Untitled-584a8482-6646-4c83-94f9-783e4156aaec.png" alt></p>
+<p>설치가 재대로 된 것을 확인 했다.</p>
+<h3 id="우분투에-인텔리J-설치하기"><a href="#우분투에-인텔리J-설치하기" class="headerlink" title="우분투에 인텔리J 설치하기"></a>우분투에 인텔리J 설치하기</h3><p>브라우저를 열고 </p>
+<p><a href="http://www.jetbrains.com" target="_blank" rel="external nofollow noopener noreferrer">www.jetbrains.com</a> 링크로 가서 인텔리J comunity를 다운 받자.</p>
+<p><img src="/images/2019/3/Untitled-56ec8edd-55ec-44b7-8302-062bc628569d.png" alt></p>
+<p><img src="/images/2019/3/Untitled-0d29e690-2fe3-44c4-9d57-66708d7581b3.png" alt></p>
+<p>다운로드가 완료되면</p>
+<p><img src="/images/2019/3/Untitled-9f649960-3391-4f99-bf8e-0880bea5d237.png" alt></p>
+<p>해당 파일의 압축을 해제하자.</p>
+<p>압축이 해제된 폴더를 /opt 경로로 이동 시키자.</p>
+<p>리눅스이 /opt 경로는 사용 프로그램을 설치하기 위한 디렉토리라고 한다.</p>
+<p>다운로드 한 경로에서 바로 인텔리J를 실행할 수 있지만, 프로그램 관리차원에서 해당 컨벤션을 따라가는것이 옳아보인다.</p>
+<p><img src="/images/2019/3/Untitled-3522f642-05b4-4f2e-8455-06278e13df46.png" alt></p>
+<p><img src="/images/2019/3/Untitled-e6493435-0681-4f5e-a509-896546337822.png" alt></p>
+<p>/OPT 경로로 이동해서 해당 폴더의 /bin 폴더를 보면 <a href="http://idea.sh" target="_blank" rel="external nofollow noopener noreferrer">idea.sh</a> 파일이 있다. </p>
+<p>해당 쉘 파일을 실행시키면 인텔리J 가 구동된다.</p>
+<p><img src="/images/2019/3/Untitled-cae877cc-5431-4768-a441-73f21128fc22.png" alt></p>
+<p>위처럼 인텔리J 동작을 확인했다.</p>
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://www.elex.pe.kr/entry/%EC%9A%B0%EB%B6%84%ED%88%AC-1710-IntelliJ-%EC%84%A4%EC%B9%98" target="_blank" rel="external nofollow noopener noreferrer">https://www.elex.pe.kr/entry/우분투-1710-IntelliJ-설치</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-unity-tweak-tool/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-unity-tweak-tool/" class="post-title-link" itemprop="url">Ubuntu1804 Unity tweak tool 설치 및 테마변경</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 19:04:36" itemprop="dateCreated datePublished" datetime="2019-08-17T19:04:36+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h3><p>우분투 데스크탑을 설치한 김에 나도 테마같은걸 바꿔보고 싶었다.</p>
+<p>이번에는 Unity twak tool 과 기타 익스텐션을 이용해서 우분투 테마등을 변경해 보겠다.</p>
+<h3 id="Unity-tweak-tool-란"><a href="#Unity-tweak-tool-란" class="headerlink" title="Unity tweak tool 란?"></a>Unity tweak tool 란?</h3><p>유니티 트윅은 윈도우로 치자면 제어판과 유사한 역할을 하는 프로그램이다.</p>
+<p>특히 우분투 데스크탑의 테바변경에서 핵심적으로 사용된다.</p>
+<p>테마를 설정할 수 있고, 폰트변경, 아이콘 변경, 프로그램 메뉴의 크기조정, 바로가기 및 전처 설정 등을 할 수 있다.</p>
+<p>우분투에 기본적으로 설정이 있지만 그것에 강화판 제어판 정도로 생각이된다.</p>
+<h3 id="Unity-tweak-tool-설치"><a href="#Unity-tweak-tool-설치" class="headerlink" title="Unity tweak tool 설치"></a>Unity tweak tool 설치</h3><p>우선 터미널을 열고 아래 명령어를 입력해서 Unity tweak tool을 설치하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gnome-tweak-tool</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/2/Untitled-a899ecea-645a-4b1d-b063-9f02cbf3f58c.png" alt></p>
+<p>설치가 완료되면 아래처럼 기능개선 이라는 프로그램을 확인 할 수 있다.</p>
+<p><img src="/images/2019/2/Untitled-23ea743c-dcfe-4ee3-9357-985188c3eb26.png" alt></p>
+<p><img src="/images/2019/2/Untitled-bd05a3f7-3128-488d-9604-9264fab6c0dc.png" alt></p>
+<p>기능개선은 위와 같은 부가적인 환경설정 기능등을 제공한다.</p>
+<h3 id="Adapta-테마-설치하기"><a href="#Adapta-테마-설치하기" class="headerlink" title="Adapta 테마 설치하기"></a>Adapta 테마 설치하기</h3><p>터미널에서 아래명령어3줄을 차례로 입력하자</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get-repository ppa:tista&#x2F;adapta</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get inatall adapta-gtk-theme</span><br></pre></td></tr></table></figure>
+
+<p>아까 설치한 기능개선 프로그램을 종료하고 다시 킨다.</p>
+<p>모양새 → 테마→ 프로그램 에서 방금 설치한 Adapta 테마를 선택할수 있다. </p>
+<p><img src="/images/2019/2/Untitled-b8f0d0f1-db58-493b-bc5d-f364e482eb4f.png" alt></p>
+<p>위처럼 프로그램 창이 어두운 형태로 변한것을 확인 할 수 있다. </p>
+<p>여러 색상이 있으니 원하는 것을 선택하면 된다.</p>
+<h3 id="Gnome-shell-Extention-설치로-상단-봐-테마-변경"><a href="#Gnome-shell-Extention-설치로-상단-봐-테마-변경" class="headerlink" title="Gnome shell Extention 설치로 상단 봐 테마 변경"></a>Gnome shell Extention 설치로 상단 봐 테마 변경</h3><p>우분투 상단바 테마는 Gnome 쉘에 포함되어 있다고 한다.</p>
+<p>위 상단바 테마를 수정하려면 Gnome shell Extention 을 설치해야 한다.</p>
+<p>터미널에서 아래명령어를 입력하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install chrome-gnome-shell</span><br></pre></td></tr></table></figure>
+
+<p>패키지명이 왜 크롬인지는 잘 모르겠다.</p>
+<p>그리고 우분투에서 파이어폭스 브라우저를 열고 아래 링크에 접속하자.</p>
+<p><a href="https://extensions.gnome.org/extension/19/user-themes" target="_blank" rel="external nofollow noopener noreferrer">https://extensions.gnome.org/extension/19/user-themes</a></p>
+<p><img src="/images/2019/2/Untitled-20e83fc3-36f5-48d7-b339-7fafbb519c82.png" alt></p>
+<p>Click here install borwer extension을 클릭해서 브라우저 익스텐션을 설치하자.</p>
+<p><img src="/images/2019/2/Untitled-750d8935-e401-4617-ad4e-475ee481f662.png" alt></p>
+<p><img src="/images/2019/2/Untitled-b80becd2-2c58-48fa-b367-22e15b32c64c.png" alt></p>
+<p><a href="https://addons.mozilla.org/ko/firefox/addon/gnome-shell-integration/" target="_blank" rel="external nofollow noopener noreferrer">https://addons.mozilla.org/ko/firefox/addon/gnome-shell-integration/</a></p>
+<p>반드시 파이어폭스 브라우저를 사용해야 한다.</p>
+<p>설치가 끝난뒤 파이어폭스 브라우저에서 아래 처럼 User Themes로 접근한다.</p>
+<p><img src="/images/2019/2/Untitled-ac641281-1c0c-4946-b0b2-8043aa6e6610.png" alt></p>
+<p><img src="/images/2019/2/Untitled-73afb19e-70c5-4153-884c-cbca7048afe7.png" alt></p>
+<p>Off로 되어있던 설정을 On으로 변경해준다.</p>
+<p><img src="/images/2019/2/Untitled-90b3072f-38d3-46fb-a112-0274c3147090.png" alt></p>
+<p>설치하자.</p>
+<p>설치가 완료된 다음, 다시 기능개선 프로그램을 종료하고 다시 열자.</p>
+<p><img src="/images/2019/2/Untitled-add8aac2-9e1e-40f7-b75e-e57c1fcc1ae2.png" alt></p>
+<p>모양세에 다시 들어가보면 쉘 항목이 활성화 되어있다. </p>
+<p>여기서 이것저것 바꿔보면 우분투의 상단바의 테마가 변경하는 것을 알 수 있다.</p>
+<h3 id="Flat-remix-아이콘-테마-적용하기"><a href="#Flat-remix-아이콘-테마-적용하기" class="headerlink" title="Flat remix 아이콘 테마 적용하기"></a>Flat remix 아이콘 테마 적용하기</h3><p>Flat remix라는 패키지를 설치해서 우분투의 아이콘 테마도 변경 할 수 있다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:daniruiz&#x2F;flat-remix</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install flat-remix</span><br></pre></td></tr></table></figure>
+
+<p>위 명령을 순차적으로 입력해서 flat remix를 설치하자.</p>
+<p>설치가 완료된되 기능개선을 재시작하면 아래처럼 아이콘 테마를 설정 할 수 있다.</p>
+<p><img src="/images/2019/2/Untitled-5ac33c1d-fa00-46e9-8457-b9fe5423319f.png" alt></p>
+<h3 id="Dash-to-Dock-설치고-Dock-테마-변경하기"><a href="#Dash-to-Dock-설치고-Dock-테마-변경하기" class="headerlink" title="Dash to Dock 설치고 Dock 테마 변경하기"></a>Dash to Dock 설치고 Dock 테마 변경하기</h3><p>아래 링크애 파이어폭스로 접근하자.</p>
+<p><a href="https://extensions.gnome.org/extension/307/dash-to-dock" target="_blank" rel="external nofollow noopener noreferrer">https://extensions.gnome.org/extension/307/dash-to-dock</a></p>
+<p><img src="/images/2019/2/Untitled-28ffa173-de0c-463a-a7fb-57be01b43d3c.png" alt></p>
+<p>상태를 on으로 변경하고 설치하자.</p>
+<p><img src="/images/2019/2/Untitled-714f30f2-0983-41df-a10a-72ddd9fa85f7.png" alt></p>
+<p>설치가 되면 벌써 왼쪽의 독의모양이 변경된 것을 확인 할 수있다.</p>
+<p>다시 기능개선에 들어가서 확장 → Dash to dock에 환경설정에 들어가자.</p>
+<p><img src="/images/2019/2/Untitled-e7b91086-2866-4fce-871a-1c95fd406c8e.png" alt></p>
+<p>위처럼 독의 위치를 왼쪽이 아니라 아래로 옮길수 있다.</p>
+<p>최종적으로 아래와 같은 화면을 만들었다. 바탕화면이 마음에 안들지만 그건 나중에 바꿔야 겠다.</p>
+<p><img src="/images/2019/2/Untitled-b94bd3e9-0691-48f4-9f3c-51e55b7fd426.png" alt></p>
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://smartaedi.tistory.com/137" target="_blank" rel="external nofollow noopener noreferrer">https://smartaedi.tistory.com/137</a></p>
+<p><a href="https://programmingsummaries.tistory.com/389" target="_blank" rel="external nofollow noopener noreferrer">https://programmingsummaries.tistory.com/389</a></p>
+<p><a href="https://codevkr.tistory.com/89" target="_blank" rel="external nofollow noopener noreferrer">https://codevkr.tistory.com/89</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-language-change-key/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-language-change-key/" class="post-title-link" itemprop="url">Virtualbox Ubunto1804 한영변경키</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 19:02:44" itemprop="dateCreated datePublished" datetime="2019-08-17T19:02:44+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>버추얼박스에 설치된 우분투에서 한영키를 눌렀을때 한영이 변경되지 않는다.</p>
+<p>이번에는 이 문제를 해결해보겠다.</p>
+<p>일단 Virtualbox Ubuntu에서 게스트 확장 프로그램을 설치해야한다.</p>
+<p>장치 - 게스트 확장 CD 이미지 삽입을 클릭하자.</p>
+<p><img src="/images/2019/1/Untitled-64ebf1d9-605e-4ccd-83f5-29c971289172.png" alt></p>
+<p>OS 업그레이드 완료후 재시작 하면, virtualbox에서 장치 → 게스트 확장 CD 이미지 삽입을 클릭하자.</p>
+<p><img src="/images/2019/1/Untitled-20a1651b-e860-41c4-9de2-30d9cc0ced26.png" alt></p>
+<p>위와 같은 창이 열린다 실행을 클릭하면 자동으로 터미널이 열리고 무언가 설치가 된다.</p>
+<p><img src="/images/2019/1/Untitled-3a61933d-32ad-437e-8533-95faaaed1e0d.png" alt></p>
+<p>위처럼 Press Return to close this windows 라는 문구가 나오면 터미널에서 엔터를 클릭해서 터미널을 닫아주자.</p>
+<p>그리고 우분투를 재시작 하자.</p>
+<p>그리고 우분투의 설정으로 들어가자.</p>
+<p><img src="/images/2019/1/Untitled-e0c96162-3ba4-4724-84cd-e3c8c974af28.png" alt></p>
+<p>지역 및 언어에서 입력소스에서 한국어(101/104키 호환)을 선택하고 마이너스(-)를 눌러 제거하자.</p>
+<p><img src="/images/2019/1/Untitled-fe05268f-f4db-481f-8fc2-36236c05a9a0.png" alt></p>
+<p>그리고 톱니바퀴 아이콘을 클릭하자.</p>
+<p><img src="/images/2019/1/Untitled-87c824be-838c-4ec3-b341-0f98fe941737.png" alt></p>
+<p>이처럼 현재 설정된 한영 변환키가 보인다.</p>
+<p>나는 현재 레오폴드 FC660c 키보드를 사용중인데, 보통 키보드보다 키가 적은 키보드다 보니 한영변환키 대신 오른쪽 Alt키를 사용해야 한다.</p>
+<p>위 화면에서 추가버튼을 누르자.</p>
+<p><img src="/images/2019/1/Untitled-407da2f7-c4c0-435d-9d4f-c65650c9be46.png" alt></p>
+<p>새로운 창이 나오는데 여기서 원하는 한영키를 입력하면 위처럼 해당 키가 보인다.</p>
+<p>확인을 누르자.</p>
+<p>터미널을 열고 한영키가 제대로 동작하는지 확인해보자.</p>
+<p><img src="/images/2019/1/Untitled-6e0de10a-67d4-42c2-9954-2703b12831d0.png" alt></p>
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p>[<a href="https://webnautes.tistory.com/1199]" target="_blank" rel="external nofollow noopener noreferrer">https://webnautes.tistory.com/1199]</a>(</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-gnome-usage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-gnome-usage/" class="post-title-link" itemprop="url">Ubuntu1804 데스트탑 성능모니터링 gnome usage</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 18:56:53" itemprop="dateCreated datePublished" datetime="2019-08-17T18:56:53+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>VirtualBox에 설치한 Ubuntu라 일반적으로 PC에 설치된 우분투 보다는 속도가 안나올 수 있다.</p>
+<p>이 우분투를 개발환경으로 사용하려 하는데, 속도가 너무 안나오면 이것 또한 문제이다.</p>
+<p>이번에는 우분투 데스크탑에서 실시간으로 성능 모니터링을 할수 있는 방법을 알아보겠다.</p>
+<p>우분투 18.04 에는 기본적으로 시스템 정보, 시스템 감시라는 프로그램이 있지만 나는 gnome usage라는 프로그램을 설치해서 사용해 보겠다.</p>
+<p><img src="/images/2019/Untitled-80b2ef3a-72fb-4f2b-8296-a3d4c702cfa4.png" alt></p>
+<p>우분투 소프트웨어에서 grome usage 를 검색해서 설치하자.</p>
+<p>설치하면 아래처럼 시스템 모니터링 화면이 실시간으로 나온다.</p>
+<p><img src="/images/2019/Untitled-813468bc-41f0-4346-9778-c3c50795e9ec.png" alt></p>
+<p>끝!!!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-chrome/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-chrome/" class="post-title-link" itemprop="url">Ubuntu1804에 크롬브라우저 설치</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 18:54:52" itemprop="dateCreated datePublished" datetime="2019-08-17T18:54:52+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>우분투 데스크탑을 설치 했으니, 음 뭔가 일반적이 pc처럼 사용하기 위한 필수적인 프로그램들을 설치해보자.</p>
+<h3 id="우분투에-구글-크롬-설치하기"><a href="#우분투에-구글-크롬-설치하기" class="headerlink" title="우분투에 구글 크롬 설치하기"></a>우분투에 구글 크롬 설치하기</h3><p>기본적으로 파이어폭스가 있지만, 구글크롬만한 브라우저가 어디 있을까?</p>
+<p>일단 우분투에서 터미널을 열고 크롬 브라우저 패키지 설치용 인증키를 받자.</p>
+<p>아래 명령어를 입력하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -q -O - https:&#x2F;&#x2F;dl-ssl.google.com&#x2F;linux&#x2F;linux_signing_key.pub | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-bd83912f-0b74-48be-968e-9da370252ac3.png" alt></p>
+<p>그리고 아래 명령어도 입력해주자. 실제 구글크롬 패키지를 다운 받는 설정정보인듯 하다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c &#39;echo &quot;deb [arch&#x3D;amd64] http:&#x2F;&#x2F;dl.google.com&#x2F;linux&#x2F;chrome&#x2F;deb&#x2F; stable main&quot; &gt;&gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google.list&#39;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-16d4a724-cdc7-451a-9c13-35510664b6c0.png" alt></p>
+<p>그리고 아래 명령으로 패키지 리스트를 업데이트 해준다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-dc322d97-d21f-4554-90a0-84e2f2b026db.png" alt></p>
+<p>아래 명령으로 크롬을 설치하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install google-chrome-stable</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-89e4b1f6-2db4-4f8f-9f77-2e065aa0c80c.png" alt></p>
+<p>설치를 위해 생성햇던 파일을 지워주자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google*</span><br><span class="line">sudo rm -rf &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google.list</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-b1f19b2c-8dbf-498a-9ff4-6e534b84afb1.png" alt></p>
+<p>위 아이콘을 눌러 설치된 크롬을 확인하자.</p>
+<p><img src="/images/2019/Untitled-6fe37658-8910-48df-a200-07835c008fd8.png" alt></p>
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://webnautes.tistory.com/1184" target="_blank" rel="external nofollow noopener noreferrer">https://webnautes.tistory.com/1184</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-vim/" class="post-title-link" itemprop="url">ubuntu1804 vim설치</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 18:52:25" itemprop="dateCreated datePublished" datetime="2019-08-17T18:52:25+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="vim-설치하기"><a href="#vim-설치하기" class="headerlink" title="vim 설치하기"></a>vim 설치하기</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>위 두줄로 아주 간단하게 설치가 된다.</p>
+<p>하지만 vim을 제대로 사용하려면 vim 설정파일을 만들어 줘야 한다.</p>
+<h3 id="vim-설정파일-셋팅"><a href="#vim-설정파일-셋팅" class="headerlink" title="vim 설정파일 셋팅"></a>vim 설정파일 셋팅</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~&#x2F;.vimrc</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어로 home 디렉토리에 .vimrc라는 vim 설정파일을 생성하자.</p>
+<p>그리고 아래 내용을 복사 붙여넣기 하자.</p>
+<p>우분투에 붙여 넣기 할때에는 Shift+Insert 키를 눌러주면 된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">set number    &quot; line 표시</span><br><span class="line">set ai    &quot; auto indent</span><br><span class="line">set si &quot; smart indent</span><br><span class="line">set cindent    &quot; c style indent</span><br><span class="line">set shiftwidth&#x3D;4    &quot; 자동 공백 채움 시 4칸</span><br><span class="line">set tabstop&#x3D;4    &quot; tab을 4칸 공백으로</span><br><span class="line">set ignorecase    &quot; 검색 시 대소문자 무시</span><br><span class="line">set hlsearch    &quot; 검색 시 하이라이트</span><br><span class="line">set nocompatible    &quot; 방향키로 이동 가능</span><br><span class="line">set fileencodings&#x3D;utf-8,euc-kr    &quot; 파일 저장 인코딩 : utf-8, euc-kr</span><br><span class="line">set fencs&#x3D;ucs-bom,utf-8,euc-kr    &quot; 한글 파일은 euc-kr, 유니코드는 유니코드</span><br><span class="line">set bs&#x3D;indent,eol,start    &quot; backspace 사용가능</span><br><span class="line">set ruler    &quot; 상태 표시줄에 커서 위치 표시</span><br><span class="line">set title    &quot; 제목 표시</span><br><span class="line">set showmatch    &quot; 다른 코딩 프로그램처럼 매칭되는 괄호 보여줌</span><br><span class="line">set wmnu    &quot; tab 을 눌렀을 때 자동완성 가능한 목록</span><br><span class="line">syntax on    &quot; 문법 하이라이트 on</span><br><span class="line">filetype indent on    &quot; 파일 종류에 따른 구문 강조</span><br><span class="line">set mouse&#x3D;a    &quot; 커서 이동을 마우스로 가능하도록</span><br></pre></td></tr></table></figure>
+
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://gabii.tistory.com/entry/Ubuntu-vim-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95" target="_blank" rel="external nofollow noopener noreferrer">https://gabii.tistory.com/entry/Ubuntu-vim-설치-및-설정</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-ftp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-ftp/" class="post-title-link" itemprop="url">virtualbox ubuntu1804 ftp 설치 및 접근(sftp)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 18:47:55" itemprop="dateCreated datePublished" datetime="2019-08-17T18:47:55+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>개발환경 용도로 사용하려는 ubuntu 1804 이미지에 ftp를 설치하고 호스트PC인 windows에서 파일질라로 접근해서 파일을 전송 해보려 한다.</p>
+<p>아 별것 아닌데, 리눅스를 잘 몰라서 엄청난 시간을 헤매었다.</p>
+<p>결론으로 sftp 접근으로 성공하였다.</p>
+<p>해당 내용은 실 서버로 사용하는 ubuntu ftp 접근 설명이 아니라, 로컬에서 virtualbox에 설치된 개발환경용 ubuntu 1804에 ftp 설치 방법을 설명하는 것이다.</p>
+<p>ftp 사용이 되는것이 목적이므로, 방화벽 설명등 기타 내용은 포함하고 있지 않다.</p>
+<hr>
+<h3 id="virtualbox에서-ubuntu-ftp-포트포워딩-설정"><a href="#virtualbox에서-ubuntu-ftp-포트포워딩-설정" class="headerlink" title="virtualbox에서 ubuntu ftp 포트포워딩 설정"></a>virtualbox에서 ubuntu ftp 포트포워딩 설정</h3><p>일단 virtualbox에서 해당 이미지의 설정으로 들어가 아래처럼 ftp 용 포트포워딩 설정을 해주자.</p>
+<p>아 참고로 난 NAT 네트워크 설정으로 사용중이다.</p>
+<p><img src="/images/2019/Untitled-eeb9f885-a11e-41d7-9969-f928484bbdff.png" alt></p>
+<p>말 그대로 호스트PC에 22포트로 요청을 게스트IP 10.0.2.15:22로 포트포워딩 한다는 설정이다.</p>
+<p>게스트IP는 ifconfig로 확인하시길, 별다른 설정을 안했다면 위와 동일 할 것이다.</p>
+<h3 id="우분투에-FTP-설치하기"><a href="#우분투에-FTP-설치하기" class="headerlink" title="우분투에 FTP 설치하기"></a>우분투에 FTP 설치하기</h3><p>이제 해당 우분투 이미지를 실행하고 FTP 서버를 설치하자.</p>
+<p>아래 명령어로 패키지를 최신화 하고 업그레이드를 일단 하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></figure>
+
+<p>그리고 아래 명령어로 ftp를 설치하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-f2a71105-92bc-4ee7-bd5c-14d62553157f.png" alt></p>
+<p>이제  ftp설정을 해주자</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit &#x2F;etc&#x2F;vsftpd.conf</span><br></pre></td></tr></table></figure>
+
+<p>그리고 그 내용을 모두 지우고 아래 내용으로 치환하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">listen&#x3D;NO</span><br><span class="line">listen_ipv6&#x3D;YES</span><br><span class="line">anonymous_enable&#x3D;NO</span><br><span class="line">local_enable&#x3D;YES</span><br><span class="line">write_enable&#x3D;YES</span><br><span class="line">local_umask&#x3D;022</span><br><span class="line">dirmessage_enable&#x3D;YES</span><br><span class="line">use_localtime&#x3D;YES</span><br><span class="line">xferlog_enable&#x3D;YES</span><br><span class="line">connect_from_port_20&#x3D;YES</span><br><span class="line">chroot_local_user&#x3D;YES</span><br><span class="line">allow_writeable_chroot&#x3D;YES</span><br><span class="line">secure_chroot_dir&#x3D;&#x2F;var&#x2F;run&#x2F;vsftpd&#x2F;empty</span><br><span class="line">pam_service_name&#x3D;vsftpd</span><br><span class="line">pasv_enable&#x3D;Yes</span><br><span class="line">pasv_min_port&#x3D;10000</span><br><span class="line">pasv_max_port&#x3D;11000</span><br><span class="line">user_sub_token&#x3D;$USER</span><br></pre></td></tr></table></figure>
+
+<p>vsftpd.conf 파일을 저장하고, ftp를 재시작하고 서비스가 항상 동작하도록 설정하자. </p>
+<p>아래 명령어를 순차적으로 입력하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop vsftpd.service</span><br><span class="line">sudo systemctl start vsftpd.service</span><br><span class="line">sudo systemctl enable vsftpd.service</span><br></pre></td></tr></table></figure>
+
+<p>그리고 아래 명령어로 서비스가 재대로 동작중인지 확인하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status vsftpd</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-810ab2cd-673d-490b-825e-517fe4494f60.png" alt></p>
+<p>이제 virtualbox ubuntu18.04에서 ftp로 접속해서 동작을 하는지 한번 보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p>터미널 창에 위 명령어로 접속을 시도해보자.</p>
+<p><img src="/images/2019/Untitled-03c99918-2621-4950-b406-bf0470a40590.png" alt></p>
+<p>위처럼 접근이 가능한지 확인 할수 있다.</p>
+<h3 id="호스트-PC-windows10-에서-파일질라로-게스트PC-Ubuntu1804-에-접근하기"><a href="#호스트-PC-windows10-에서-파일질라로-게스트PC-Ubuntu1804-에-접근하기" class="headerlink" title="호스트 PC(windows10)에서 파일질라로 게스트PC(Ubuntu1804)에 접근하기"></a>호스트 PC(windows10)에서 파일질라로 게스트PC(Ubuntu1804)에 접근하기</h3><p>파일질라는 무료라 구글에서 검색해서 받으면 된다.</p>
+<p>파일질라를 열자.</p>
+<p>프로토콜을 SFTP로 설정하고 계정정보를 입력하고 연결해보자.</p>
+<p><img src="/images/2019/Untitled-46e85a25-25d9-43aa-8ad6-5fab34b09cce.png" alt></p>
+<p><img src="/images/2019/Untitled-0d1abfd8-32a2-4ea2-891d-f0fd75294b09.png" alt></p>
+<p>위처럼 접속을 된 것을 확인했다.</p>
+<p>파일 업로드 다운로드 모두 확인함. </p>
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://dejavuqa.tistory.com/251" target="_blank" rel="external nofollow noopener noreferrer">https://dejavuqa.tistory.com/251</a></p>
+<p><a href="https://nov19.tistory.com/64" target="_blank" rel="external nofollow noopener noreferrer">https://nov19.tistory.com/64</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

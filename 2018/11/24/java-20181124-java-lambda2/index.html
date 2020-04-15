@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="들어가기자바의 람다는 자바언어에서 쉽고 간편하게 함수를 선언해서 사용하기위한 수단이다.하지만 자바는 객체 지향언어이고 기본적인 프로그래밍의 단위는 Class이다. 자바에서 구현하는 함수는 이 class의 범위를 벗어 날수가 없다.함수적 인터페이스(추상클래스가 하나뿐인 인터페이스)를 구현하여 함수를 생성하고 사용하는 매커니즘을 통해서 함수형 프로그래밍을 지원">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java - 함수형 인터페이스 API(람다의 활용1)">
+<meta property="og:url" content="https://www.hanumoka.net/2018/11/24/java-20181124-java-lambda2/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="들어가기자바의 람다는 자바언어에서 쉽고 간편하게 함수를 선언해서 사용하기위한 수단이다.하지만 자바는 객체 지향언어이고 기본적인 프로그래밍의 단위는 Class이다. 자바에서 구현하는 함수는 이 class의 범위를 벗어 날수가 없다.함수적 인터페이스(추상클래스가 하나뿐인 인터페이스)를 구현하여 함수를 생성하고 사용하는 매커니즘을 통해서 함수형 프로그래밍을 지원">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2018-11-24T14:50:30.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:11.991Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="java8">
+<meta property="article:tag" content="람다">
+<meta property="article:tag" content="Lamdba">
+<meta property="article:tag" content="Consumer">
+<meta property="article:tag" content="Supplier">
+<meta property="article:tag" content="Function">
+<meta property="article:tag" content="Operator">
+<meta property="article:tag" content="Predicate">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.hanumoka.net/2018/11/24/java-20181124-java-lambda2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>java - 함수형 인터페이스 API(람다의 활용1) | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/24/java-20181124-java-lambda2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java - 함수형 인터페이스 API(람다의 활용1)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-11-24 23:50:30" itemprop="dateCreated datePublished" datetime="2018-11-24T23:50:30+09:00">2018-11-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>자바의 람다는 자바언어에서 쉽고 간편하게 함수를 선언해서 사용하기위한 수단이다.<br>하지만 자바는 객체 지향언어이고 기본적인 프로그래밍의 단위는 Class이다.</p>
+<p>자바에서 구현하는 함수는 이 class의 범위를 벗어 날수가 없다.<br>함수적 인터페이스(추상클래스가 하나뿐인 인터페이스)를 구현하여 함수를 생성하고 사용하는 매커니즘을 통해서 함수형 프로그래밍을 지원하며, 람다식은 이것에 특화된 문법일 뿐이다.<br>실질적으로 함수 한개를 생성해서 사용하는 것 뿐이지만, 결과적으로는 함수적 인터페이스를 즉흥적으로 구현한 익명객체의 메소드를 사용하게 되는 것이다.</p>
+<p>여기서 고민해볼게 생긴다.<br>재사용이 필요없고, 즉흥적으로 함수를 구현하기 위해서 익명객체를 생성하는것 까지는 넘어간다 하더라도, 일일이 구현해야 할 함수적 인터페이스를 만들어 줘야 하나?</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">logString</span><span class="params">(String text)</span></span>&#123;</span><br><span class="line">  System.out.println(text);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">logInt</span><span class="params">(Int value)</span></span>&#123;</span><br><span class="line">  System.out.println(value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>만약 위 처럼 인자만 다르고 하는 일은 똑같은 함수를 구현하기위해 인터페이스를 두개나 만들어야 하는 것인가?<br>위와 같은 고민은 전혀 할 필요가 없다.<br>정답은 java.util.function 표준 API 패키지에 있다.<br>Java8에서는 기능적으로 분류된 자주 사용햘 만한 함수형 인터페이스를 API로 제공하고 있기때문에, 그냥 해당 API의 인터페이스를 입맛에 맞게 구현해서 사용하면 된다.</p>
+<h1 id="기본으로-제공되는-함수적-인터페이스의-종류"><a href="#기본으로-제공되는-함수적-인터페이스의-종류" class="headerlink" title="기본으로 제공되는 함수적 인터페이스의 종류"></a>기본으로 제공되는 함수적 인터페이스의 종류</h1><table>
+<thead>
+<tr>
+<th>종류</th>
+<th>추상 메소드 특징</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Consumer</td>
+<td>매개값은 있고, 리턴값은 없음</td>
+<td></td>
+</tr>
+<tr>
+<td>Supplier</td>
+<td>매개값은 없고, 리턴값은 있음</td>
+<td></td>
+</tr>
+<tr>
+<td>Function</td>
+<td>매개값도 있고, 리턴값도 있음</td>
+<td>주로 매개값을 연산하고 결과를 리턴</td>
+</tr>
+<tr>
+<td>Operator</td>
+<td>매개값도 있고, 리턴값도 있음</td>
+<td>주로 매개값을 연산하고 결과를 리턴</td>
+</tr>
+<tr>
+<td>Predicate</td>
+<td>매개값은 있고, 리턴 값은 boolean</td>
+<td>매개값을 조사하고 true/false를 리턴</td>
+</tr>
+</tbody></table>
+<p>java.util.function에서 제공하는 인터페이스들은 위의 메소드 특징에 따라서 5형태의 카테고리로 나뉜다.<br>추상 메소드의 특징으로 인터페이스를 고른 뒤, 전달한 인자의 종류에 따라서 구체적인 인터페이스를 골라 사용하면 된다.</p>
+<p>java.util.function 오라클 DOC<br><a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html" target="_blank" rel="external nofollow noopener noreferrer">https://docs.oracle.com/javase/8/docs/api/java/util/function/package-summary.html</a></p>
+<p>Doc문서에서 카테고리별로 정렬을 안해줘서, 보기가 좀 불편한데 인터페이스와 그 추상메소드는 굉장히 직관적이라 알기만 한다면 쉽게 사용할수 있다.</p>
+<h2 id="Cunsunmer"><a href="#Cunsunmer" class="headerlink" title="Cunsunmer"></a>Cunsunmer</h2><p>인자를 받고 메소드에서 리턴없이 소모시킨다.<br>인자만 다를 뿐 추상 메소드명은 전부 accept인 것이 특징이다.</p>
+<table>
+<thead>
+<tr>
+<th>인터페이스명</th>
+<th>추상 메소드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Consumer<t></t></td>
+<td>void accept(T t)</td>
+<td>객체 T를 받아 소비</td>
+</tr>
+<tr>
+<td>BiConsumer&lt;T,U&gt;</td>
+<td>void accept(T t, U u)</td>
+<td>객체 T와 U를 받아 소비</td>
+</tr>
+<tr>
+<td>DoubleConsumer</td>
+<td>void accept(double value)</td>
+<td>double 값을 받아 소비</td>
+</tr>
+<tr>
+<td>intConsumer</td>
+<td>void accept(int value)</td>
+<td>int 값을 받아 소비</td>
+</tr>
+<tr>
+<td>LongConsumer</td>
+<td>void accept(long value)</td>
+<td>long 값을 받아 소비</td>
+</tr>
+<tr>
+<td>ObjDoubleConsumer<t></t></td>
+<td>void accept(T t, double value)</td>
+<td>객체 T와 double 값을 소비</td>
+</tr>
+<tr>
+<td>ObjIntConsumer<t></t></td>
+<td>void accept(T t, int value)</td>
+<td>객체 T와 int 값을 받아 소비</td>
+</tr>
+<tr>
+<td>ObjLongConsumer<t></t></td>
+<td>void accept(T t, long value)</td>
+<td>객체 T와 long 값을 받아 소비</td>
+</tr>
+</tbody></table>
+<p>아래처럼 간단히 값을 출력하는 함수를 만들때 사용할 수도 있다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java_lamdba;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.function.BiConsumer;</span><br><span class="line"><span class="keyword">import</span> java.util.function.Consumer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CunsummerExample</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String [] args)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		Consumer&lt;String&gt; c1 = t -&gt;  System.out.println(t);</span><br><span class="line">		</span><br><span class="line">		c1.accept(<span class="string">"Consumer를 이용해서 로그를 찍어 봅시다."</span>);</span><br><span class="line">		</span><br><span class="line">		BiConsumer&lt;String, String&gt; c2 = (t, u) -&gt; &#123;</span><br><span class="line">			</span><br><span class="line">			String result = <span class="string">"Log:"</span> + t + u;</span><br><span class="line">			System.out.println(result);</span><br><span class="line">		&#125;;</span><br><span class="line">		</span><br><span class="line">		c2.accept(<span class="string">"헛둘헛둘"</span>, <span class="string">"셋둘셋둘"</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Supplier"><a href="#Supplier" class="headerlink" title="Supplier"></a>Supplier</h2><p>인자가 없으며 리턴값이 존재 한다.<br>리턴하는 값의 타입에 따라 getXXX형태의 추상메소드를 갖는 것이 특징이다.</p>
+<table>
+<thead>
+<tr>
+<th>인터페이스명</th>
+<th>추상 메소드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Supplier<t></t></td>
+<td>T get()</td>
+<td>T 객체를 리턴</td>
+</tr>
+<tr>
+<td>BooleanSupplier</td>
+<td>boolean getAsBoolean()</td>
+<td>boolean 값을 리턴</td>
+</tr>
+<tr>
+<td>DoubleSupplier</td>
+<td>double getAsDouble()</td>
+<td>double 값을 리턴</td>
+</tr>
+<tr>
+<td>intSupplier</td>
+<td>int getAsint()</td>
+<td>int 값을 리턴</td>
+</tr>
+<tr>
+<td>LongSupplier</td>
+<td>long getAsLong()</td>
+<td>long 값일 리턴</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java_lamdba;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.function.IntSupplier;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SupplierExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		IntSupplier myAge = () -&gt; &#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">32</span>;</span><br><span class="line">		&#125;;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="string">"내 나이:"</span> + myAge.getAsInt());</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h2><p>이 인터페이스의 용도는 인자의 타입을 변형하여 새로운 타입으로 값을 리턴하는 것이다.<br>즉 일종의 형변환 전용 함수형 인터페이스가 되겠다.<br><strong>매개인자 타입과 리턴값의 타입이 다르다.</strong></p>
+<table>
+<thead>
+<tr>
+<th>인터페이스명</th>
+<th>추상 메소드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Function&lt;T, R&gt;</td>
+<td>R apply(T t)</td>
+<td>객체 T를 객체 R로 매핑</td>
+</tr>
+<tr>
+<td>BiFunction&lt;T,U,R&gt;</td>
+<td>R apply(T t, U u)</td>
+<td>객체 T와 U를 객체 R로 매핑</td>
+</tr>
+<tr>
+<td>DoubleFunction<r></r></td>
+<td>R apply(double value)</td>
+<td>double을 객체 R로 매핑</td>
+</tr>
+<tr>
+<td>intFunction<r></r></td>
+<td>R apply(int value)</td>
+<td>int를 객체 R로 매핑</td>
+</tr>
+<tr>
+<td>intToDoubleFunction</td>
+<td>double applyAsDouble(int value)</td>
+<td>int를 double로 매핑</td>
+</tr>
+<tr>
+<td>intToLongFunction</td>
+<td>long applyAsLong(int value)</td>
+<td>int를 long로 매핑</td>
+</tr>
+<tr>
+<td>LongToDoubleFunction</td>
+<td>double applyAsDouble(long value)</td>
+<td>long을 doube로 매핑</td>
+</tr>
+<tr>
+<td>LongToIntFunction</td>
+<td>int applyAsInt(long value)</td>
+<td>long을 int로 매핑</td>
+</tr>
+<tr>
+<td>ToDoubleBiFunction&lt;T,U&gt;</td>
+<td>double applyAsDouble(T t, U u)</td>
+<td>객체 T와 U를 double로 매핑</td>
+</tr>
+<tr>
+<td>ToDoubleFunction<t></t></td>
+<td>double applyAsDouble(T value)</td>
+<td>객체 T를 double로 매핑</td>
+</tr>
+<tr>
+<td>ToIntBiFunction&lt;T,U&gt;</td>
+<td>int applyAsInt(T t, U u)</td>
+<td>객체 T와 U를 int로 매핑</td>
+</tr>
+<tr>
+<td>ToIntFunction<t></t></td>
+<td>int applyAsInt(T value)</td>
+<td>객체 T를 int로 매핑</td>
+</tr>
+<tr>
+<td>ToLongBiFunction&lt;T,U&gt;</td>
+<td>long applyAsLong(T t, u)</td>
+<td>객체 T와 U를 long으로 매핑</td>
+</tr>
+<tr>
+<td>ToLongFunction<t></t></td>
+<td>long applyAsLong(T value)</td>
+<td>객체 T를 long으로 매핑</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java_lamdba;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.function.Function;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FunctionExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		Function&lt;Human, String&gt; f1 = t -&gt; t.name;</span><br><span class="line">		System.out.println(f1.apply(<span class="keyword">new</span> Human()));</span><br><span class="line">			</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Human</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">int</span> age = <span class="number">32</span>;</span><br><span class="line">	<span class="keyword">public</span> String name = <span class="string">"hanumoka"</span>;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Operator"><a href="#Operator" class="headerlink" title="Operator"></a>Operator</h2><p>Function과 동일한 형태의 applyXXX라는 메소드를 가지고 있다.<br>하지만 매개값의 타입변환의 역활보다 <strong>매개값을 이용하여 연산을 수생한 후 동일한 타입으로 리턴값</strong>을 제공하는 역할을 한다.<br><strong>매개인자의 타입과 리턴값의 타입이 동일</strong></p>
+<table>
+<thead>
+<tr>
+<th>인터페이스명</th>
+<th>추상 메소드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BinaryOperator<t></t></td>
+<td>T apply(T t1, T t2)</td>
+<td>동일한 타입의 t1, t2를 연산후 T를 리턴</td>
+</tr>
+<tr>
+<td>UnaryOperator<t></t></td>
+<td>T apply(T)</td>
+<td>T를 연산한 후 T를 리턴</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java_lamdba;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.function.BinaryOperator;</span><br><span class="line"><span class="keyword">import</span> java.util.function.UnaryOperator;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Operator1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		BinaryOperator&lt;Integer&gt; b1 = (t, u) -&gt;&#123;</span><br><span class="line">			<span class="keyword">return</span> (t * u);</span><br><span class="line">		&#125;;</span><br><span class="line">		</span><br><span class="line">		System.out.println(b1.apply(<span class="number">3</span>, <span class="number">10</span>));</span><br><span class="line">		</span><br><span class="line">		UnaryOperator&lt;Integer&gt; u1 = (t)-&gt;&#123;</span><br><span class="line">			<span class="keyword">return</span> t + <span class="number">1</span>;</span><br><span class="line">		&#125;;</span><br><span class="line">		</span><br><span class="line">		System.out.println(<span class="number">32</span>);</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>인터페이스명</th>
+<th>추상 메소드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DoubleBinaryOperator</td>
+<td>double applyAsDouble(double, double)</td>
+<td>두개의 double 연산 후 double 리턴</td>
+</tr>
+<tr>
+<td>DoubleUnaryOperator</td>
+<td>double applyAsDouble(double)</td>
+<td>한 개의 double 연산후 double리턴</td>
+</tr>
+<tr>
+<td>intBinaryOperator</td>
+<td>int applyAsInt(int, int)</td>
+<td>두 개의 int 연산후 int 리턴</td>
+</tr>
+<tr>
+<td>intUnaryOperator</td>
+<td>int applyAsInt(int)</td>
+<td>한개의 int연산후 int리턴</td>
+</tr>
+<tr>
+<td>LongBinaryOperator</td>
+<td>long applyAsLong(long, long)</td>
+<td>두개의 long 연산후 long 리턴</td>
+</tr>
+<tr>
+<td>LongUnaryOperator</td>
+<td>long applyAsLong(long)</td>
+<td>한 개의 long 연산후 long리턴</td>
+</tr>
+</tbody></table>
+<h2 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h2><p>Prediacate는 매개 값을 이용하여 true, false를 리턴한다.</p>
+<table>
+<thead>
+<tr>
+<th>인터페이스명</th>
+<th>추상 메소드</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Predicate<t></t></td>
+<td>boolean test(T t)</td>
+<td>객체 T를 통해 boolean리턴</td>
+</tr>
+<tr>
+<td>BiPredicate&lt;T,U&gt;</td>
+<td>boolean test(T t, U u)</td>
+<td>객체 T와 U를 통해 통해 boolean리턴</td>
+</tr>
+<tr>
+<td>DoublePredicate</td>
+<td>boolean test(double value)</td>
+<td>double 값을 통해 boolean리턴</td>
+</tr>
+<tr>
+<td>intPredicate</td>
+<td>boolean test(int value)</td>
+<td>int값을 통해 boolean 리턴</td>
+</tr>
+<tr>
+<td>LongPredicate</td>
+<td>boolean test(long value)</td>
+<td>long값을 통해 booean 리턴</td>
+</tr>
+</tbody></table>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/java8/" rel="tag"># java8</a>
+              <a href="/tags/%EB%9E%8C%EB%8B%A4/" rel="tag"># 람다</a>
+              <a href="/tags/Lamdba/" rel="tag"># Lamdba</a>
+              <a href="/tags/Consumer/" rel="tag"># Consumer</a>
+              <a href="/tags/Supplier/" rel="tag"># Supplier</a>
+              <a href="/tags/Function/" rel="tag"># Function</a>
+              <a href="/tags/Operator/" rel="tag"># Operator</a>
+              <a href="/tags/Predicate/" rel="tag"># Predicate</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/11/23/node-20181123-express-setting-sequelize/" rel="prev" title="Node Express에 sequelize를 이용해 mysql접속하기">
+      <i class="fa fa-chevron-left"></i> Node Express에 sequelize를 이용해 mysql접속하기
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/11/28/node-20181128-node-express-handlerbars/" rel="next" title="Node Express에 handlebars 템플릿엔진 적용하기(레이아웃적용)">
+      Node Express에 handlebars 템플릿엔진 적용하기(레이아웃적용) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#들어가기"><span class="nav-number">1.</span> <span class="nav-text">들어가기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#기본으로-제공되는-함수적-인터페이스의-종류"><span class="nav-number">2.</span> <span class="nav-text">기본으로 제공되는 함수적 인터페이스의 종류</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cunsunmer"><span class="nav-number">2.1.</span> <span class="nav-text">Cunsunmer</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Supplier"><span class="nav-number">2.2.</span> <span class="nav-text">Supplier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Function"><span class="nav-number">2.3.</span> <span class="nav-text">Function</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Operator"><span class="nav-number">2.4.</span> <span class="nav-text">Operator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Predicate"><span class="nav-number">2.5.</span> <span class="nav-text">Predicate</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

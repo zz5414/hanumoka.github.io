@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="들어가기Callback 함수를 모르지는 않는다. 하지만 잘 안다고 말할수도 없다.요즘 Node, Vue 등을 공부하면서 callback 함수의 진화형인 Promise, async 등을 접했고 곧 벽에 막혔다.이 글을 통해 Javascript callback 함수를 제대로 공부하고, 정리하고자 한다. CallBack 콜백함수란CallBack 함수란 이름 그대">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript - 콜백함수(Callback function)이란?">
+<meta property="og:url" content="https://www.hanumoka.net/2018/10/24/javascript-20181024-javascript-callback/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="들어가기Callback 함수를 모르지는 않는다. 하지만 잘 안다고 말할수도 없다.요즘 Node, Vue 등을 공부하면서 callback 함수의 진화형인 Promise, async 등을 접했고 곧 벽에 막혔다.이 글을 통해 Javascript callback 함수를 제대로 공부하고, 정리하고자 한다. CallBack 콜백함수란CallBack 함수란 이름 그대">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/20181024-javascript-callback_1.png">
+<meta property="article:published_time" content="2018-10-23T23:31:11.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:11.998Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="javascript">
+<meta property="article:tag" content="callback">
+<meta property="article:tag" content="비동기">
+<meta property="article:tag" content="콜백함수">
+<meta property="article:tag" content="setTimeout">
+<meta property="article:tag" content="setInterval">
+<meta property="article:tag" content="clearInterval">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/20181024-javascript-callback_1.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2018/10/24/javascript-20181024-javascript-callback/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Javascript - 콜백함수(Callback function)이란? | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/10/24/javascript-20181024-javascript-callback/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Javascript - 콜백함수(Callback function)이란?
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-10-24 08:31:11" itemprop="dateCreated datePublished" datetime="2018-10-24T08:31:11+09:00">2018-10-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Callback 함수를 모르지는 않는다. 하지만 잘 안다고 말할수도 없다.<br>요즘 Node, Vue 등을 공부하면서 callback 함수의 진화형인 Promise, async 등을 접했고 곧 벽에 막혔다.<br>이 글을 통해 Javascript callback 함수를 제대로 공부하고, 정리하고자 한다.</p>
+<h1 id="CallBack-콜백함수란"><a href="#CallBack-콜백함수란" class="headerlink" title="CallBack 콜백함수란"></a>CallBack 콜백함수란</h1><p>CallBack 함수란 이름 그대로 나중에 호출되는 함수를 말한다.<br>콜백함수라고 해서 그 자체로 특별한 선언이나 문법적 특징을 가지고 있지는 않다.<br>콜백함수도 일반적인 자바스크립트 함수일 뿐이다.<br>콜백 함수는 코드를 통해 명시적으로 호출하는 함수가 아니라, 개발자는 단지 함수를 동록하기만 하고, <strong>어떤 이벤트가 발생했거나 특정 시점에 도달했을 때 시스템에서 호출하는 함수를 말한다.</strong><br>즉 콜백함수는 콜백함수라는 유니크한 문법적 특징을 가지고 있는 것이 아니라, 호출방식에 의한 구분이다.</p>
+<p>대표적인 콜백 함수의 사용 예로는 자바스크립트에서 이벤트 핸들러 처리이다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"button1"</span> <span class="attr">onclick</span>=<span class="string">"button1_click();"</span>&gt;</span>버튼1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">button1_click</span><span class="params">()</span> </span>&#123;</span></span><br><span class="line"><span class="actionscript">	alert(<span class="string">"버튼1을 누르셨습니다."</span>);</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Html에 onclick에 button1_click함수는 브라우저의 javascript API에서 DOM 이벤트 핸들러에 전달(등록)되고, 해당 버튼에 클릭이벤트가 발생했을 이벤트 핸들러가 콜백함수를 호출한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$( <span class="string">"#target"</span> ).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert( <span class="string">"Handler for .click() called."</span> );</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>위처럼 Jquery에서도 콜백함수를 자주 사용하게 된다.</p>
+<p>콜백함수란 특정함수에 전달되어 특정함수가 어떤조건에 의해 호출하는 함수라고 후려칠수 있겠다.</p>
+<hr>
+<h1 id="Callback을-활용한-비동기적-프로그래밍"><a href="#Callback을-활용한-비동기적-프로그래밍" class="headerlink" title="Callback을 활용한 비동기적 프로그래밍"></a>Callback을 활용한 비동기적 프로그래밍</h1><p>Callback 함수를 사용하는 이유는, 자바스크립트에서 비동기적 프로그래밍을 할수 있기 때문이다.<br>이 콜백함수기법은 자바스크립트에서 가장 오래된 비동기적 메커니즘이라고 한다.</p>
+<p><strong>비동기적 테크닉</strong> : 소중한 싱글스레드의 멈춤을 방지한다. 즉 블록킹을 방지하여 싱글스레드가 논블록킹으로 동작하게 한다.</p>
+<p>비동기적 프로그래밍이 필요한 이유는 다음과 같다.</p>
+<h2 id="비동기적-테크닉을-사용하는-경우"><a href="#비동기적-테크닉을-사용하는-경우" class="headerlink" title="비동기적 테크닉을 사용하는 경우"></a>비동기적 테크닉을 사용하는 경우</h2><p><strong>1.사용자 이벤트 처리</strong></p>
+<p>브라우저 화면에서 발생하는 사용자의 이벤트는 예측이 불가능하다.<br>따라서 이런 화면이벤트를 관리담당하는 녀석에게 우리는 특정이벤트가 발생할 때 호출을 원하는 내용을 callback 함수에 전달하게 된다.</p>
+<p><strong>2.네트워크 응답 처리</strong></p>
+<p>화면단에서 서버에게 요청을 보냈을 때, 그 응답이 언제 올지 알 수 없다.<br>따라서 이런 서버에 대한 응답처리 등도 비동기적으로 처리해야 한다.</p>
+<p><strong>3.파일을 읽고 쓰는 등의 파일 시스템 작업</strong></p>
+<p><strong>4.의도적으로 시간 지연을 사용하는 기능(알람 등)</strong></p>
+<p>위와 같이 이벤트 등을 기다리는데 하나뿐인 소중한 스레드를 사용한다면, 또 서버의 응답을 기다리기 위해 하나뿐인 소중한 스레드를 사용한다면…<br>사용자는 멈춰져 있는 화면을 보게되는 것이다.<br>위와 같이 스레드의 블록킹을 야기하는 작업은 필수적으로 비동기적 프로그래밍을 해야 한다.</p>
+<hr>
+<h1 id="Callback-함수의-비동기적-사용의-예"><a href="#Callback-함수의-비동기적-사용의-예" class="headerlink" title="Callback 함수의 비동기적 사용의 예"></a>Callback 함수의 비동기적 사용의 예</h1><p>콜백 함수는 일반적으로 다른 함수에 넘기거나 객체의 프로퍼티로 사용한다.<br>드물게는 배열에 넣어서 쓸 때도 있다.<br>항상 그런건 아니지만 보통의 콜백함수는 익명함수로 사용한다.</p>
+<p>중요한 점은 콜백함수는 그냥 일반적인 함수이다.<br>우리는 비동기적 프로그래밍을 하기 위해서는, <strong>비동기적으로 콜백함수를 호출하는 함수</strong>에게 <strong>비동기적으로 호출되기를 원하는 코드</strong>를 <strong>콜백함수</strong>에 담아서 전달해야 한다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn_fakeAsync</span>(<span class="params">callback</span>)</span>&#123;</span><br><span class="line">  calback();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"------- fn_fakeAsync 호출 직전 -------"</span>);</span><br><span class="line"></span><br><span class="line">fn_fakeAsync(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"이게 비동기적으로 동작하길 바래"</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"------- fn_fakeAsync 호출 이후 -------"</span>);</span><br></pre></td></tr></table></figure>
+
+<p>위 코드 결과</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">------- fn_fakeAsync 호출 직전 -------</span><br><span class="line">이게 비동기적으로 동작하길 바래</span><br><span class="line">------- fn_fakeAsync 호출 이후 ------</span><br></pre></td></tr></table></figure>
+
+<p>위처럼 단순히 아무 함수에게나 콜백함수를 전달하여 호출시키는 것으로는 비동기적으로 콜백함수를 호출 할수 없다.</p>
+<p>다시한번 말하지만 자바스크립트에서 비동기프로그래밍을 하려면 <strong>비동기적으로 콜백함수를 호출하는 함수</strong>와 <strong>비동기적으로 호출되기를 원하는 콜백함수</strong>가 필요하다.</p>
+<p>그럼 비동기적으로 콜백함수를 실행하는 시스템 함수들을 알아보자.</p>
+<h2 id="setTimeout-함수"><a href="#setTimeout-함수" class="headerlink" title="setTimeout 함수"></a>setTimeout 함수</h2><p>setTimeout은 콜백함수의 실행을 지정된 밀리초만큼 지연하는 내장함수이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn_newCallBack</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"비동기적으로 호출되고 싶다."</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"-------  호출 직전 -------"</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(fn_newCallBack, <span class="number">3</span> * <span class="number">1000</span>); <span class="comment">// 3초 뒤 콜백 호출</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"-------  호출 이후 -------"</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-------  호출 직전 -------</span><br><span class="line">-------  호출 이후 -------</span><br><span class="line">비동기적으로 호출되고 싶다.</span><br></pre></td></tr></table></figure>
+
+<p>3초뒤에 fn_newCallBack함수가 호출되는 것을 확인 할 수 있다.<br>여기서 이게 무슨 비동기적 프로그래밍인지 갸웃 할수 있다.</p>
+<p>동기적 프로그래밍에서 만약 3초뒤에 fn_newCallBack를 호출시키려 한다면, 3초를 자바스크립트의 하나뿐인 메인스레드가 카운팅을 하고 있어야 한다.<br>즉 프로그래밍이 멈추는 것이다.<br>setTimeout함수는 메인스레드가 할일을 자바스크립트 API에게 위임시킴으로써 메인쓰레드의 멈춤(블록킹)을 피하게 해준다.</p>
+<p>다음 예제를 보자.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn_newCallBack</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"비동기적으로 호출되고 싶다."</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"-------  호출 직전 -------"</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(fn_newCallBack, <span class="number">0</span>); <span class="comment">// 즉시 실행되지 않을까?</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"-------  호출 이후 -------"</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-------  호출 직전 -------</span><br><span class="line">-------  호출 이후 -------</span><br><span class="line">비동기적으로 호출되고 싶다.</span><br></pre></td></tr></table></figure>
+
+<p>위 코드를 보면 setTimeout함수에 지연시간을 0으로 설정하여 즉시 실행하게 하였다.<br>그 결과를 보면 3초 셋팅과 마찬가지로 맨 마지막에 호출되는 것을 확인 할 수 있다.<br>물론 딜레이 없이 console에 찍히는것은 3초 셋팅과 다르긴 하다.<br>음 setTimeout에 지연시간을 0으로해도 내장으로 지연시간이 있는 것일까?</p>
+<p>그렇다면 다음코드는 어떻까?</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn_newCallBack</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"비동기적으로 호출되고 싶다."</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"-------  호출 직전 -------"</span>);</span><br><span class="line"></span><br><span class="line">setTimeout(fn_newCallBack, <span class="number">0</span>); <span class="comment">// 콜백이 언제 동작할지 예측해보자.</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">"-------  호출 이후 -------"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//무한로프로 콘솔을 찍어낸다.</span></span><br><span class="line"><span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"한국 일교차 너무해..."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위 코드를 실행하면 while문의 콘솔이 무한히 찍기고 fn_newCallBack함수는 절대 호출되지 않는다.<br>이게 무슨 말일까?</p>
+<p>javascript의 비동기적 동작을 이 글에서 다 설명하기에는 너무 빡세니, 간단히 설명해보겠다.<br>setTimeout함수에 전달된 콜백함수는 javascript 실행환경의 어느 바구니에 담겨진다.<br>그러면 javascript API가 setTimeout의 지연시간을 보고 카운팅을 대신 해준다.</p>
+<p>음? 그런데 지연시간이 0이네? javascript API는 이 콜백함수를 바구니에 꺼내서, TaskQueue라는 곳에 적재한다.<br>이 TaskQueue는 현재 동작중인 메인스레드가 일을 다 끝내면, 다음으로 해야할 일들이 있는 Queue이다.</p>
+<p>즉 위 코드에서 while의 무한루프로 메인스레드가 자기일을 끝내지 못하기 때문에 TaskQueue에 적재된 콜백함수가 호출되지 못하는 것이다.</p>
+<p>여기서 중요한 점은 setTimeout과 같은 비동기적으로 콜백을 호출 시켜주는 함수는, 전달된 콜백함수를 현재 실행중인 싱글스레드에서 뽑아내어 특정 장소에 보관하고 특정 조건을 만족시킬때 호출이 가능하게 한다는 점이다.<br>setTimeout은 시간을 카운팅하는 기능 외에, 콜백함수를 비동기영역으로 넘기는 역할을 하는 것이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//나라의 말이 중국과 달라</span></span><br><span class="line">  <span class="comment">//문자와 서로 맞지 아니해서</span></span><br><span class="line">  <span class="comment">//이러한 까닭으로 어리석은 백성이 말하고자 할 바가 있어도</span></span><br><span class="line">  <span class="comment">//마침내 제 뜻을 능히 펴지 못하는 사람이 많으니라</span></span><br><span class="line">  <span class="comment">//내 이를 위하여 가엾게 여겨</span></span><br><span class="line">  <span class="comment">//새로 스물여떯 자를 만드노니</span></span><br><span class="line">  <span class="comment">//사람마다 하여금 쉬이 익혀 날로 쓰며 편안케 하고자 할 다름이니라</span></span><br><span class="line">&#125;</span><br><span class="line">, <span class="number">1000</span> * <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+
+<p>setTimeout에 콜백으로 익명함수를 주로 사용하는데 익명함수가 길어질 경우 두번째 인자를 식별하기 어려울 수 있다.<br>다라서 위처럼 두번째 식별인자는 마지막 행에 분리하는 것이 사용팁이다.</p>
+<h2 id="setInterval함수와-clearInterval함수"><a href="#setInterval함수와-clearInterval함수" class="headerlink" title="setInterval함수와 clearInterval함수"></a>setInterval함수와 clearInterval함수</h2><p>setInterval도 setTimeout과 같이 콜백을 비동기적으로 호출 가능하게 해주는 함수이다.<br>차이점은 지정된 시간을 기준으로 반복적으로 콜백을 호출해준다는 것이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> intervalId = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span>(i === <span class="number">3</span>) <span class="keyword">return</span> clearInterval(interbalId);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;i++&#125;</span>: 인터벌로 호출 되는 콜백입니다.`</span>);</span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line">, <span class="number">5</span> * <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181024-javascript-callback_1.png" alt="setInterval 실행결과"></p>
+<p>위 코드에서 console.log 내부에 문자열을 감싼 것은 싱글쿼터가 아니라 백틱(키보드 esc 아래에 있음)이다.<br>Es2015 부터 백틱을 사용하여 위 처럼 템플릿 문자열을 사용 할 수 있다.</p>
+<p>setInterval의 기능은 단순하다 중요한 것은 고유의 intervalId를 리턴하고 이것을 clearInterval 함수에 넘겨 해당 setInterval을 중지시킬수 있다.<br>특시 Node등 서버단에서 setInterval를 사용할 경우 반드시 clearInterval로 인터벌을 정지시키지 않을경우 서버 메모리 누수가 발생할 수도 있으니 주의해야 한다.</p>
+<p>지금까지 setTimeout, setInterval, clearInterval등은 모두 전역 객체(브라우저에서는 Window, 노드에서는 global)에 정의 되어 있으므로 어디서나 사용할 수 있다.</p>
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>setTimeout 등을 이용하여 javascript의 콜백함수의 비동기적 용법에 대해 간단히 알아보았다.<br>콜백을 사용할때 주의할점과, 문제점등 정리할 것이 많이 있지만 글이 너무 길어지는 것 같아 줄인다.<br>다음 글에서 나머지 것들을 정리해 보겠다.</p>
+<h1 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h1><p><a href="/2018/10/06/javascript-20181006-javascript-callback/">자바스크립트 동기, 비동기 프로그래밍</a></p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/javascript/" rel="tag"># javascript</a>
+              <a href="/tags/callback/" rel="tag"># callback</a>
+              <a href="/tags/%EB%B9%84%EB%8F%99%EA%B8%B0/" rel="tag"># 비동기</a>
+              <a href="/tags/%EC%BD%9C%EB%B0%B1%ED%95%A8%EC%88%98/" rel="tag"># 콜백함수</a>
+              <a href="/tags/setTimeout/" rel="tag"># setTimeout</a>
+              <a href="/tags/setInterval/" rel="tag"># setInterval</a>
+              <a href="/tags/clearInterval/" rel="tag"># clearInterval</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/21/mysql-20181021-mysql-install-at-windows/" rel="prev" title="Mysql Windows10에 설치하기">
+      <i class="fa fa-chevron-left"></i> Mysql Windows10에 설치하기
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/10/31/windows-20181031-Windows10-error-DPC-WatchDog-Violation/" rel="next" title="Windows10 - error DPC WatchDog Violation 해결하기">
+      Windows10 - error DPC WatchDog Violation 해결하기 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#들어가기"><span class="nav-number">1.</span> <span class="nav-text">들어가기</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CallBack-콜백함수란"><span class="nav-number">2.</span> <span class="nav-text">CallBack 콜백함수란</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Callback을-활용한-비동기적-프로그래밍"><span class="nav-number">3.</span> <span class="nav-text">Callback을 활용한 비동기적 프로그래밍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#비동기적-테크닉을-사용하는-경우"><span class="nav-number">3.1.</span> <span class="nav-text">비동기적 테크닉을 사용하는 경우</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Callback-함수의-비동기적-사용의-예"><span class="nav-number">4.</span> <span class="nav-text">Callback 함수의 비동기적 사용의 예</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#setTimeout-함수"><span class="nav-number">4.1.</span> <span class="nav-text">setTimeout 함수</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#setInterval함수와-clearInterval함수"><span class="nav-number">4.2.</span> <span class="nav-text">setInterval함수와 clearInterval함수</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#마무리"><span class="nav-number">5.</span> <span class="nav-text">마무리</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Related-Posts"><span class="nav-number">6.</span> <span class="nav-text">Related Posts</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

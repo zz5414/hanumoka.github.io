@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="개요얼마 전 Maven 프로젝트에 custom jar를 local  repository에 등록해서 사용해야하는 경우가 있었는데, 구체적인 방법을 몰라서 상당히 애를 먹었었다. 평소 대충 되면 되나보다 하고 넘어가며 딱히 Maven에 대한 공부를 게을리 한게 이렇게 고생하게 만들 줄이야. Maven 프로젝트로 A 프로젝트를 만들어 a.jar를 만들고, 별도의">
+<meta property="og:type" content="article">
+<meta property="og:title" content="maven의 local repository설정으로 jar 추가하기">
+<meta property="og:url" content="https://www.hanumoka.net/2020/01/24/maven-20200124-java-maven-local-repository/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="개요얼마 전 Maven 프로젝트에 custom jar를 local  repository에 등록해서 사용해야하는 경우가 있었는데, 구체적인 방법을 몰라서 상당히 애를 먹었었다. 평소 대충 되면 되나보다 하고 넘어가며 딱히 Maven에 대한 공부를 게을리 한게 이렇게 고생하게 만들 줄이야. Maven 프로젝트로 A 프로젝트를 만들어 a.jar를 만들고, 별도의">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%201.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%202.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%203.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%204.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%205.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%206.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%207.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%208.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%209.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2010.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2011.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2012.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2013.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2014.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2015.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2016.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2017.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2018.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2019.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2020.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2021.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2015.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2018.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2019.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled%2022.png">
+<meta property="article:published_time" content="2020-01-24T07:02:27.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:12.003Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="maven">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="local repository">
+<meta property="article:tag" content="jar">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/2020/Maven-local-repository-jar/Untitled.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2020/01/24/maven-20200124-java-maven-local-repository/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>maven의 local repository설정으로 jar 추가하기 | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2020/01/24/maven-20200124-java-maven-local-repository/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          maven의 local repository설정으로 jar 추가하기
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2020-01-24 16:02:27" itemprop="dateCreated datePublished" datetime="2020-01-24T16:02:27+09:00">2020-01-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p>얼마 전 Maven 프로젝트에 custom jar를 local  repository에 등록해서 사용해야하는 경우가 있었는데, 구체적인 방법을 몰라서 상당히 애를 먹었었다.</p>
+<p>평소 대충 되면 되나보다 하고 넘어가며 딱히 Maven에 대한 공부를 게을리 한게 이렇게 고생하게 만들 줄이야.</p>
+<p>Maven 프로젝트로 A 프로젝트를 만들어 a.jar를 만들고, 별도의 B 프로젝트에서 앞서 만든 a.jar를 local repository로 주입받아 사용하는 예제를 만들어 보겠다.</p>
+<p>예제를 만들고 테스트하며 그 내용을 시간의 흐름대로 작성한 글이라 두서가 없다는 점을 미리 알린다.</p>
+<h1 id="a-jar를-만들-Maven-프로젝트-만들기"><a href="#a-jar를-만들-Maven-프로젝트-만들기" class="headerlink" title="a.jar를 만들 Maven 프로젝트 만들기"></a>a.jar를 만들 Maven 프로젝트 만들기</h1><p>일단 intelliJ 에서 Maven 프로젝트를 만들어 보자.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled.png" alt="Maven%20local%20repository%20jar/Untitled.png"></p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%201.png" alt="Maven%20local%20repository%20jar/Untitled%201.png"></p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%202.png" alt="Maven%20local%20repository%20jar/Untitled%202.png"></p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%203.png" alt="Maven%20local%20repository%20jar/Untitled%203.png"></p>
+<p>위 화면들 처럼 Aproject라는 Maven 프로젝트를 만들었다.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%204.png" alt="Maven%20local%20repository%20jar/Untitled%204.png"></p>
+<p>생성된 프로젝트에서 App 클래스에 main 메소드에서 이 프로젝트가 A project 임을 명시했다.</p>
+<p>실행해보니 콘솔에 System.out.println이 정상적으로 동작하는 것을 확인 할 수 있다.</p>
+<p>지금 Aproject에는 App클래스와 그 안에 main 메소드만 덩그러니 있다.</p>
+<p>나중에 생성할 Bproject에서 사용할 service 클래스를 추가하자.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%205.png" alt="Maven%20local%20repository%20jar/Untitled%205.png"></p>
+<p>위처럼 문자열을 리턴하는 service 클래스를 추가했다.</p>
+<p>위 프로젝트를 Maven package 명령으로 jar를 만들고, 그 jar를 실행시키면 아래처럼 오류가 발생 할 것이다..</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%206.png" alt="Maven%20local%20repository%20jar/Untitled%206.png"></p>
+<p>위처럼 Maven clean 성공.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%207.png" alt="Maven%20local%20repository%20jar/Untitled%207.png"></p>
+<p>그리고 Maven package 명령으로 Aproject의 jar를 생성했다.</p>
+<p>생성된 jar를 java 명령으로 실행시키면 정작 아래처럼 메세지와 동작하지 않는다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">메세지: 기본 Manifest 속성이 없습니다.</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%208.png" alt="Maven%20local%20repository%20jar/Untitled%208.png"></p>
+<p>실행 가능한 jar를 만들기 위해서는, 해당 jar파일을 실행하기위한 일종의 명세서 파일이 필요하다.</p>
+<p>이 파일은 jar 파일 내부에 존재 해야 한다.</p>
+<p>지금 Maven 프로젝트 build 설정에서는 그 명세서 파일(MANIFEST.MF)을 Maven package 명령시 자동으로 만들어주지 않아서 위처럼 jar가 실행되지 않는 것이다.</p>
+<h2 id="실행가능한-Maven-jar-설정-추가하기"><a href="#실행가능한-Maven-jar-설정-추가하기" class="headerlink" title="실행가능한 Maven jar 설정 추가하기"></a>실행가능한 Maven jar 설정 추가하기</h2><p>이제 위 프로젝트를 실행가능한 jar 프로젝트로 만들어 보자.</p>
+<p>일단 pom.xml파일에 아래처럼 packaging을 jar로 하겠다고 명시한다.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%209.png" alt="Maven%20local%20repository%20jar/Untitled%209.png"></p>
+<p>그리고 기존의 build 부분을 아래처럼 수정해주자.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2010.png" alt="Maven%20local%20repository%20jar/Untitled%2010.png"></p>
+<p>중요한 부분은 mainClass태그 내부에 해당 프로젝트의 앤트리 포인트가 되는 클래스의 경로를 넣어주어야 한다. </p>
+<p><strong>pom.xml 전체소스</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Aproject<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>Aproject<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- FIXME change it to the project's website --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://www.example.com<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-jar-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">archive</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                org.example.App</span><br><span class="line">              <span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">archive</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>이제 다시 maven clean 후 maven package 를 실행시켜 새로 jar파일을 생성하고 실행해보자.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2011.png" alt="Maven%20local%20repository%20jar/Untitled%2011.png"></p>
+<p>위처럼 jar파일을 직접 실행시켰을때, 정상동작하는 것을 확인 할 수 있다.</p>
+<p>내가 개발한 일종의 커스텀 jar파일을 생성했다.</p>
+<p>그럼 이제 새로운 B 프로젝트를 생성하고 이 jar 파일을 사용하려면 어떻게 해야 할까?</p>
+<p>경우의 수는 다음과 같을 것이다.</p>
+<ol>
+<li>만약 당신이 오픈소스를 개발한다면, 그냥 maven repository에 올려서 사용하면 될 것이다.</li>
+<li>만약 당신이 인터넷망이 아닌, 일종의 사내망에서 개발중이고 사내망에 nexus와 같은 사설 maven 저장소가 존재한다면 그곳에 올려서 사용 할 수도 있을 것이다.</li>
+<li><strong>다 귀찮다. 그냥 해당 a. jar파일을 새로운 프로젝트B에 직접 주입해서 사용할 것이고, B프로젝트를 pakcage 했을때, 일종의 외부 라이브러리인 a.jar 가 같이 패키징이 되어야 한다.</strong></li>
+</ol>
+<p>내가 지금 할 방법은 3번이다. </p>
+<h1 id="Maven-local-repository를-사용해서-특정-jar파일을-프로젝트에-포함시키기"><a href="#Maven-local-repository를-사용해서-특정-jar파일을-프로젝트에-포함시키기" class="headerlink" title="Maven local repository를 사용해서 특정 jar파일을 프로젝트에 포함시키기"></a>Maven local repository를 사용해서 특정 jar파일을 프로젝트에 포함시키기</h1><p>Maven local repository를 강조하는 이유는, 내가 이 글을 쓰는 목적이기도 한다.</p>
+<p>Eclipce나 IntelliJ와 같은 툴에서는 자체적으로 외부라이브러리를 추가하는 설정이 존재한다.</p>
+<p>Eclipce의 경우 External library 같은 설정으로 있었던 기억이 있다.</p>
+<p>위와 같이 개발도구의 설정으로 jar를 추가할 경우, 개발할때는 문제가 없지만, 정작 프로젝트를 package 했을때, 내가 임이로 추가한 jar라 같이 패키징이 안되는 경우가 있다.</p>
+<p>따라서 내가 임의로 jar등을 외부 라이브러리로 추가할 때는 개발도구의 설정을 사용하기보다는, 개발 중인 프로젝트의 build 도구(Maven, gradle)의 설정으로 jar 외부 라이브러리를 추가하는 것이 깔끔하다.</p>
+<p>새로운 Maven 프로젝트를 생성하겠다. </p>
+<p>프로젝트명은 Bproject이다. 생성방법은 위 Aproject와 동일하기 때문에, 그 과정은 생략하겠다.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2012.png" alt="Maven%20local%20repository%20jar/Untitled%2012.png"></p>
+<p>위처럼 이름만 다른 Bproject를 생성했다. </p>
+<p>그 다음에 Bproject의 pom.xml을 다음과 같이 수정해주자.</p>
+<p>pom.xml</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Bproject<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>jar<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>Bproject<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- FIXME change it to the project's website --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://www.example.com<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">id</span>&gt;</span>localrepository<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">url</span>&gt;</span>file://$&#123;basedir&#125;/lib<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="tag">&lt;/<span class="name">project.build.sourceEncoding</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.example<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Aproject<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0-SNAPSHOT<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-jar-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">archive</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">manifest</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">addClasspath</span>&gt;</span>true<span class="tag">&lt;/<span class="name">addClasspath</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">classpathPrefix</span>&gt;</span>lib/<span class="tag">&lt;/<span class="name">classpathPrefix</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">mainClass</span>&gt;</span></span><br><span class="line">                org.example.App</span><br><span class="line">              <span class="tag">&lt;/<span class="name">mainClass</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">archive</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-dependency-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">id</span>&gt;</span>copy<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">goal</span>&gt;</span>copy-dependencies<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">              <span class="tag">&lt;<span class="name">outputDirectory</span>&gt;</span></span><br><span class="line">                $&#123;project.build.directory&#125;/lib</span><br><span class="line">              <span class="tag">&lt;/<span class="name">outputDirectory</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2013.png" alt="Maven%20local%20repository%20jar/Untitled%2013.png"></p>
+<p>Aproject와 마찬가지로 jar 설정을 해준다.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2014.png" alt="Maven%20local%20repository%20jar/Untitled%2014.png"></p>
+<p>역시 Aproject와 마찬가지로 실행가능한 jar 생성을 위한 build plugin 설정도 추가해준다.</p>
+<p>아래 부분이 실제 Maven에서 local repository를 설정하는 부분이다.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2015.png" alt="Maven%20local%20repository%20jar/Untitled%2015.png"></p>
+<p>id는 본인이 편한 고유값을 주면 된다.</p>
+<p>url은 maven local repository의 jar 파일들이 있을 경로를 설정하는 부분이다.</p>
+<p>관리하기 쉽게 위 처럼 basedir이라는 변수를 사용해서, 현재 프로젝트 root 경로에 lib 폴더를 설정했다.</p>
+<p>이제 해야할 일은 Aproject에서 jar 파일과 pom 파일을 추출해야 한다.</p>
+<p>Aproject로 돌아가서 jar파일과 pom파일을 추출하자.</p>
+<h2 id="Maven-local-repository를-위한-jar-추출하기"><a href="#Maven-local-repository를-위한-jar-추출하기" class="headerlink" title="Maven local repository를 위한 jar 추출하기"></a>Maven local repository를 위한 jar 추출하기</h2><p><strong>Aproject</strong>에서 maven clean 후 maven install 을 하자.</p>
+<p>maven install을 하면 해당 프로젝트를 빌드해서 현재 pc의 전역 메이븐 저장소에 저장하게 된다. </p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2016.png" alt="Maven%20local%20repository%20jar/Untitled%2016.png"></p>
+<p>설치가 잘 되었는지 현재 pc의 메이븐 전역 저장소를 확인해보자.</p>
+<p>윈도우 탐색기로 C:\Users\계정명.m2\repository 가면 메이븐 전역 저장소를 확인 할수 있다.</p>
+<p>Aproject의 경로는 groupId와 artifactId 그리고 version 으로 경로가 조합되어 생선된다.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2017.png" alt="Maven%20local%20repository%20jar/Untitled%2017.png"></p>
+<p>해당 경로에 가보면 jar파일과 pom 파일이 생성된 것을 확인 할 수 있다.</p>
+<p>위 Aproject 폴더를 통째로 복사하자.</p>
+<p>그리고 Bproject 폴더로 이동해서 프로젝트 root 경로에 lib 폴더를 만들고 아래처럼 붙여넣자.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2018.png" alt="Maven%20local%20repository%20jar/Untitled%2018.png"></p>
+<p>그리고 Bproject의 pom.xml 에 아래처럼 해당 jar를 디펜던시로 추가해주자.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2019.png" alt="Maven%20local%20repository%20jar/Untitled%2019.png"></p>
+<p>lib 폴더의 경로와 pom.xml의 dependency groupId, artifactId, version을 잘 맞쳐주어야 오류가 나지 않는다.</p>
+<p>Bproject의 main 메소드에서 추가한 자르의 Aservice클래스를 가져와서 호출하는 코드를 추가하고 실행하면 아래처럼 정상 동작을 확인 할 수 있다.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2020.png" alt="Maven%20local%20repository%20jar/Untitled%2020.png"></p>
+<p>여기까지 해서 된다고 안심 하면 안된다. </p>
+<p>사실 maven local repository 설정 없이, 전역 maven 저장소에 maven install 로 설치되어 있다면 위처럼 개발툴에서 코드상에서 해당 jar를 가져와서 호출이 가능하다.</p>
+<p>하지만 maven local repository 설정이 없다면 Bproject를 maven package해서 생성한 jar를 실행할 경우, 해당 jar를 찾지 못하고 오류가 날 것이다.</p>
+<p>아래가 maven local repository 설정없이 maven package했을때, 라이브러리를 찾지 못하고 오류가 난 상황이다.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2021.png" alt="Maven%20local%20repository%20jar/Untitled%2021.png"></p>
+<p>하지만 우리는 앞서</p>
+<p>pom.xml에 서 아래처럼 maven local repository 경로를 설정했고</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2015.png" alt="Maven%20local%20repository%20jar/Untitled%2015.png"></p>
+<p>또 아래처럼 Aproject의 install 결과물을 해당 경로에 이동 시켰으며</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2018.png" alt="Maven%20local%20repository%20jar/Untitled%2018.png"></p>
+<p>pom.xml 에 아래처럼 해당 라이브러리를 추가했기 때문에</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2019.png" alt="Maven%20local%20repository%20jar/Untitled%2019.png"></p>
+<p>Bproject를 maven package하여 생성한 jar를 실행 시켰을때, 아래처럼 정상동작하는 것을 확인 할수 있다.</p>
+<p><img src="/images/2020/Maven-local-repository-jar/Untitled%2022.png" alt="Maven%20local%20repository%20jar/Untitled%2022.png"></p>
+<p>끝!!!</p>
+<h2 id="예제-github-경로"><a href="#예제-github-경로" class="headerlink" title="예제 github 경로"></a>예제 github 경로</h2><p><a href="https://github.com/hanumoka/20200124blog-maven-local-repository" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/hanumoka/20200124blog-maven-local-repository</a></p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://stackoverflow.com/questions/5692256/maven-best-way-of-linking-custom-external-jar-to-my-project" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/5692256/maven-best-way-of-linking-custom-external-jar-to-my-project</a></p>
+<p><a href="https://okjsp.tistory.com/1165644118" target="_blank" rel="external nofollow noopener noreferrer">https://okjsp.tistory.com/1165644118</a></p>
+<p><a href="https://denodo1.tistory.com/282" target="_blank" rel="external nofollow noopener noreferrer">https://denodo1.tistory.com/282</a></p>
+<p><a href="https://blog.seotory.com/post/2016/03/maven-local-repository-setting" target="_blank" rel="external nofollow noopener noreferrer">https://blog.seotory.com/post/2016/03/maven-local-repository-setting</a></p>
+<p><a href="https://yujuwon.tistory.com/entry/maven%EC%97%90-custom-jar%EB%A5%BC-%EC%A7%91%EC%96%B4%EB%84%A3%EC%96%B4-%EB%B3%B4%EC%9E%90" target="_blank" rel="external nofollow noopener noreferrer">https://yujuwon.tistory.com/entry/maven에-custom-jar를-집어넣어-보자</a></p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/maven/" rel="tag"># maven</a>
+              <a href="/tags/java/" rel="tag"># java</a>
+              <a href="/tags/local-repository/" rel="tag"># local repository</a>
+              <a href="/tags/jar/" rel="tag"># jar</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/29/react-20191229-react-nginx-deploy/" rel="prev" title="React를 Nginx웹 서버에 배포하기">
+      <i class="fa fa-chevron-left"></i> React를 Nginx웹 서버에 배포하기
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/16/git-20200416-git-ssh-key-generate/" rel="next" title="Github에 push, pull을 위한 ssh키 생성 및 등록(windows10)">
+      Github에 push, pull을 위한 ssh키 생성 및 등록(windows10) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#개요"><span class="nav-number">1.</span> <span class="nav-text">개요</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#a-jar를-만들-Maven-프로젝트-만들기"><span class="nav-number">2.</span> <span class="nav-text">a.jar를 만들 Maven 프로젝트 만들기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#실행가능한-Maven-jar-설정-추가하기"><span class="nav-number">2.1.</span> <span class="nav-text">실행가능한 Maven jar 설정 추가하기</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maven-local-repository를-사용해서-특정-jar파일을-프로젝트에-포함시키기"><span class="nav-number">3.</span> <span class="nav-text">Maven local repository를 사용해서 특정 jar파일을 프로젝트에 포함시키기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Maven-local-repository를-위한-jar-추출하기"><span class="nav-number">3.1.</span> <span class="nav-text">Maven local repository를 위한 jar 추출하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#예제-github-경로"><span class="nav-number">3.2.</span> <span class="nav-text">예제 github 경로</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#참고자료"><span class="nav-number">3.2.1.</span> <span class="nav-text">참고자료</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

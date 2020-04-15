@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6388187282606796",
+          enable_page_level_ads: true
+     });
+</script>
+-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="java8에서 interface의 문법이 약간 변경되어 그 내용을 정리하고자 한다.java7 까지는 인터페이스에 상수, 실행블록이 없는 추상 메소드 선언만 가능했다. 하지만 java8부터 인터페이스에 디폴트메소드와 정적메소드도 추가로 선언이 가능하다. 이로인해 java의 인터페이스는 더욱 유연해진 코딩을 할 수 있다. java8의 인터페이스 형태123456">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java8 interface의 변화(default method, static method)">
+<meta property="og:url" content="https://www.hanumoka.net/2017/09/16/java-20170916-java8-interface/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="java8에서 interface의 문법이 약간 변경되어 그 내용을 정리하고자 한다.java7 까지는 인터페이스에 상수, 실행블록이 없는 추상 메소드 선언만 가능했다. 하지만 java8부터 인터페이스에 디폴트메소드와 정적메소드도 추가로 선언이 가능하다. 이로인해 java의 인터페이스는 더욱 유연해진 코딩을 할 수 있다. java8의 인터페이스 형태123456">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2017-09-16T05:47:20.000Z">
+<meta property="article:modified_time" content="2020-04-15T16:50:11.988Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="java8">
+<meta property="article:tag" content="interface">
+<meta property="article:tag" content="디폴트메소드">
+<meta property="article:tag" content="정적메소드">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://www.hanumoka.net/2017/09/16/java-20170916-java8-interface/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>java8 interface의 변화(default method, static method) | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/09/16/java-20170916-java8-interface/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java8 interface의 변화(default method, static method)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2017-09-16 14:47:20" itemprop="dateCreated datePublished" datetime="2017-09-16T14:47:20+09:00">2017-09-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>java8에서 interface의 문법이 약간 변경되어 그 내용을 정리하고자 한다.<br>java7 까지는 인터페이스에 상수, 실행블록이 없는 추상 메소드 선언만 가능했다. 하지만 <strong>java8부터 인터페이스에 디폴트메소드와 정적메소드도 추가로 선언이 가능하다. 이로인해 java의 인터페이스는 더욱 유연해진 코딩을 할 수 있다.</strong></p>
+<h4 id="java8의-인터페이스-형태"><a href="#java8의-인터페이스-형태" class="headerlink" title="java8의 인터페이스 형태"></a>java8의 인터페이스 형태</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> 인터페이스명</span>&#123;</span><br><span class="line">  <span class="comment">//상수</span></span><br><span class="line">  타입 상수명 = 값;</span><br><span class="line">  <span class="comment">//추상 메소드</span></span><br><span class="line">  타입 메소드명(매개변수, ...);</span><br><span class="line">  <span class="comment">//디폴트 메소드</span></span><br><span class="line">  <span class="keyword">default</span> 타입 메소드명(매개변수, ...)&#123; ... &#125;</span><br><span class="line">  <span class="comment">//정적 메소드</span></span><br><span class="line">  <span class="keyword">static</span> 타입 메소드명(매개변수)&#123; ...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>자바8에서 인터페이스의 디폴트메소드와 추상메소드가 추가된 이유가 있다.</strong><br>어떤 프로그램에서 인터페이스 A가 있고 이 인터페이스를 구현한 A1, A2, A3…, A10 총 10개의 구현 클래스가 있다고 가정하자. 5년정도 사융하다가 인터페이스 A에 추가기능이 필요해서 추상메소드를 한개 추가하고 새로이 B1이라는 클래스로 인터페이스 A를 구현하게 된다. 문제는 기존에 사용하던 A1 ~ A10의 구현객체에서 B1클래스를 위해 추가된 추상메소드를 추가로 구현해야 한다는 점이다.<br>java8에서는 인터페이스의 디폴트 메소드와, 정적메소드를 추가하여 프로그래밍의 유연성을 높여주고 있다.</p>
+<hr>
+<h4 id="인터페이스의-디폴트메소드-default-method"><a href="#인터페이스의-디폴트메소드-default-method" class="headerlink" title="인터페이스의 디폴트메소드(default method)"></a>인터페이스의 디폴트메소드(default method)</h4><p>디폴트 메소드는 인터페이스에 선언되지만 사실은 객체(구현객체)가 가지고 있는 인스턴스 메소드라고 생각해야 된다. 따라서 <strong>인터페이스를 구현한 객체를 통해서 호출 해야만 한다.</strong> 자바8에서 디폴트 메소드를 허용한 이유는 기존 인터페이스를 확장해서 새로운 기능을 추가하기 위해서이다. 만약 구현객체에서 인터페이스의 디폴트메소드가 적절하지 못하다면, 오버라이딩 하여 수정해서 사용하면 된다.</p>
+<p><strong>형태 : [public] default 리턴타입 메소드명(매개변수, …){ … }</strong></p>
+<h4 id="인터페이스의-정적메소드-static-method"><a href="#인터페이스의-정적메소드-static-method" class="headerlink" title="인터페이스의 정적메소드(static method)"></a>인터페이스의 정적메소드(static method)</h4><p>정적 메소드도 역시 자바8 부터 작성할 수 있는데, 디폴트 메소드와는 달리 객체가 없어도 인터페이스만으로 호출이 가능하다.</p>
+<p><strong>형태 : [public] static 리턴타입 메소드명(매개변수, …){ … }</strong></p>
+<h4 id="java8의-인터페이스의-디폴트메소드-추상메소드-예제"><a href="#java8의-인터페이스의-디폴트메소드-추상메소드-예제" class="headerlink" title="java8의 인터페이스의 디폴트메소드, 추상메소드 예제"></a>java8의 인터페이스의 디폴트메소드, 추상메소드 예제</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Java8InterfaceTest</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> talkCnt = <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="comment">//디폴트 메소드</span></span><br><span class="line">  <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">talk</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(msg != <span class="keyword">null</span> &amp;&amp; msg.equals(<span class="string">""</span>))&#123;</span><br><span class="line">      System.out.println(msg);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"난 디폴트 메소드다!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  &#125;<span class="comment">// talk</span></span><br><span class="line">  <span class="comment">//정적 메소드</span></span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">talk2</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(msg != <span class="keyword">null</span> &amp;&amp; msg.equals(<span class="string">""</span>))&#123;</span><br><span class="line">      System.out.println(msg);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"난 정적 메소드다!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  &#125;<span class="comment">// talk2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterfaceTest1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    Java8InterfaceTest.talk2(<span class="keyword">null</span>); <span class="comment">// 정적메소드 호출</span></span><br><span class="line">    </span><br><span class="line">    Java8InterfaceTest test1 = <span class="keyword">new</span> Java8InterfaceTest()&#123;</span><br><span class="line"></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"달려라!"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    test1.run();</span><br><span class="line">    test1.talk(<span class="keyword">null</span>); <span class="comment">// 디폴트 메소드 호출</span></span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="실행결과"><a href="#실행결과" class="headerlink" title="실행결과"></a>실행결과</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">난 정적 메소드다!</span><br><span class="line">달려라!</span><br><span class="line">난 디폴트 메소드다!</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="인터페이스의-상속에서-디폴트메소드의-변화"><a href="#인터페이스의-상속에서-디폴트메소드의-변화" class="headerlink" title="인터페이스의 상속에서 디폴트메소드의 변화"></a>인터페이스의 상속에서 디폴트메소드의 변화</h4><p>인터페이스는 인터페이스를 상속 할 수 있다. 자식 인터페이스에서 부모의 인터페이스를 상속할 때, 부모의 디폴트 메소드를 어떻게 할지 선택 할 수있다.</p>
+<ol>
+<li><p>부모 인터페이스의 디폴트 메소드를 그냥 상속한다.</p>
+</li>
+<li><p>부모 인터페이스의 디폴트 메소드를 재정의(Override)한다.</p>
+</li>
+<li><p><strong>부모 인터페이스의 디폴트 메소드를 추상메소드로 재 선언한다.</strong></p>
+</li>
+</ol>
+<p>인터페이스의 디폴트메소드는 인터페이스의 강제성을 조금 유연하게 해주는 기능이다. 하지만 좋게 말하면 유연이고 나쁘게 말한다면 느슨한 것이다. <strong>만약 이 느슨한것을 다시 엄격하게 수정할 필요가 있다면 인터페이스를 상속하여 다시 추상메소드로 재 선언 하는것도 방법이다.</strong><br><em>개인적으로 java8의 인터페이스의 변화는 개발자의 자유도를 높여주는 기능처럼 보이며, 상당히 마음에 든다.</em></p>
+<hr>
+<h4 id="인터페이스-상수-선언-public-static-final-할-때-주의할점"><a href="#인터페이스-상수-선언-public-static-final-할-때-주의할점" class="headerlink" title="인터페이스 상수 선언(public static final)할 때 주의할점"></a>인터페이스 상수 선언(public static final)할 때 주의할점</h4><p>java8의 특징은 아니지만, 자주 햇갈리는 부분이라 추가로 기록한다.<br>일반적인 클래스에서 상수(static final)의 초기화는 선언과 동시 그리고 정적영역(static block) 두 곳 모두에서 가능하다. 하지만 <strong>인터페이스의 상수는 정적영역(static block)에서 초기화 할수 없기 때문에 반드시 선언과 동시에 초기화 해야 한다.</strong> </p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/java8/" rel="tag"># java8</a>
+              <a href="/tags/interface/" rel="tag"># interface</a>
+              <a href="/tags/%EB%94%94%ED%8F%B4%ED%8A%B8%EB%A9%94%EC%86%8C%EB%93%9C/" rel="tag"># 디폴트메소드</a>
+              <a href="/tags/%EC%A0%95%EC%A0%81%EB%A9%94%EC%86%8C%EB%93%9C/" rel="tag"># 정적메소드</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/09/15/java-20170915-java-Anonymouse-class/" rel="prev" title="java Anonymouse class(익명구현객체)">
+      <i class="fa fa-chevron-left"></i> java Anonymouse class(익명구현객체)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/09/18/java-20170918-java-nested-class/" rel="next" title="java nested class(중첩클래스)">
+      java nested class(중첩클래스) <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#java8의-인터페이스-형태"><span class="nav-number">1.</span> <span class="nav-text">java8의 인터페이스 형태</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#인터페이스의-디폴트메소드-default-method"><span class="nav-number">2.</span> <span class="nav-text">인터페이스의 디폴트메소드(default method)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#인터페이스의-정적메소드-static-method"><span class="nav-number">3.</span> <span class="nav-text">인터페이스의 정적메소드(static method)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java8의-인터페이스의-디폴트메소드-추상메소드-예제"><span class="nav-number">4.</span> <span class="nav-text">java8의 인터페이스의 디폴트메소드, 추상메소드 예제</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#실행결과"><span class="nav-number">4.1.</span> <span class="nav-text">실행결과</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#인터페이스의-상속에서-디폴트메소드의-변화"><span class="nav-number">5.</span> <span class="nav-text">인터페이스의 상속에서 디폴트메소드의 변화</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#인터페이스-상수-선언-public-static-final-할-때-주의할점"><span class="nav-number">6.</span> <span class="nav-text">인터페이스 상수 선언(public static final)할 때 주의할점</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
