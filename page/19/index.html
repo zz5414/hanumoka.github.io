@@ -254,6 +254,99 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/09/13/java-20170913-java-static-initialization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/09/13/java-20170913-java-static-initialization/" class="post-title-link" itemprop="url">java 정적 필드 초기화(static initialization)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2017-09-13 21:21:52" itemprop="dateCreated datePublished" datetime="2017-09-13T21:21:52+09:00">2017-09-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/20170913-java-static-initialization.png" alt><br>java의 정적필드는 클래스로더에 의해 메소드영역에 로드가 된다.정적 필드는 객체생성 이전 클래스가 메모리에 올라가는 시점부터 사용이 가능하다. 따라서 클래스의 생성자는 정적필드의 초기화 위치로 적합하지 못하다. 그렇다면 정적필드는 어떻게 초기화 해야 할까?</p>
+<h3 id="정적필드-초기화-1-선언과-동시에-초기화-하기"><a href="#정적필드-초기화-1-선언과-동시에-초기화-하기" class="headerlink" title="정적필드 초기화 1 : 선언과 동시에 초기화 하기"></a>정적필드 초기화 1 : 선언과 동시에 초기화 하기</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">double</span> pi = <span class="number">3.14</span>;</span><br></pre></td></tr></table></figure>
+<p>일반적으로 정적필드는 위와 같이 선언과 동시에 초기화 한다. 하지만 외부환경의 영향이나 로직을 통해 정적필드를 초기화 하고 싶을 경우도 있을 것이다.</p>
+<h3 id="정적필드-초기화-2-정적영역-static-block-사용"><a href="#정적필드-초기화-2-정적영역-static-block-사용" class="headerlink" title="정적필드 초기화 2 : 정적영역(static block) 사용"></a>정적필드 초기화 2 : 정적영역(static block) 사용</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">double</span> pi;</span><br><span class="line"><span class="keyword">static</span>&#123;</span><br><span class="line">  클래스명.pi = <span class="number">3.14</span>;</span><br><span class="line">  System.out.println(<span class="string">"정적영역 초기화 완료..."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>static { … } 형태의 정적영역을 사용하여 정적필드를 초기화 할 수 있다. 정적영역 역시 클래스가 메모리에 로드되면서 동작한다. </p>
+<h4 id="정적영역-사용시-주의점-1-정적영역에서-인스턴스-멤버에-접근-할-수-없다"><a href="#정적영역-사용시-주의점-1-정적영역에서-인스턴스-멤버에-접근-할-수-없다" class="headerlink" title="정적영역 사용시 주의점 1 : 정적영역에서 인스턴스 멤버에 접근 할 수 없다."></a>정적영역 사용시 주의점 1 : 정적영역에서 인스턴스 멤버에 접근 할 수 없다.</h4><p>정적영역은 클래스 단위의 영역이다. 모든 인스턴스는 자신의 클래스의 정적필드에 접근이 가능하지만, 그 반대로 정적영역에서 인스턴스의 필드에 접근 할 수 없다. 당연한 말일 것이다. 정적영역에서는 접근할 인스턴스를 구별할 수 없기 때문이다. </p>
+<h4 id="정적영역-사용시-주의점-2-static-final도-정적영역에서도-초기화-할-수-있다"><a href="#정적영역-사용시-주의점-2-static-final도-정적영역에서도-초기화-할-수-있다" class="headerlink" title="정적영역 사용시 주의점 2 : static final도 정적영역에서도 초기화 할 수 있다."></a>정적영역 사용시 주의점 2 : static final도 정적영역에서도 초기화 할 수 있다.</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">double</span> PI;  <span class="comment">//관용적으로 상수인경우 상수명을 대문자 사용</span></span><br><span class="line"><span class="keyword">static</span> &#123;</span><br><span class="line">  클래스명.PI = <span class="number">3.14</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>java에서 일반적인 인스턴스 단위의 final 필드을 초기화 하는 방법은 필드 선언과 동시 또는 생성자에서 초기화 해야 한다.</strong>다른 방법은 존재하지 않는다.<br>static final 필드는 final이전에 static영역, 즉 클래스 단위의 필드이기 때문에 일반적인 static 필드 처럼 선언시와 정적영역(static block)에서 초기화 할 수 있다.</p>
+<h4 id="정적영역-사용시-주의점-3-interface의-상수는-정적영역에서-초기화-할-수-없다"><a href="#정적영역-사용시-주의점-3-interface의-상수는-정적영역에서-초기화-할-수-없다" class="headerlink" title="정적영역 사용시 주의점 3 : interface의 상수는 정적영역에서 초기화 할 수 없다."></a>정적영역 사용시 주의점 3 : interface의 상수는 정적영역에서 초기화 할 수 없다.</h4><p>인터페이스의 멤버변수는 모두 상수(public static final)이다. 하지만 이 상수는 정적영역에서 초기화 할 수 없으며, 반드시 선언과 동시에 초기화 해야 한다. (20170917 추가)</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/09/10/java-20170910-java-arbitrary-number-of-arguments/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1236,125 +1329,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-closure-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/31/javascript-20170831-javascript-closure-2/" class="post-title-link" itemprop="url">javascript 클로저(closure)의 활용(2편)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2017-08-31 03:04:57" itemprop="dateCreated datePublished" datetime="2017-08-31T03:04:57+09:00">2017-08-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="클로저-closure-의-활용"><a href="#클로저-closure-의-활용" class="headerlink" title="클로저(closure)의 활용"></a>클로저(closure)의 활용</h2><p>본 글은 독자가 자바스크립트 클로저의 개념에 대한 이해를 전제하에 작성된 글이다.</p>
-<p>자바스크립트의 클로저의 개념에 대해서는 공부를 했지만, 막상 이 클로저라는 것을 활용해 보려니 도통 감이 오질 않는다.<br>클로저를 활용한다는 말인 즉, 클로저를 통해서 어떤 프로그래밍 적 효과를 발생시키고 그 효과를 활용 한다는 말일 것이다.</p>
-<p>그렇다면 간단한 예제를 통해 그 효과와 그 효과를 활용하는 방법을 알아보자.<br>(클로저는 성능적인 면과 자원적인 면에서 약간 손해를 볼수 있으므로 무차별적으로 사용해서는 안된다고 한다.)</p>
-<h3 id="활용1-함수-캡슐화"><a href="#활용1-함수-캡슐화" class="headerlink" title="활용1 - 함수 캡슐화"></a>활용1 - 함수 캡슐화</h3><p>설명 할 클로저는 함수형 프로그래밍 기법이지만, 캡슐화를 구현할 수 있다.<br>캡슐화란 객체지향 프로그래밍의 하나의 개념 중 하나이다.<br>객체지향 프로그래밍의 캡슐화란 다음과 같다.</p>
-<p>캡슐화란?</p>
-<blockquote>
-<p>객체의 속성(data fileds)과 행위(메소드, methods)를 하나도 묶는다.<br>실제 구현 내용 일부를 외부에 감추어 은닉한다.</p>
-</blockquote>
-<p>하지만 자바스크립트에서 기본적인 객체선언은 캡슐화의 두번째 측면인 실제 구현내용을 외부에 감추어 은닉할수가 없다.<br>간단한 객체 리터럴 예제로 확인해보자.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> countObj1 = &#123;</span><br><span class="line">	n : <span class="number">0</span>,</span><br><span class="line">	count : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">return</span> <span class="keyword">this</span>.n++;&#125;,</span><br><span class="line">        reset : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">this</span>.n = <span class="number">0</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>countObj1객체의 의도는 메소드 count를 이용해서 n을 1씩 증가시키는 것이다.<br>그리고 reset 메소드를 이용하여 n을 0로 초기화 시킨다.</p>
-<p><img src="/images/2017-06-11-javascript6_1.png" alt></p>
-<p>그리고 위처럼 사용 할수 있다. 하지만 객체의 내부 프로퍼티인 n을 다른 방식으로 접근하여 호출 또는 재정의 할 수 있다.</p>
-<p><img src="/images/2017-06-11-javascript6_2.png" alt></p>
-<p>위처럼 내부 객체의 내부 프로퍼티에 직접 접근하여 재 할당 될 수 있다.<br>만약 악의적인 코드 또는 실수로 인해 외부에서 직접 n을 접근 할 경우 의도치 않은 동작을 할 수도 있다.</p>
-<p>이렇게 외부에서 임의로 데이터를 접근 또는 훼손하는 것을 막는 기법이 캡슐화의 데이터 은닉이다.<br>하지만 안타깝게도 자바스크립트에서는 문법적으로 캡슐화의 데이터 은닉를 지원하지 않는다.  (java, c++에서는 문법적으로 지원한다.)</p>
-<p>이 캡슐화의 데이터 은닉을 자바스크립트에서는 함수형 프로그래밍 기법인 클로저를 이용해 구현 할 수 있다.</p>
-<p>1번 예제에 클로저를 적용하여 내부 변수 n을 외부에서 접근 못하게 해보자.(캡슐화의 데이터은닉)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">counter</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> n = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		count: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> n++; &#125;,</span><br><span class="line">                reset: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; n = <span class="number">0</span>; &#125;</span><br><span class="line"> &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> countA = counter();</span><br><span class="line"><span class="keyword">var</span> countB = counter();</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2017-06-11-javascript6_3.png" alt></p>
-<p>위 소스코드에서는 counter 함수가 리턴하는 객체의 메소드 count()와 reset()가 클로저가 된다. (이부분이 이해가 안간다면 클로저의 개념과 대해 다시 공부해야 한다.)</p>
-<p>2번 예제는 1번예제와 객체 생성방법이 다르지만, 만들어진 객체의 사용은 동일하다.<br>count 메소드를 이용하여 n에 1을 더하고 , reset 메소드를 이용하여 n을 0으로 초기화 하고 있다.</p>
-<p>그렇다면 2번예제에서도 1번예제처럼 직접 객체에 접근하여 n을 수정해 보자.</p>
-<p><img src="/images/2017-06-11-javascript6_4.png" alt></p>
-<p>countA.n = 100; 을 통해 n이라는 객체에 새로운 변수를 추가 할 수 있다.<br>하지만 countA의 메소드(클로저)는 이 countA의 멤버변수 n을 사용하는 것이 아니라 자기 자신의 외부함수 counter의 지역변수 n을 사용하기 때문에 객체의 메소드를 호출시 계획한 대로 결과가 나오는 것을 확인 할수있다.<br>이것은 클로저를 통해 변수 n이 은닉되어 있기때문에 가능한 결과이다.</p>
-<p>2번 예제를 이용해 클로저에 대한 부연설명을 조금 더 해보자면,<br>countA.count()와 countA.reset() 메소드는 하나의 n을 공유한다.<br>하지만 countA 와 countB는 n을 공유하지 않고 각각의 n을 사용한다.<br>counter함수가 호출되어 새로운 객체를 리턴 할 때마다 새로운 유효범위 체인과 새로운 내부변수(n)이 생성되기 때문이다.<br>여기서 이 counter의 내부변수 n이 캡슐화된 외부로부터 은닉된 실제 구현내용이 된다.<br>이런 캡슐화를 통해서 내부변수 n이 외부로 부터 오염되는 것을 막을수 있다.</p>
-<h3 id="활용2-함수의-호출방법의-가공"><a href="#활용2-함수의-호출방법의-가공" class="headerlink" title="활용2 - 함수의 호출방법의 가공"></a>활용2 - 함수의 호출방법의 가공</h3><p>setTimeout  함수는 첫번째 인자로 받는 함수 참조값을 특정시간(두번째 인자) 이후에 실행시키는 내장함수이다.<br>문제는 첫번째 인자로 넘기는 함수에 매개변수를 전달 할 수 없다는 것이다.<br>하지만 클로저를 이용해 전달할 함수를 클로저로 변환하여 호출하는 방법을 가공 할수 있다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"%d + %d = %d"</span>, a, b, a + b);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">callLater</span>(<span class="params">func, a, b</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">tempFn</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        func(a, b)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> tempFn;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> func = callLater(sum, <span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line">setTimeout(func, <span class="number">8000</span>);</span><br></pre></td></tr></table></figure>
-
-
-<p>간단한 예제이다. callLater 함수를 이용해 setTimeout에게 전달할 함수의 호출환경을 미리 설정해 놓고 그것을 클로저(tempFn)로 만들어 func 변수에 할당했다.<br>func 클로저는 인자가 필요 없으므로 setTimeout에 첫번째 인자로 전달할 수 있다.</p>
-<p>자바스크립트에서는 함수도 일급객체이므로 변수처럼 다른 함수의 인자로 전달하여 실행시키는 경우가 많은데, 전달할 인자 함수에 매개변수를 클로저를 통해 미리 조립하여 전달하는 방식으로 클로저를 사용 할 수 있다.</p>
-<p>클로저의 활용 방법을 간단한  2가지 예로 설명했는데, 사실 더 다양한 방법이 있을 것이다.<br>스스로 더 공부하고 코딩하면서 클로저의 다양한 활용방법을 찾아보길 바란다.</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1425,7 +1399,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

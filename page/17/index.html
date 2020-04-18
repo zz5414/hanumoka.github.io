@@ -254,6 +254,97 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/03/01/programing-etc-20180301-build-vs-complie/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/03/01/programing-etc-20180301-build-vs-complie/" class="post-title-link" itemprop="url">build vs compile</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-03-01 14:49:34" itemprop="dateCreated datePublished" datetime="2018-03-01T14:49:34+09:00">2018-03-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programing-etc/" itemprop="url" rel="index">
+                    <span itemprop="name">programing_etc</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/20180301-build-vs-complie_1.jpg" alt="hexo 디플로이시 에러내용"></p>
+<p><strong>컴파일(compile)</strong>이란 개발자들이 특정한 프로그래밍언어(예를들어 C, C++, Object-C등)을 사용해서 컴퓨터가 이해할 수 있는 기계어 코드(이진코드)로 변환하는 작업을 일컫는다. 좀더 정확하게 말하면, 컴퓨터와 그 컴퓨터에 설치되어 있는 운영체제가 이해할 수 있는 기계어 코드로 변환하는 일이다. 따라서 동일한 컴퓨터라 할지라도 윈도우가 설치되어 있는 컴퓨터와 리눅스가 설치되어 있는 컴퓨터는 같은 애플리케이션이라도 컴파일된 결과물은 다르다.</p>
+<p>또한, 컴파일해서 생성된 기계어코드만으로 바로 컴퓨터에서 실행될 수는 없다. 그 이유는 대부분의 애플리케이션들은 사용자가 프로그래밍한 소스 코드도 있지만, 상당히 많은 부분들이 라이브러리 형태로 제공되기 때문이다. 예를들어, C프로그래밍을 할 때 키보드를 누르는 기능에 대해 프로그래밍할 필요가 없는 이유는 키보드를 누를 때 발생하는 이벤트나 작업에 대해 이미 표준 라이브러리(Standard library)로 만들어져 있기 때문이다. 바로 이러한 라이브러리를 내가 만든 애플리케이션과 연결해 주는 작업이 바로 <strong>링크(link)</strong>이다.</p>
+<p>요즘은 컴파일과 링크를 합쳐 <strong>빌드(build)</strong>라는 표현을 자주 사용한다. 빌드를 해야 비로소 컴퓨터에서 실행할 수 있는 형태의 기계어 코드가 생성된다. 그러나 한번 프로그래밍을 빌드했다고 해서 자신이 원하는 프로그래밍이 만들어지지는 않는다. 프로그래밍의 신이 아닌 이상 오류가 발생한다. 이러한 오류들을 바로 잡는 작업이 <strong>디버깅(Debugging)</strong>이다. 프로그래머들이 가장 힘들어하는 작업은 소스코드를 코딩하는 단계나 빌드하는 단계가 아니라, 바로 디버깅하는 단계이다.</p>
+<p>디버깅이란 그 이름에서 알 수 있듯이, 자신이 만든 프로그램 내부에 숨겨져 있는 논리적인 오류를 찾아내는 작업이다. 윈도우를 주로 사용하는 사람들도 간혹 컴퓨터를 사용하다가 ‘예기치 않은 오류로 인해 프로그램을 종료합니다.’라는 에러 메시지를 보았을 것이다. 바로 이러한 예지치 못한 에러를 잡아내어 수정하는 작업을 통칭하여 디버깅한다 라고 한다.</p>
+<p>참고: Do it! bada 모바일 프로그래밍 by 여인춘</p>
+<p>출처: <a href="http://hyogeun.tistory.com/96" target="_blank" rel="external nofollow noopener noreferrer">http://hyogeun.tistory.com/96</a> [SW전공자의 Expert를 위하여]</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/03/01/hexo-20180301-hexo-deploy-error/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1332,91 +1423,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/10/12/android-20171012-android-RGBA-chart/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/10/12/android-20171012-android-RGBA-chart/" class="post-title-link" itemprop="url">android - RGBA chart</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2017-10-12 23:57:10" itemprop="dateCreated datePublished" datetime="2017-10-12T23:57:10+09:00">2017-10-12</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/android/" itemprop="url" rel="index">
-                    <span itemprop="name">android</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/20171012-android-RGBA-chart.png" alt="RGBA 차트"></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1487,7 +1493,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

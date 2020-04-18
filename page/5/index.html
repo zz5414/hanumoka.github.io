@@ -254,6 +254,104 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/29/ubuntu-20190129-ubuntu-install-vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/29/ubuntu-20190129-ubuntu-install-vim/" class="post-title-link" itemprop="url">ubuntu - vim설치(vi 방향키 입력오류 해결)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-01-29 16:35:14" itemprop="dateCreated datePublished" datetime="2019-01-29T16:35:14+09:00">2019-01-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Virtual box에 ubuntu를 설치한뒤, vi를 열어보니 이상하게도 키보드의 방향키 입력시 A, B 등의 알파뱃 대문자가 입력되었다.<br>인터넷을 찾아보니 골치아픈 vi를 버리고 vim을 설치해서 사용하라는 글을 확인했다.<br>ubuntu에 vim을 설치하고 vi보다는 좋은 vim 기능을 사용해보자.</p>
+<h1 id="ubuntu-vim-설치"><a href="#ubuntu-vim-설치" class="headerlink" title="ubuntu vim 설치"></a>ubuntu vim 설치</h1><p>ubuntu 터미널에서 아래 명령어로 vim을 설치하자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install</span><br></pre></td></tr></table></figure>
+
+<p>이제 vi 대신 vim을 사용할 수 있다. 다행스럽게도 방향키는 정상적으로 입력된다.</p>
+<h1 id="vim-편리한-기능-활성화"><a href="#vim-편리한-기능-활성화" class="headerlink" title="vim 편리한 기능 활성화"></a>vim 편리한 기능 활성화</h1><p>아래 명렁어를 터미널에 입력하여 vim 설정파일을 생성하자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">vim ~/.vimrc</span><br></pre></td></tr></table></figure>
+
+<p>그리고 방금 생성한 vimrc 파일에 아래 내용채워 vim 기능을 활성화 하자.</p>
+<p>set number            “ 줄 번호 표시<br>set tabstop=4         “ tab을 4칸으로<br>set ignorecase      “ 검색시 대소문자 구별하지 않음<br>set hlsearch         “ 검색시 하이라이트<br>set fileencodings=utf-8,euc-kr    “ 파일인코딩 형식<br>set bs=indent,eol,start    “ backspace 키 사용<br>set ruler              “ 상태표시줄 커서 위치 표시<br>set title               “ 제목 표시<br>set showmatch    “ 매칭되는 괄호 표시<br>set nowrap         “ 자동 줄바꿈 해제<br>set wmnu           “ tab 자동완성시 가능한 목록 표시</p>
+<p>syntax on        “ 문법 하이라이트</p>
+<p><img src="/images/20190129-ubuntu-install-vim_1.png" alt="vimrc 파일"></p>
+<p>설정이 활성화 되며 위처럼 줄번호 등 편리한 기능이 적용된다.</p>
+<p>끝!!! </p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/24/git-20190124-git-error-Large-files-detected/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1215,106 +1313,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/04/intelliJ-20190104-intelliJ-Comunity-springboot-settting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/04/intelliJ-20190104-intelliJ-Comunity-springboot-settting/" class="post-title-link" itemprop="url">intelliJ Comunity에 SpringBoot 프로젝트 생성하기</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-01-04 10:25:23" itemprop="dateCreated datePublished" datetime="2019-01-04T10:25:23+09:00">2019-01-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/intelliJ/" itemprop="url" rel="index">
-                    <span itemprop="name">intelliJ</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>스프링 개발을 해오면서, 주로 전자정부프레임워크, 이클립스, STS등을 사용해 왔었다.<br>intelliJ ide가 넘사벽으로 좋다고 이야기는 많이 들어 봤으나, 유료인데다 월단위 라이센스라 선뜻 당기지 않았다.</p>
-<p>그러던 와중 인프런 인강에서 springboot 프로젝트를 intelliJ comunity에서도 개발할수 있는 방법을 알게되어 이렇게 정리한다.<br>intellyJ Comunity 버전이라고 무료버전이 있긴한데, 자체적으로 스프링프로젝트 생성을 제공하지 않는 것을 극복할수 있는 것이다.</p>
-<h1 id="intelliJ-comunity-다운로드"><a href="#intelliJ-comunity-다운로드" class="headerlink" title="intelliJ comunity 다운로드"></a>intelliJ comunity 다운로드</h1><p><a href="https://www.jetbrains.com/idea/download/#section=windows" target="_blank" rel="external nofollow noopener noreferrer">https://www.jetbrains.com/idea/download/#section=windows</a></p>
-<p>위 페이지로 가서 Community를 다운로드 받으면 된다.</p>
-<p><img src="/images/20190104-intelliJ-Comunity-springboot-settting_1.png" alt="역시 무료버전이라 기능이 많이 제한되어 있다."></p>
-<p>아 물론 기존에 java가 설치와 환경변수 설정이 선행되어야 한다.<br>그리고 springboot 프로젝트를 위해 jdk8버전 이상이 필요하다.</p>
-<h1 id="Spring-initializr에서-SpringBoot-프로젝트-생성"><a href="#Spring-initializr에서-SpringBoot-프로젝트-생성" class="headerlink" title="Spring initializr에서 SpringBoot 프로젝트 생성"></a>Spring initializr에서 SpringBoot 프로젝트 생성</h1><p>여기서 무료버전이라 intelliJ에서 제공하지 않는 springboot프로젝트를 대신 생성해주는 Spring initializr가 필요하다.</p>
-<p><a href="https://start.spring.io/" target="_blank" rel="external nofollow noopener noreferrer">https://start.spring.io/</a></p>
-<p>위 주소가 Spring initializr, 즉 springboot 프로젝트를 생성해주는 곳이다.</p>
-<p><img src="/images/20190104-intelliJ-Comunity-springboot-settting_2.png" alt="Spring initializr"></p>
-<p>입맛에 맞게 설정한뒤, generate project 버튼을 클릭하면 zip 파일을 하나 내려받게 된다.</p>
-<p>그 파일을 압축해제후 intelliJ comunity 버전으로 열면된다.</p>
-<p><img src="/images/20190104-intelliJ-Comunity-springboot-settting_3.png" alt="실행결과"></p>
-<p>maven 디펜던시를 다 받고 난뒤 run을 하게 되면 springboot 프로젝트가 정상적으로 동작하는 것을 확인 할 수 있다.</p>
-<p>끝!</p>
-<h3 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h3><p><a href="https://start.spring.io/" target="_blank" rel="external nofollow noopener noreferrer">https://start.spring.io/</a></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1385,7 +1383,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.hanumoka.net/"/>
-  <updated>2020-04-15T16:40:01.987Z</updated>
+  <updated>2020-04-18T12:57:03.546Z</updated>
   <id>https://www.hanumoka.net/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker에서 테스트용도의 mongodb 실행하기</title>
+    <link href="https://www.hanumoka.net/2020/04/18/docker-20200418-docker-mongodb-start/"/>
+    <id>https://www.hanumoka.net/2020/04/18/docker-20200418-docker-mongodb-start/</id>
+    <published>2020-04-18T12:52:37.000Z</published>
+    <updated>2020-04-18T12:57:03.546Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;docker로 간단하게 테스트용 mongodb 서버를 실행하는 예제이다.&lt;/p&gt;
+&lt;p&gt;이글은 컨테이너 생성과
+        
+      
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="https://www.hanumoka.net/categories/docker/"/>
+    
+    
+      <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
+    
+      <category term="mongodb" scheme="https://www.hanumoka.net/tags/mongodb/"/>
+    
+  </entry>
   
   <entry>
     <title>Github에 push, pull을 위한 ssh키 생성 및 등록(windows10)</title>
@@ -646,38 +676,6 @@
       <category term="sqlinjection" scheme="https://www.hanumoka.net/tags/sqlinjection/"/>
     
       <category term="sqlijnectionsafe" scheme="https://www.hanumoka.net/tags/sqlijnectionsafe/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu1804에 docker 설치</title>
-    <link href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-docker/"/>
-    <id>https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-docker/</id>
-    <published>2019-08-17T10:19:41.000Z</published>
-    <updated>2020-04-15T16:50:12.031Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;음 docker는 상당히 편리한 녀석이다.&lt;/p&gt;
-&lt;p&gt;VitualBox에 설치된 Ubuntu1804에
-        
-      
-    
-    </summary>
-    
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/categories/ubuntu/"/>
-    
-    
-      <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
-    
-      <category term="virtualbox" scheme="https://www.hanumoka.net/tags/virtualbox/"/>
     
   </entry>
   

@@ -254,6 +254,108 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/07/spring-20180807-spring-bean-scan/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/07/spring-20180807-spring-bean-scan/" class="post-title-link" itemprop="url">Spring MVC에서 xml환경에서 bean scan 방법</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-07 01:57:13" itemprop="dateCreated datePublished" datetime="2018-08-07T01:57:13+09:00">2018-08-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>자꾸 까먹는 부분이다.<br>특히 Junit 테스트 돌릴 때 이 bean scan을 잘 몰라서 해맨적이 있었다.</p>
+<p>스프링 MVC에는 크게 root-context.xml 과 servet-context.xml로 나뉜다.<br>둘다 스프링 컨테이너를 위한 설정파일이다.</p>
+<p>root-context.xml는 WEB과는 관련이 없는 설정을 담당하며, servet-context.xml는 WEB에 관련된 설정을 담당한다.</p>
+<h1 id="root-context-xml의-bean-scan-설정"><a href="#root-context-xml의-bean-scan-설정" class="headerlink" title="root-context.xml의 bean scan 설정"></a>root-context.xml의 bean scan 설정</h1><p>아래는 내 샘플 프로젝트의 root-context.xml이다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:jdbc</span>=<span class="string">"http://www.springframework.org/schema/jdbc"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:mybatis-spring</span>=<span class="string">"http://mybatis.org/schema/mybatis-spring"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- Root Context: defines shared resources visible to all other web components --&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 	&lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;</span></span><br><span class="line"><span class="comment">	    &lt;property name="driverClassName" value="com.mysql.cj.jdbc.Driver"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="url" value="jdbc:mysql://127.0.0.1:3306/mokaboard_dev?useSSL=false"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="username" value="mokaboard"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="password" value="password"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">	&lt;/bean&gt; --&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span></span><br><span class="line">	    <span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"net.sf.log4jdbc.sql.jdbcapi.DriverSpy"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:log4jdbc:mysql://127.0.0.1:3306/mokaboard_dev?useSSL=false"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"mokaboard"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 	&lt;bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="dataSource" ref="dataSource"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="configLocation" value="classpath:/mybatis-config.xml"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">		&lt;property name="mapperLocations" value="classpath:mappers/**/*.xml"&gt;&lt;/property&gt; MyBatis mapper 경로 지정한다.</span></span><br><span class="line"><span class="comment">	&lt;/bean&gt; --&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"configLocation"</span> <span class="attr">value</span>=<span class="string">"classpath:/mybatis-config.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"mapperLocations"</span>&gt;</span></span><br><span class="line">			 <span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">			   <span class="tag">&lt;<span class="name">value</span>&gt;</span>classpath:mappers/**/*.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">			   <span class="tag">&lt;<span class="name">value</span>&gt;</span>classpath:sampleMappers/**/*.xml<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">			  <span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- SqlSessionTemplate은 MyBatis의 SqlSession인터페이스를 구현한 클래스로 기본적인 트랜잭션의 관리나 쓰레드 처리의 안정성 등을 보장해주고, 데이터베이스의 연겨로가 종료를 책임진다. --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSession"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionTemplate"</span> <span class="attr">destroy-method</span>=<span class="string">"clearCache"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">ref</span>=<span class="string">"sqlSessionFactory"</span>&gt;</span><span class="tag">&lt;/<span class="name">constructor-arg</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.hanumoka.mokaboard, com.hanumoka.sample"</span> &gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- &lt;context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" /&gt; --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">"annotation"</span> <span class="attr">expression</span>=<span class="string">"org.springframework.stereotype.Controller"</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>bean scan 부분은 아래와 같다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.hanumoka.mokaboard, com.hanumoka.sample"</span> &gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:exclude-filter</span> <span class="attr">type</span>=<span class="string">"annotation"</span> <span class="attr">expression</span>=<span class="string">"org.springframework.stereotype.Controller"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>base-package를 보면 두개의 패키지의 bean들을 스캔한다.<br>exclude-filter 를 이용하여 org.springframework.stereotype.Controller 즉 @Controller 빈들을 제외한 bean만 스캔한다.</p>
+<h1 id="servlet-context-xml의-bean-scan-설정"><a href="#servlet-context-xml의-bean-scan-설정" class="headerlink" title="servlet-context.xml의 bean scan 설정"></a>servlet-context.xml의 bean scan 설정</h1><p>아래 역시 내 샘플 프로젝트의 servlet-context.xml 파일 전체이다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans:beans</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/mvc"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:beans</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- DispatcherServlet Context: defines this servlet's request-processing </span></span><br><span class="line"><span class="comment">		infrastructure --&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- Enables the Spring MVC @Controller programming model --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">annotation-driven</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- Handles HTTP GET requests for /resources/** by efficiently serving </span></span><br><span class="line"><span class="comment">		up static resources in the $&#123;webappRoot&#125;/resources directory --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">resources</span> <span class="attr">mapping</span>=<span class="string">"/resources/**"</span> <span class="attr">location</span>=<span class="string">"/resources/"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- Resolves views selected for rendering by @Controllers to .jsp resources </span></span><br><span class="line"><span class="comment">		in the /WEB-INF/views directory --&gt;</span></span><br><span class="line">	<span class="comment">&lt;!-- &lt;beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"&gt; </span></span><br><span class="line"><span class="comment">		&lt;beans:property name="prefix" value="/WEB-INF/views/" /&gt; &lt;beans:property </span></span><br><span class="line"><span class="comment">		name="suffix" value=".jsp" /&gt; &lt;/beans:bean&gt; --&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- thymeleaf View 설정 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">beans:bean</span> <span class="attr">id</span>=<span class="string">"templateResolver"</span> <span class="attr">class</span>=<span class="string">"org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"prefix"</span> <span class="attr">value</span>=<span class="string">"/WEB-INF/views/"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"suffix"</span> <span class="attr">value</span>=<span class="string">".html"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"templateMode"</span> <span class="attr">value</span>=<span class="string">"HTML"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"characterEncoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"cacheable"</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">beans:bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- thymeleaf laytout을 쓰기위해 3rd Party 추가 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">beans:bean</span> <span class="attr">id</span>=<span class="string">"templateEngine"</span> <span class="attr">class</span>=<span class="string">"org.thymeleaf.spring4.SpringTemplateEngine"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"templateResolver"</span> <span class="attr">ref</span>=<span class="string">"templateResolver"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"additionalDialects"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">beans:set</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">beans:bean</span> <span class="attr">class</span>=<span class="string">"nz.net.ultraq.thymeleaf.LayoutDialect"</span> /&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">beans:set</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">beans:property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">beans:bean</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	<span class="comment">&lt;!-- thymeleaf laytout ViewResolver 설정 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">beans:bean</span></span></span><br><span class="line"><span class="tag">		<span class="attr">class</span>=<span class="string">"org.thymeleaf.spring4.view.ThymeleafViewResolver"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"templateEngine"</span> <span class="attr">ref</span>=<span class="string">"templateEngine"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"characterEncoding"</span> <span class="attr">value</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">beans:property</span> <span class="attr">name</span>=<span class="string">"order"</span> <span class="attr">value</span>=<span class="string">"1"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">beans:bean</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.hanumoka.mokaboard, com.hanumoka.sample"</span> <span class="attr">use-default-filters</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">context:include-filter</span> <span class="attr">type</span>=<span class="string">"annotation"</span> <span class="attr">expression</span>=<span class="string">"org.springframework.stereotype.Controller"</span>/&gt;</span></span><br><span class="line">		<span class="comment">&lt;!-- &lt;context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" /&gt; --&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span> </span><br><span class="line">	</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans:beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>baen scan 설정부분을 추려보면 아래와 같다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">context:component-scan</span> <span class="attr">base-package</span>=<span class="string">"com.hanumoka.mokaboard, com.hanumoka.sample"</span> <span class="attr">use-default-filters</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">context:include-filter</span> <span class="attr">type</span>=<span class="string">"annotation"</span> <span class="attr">expression</span>=<span class="string">"org.springframework.stereotype.Controller"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context:component-scan</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>root-context.xml와 같이 두개의 패키지를 스캔한다.<br>use-default-filters=”false” 의 의미는 component-scan의 기본 필터를 사용하지 않겠다는 의미이다.<br>기본필터는 @Component, @Repository, @Service, @Controller 어노테이션이 붙은 클래스들을 자동 탐지한다.</p>
+<p>그리고 include-filter를 통해서 @Controller 가 지정된 빈만 스캔하게 설정한다.</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/07/spring-20180807-spring-ControllerAdvice/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1532,114 +1634,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/07/25/STS-20180725-STS-github-issue-plugin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/07/25/STS-20180725-STS-github-issue-plugin/" class="post-title-link" itemprop="url">STS(Spring Tool Suite) - github issues 트래커 연동(mylyn) GitHub Extensions 설치</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-07-25 18:03:09" itemprop="dateCreated datePublished" datetime="2018-07-25T18:03:09+09:00">2018-07-25</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/STS/" itemprop="url" rel="index">
-                    <span itemprop="name">STS</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>현재 STS(Spring Tool Suite)와 Github를 통해 개인 프로젝트를 개발하고 있다.<br>Github의 Issue 관리 시스템을 STS 연동하여 사용하고 싶은 생각에, 인터넷을 조금 검색하니 연동하는 방법이 있어서 이렇게 정리한다.</p>
-<p>참고로 <strong>이클립스(Eclipce)에서는 GitHub 관련 Mylyn 커넥터가 없어서 안되더라.</strong><br>(뭔가 내가 잘못했거나, 다른 방법이 있을수도…)</p>
-<hr>
-<h1 id="STS에서-GitHub-Extensions-플러그인-설치하기"><a href="#STS에서-GitHub-Extensions-플러그인-설치하기" class="headerlink" title="STS에서 GitHub Extensions 플러그인 설치하기"></a>STS에서 GitHub Extensions 플러그인 설치하기</h1><p>일단 STS에서 GitHub의 Issues를 Task에 연동하려면 GitHub Extension이라는 플러그인을 STS에 설치해야 한다.</p>
-<p>STS툴에서 -&gt; Help -&gt; Eclipse Maketplace… 선택 -&gt; Find에 github 입력후 검색 -&gt; Gitub Extensions를 설치하자.<br><strong>GitHub Extensions 플러그인의 설명을 보면 GitHub Mylyn Connector라고 되어있다.</strong></p>
-<p><img src="/images/20180725-STS-github-issue-plugin_1.png" alt="GitHub Extensions를 설치하자. 나는 이미 설치해서 Installed라고 보아는 것 뿐이다."></p>
-<p>GitHub Extensions 설치 뒤(아마 STS재시작을 해야 할 것이다.) -&gt; STS의 Window 메뉴의 Show view 에서 Task Repositoreis를 열어서 -&gt; github 원격 저장소 정보를 입력하여 Task Repository를 추가한다.(http 방식으로 입력해야 한다.)</p>
-<p><img src="/images/20180725-STS-github-issue-plugin_4.png" alt="Task Repositoreis에서 마우스 우클릭 하면 add Task Repositories를 선택한 뒤 Github issuses를 선택"></p>
-<p><img src="/images/20180725-STS-github-issue-plugin_5.png" alt="github 저장소의 정보를 입력하는 창이 뜬다. 정보를 입력하여 저장하자"></p>
-<p><strong>주의</strong><br>Task Repository를 추가할때 이 정보입력에서 삽질을 좀 했다.<br>github의 원격 리파지토리에서 clone with https 버튼을 누르면, 해당 원격저장소의 web URL 정보가 나오는데 그 형태는 아래와 같다.</p>
-<blockquote>
-<p><a href="https://github.com/유저명/리파지토리명.git" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/유저명/리파지토리명.git</a></p>
-</blockquote>
-<p>일반적인 형상관리를 위해서는 위 URL을 그대로 사용하면 되지만, STS에 add Task repository 화면에서 입력 할때에는 아래와 같이 입력해야 한다.</p>
-<blockquote>
-<p><a href="http://github.com/유저명/리파지토리명" target="_blank" rel="external nofollow noopener noreferrer">http://github.com/유저명/리파지토리명</a></p>
-</blockquote>
-<p><img src="/images/20180725-STS-github-issue-plugin_6.png" alt="github 원격저장소 정보와 사용자명, 비밀번호를 입력하면 된다."></p>
-<p><img src="/images/20180725-STS-github-issue-plugin_2.png" alt="위처럼 github의 원격 저장소정보가 저장된 것을 확인 할수 있다."></p>
-<p>TaskList 뷰에서 연결된 github의 Issue등을 관리 할수 있다.</p>
-<p><img src="/images/20180725-STS-github-issue-plugin_3.png" alt="STS에서 github에 있는 이슈들을 바로 볼수 있으며 수정, 삭제등도 가능하다."></p>
-<p>GitHub Extensions플러그인은 github의 이슈를 STS의 Task로 대체해서 보여주는듯 하다.<br>소스를 커밋할때 이슈와 커밋은 연결 할 수 있으며, 커밋메시지를 통해서 이슈의 상태도 변화 시킬수 있다.<br>대충 보면 어떻게 사용해야 할지 감이 올것이다.</p>
-<p>이클립스의 Mylyne, Task, Task tag, ToDo등 조금더 정밀한 사용법은 공부를 해 봐야 할것 같다.</p>
-<p>끝!</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1710,7 +1704,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

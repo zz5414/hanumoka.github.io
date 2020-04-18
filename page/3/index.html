@@ -254,6 +254,97 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-docker/" class="post-title-link" itemprop="url">Ubuntu1804에 docker 설치</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 19:19:41" itemprop="dateCreated datePublished" datetime="2019-08-17T19:19:41+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>음 docker는 상당히 편리한 녀석이다.</p>
+<p>VitualBox에 설치된 Ubuntu1804에 docker를 설치 해보려한다.</p>
+<p>솔직히 이게 재대로 될지 잘 모르지만, 일단 해보자.</p>
+<p>별거 없다. 아래 명령어를 한줄 한줄 주욱 입력해주자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line"></span><br><span class="line">sudo apt install apt-transport-https ca-certificates curl software-properties-common</span><br><span class="line"></span><br><span class="line">curl -fsSL https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu&#x2F;gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">sudo add-apt-repository &quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu bionic stable&quot;</span><br><span class="line"></span><br><span class="line">sudo apt update</span><br><span class="line"></span><br><span class="line">apt-cache policy docker-ce</span><br><span class="line"></span><br><span class="line">sudo apt install docker-ce</span><br><span class="line"></span><br><span class="line">sudo systemctl status docker</span><br></pre></td></tr></table></figure>
+
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p>[<a href="https://blog.cosmosfarm.com/archives/248/우분투-18-04-도커-docker-설치-방법/]" target="_blank" rel="external nofollow noopener noreferrer">https://blog.cosmosfarm.com/archives/248/우분투-18-04-도커-docker-설치-방법/]</a>(</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-nvm-node/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1223,139 +1314,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-ftp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-ftp/" class="post-title-link" itemprop="url">virtualbox ubuntu1804 ftp 설치 및 접근(sftp)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-08-17 18:47:55" itemprop="dateCreated datePublished" datetime="2019-08-17T18:47:55+09:00">2019-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>개발환경 용도로 사용하려는 ubuntu 1804 이미지에 ftp를 설치하고 호스트PC인 windows에서 파일질라로 접근해서 파일을 전송 해보려 한다.</p>
-<p>아 별것 아닌데, 리눅스를 잘 몰라서 엄청난 시간을 헤매었다.</p>
-<p>결론으로 sftp 접근으로 성공하였다.</p>
-<p>해당 내용은 실 서버로 사용하는 ubuntu ftp 접근 설명이 아니라, 로컬에서 virtualbox에 설치된 개발환경용 ubuntu 1804에 ftp 설치 방법을 설명하는 것이다.</p>
-<p>ftp 사용이 되는것이 목적이므로, 방화벽 설명등 기타 내용은 포함하고 있지 않다.</p>
-<hr>
-<h3 id="virtualbox에서-ubuntu-ftp-포트포워딩-설정"><a href="#virtualbox에서-ubuntu-ftp-포트포워딩-설정" class="headerlink" title="virtualbox에서 ubuntu ftp 포트포워딩 설정"></a>virtualbox에서 ubuntu ftp 포트포워딩 설정</h3><p>일단 virtualbox에서 해당 이미지의 설정으로 들어가 아래처럼 ftp 용 포트포워딩 설정을 해주자.</p>
-<p>아 참고로 난 NAT 네트워크 설정으로 사용중이다.</p>
-<p><img src="/images/2019/Untitled-eeb9f885-a11e-41d7-9969-f928484bbdff.png" alt></p>
-<p>말 그대로 호스트PC에 22포트로 요청을 게스트IP 10.0.2.15:22로 포트포워딩 한다는 설정이다.</p>
-<p>게스트IP는 ifconfig로 확인하시길, 별다른 설정을 안했다면 위와 동일 할 것이다.</p>
-<h3 id="우분투에-FTP-설치하기"><a href="#우분투에-FTP-설치하기" class="headerlink" title="우분투에 FTP 설치하기"></a>우분투에 FTP 설치하기</h3><p>이제 해당 우분투 이미지를 실행하고 FTP 서버를 설치하자.</p>
-<p>아래 명령어로 패키지를 최신화 하고 업그레이드를 일단 하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br></pre></td></tr></table></figure>
-
-<p>그리고 아래 명령어로 ftp를 설치하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vsftpd</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2019/Untitled-f2a71105-92bc-4ee7-bd5c-14d62553157f.png" alt></p>
-<p>이제  ftp설정을 해주자</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit &#x2F;etc&#x2F;vsftpd.conf</span><br></pre></td></tr></table></figure>
-
-<p>그리고 그 내용을 모두 지우고 아래 내용으로 치환하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">listen&#x3D;NO</span><br><span class="line">listen_ipv6&#x3D;YES</span><br><span class="line">anonymous_enable&#x3D;NO</span><br><span class="line">local_enable&#x3D;YES</span><br><span class="line">write_enable&#x3D;YES</span><br><span class="line">local_umask&#x3D;022</span><br><span class="line">dirmessage_enable&#x3D;YES</span><br><span class="line">use_localtime&#x3D;YES</span><br><span class="line">xferlog_enable&#x3D;YES</span><br><span class="line">connect_from_port_20&#x3D;YES</span><br><span class="line">chroot_local_user&#x3D;YES</span><br><span class="line">allow_writeable_chroot&#x3D;YES</span><br><span class="line">secure_chroot_dir&#x3D;&#x2F;var&#x2F;run&#x2F;vsftpd&#x2F;empty</span><br><span class="line">pam_service_name&#x3D;vsftpd</span><br><span class="line">pasv_enable&#x3D;Yes</span><br><span class="line">pasv_min_port&#x3D;10000</span><br><span class="line">pasv_max_port&#x3D;11000</span><br><span class="line">user_sub_token&#x3D;$USER</span><br></pre></td></tr></table></figure>
-
-<p>vsftpd.conf 파일을 저장하고, ftp를 재시작하고 서비스가 항상 동작하도록 설정하자. </p>
-<p>아래 명령어를 순차적으로 입력하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl stop vsftpd.service</span><br><span class="line">sudo systemctl start vsftpd.service</span><br><span class="line">sudo systemctl enable vsftpd.service</span><br></pre></td></tr></table></figure>
-
-<p>그리고 아래 명령어로 서비스가 재대로 동작중인지 확인하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status vsftpd</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2019/Untitled-810ab2cd-673d-490b-825e-517fe4494f60.png" alt></p>
-<p>이제 virtualbox ubuntu18.04에서 ftp로 접속해서 동작을 하는지 한번 보자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ftp 127.0.0.1</span><br></pre></td></tr></table></figure>
-
-<p>터미널 창에 위 명령어로 접속을 시도해보자.</p>
-<p><img src="/images/2019/Untitled-03c99918-2621-4950-b406-bf0470a40590.png" alt></p>
-<p>위처럼 접근이 가능한지 확인 할수 있다.</p>
-<h3 id="호스트-PC-windows10-에서-파일질라로-게스트PC-Ubuntu1804-에-접근하기"><a href="#호스트-PC-windows10-에서-파일질라로-게스트PC-Ubuntu1804-에-접근하기" class="headerlink" title="호스트 PC(windows10)에서 파일질라로 게스트PC(Ubuntu1804)에 접근하기"></a>호스트 PC(windows10)에서 파일질라로 게스트PC(Ubuntu1804)에 접근하기</h3><p>파일질라는 무료라 구글에서 검색해서 받으면 된다.</p>
-<p>파일질라를 열자.</p>
-<p>프로토콜을 SFTP로 설정하고 계정정보를 입력하고 연결해보자.</p>
-<p><img src="/images/2019/Untitled-46e85a25-25d9-43aa-8ad6-5fab34b09cce.png" alt></p>
-<p><img src="/images/2019/Untitled-0d1abfd8-32a2-4ea2-891d-f0fd75294b09.png" alt></p>
-<p>위처럼 접속을 된 것을 확인했다.</p>
-<p>파일 업로드 다운로드 모두 확인함. </p>
-<p>끝!!!</p>
-<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://dejavuqa.tistory.com/251" target="_blank" rel="external nofollow noopener noreferrer">https://dejavuqa.tistory.com/251</a></p>
-<p><a href="https://nov19.tistory.com/64" target="_blank" rel="external nofollow noopener noreferrer">https://nov19.tistory.com/64</a></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1426,7 +1384,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

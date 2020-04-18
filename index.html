@@ -254,6 +254,113 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2020/04/18/docker-20200418-docker-mongodb-start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/18/docker-20200418-docker-mongodb-start/" class="post-title-link" itemprop="url">Docker에서 테스트용도의 mongodb 실행하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-18 21:52:37 / Updated at: 21:57:03" itemprop="dateCreated datePublished" datetime="2020-04-18T21:52:37+09:00">2020-04-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>docker로 간단하게 테스트용 mongodb 서버를 실행하는 예제이다.</p>
+<p>이글은 컨테이너 생성과 접근정도만 다룬다.</p>
+<p>관리자 계정생성등은 구글링 ㄱㄱ</p>
+<h2 id="환경"><a href="#환경" class="headerlink" title="환경"></a>환경</h2><ul>
+<li>windows10</li>
+<li>docker desktop</li>
+</ul>
+<h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><p>콘솔에서 아래 명령어로 mongodb 이미지를 검색하자.</p>
+<pre><code>docker search mongo</code></pre><p><img src="/images/2020/Docker%20mongodb/Untitled.png" alt="Docker%20mongodb/Untitled.png"></p>
+<p>아래 명령어로 해당 이미지를 다운받자.</p>
+<pre><code>docker pull mongo</code></pre><p><img src="/images/2020/Docker%20mongodb/Untitled%201.png" alt="Docker%20mongodb/Untitled%201.png"></p>
+<p>아래 명령어로 다움받은 mongo 이미지를 컨테이너화 하고 실행하자.</p>
+<pre><code>docker run -name mongodb_test -d -p 27017:27017 mongo</code></pre><p><strong>옵션설명</strong></p>
+<ul>
+<li>-name mongodb_test : 컨테이너 이름을 mongodb_test로 지정</li>
+<li>-d : 데몬으로 실행 설정</li>
+<li>-p 27017:27017 : 호스트 포트 27017로 접슨시 해당 컨테이너의 27017로 포트포워딩</li>
+</ul>
+<p><strong>주의</strong></p>
+<p>위에서 생성한 mongodb_test 는 테스트용 db로 사용할 목적이라서 로그인없이 db에 접근이 가능하다.</p>
+<p>만약 몽고 컨테이너 생성시 로그인 기능을 활성화 시키려면 아래 명령어로 컨테이너를 실행시키자.</p>
+<pre><code>docker run -name mongodb_test -d -p 27017:27017 mongo –auth</code></pre><p>마지막에 <strong>-auth</strong>를 추가해주면 된다. 나느 테스트 용이므로 -auth 옵션은 생략한다.</p>
+<p><img src="/images/2020/Docker%20mongodb/Untitled%202.png" alt="Docker%20mongodb/Untitled%202.png"></p>
+<p>mysql는 이전에 테스트용으로 생성한 것이다. mongodb_test 컨테이너가 생성된 것을 확인 할 수 있다.</p>
+<p>이제 컨테이너에 bash로 붙어보자.</p>
+<pre><code>docker exec -it mongodb_test /bin/bash</code></pre><p>위 명령어로 컨테이너에 진입하게 되면 다시 아래 명령어로 mongodb에 붙어보자.</p>
+<pre><code>mongo</code></pre><p><img src="/images/2020/Docker%20mongodb/Untitled%203.png" alt="Docker%20mongodb/Untitled%203.png"></p>
+<p>위처럼 정상 접근이 되는 것을 확인 할 수 있다.</p>
+<p>끝!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2020/04/16/git-20200416-git-ssh-key-generate/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1609,109 +1716,6 @@ hexo server                #hexo 블로그 기동</code></pre><p>아래 hexo ini
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/10/26/react-20191026-react-modal-draggable/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/26/react-20191026-react-modal-draggable/" class="post-title-link" itemprop="url">react 드래그 modal 예제</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-10-26 02:11:18" itemprop="dateCreated datePublished" datetime="2019-10-26T02:11:18+09:00">2019-10-26</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/react/" itemprop="url" rel="index">
-                    <span itemprop="name">react</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>windows에서 create-react-app으로 예제 프로젝트를 준비했다.</p>
-<p><img src="/images/2019/Untitled-15d005bb-ceac-4a63-8045-4b64d65db61a.png" alt></p>
-<p><a href="https://reactstrap.github.io/" target="_blank" rel="external nofollow noopener noreferrer">https://reactstrap.github.io/</a></p>
-<p>react에서 bootstrap을 컴포넌트를 제공하는 라이브러리가 있다. reactstrap이라는 라이브러리이다.</p>
-<p>설치하자. 이 라이브러리에 있는 모달을 사용할 예정이다.</p>
-<pre><code>npm install --save reactstrap react react-dom</code></pre><p><a href="https://www.npmjs.com/package/react-draggable" target="_blank" rel="external nofollow noopener noreferrer">https://www.npmjs.com/package/react-draggable</a></p>
-<p>react에서 마우스 드래그 기능을 제공하는 라이브러리이다 설치하자.</p>
-<p>해당 라이브러리는 modal에만 해당하는것이 아니라 감싼 컴포넌트 모두를 지원한다.</p>
-<pre><code>npm install react-draggable</code></pre><p><img src="/images/2019/Untitled-f41dddcb-82d9-4253-a436-bd45624d6924.png" alt></p>
-<p>ModalExample.js 라는 파일을 만들자. 이 파일이 마우스 드래그가 가능한 모달 컴포넌트이다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line">    <span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line">    <span class="keyword">import</span> &#123; Button, Modal, ModalHeader, ModalBody, ModalFooter &#125; <span class="keyword">from</span> <span class="string">'reactstrap'</span>;</span><br><span class="line">    <span class="keyword">import</span> Draggable <span class="keyword">from</span> <span class="string">'react-draggable'</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">ModalExample</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">      <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">        <span class="keyword">super</span>(props);</span><br><span class="line">        <span class="keyword">this</span>.state = &#123;</span><br><span class="line">          modal: <span class="literal">false</span></span><br><span class="line">        &#125;;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">this</span>.toggle = <span class="keyword">this</span>.toggle.bind(<span class="keyword">this</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    </span><br><span class="line">      toggle() &#123;</span><br><span class="line">        <span class="keyword">this</span>.setState(<span class="function"><span class="params">prevState</span> =&gt;</span> (&#123;</span><br><span class="line">          modal: !prevState.modal</span><br><span class="line">        &#125;));</span><br><span class="line">      &#125;</span><br><span class="line">    </span><br><span class="line">      render() &#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">          &lt;div&gt;</span><br><span class="line">            &lt;Button color=<span class="string">"danger"</span> onClick=&#123;<span class="keyword">this</span>.toggle&#125;&gt;&#123;<span class="keyword">this</span>.props.buttonLabel&#125;&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">            &lt;Draggable</span></span><br><span class="line"><span class="regexp">            axis="both"</span></span><br><span class="line"><span class="regexp">            handle=".handle"</span></span><br><span class="line"><span class="regexp">            defaultPosition=&#123;&#123;x: 0, y: 0&#125;&#125;</span></span><br><span class="line"><span class="regexp">            position=&#123;null&#125;</span></span><br><span class="line"><span class="regexp">            grid=&#123;[25, 25]&#125;</span></span><br><span class="line"><span class="regexp">            scale=&#123;1&#125;</span></span><br><span class="line"><span class="regexp">            onStart=&#123;this.handleStart&#125;</span></span><br><span class="line"><span class="regexp">            onDrag=&#123;this.handleDrag&#125;</span></span><br><span class="line"><span class="regexp">            onStop=&#123;this.handleStop&#125;&gt;</span></span><br><span class="line"><span class="regexp">            &lt;Modal isOpen=&#123;this.state.modal&#125; toggle=&#123;this.toggle&#125; className=&#123;this.props.className&#125;&gt;</span></span><br><span class="line"><span class="regexp">              &lt;ModalHeader toggle=&#123;this.toggle&#125; className="handle"&gt;Modal title&lt;/</span>ModalHeader&gt;</span><br><span class="line">              &lt;ModalBody&gt;</span><br><span class="line">                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed <span class="keyword">do</span> eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor <span class="keyword">in</span> reprehenderit <span class="keyword">in</span> voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt <span class="keyword">in</span> culpa qui officia deserunt mollit anim id est laborum.</span><br><span class="line">              &lt;<span class="regexp">/ModalBody&gt;</span></span><br><span class="line"><span class="regexp">              &lt;ModalFooter&gt;</span></span><br><span class="line"><span class="regexp">                &lt;Button color="primary" onClick=&#123;this.toggle&#125;&gt;Do Something&lt;/</span>Button&gt;&#123;<span class="string">' '</span>&#125;</span><br><span class="line">                &lt;Button color=<span class="string">"secondary"</span> onClick=&#123;<span class="keyword">this</span>.toggle&#125;&gt;Cancel&lt;<span class="regexp">/Button&gt;</span></span><br><span class="line"><span class="regexp">              &lt;/</span>ModalFooter&gt;</span><br><span class="line">            &lt;<span class="regexp">/Modal&gt;</span></span><br><span class="line"><span class="regexp">            &lt;/</span>Draggable&gt;</span><br><span class="line">          &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">        );</span></span><br><span class="line"><span class="regexp">      &#125;</span></span><br><span class="line"><span class="regexp">    &#125;</span></span><br><span class="line"><span class="regexp">    </span></span><br><span class="line"><span class="regexp">    export default ModalExample;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">App.js</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">    import React from 'react';</span></span><br><span class="line"><span class="regexp">    import './</span>App.css<span class="string">';</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    import ModalExample from '</span>./ModalExample<span class="string">';</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    function App() &#123;</span></span><br><span class="line"><span class="string">      return (</span></span><br><span class="line"><span class="string">        &lt;div className="App"&gt;</span></span><br><span class="line"><span class="string">          &lt;ModalExample buttonLabel=&#123;"모달 테스트"&#125;&gt;&lt;/ModalExample&gt;</span></span><br><span class="line"><span class="string">        &lt;/div&gt;</span></span><br><span class="line"><span class="string">      );</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    export default App;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2019/Untitled-aad57dc8-6977-4dd3-a7aa-2f429b61b1c3.png" alt></p>
-<p>npm run start 로 실행해보자.</p>
-<p>모달창을 열고 모달의 제목을 마우스로 드래그 하면 드래그가 가능한 것을 확인 할 수 있다.</p>
-<p><img src="/images/2019/Untitled-17358c2c-8fd5-4fab-8949-e21e5cd6f3d3.png" alt></p>
-<p>현재 드래그가 좀 버벅이는 것 처럼 보이는데, 그것은 react-draggable의 옵션으로 부드러움 정도를 설정 할수 있다.</p>
-<p>해당 예제는 아래 github에 올려놓았다.</p>
-<p><a href="https://github.com/hanumoka/react-modal-draggable.git" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/hanumoka/react-modal-draggable.git</a></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1782,7 +1786,7 @@ hexo server                #hexo 블로그 기동</code></pre><p>아래 hexo ini
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

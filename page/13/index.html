@@ -254,6 +254,114 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/07/25/STS-20180725-STS-github-issue-plugin/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/07/25/STS-20180725-STS-github-issue-plugin/" class="post-title-link" itemprop="url">STS(Spring Tool Suite) - github issues 트래커 연동(mylyn) GitHub Extensions 설치</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-07-25 18:03:09" itemprop="dateCreated datePublished" datetime="2018-07-25T18:03:09+09:00">2018-07-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/STS/" itemprop="url" rel="index">
+                    <span itemprop="name">STS</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>현재 STS(Spring Tool Suite)와 Github를 통해 개인 프로젝트를 개발하고 있다.<br>Github의 Issue 관리 시스템을 STS 연동하여 사용하고 싶은 생각에, 인터넷을 조금 검색하니 연동하는 방법이 있어서 이렇게 정리한다.</p>
+<p>참고로 <strong>이클립스(Eclipce)에서는 GitHub 관련 Mylyn 커넥터가 없어서 안되더라.</strong><br>(뭔가 내가 잘못했거나, 다른 방법이 있을수도…)</p>
+<hr>
+<h1 id="STS에서-GitHub-Extensions-플러그인-설치하기"><a href="#STS에서-GitHub-Extensions-플러그인-설치하기" class="headerlink" title="STS에서 GitHub Extensions 플러그인 설치하기"></a>STS에서 GitHub Extensions 플러그인 설치하기</h1><p>일단 STS에서 GitHub의 Issues를 Task에 연동하려면 GitHub Extension이라는 플러그인을 STS에 설치해야 한다.</p>
+<p>STS툴에서 -&gt; Help -&gt; Eclipse Maketplace… 선택 -&gt; Find에 github 입력후 검색 -&gt; Gitub Extensions를 설치하자.<br><strong>GitHub Extensions 플러그인의 설명을 보면 GitHub Mylyn Connector라고 되어있다.</strong></p>
+<p><img src="/images/20180725-STS-github-issue-plugin_1.png" alt="GitHub Extensions를 설치하자. 나는 이미 설치해서 Installed라고 보아는 것 뿐이다."></p>
+<p>GitHub Extensions 설치 뒤(아마 STS재시작을 해야 할 것이다.) -&gt; STS의 Window 메뉴의 Show view 에서 Task Repositoreis를 열어서 -&gt; github 원격 저장소 정보를 입력하여 Task Repository를 추가한다.(http 방식으로 입력해야 한다.)</p>
+<p><img src="/images/20180725-STS-github-issue-plugin_4.png" alt="Task Repositoreis에서 마우스 우클릭 하면 add Task Repositories를 선택한 뒤 Github issuses를 선택"></p>
+<p><img src="/images/20180725-STS-github-issue-plugin_5.png" alt="github 저장소의 정보를 입력하는 창이 뜬다. 정보를 입력하여 저장하자"></p>
+<p><strong>주의</strong><br>Task Repository를 추가할때 이 정보입력에서 삽질을 좀 했다.<br>github의 원격 리파지토리에서 clone with https 버튼을 누르면, 해당 원격저장소의 web URL 정보가 나오는데 그 형태는 아래와 같다.</p>
+<blockquote>
+<p><a href="https://github.com/유저명/리파지토리명.git" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/유저명/리파지토리명.git</a></p>
+</blockquote>
+<p>일반적인 형상관리를 위해서는 위 URL을 그대로 사용하면 되지만, STS에 add Task repository 화면에서 입력 할때에는 아래와 같이 입력해야 한다.</p>
+<blockquote>
+<p><a href="http://github.com/유저명/리파지토리명" target="_blank" rel="external nofollow noopener noreferrer">http://github.com/유저명/리파지토리명</a></p>
+</blockquote>
+<p><img src="/images/20180725-STS-github-issue-plugin_6.png" alt="github 원격저장소 정보와 사용자명, 비밀번호를 입력하면 된다."></p>
+<p><img src="/images/20180725-STS-github-issue-plugin_2.png" alt="위처럼 github의 원격 저장소정보가 저장된 것을 확인 할수 있다."></p>
+<p>TaskList 뷰에서 연결된 github의 Issue등을 관리 할수 있다.</p>
+<p><img src="/images/20180725-STS-github-issue-plugin_3.png" alt="STS에서 github에 있는 이슈들을 바로 볼수 있으며 수정, 삭제등도 가능하다."></p>
+<p>GitHub Extensions플러그인은 github의 이슈를 STS의 Task로 대체해서 보여주는듯 하다.<br>소스를 커밋할때 이슈와 커밋은 연결 할 수 있으며, 커밋메시지를 통해서 이슈의 상태도 변화 시킬수 있다.<br>대충 보면 어떻게 사용해야 할지 감이 올것이다.</p>
+<p>이클립스의 Mylyne, Task, Task tag, ToDo등 조금더 정밀한 사용법은 공부를 해 봐야 할것 같다.</p>
+<p>끝!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/07/23/STS-20180723-STS-jre-unbound-error/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1265,102 +1373,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/06/30/programing-model-20180630-weakness-of-waterfall-model/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/06/30/programing-model-20180630-weakness-of-waterfall-model/" class="post-title-link" itemprop="url">폭포수 방법론의 단점</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-06-30 21:06:20" itemprop="dateCreated datePublished" datetime="2018-06-30T21:06:20+09:00">2018-06-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programing-model/" itemprop="url" rel="index">
-                    <span itemprop="name">programing_model</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/20180630-weakness-of-waterfall-model_1.png" alt></p>
-<h3 id="폭포수-워터폴-방법론-이란"><a href="#폭포수-워터폴-방법론-이란" class="headerlink" title="폭포수(워터폴) 방법론 이란?"></a>폭포수(워터폴) 방법론 이란?</h3><p>폭포수 방법론은 프로그래밍 개발 방법론 중 아마도 가장 오래된 방법론이 아닐까 생각된다.<br>이름 그대로 폭포수 처럼 위에서 아래로, 즉 한방향으로 진행하는 프로그램 개발 방법론이다.</p>
-<p>예를 들어 자바 웹 프로그램을 개발한다고 치면 아래와 같이 프로젝트가 단계별로 진행하는 것이다.</p>
-<p>요구사항 분석(업무분석가) -&gt; 화면설계서(디자인) -&gt; 디자인 이지미(디자인) -&gt; HTML(퍼블리셔) -&gt; 자바스크립트, ajax 코드(퍼빌리셔, 개발자) -&gt; JSP, JAVA 코드(백엔드 개발자) -&gt; 테스트 케이스, 테스트 코드 …</p>
-<p><strong>차근차근, 하나하나, 차곡차곡 단계별로 프로젝트를 진행하는 이 폭포수 방법론은 방법론이라는 말이 무색하게 아주 심플하기 때문에 프로젝트 구성원이 이 방법론을 따로 배울 필요가 없다는 엄청난 장점이 있다.</strong></p>
-<p>하지만 그 반대로 엄청난 단점 또한 있으니…</p>
-<hr>
-<h3 id="폭포수-방식-프로젝트-진행의-문제점"><a href="#폭포수-방식-프로젝트-진행의-문제점" class="headerlink" title="폭포수 방식 프로젝트 진행의 문제점"></a>폭포수 방식 프로젝트 진행의 문제점</h3><h4 id="문제점1"><a href="#문제점1" class="headerlink" title="문제점1"></a>문제점1</h4><p>하위 업무가 상위 업무에 종속되므로 상위 업무가 완료될 때까지 하위 업무 담당자들은 대기해야 한다.<br>가장 하위에 있는 개발자와 QA가 항상 일정에 쫒기는 이유가 된다.</p>
-<h4 id="문제점2"><a href="#문제점2" class="headerlink" title="문제점2"></a>문제점2</h4><p>프로세스 진행중 지속적으로 발생하는 변화에 대응하기 어렵다.<br>즉, 개발 중 기능 변경하기 어렵다.<br>차곡차곡 아래부터 쌓아 올리는 돌탑의 아랫돌을 빼기가 어렵듯이 말이다.</p>
-<p><strong>위와 같은 문제가 발행하는 이유는, 폭포수 개발 방법론이 인간의 불완전성을 간과하고 있기 때문이다.</strong><br><em>인간의 생각에는 많은 오류가 있다.</em><br><em>인간이 미래를 예측하는 것은 매우 어렵다.</em><br><em>인간은 복잡한 것을 다루는 것이 취약하다.</em><br>위 말을 달리 하면, 인간은 완벽한 요구사항 분석을 할 수 없다.<br>인간은 완벽한 화면설계를 할 수 없다.<br>인간은 완벽한 개발을 할 수 없다.<br>인간은 완벽한 테스트를 할 수 없다.</p>
-<hr>
-<h3 id="변화에-능숙하게-대응-하기-위해서…"><a href="#변화에-능숙하게-대응-하기-위해서…" class="headerlink" title="변화에 능숙하게 대응 하기 위해서…"></a>변화에 능숙하게 대응 하기 위해서…</h3><p>애자일, xp, 스크럼 등등 방법론은 폭포수 방법론의 문제점을 극복하기 위해 태어난 방법론이다.<br>이 것들도 완벽한 방법론이 아니다.<br>각자 자신의 환경에 맞게 필요한 것만 차용하고 커스텀할 필요가 있다.<br>다만 중요한 점은 애자일 등의 방법론은 인간의 불완전성을 인지하고 있다는 것이다.<br>이것이 중요하다.</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1431,7 +1443,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

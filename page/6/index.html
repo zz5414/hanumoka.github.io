@@ -254,6 +254,106 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/04/intelliJ-20190104-intelliJ-Comunity-springboot-settting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/04/intelliJ-20190104-intelliJ-Comunity-springboot-settting/" class="post-title-link" itemprop="url">intelliJ Comunity에 SpringBoot 프로젝트 생성하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-01-04 10:25:23" itemprop="dateCreated datePublished" datetime="2019-01-04T10:25:23+09:00">2019-01-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/intelliJ/" itemprop="url" rel="index">
+                    <span itemprop="name">intelliJ</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>스프링 개발을 해오면서, 주로 전자정부프레임워크, 이클립스, STS등을 사용해 왔었다.<br>intelliJ ide가 넘사벽으로 좋다고 이야기는 많이 들어 봤으나, 유료인데다 월단위 라이센스라 선뜻 당기지 않았다.</p>
+<p>그러던 와중 인프런 인강에서 springboot 프로젝트를 intelliJ comunity에서도 개발할수 있는 방법을 알게되어 이렇게 정리한다.<br>intellyJ Comunity 버전이라고 무료버전이 있긴한데, 자체적으로 스프링프로젝트 생성을 제공하지 않는 것을 극복할수 있는 것이다.</p>
+<h1 id="intelliJ-comunity-다운로드"><a href="#intelliJ-comunity-다운로드" class="headerlink" title="intelliJ comunity 다운로드"></a>intelliJ comunity 다운로드</h1><p><a href="https://www.jetbrains.com/idea/download/#section=windows" target="_blank" rel="external nofollow noopener noreferrer">https://www.jetbrains.com/idea/download/#section=windows</a></p>
+<p>위 페이지로 가서 Community를 다운로드 받으면 된다.</p>
+<p><img src="/images/20190104-intelliJ-Comunity-springboot-settting_1.png" alt="역시 무료버전이라 기능이 많이 제한되어 있다."></p>
+<p>아 물론 기존에 java가 설치와 환경변수 설정이 선행되어야 한다.<br>그리고 springboot 프로젝트를 위해 jdk8버전 이상이 필요하다.</p>
+<h1 id="Spring-initializr에서-SpringBoot-프로젝트-생성"><a href="#Spring-initializr에서-SpringBoot-프로젝트-생성" class="headerlink" title="Spring initializr에서 SpringBoot 프로젝트 생성"></a>Spring initializr에서 SpringBoot 프로젝트 생성</h1><p>여기서 무료버전이라 intelliJ에서 제공하지 않는 springboot프로젝트를 대신 생성해주는 Spring initializr가 필요하다.</p>
+<p><a href="https://start.spring.io/" target="_blank" rel="external nofollow noopener noreferrer">https://start.spring.io/</a></p>
+<p>위 주소가 Spring initializr, 즉 springboot 프로젝트를 생성해주는 곳이다.</p>
+<p><img src="/images/20190104-intelliJ-Comunity-springboot-settting_2.png" alt="Spring initializr"></p>
+<p>입맛에 맞게 설정한뒤, generate project 버튼을 클릭하면 zip 파일을 하나 내려받게 된다.</p>
+<p>그 파일을 압축해제후 intelliJ comunity 버전으로 열면된다.</p>
+<p><img src="/images/20190104-intelliJ-Comunity-springboot-settting_3.png" alt="실행결과"></p>
+<p>maven 디펜던시를 다 받고 난뒤 run을 하게 되면 springboot 프로젝트가 정상적으로 동작하는 것을 확인 할 수 있다.</p>
+<p>끝!</p>
+<h3 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h3><p><a href="https://start.spring.io/" target="_blank" rel="external nofollow noopener noreferrer">https://start.spring.io/</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/02/java-20190102-java-install-openjdk-10-julu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1145,103 +1245,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/12/02/mysql-20181202-mysql-workbench-bug-not-showing-result-grid/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/02/mysql-20181202-mysql-workbench-bug-not-showing-result-grid/" class="post-title-link" itemprop="url">mysql workbench 쿼리 결과창(result grid) 보이게 하기(Windows)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-12-02 00:39:51" itemprop="dateCreated datePublished" datetime="2018-12-02T00:39:51+09:00">2018-12-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/mysql/" itemprop="url" rel="index">
-                    <span itemprop="name">mysql</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Mysql의 무료 DB관리툴로 Mysql Workbencn라는 것이 있다.<br>공짜! 공짜! 공짜! 툴이라 굉장히 호감이 가는 툴이다.<br>하지만 8버전 이후 버그가 많아진 듯 하다.</p>
-<p>내 경우에는 쿼리의 결과칭이 보이지 않았다.</p>
-<p><img src="/images/20181202-mysql-workbench-bug-not-showing-result-grid_1.png" alt="이렇게 쿼리를 실행한 결과가 보이는 result grid가 나오지 않는 경우가 있다."></p>
-<p>구글링을 해보니 Mysql workbench 8.0.11 버전 이후로 Mac OS에서 위와 같은 문제가 자주 발생한다고 한다.</p>
-<p>그런데… 난 Windows인데 쿼리의 결과창이 안보인다.</p>
-<h1 id="해결방법"><a href="#해결방법" class="headerlink" title="해결방법"></a>해결방법</h1><p>일단 workbench를 리스타트 한다.</p>
-<p><img src="/images/20181202-mysql-workbench-bug-not-showing-result-grid_2.png" alt="번개와 돋보기 모양 아이콘을 클릭한다."></p>
-<p>위 아이콘을 클릭하면 아래처럼 바로 grid result창이 나온다.</p>
-<p><img src="/images/20181202-mysql-workbench-bug-not-showing-result-grid_3.png" alt="result gird를 선택하자."></p>
-<p>별 내용은 없다.</p>
-<p>하지만 workbench에서 버그가 발생한 상태에서 workbench 리스타트를 하지 않고 result grid창을 다시 열어도, 막상 쿼리를 실행시키면 result grid가 사라진다.</p>
-<p>반드시 workbench 재시작 이후에 result grid를 열어주자.</p>
-<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="https://stackoverflow.com/questions/28038580/how-to-hide-view-result-grid-in-mysql-workbench" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/28038580/how-to-hide-view-result-grid-in-mysql-workbench</a></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1312,7 +1315,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

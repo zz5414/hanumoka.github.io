@@ -254,6 +254,116 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/04/29/spring-20180429-spring-mysql-junit-connection-test/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/04/29/spring-20180429-spring-mysql-junit-connection-test/" class="post-title-link" itemprop="url">Spring 프로젝트 mysql접속 junit 테스트 하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-04-29 02:57:02" itemprop="dateCreated datePublished" datetime="2018-04-29T02:57:02+09:00">2018-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h3><p>windows10 pro, STS, jdk1.8, mysql8(docker), mysql workbench 8</p>
+<hr>
+<h3 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h3><p><a href="/2018/04/07/spring-install-sts/">1.STS로 Spring 프레임워크 개발환경셋팅</a><br><a href="/2018/04/08/spring-start-spring-legacy-project/">2.Spring MVC 프로젝트를 생성하여 톰캣에서 실행하기</a><br><a href="/2018/04/18/spring-set-korean/">3.spring mvc 프로젝트 한글설정(utf8)</a></p>
+<p><a href="/2018/04/28/windows10pro-install-docker/">4.Windows10pro docker 설치하기</a><br><a href="/2018/04/29/docker-install-mysql/">5.Docker에서 mysql설치하고 접속해보기</a></p>
+<p><a href="/2018/04/29/spring-mysql-junit-connection-test/">6.Spring 프로젝트 mysql접속 junit 테스트 하기</a><br><a href="/2018/04/29/spring-mybatis-mysql-setting/">7.SpringFramework MyBatis MySQL 연동하기</a></p>
+<hr>
+<h3 id="MySql-스키마-생성-및-db-계정-생성"><a href="#MySql-스키마-생성-및-db-계정-생성" class="headerlink" title="MySql 스키마 생성 및 db 계정 생성"></a>MySql 스키마 생성 및 db 계정 생성</h3><p><img src="/images/20180429-spring-mysql-junit-connection-test_1.png" alt="MySql Workbench에서 SCHEMAS영역에 마우스 우클릭 -&gt; Create Schema... 클릭"></p>
+<p><img src="/images/20180429-spring-mysql-junit-connection-test_2.png" alt="생성할 스키마 명을 입력한뒤 Apply 버튼 클릭"></p>
+<p>스키마 생성 스크립트 수정창이 아래처럼 뜨면 아래처럼 CHARACTER SET을 utf8로 설정하자</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SCHEMA '스키마명' DEFAULT CHARACTER <span class="keyword">SET</span> utf8;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20180429-spring-mysql-junit-connection-test_3.png" alt="스키마 생성 스크립트 수정후 Apply 버튼 클릭"></p>
+<p>생성된 스키마를 확인 하고, 방금 생성한 스키마를 사용할 db 계정을 만들어 보자</p>
+<p><img src="/images/20180429-spring-mysql-junit-connection-test_4.png" alt="MANAGEMENT에서 Users and Privilege를 클릭하자"></p>
+<p><img src="/images/20180429-spring-mysql-junit-connection-test_5.png" alt="Add Accout 클릭 -&gt; 생성할 db 계정명과 비밀번호 입력후 Apply 클릭"></p>
+<p><img src="/images/20180429-spring-mysql-junit-connection-test_6.png" alt="생성한 계정을 클릭 -&gt; Schema Privileges 클릭 -&gt; Selected schema 선택 후 사용할 스키마를 셀랙트박스에서 클릭 -&gt; OK 버튼 클릭"></p>
+<hr>
+<h3 id="Spring-프로젝트에-MySql-JDBC-커넥터-설정"><a href="#Spring-프로젝트에-MySql-JDBC-커넥터-설정" class="headerlink" title="Spring 프로젝트에 MySql JDBC 커넥터 설정"></a>Spring 프로젝트에 MySql JDBC 커넥터 설정</h3><p>spring 프로젝트의 pom.xml에 mysql-connector-java를 추가한다. 접속할 mysql db가 8버전(현재 최신)이라 mysql-connector-java도 현재 최신버전인 8버전으로 설정하였다.</p>
+<p>junit도 혹시나해서 버전을 최신버전으로 설정</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mysql jdbc 커넥터 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>8.0.11<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Test --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>junit<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>4.12<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Spring-프로젝트에서-junit을-이용하여-Mysql-DB-접속-테스트"><a href="#Spring-프로젝트에서-junit을-이용하여-Mysql-DB-접속-테스트" class="headerlink" title="Spring 프로젝트에서 junit을 이용하여 Mysql DB 접속 테스트"></a>Spring 프로젝트에서 junit을 이용하여 Mysql DB 접속 테스트</h3><p>스프링 프로젝트의 src/test/java에 mysql 접속 테스트용 자바파일 생성후 코드 작성</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.hanumoka.web;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"><span class="keyword">import</span> java.sql.DriverManager;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MySQLConnectionTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DRIVER = <span class="string">"com.mysql.jdbc.Driver"</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String URL = <span class="string">"jdbc:mysql://127.0.0.1:3306/hanumoka_spring_template?useSSL=false"</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String USER = <span class="string">"hanumoka"</span>;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PW = <span class="string">"password"</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testConnection</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		</span><br><span class="line">		Class.forName(DRIVER);</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span>(Connection con = DriverManager.getConnection(URL, USER, PW))&#123;</span><br><span class="line">			System.out.println(con);</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="comment">//try_</span></span><br><span class="line">	&#125;<span class="comment">//testConnection_</span></span><br><span class="line">&#125;<span class="comment">//MySQLConnectionTest_</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20180429-spring-mysql-junit-connection-test_7.png" alt="해당 junit 을 실행 후 결과 확인"></p>
+<h3 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h3><p>솔직히 난 junit을 잘 쓸줄 모른다.<br>이번에 spring을 다시 공부하면서, 그동안 내가 얼마나 멍청하게 코딩을 해왔는지를 알게 되었다.</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/04/29/docker-20180429-docker-install-mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1239,97 +1349,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/03/01/programing-etc-20180301-build-vs-complie/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/01/programing-etc-20180301-build-vs-complie/" class="post-title-link" itemprop="url">build vs compile</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-03-01 14:49:34" itemprop="dateCreated datePublished" datetime="2018-03-01T14:49:34+09:00">2018-03-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programing-etc/" itemprop="url" rel="index">
-                    <span itemprop="name">programing_etc</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/20180301-build-vs-complie_1.jpg" alt="hexo 디플로이시 에러내용"></p>
-<p><strong>컴파일(compile)</strong>이란 개발자들이 특정한 프로그래밍언어(예를들어 C, C++, Object-C등)을 사용해서 컴퓨터가 이해할 수 있는 기계어 코드(이진코드)로 변환하는 작업을 일컫는다. 좀더 정확하게 말하면, 컴퓨터와 그 컴퓨터에 설치되어 있는 운영체제가 이해할 수 있는 기계어 코드로 변환하는 일이다. 따라서 동일한 컴퓨터라 할지라도 윈도우가 설치되어 있는 컴퓨터와 리눅스가 설치되어 있는 컴퓨터는 같은 애플리케이션이라도 컴파일된 결과물은 다르다.</p>
-<p>또한, 컴파일해서 생성된 기계어코드만으로 바로 컴퓨터에서 실행될 수는 없다. 그 이유는 대부분의 애플리케이션들은 사용자가 프로그래밍한 소스 코드도 있지만, 상당히 많은 부분들이 라이브러리 형태로 제공되기 때문이다. 예를들어, C프로그래밍을 할 때 키보드를 누르는 기능에 대해 프로그래밍할 필요가 없는 이유는 키보드를 누를 때 발생하는 이벤트나 작업에 대해 이미 표준 라이브러리(Standard library)로 만들어져 있기 때문이다. 바로 이러한 라이브러리를 내가 만든 애플리케이션과 연결해 주는 작업이 바로 <strong>링크(link)</strong>이다.</p>
-<p>요즘은 컴파일과 링크를 합쳐 <strong>빌드(build)</strong>라는 표현을 자주 사용한다. 빌드를 해야 비로소 컴퓨터에서 실행할 수 있는 형태의 기계어 코드가 생성된다. 그러나 한번 프로그래밍을 빌드했다고 해서 자신이 원하는 프로그래밍이 만들어지지는 않는다. 프로그래밍의 신이 아닌 이상 오류가 발생한다. 이러한 오류들을 바로 잡는 작업이 <strong>디버깅(Debugging)</strong>이다. 프로그래머들이 가장 힘들어하는 작업은 소스코드를 코딩하는 단계나 빌드하는 단계가 아니라, 바로 디버깅하는 단계이다.</p>
-<p>디버깅이란 그 이름에서 알 수 있듯이, 자신이 만든 프로그램 내부에 숨겨져 있는 논리적인 오류를 찾아내는 작업이다. 윈도우를 주로 사용하는 사람들도 간혹 컴퓨터를 사용하다가 ‘예기치 않은 오류로 인해 프로그램을 종료합니다.’라는 에러 메시지를 보았을 것이다. 바로 이러한 예지치 못한 에러를 잡아내어 수정하는 작업을 통칭하여 디버깅한다 라고 한다.</p>
-<p>참고: Do it! bada 모바일 프로그래밍 by 여인춘</p>
-<p>출처: <a href="http://hyogeun.tistory.com/96" target="_blank" rel="external nofollow noopener noreferrer">http://hyogeun.tistory.com/96</a> [SW전공자의 Expert를 위하여]</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1400,7 +1419,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

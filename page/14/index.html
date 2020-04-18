@@ -254,6 +254,102 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/06/30/programing-model-20180630-weakness-of-waterfall-model/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/06/30/programing-model-20180630-weakness-of-waterfall-model/" class="post-title-link" itemprop="url">폭포수 방법론의 단점</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-06-30 21:06:20" itemprop="dateCreated datePublished" datetime="2018-06-30T21:06:20+09:00">2018-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/programing-model/" itemprop="url" rel="index">
+                    <span itemprop="name">programing_model</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><img src="/images/20180630-weakness-of-waterfall-model_1.png" alt></p>
+<h3 id="폭포수-워터폴-방법론-이란"><a href="#폭포수-워터폴-방법론-이란" class="headerlink" title="폭포수(워터폴) 방법론 이란?"></a>폭포수(워터폴) 방법론 이란?</h3><p>폭포수 방법론은 프로그래밍 개발 방법론 중 아마도 가장 오래된 방법론이 아닐까 생각된다.<br>이름 그대로 폭포수 처럼 위에서 아래로, 즉 한방향으로 진행하는 프로그램 개발 방법론이다.</p>
+<p>예를 들어 자바 웹 프로그램을 개발한다고 치면 아래와 같이 프로젝트가 단계별로 진행하는 것이다.</p>
+<p>요구사항 분석(업무분석가) -&gt; 화면설계서(디자인) -&gt; 디자인 이지미(디자인) -&gt; HTML(퍼블리셔) -&gt; 자바스크립트, ajax 코드(퍼빌리셔, 개발자) -&gt; JSP, JAVA 코드(백엔드 개발자) -&gt; 테스트 케이스, 테스트 코드 …</p>
+<p><strong>차근차근, 하나하나, 차곡차곡 단계별로 프로젝트를 진행하는 이 폭포수 방법론은 방법론이라는 말이 무색하게 아주 심플하기 때문에 프로젝트 구성원이 이 방법론을 따로 배울 필요가 없다는 엄청난 장점이 있다.</strong></p>
+<p>하지만 그 반대로 엄청난 단점 또한 있으니…</p>
+<hr>
+<h3 id="폭포수-방식-프로젝트-진행의-문제점"><a href="#폭포수-방식-프로젝트-진행의-문제점" class="headerlink" title="폭포수 방식 프로젝트 진행의 문제점"></a>폭포수 방식 프로젝트 진행의 문제점</h3><h4 id="문제점1"><a href="#문제점1" class="headerlink" title="문제점1"></a>문제점1</h4><p>하위 업무가 상위 업무에 종속되므로 상위 업무가 완료될 때까지 하위 업무 담당자들은 대기해야 한다.<br>가장 하위에 있는 개발자와 QA가 항상 일정에 쫒기는 이유가 된다.</p>
+<h4 id="문제점2"><a href="#문제점2" class="headerlink" title="문제점2"></a>문제점2</h4><p>프로세스 진행중 지속적으로 발생하는 변화에 대응하기 어렵다.<br>즉, 개발 중 기능 변경하기 어렵다.<br>차곡차곡 아래부터 쌓아 올리는 돌탑의 아랫돌을 빼기가 어렵듯이 말이다.</p>
+<p><strong>위와 같은 문제가 발행하는 이유는, 폭포수 개발 방법론이 인간의 불완전성을 간과하고 있기 때문이다.</strong><br><em>인간의 생각에는 많은 오류가 있다.</em><br><em>인간이 미래를 예측하는 것은 매우 어렵다.</em><br><em>인간은 복잡한 것을 다루는 것이 취약하다.</em><br>위 말을 달리 하면, 인간은 완벽한 요구사항 분석을 할 수 없다.<br>인간은 완벽한 화면설계를 할 수 없다.<br>인간은 완벽한 개발을 할 수 없다.<br>인간은 완벽한 테스트를 할 수 없다.</p>
+<hr>
+<h3 id="변화에-능숙하게-대응-하기-위해서…"><a href="#변화에-능숙하게-대응-하기-위해서…" class="headerlink" title="변화에 능숙하게 대응 하기 위해서…"></a>변화에 능숙하게 대응 하기 위해서…</h3><p>애자일, xp, 스크럼 등등 방법론은 폭포수 방법론의 문제점을 극복하기 위해 태어난 방법론이다.<br>이 것들도 완벽한 방법론이 아니다.<br>각자 자신의 환경에 맞게 필요한 것만 차용하고 커스텀할 필요가 있다.<br>다만 중요한 점은 애자일 등의 방법론은 인간의 불완전성을 인지하고 있다는 것이다.<br>이것이 중요하다.</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/05/23/jenkins-20180523-jenkins-use-job-with-svn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1358,164 +1454,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/05/19/VisualStudioCode-20180519-visual-stuido-code-markdown-plugin/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/05/19/VisualStudioCode-20180519-visual-stuido-code-markdown-plugin/" class="post-title-link" itemprop="url">마크다운 에디터용 비주얼스튜디오(VisualStudioCode) 플러그인(plugin) 설치</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-05-19 18:02:45" itemprop="dateCreated datePublished" datetime="2018-05-19T18:02:45+09:00">2018-05-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/VisualStudioCode/" itemprop="url" rel="index">
-                    <span itemprop="name">VisualStudioCode</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <!-- TOC -->
-
-<ul>
-<li><a href="#">시작하기</a></li>
-<li><a href="#">언어와 상관없이 공통으로 쓸만한 플러그인</a></li>
-<li><a href="#">프론트엔드 개발시 쓸만한 플러그인</a></li>
-<li><a href="#">마크다운관련 플러그인</a></li>
-</ul>
-<!-- /TOC -->
-
-<h3 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h3><p>나는 이 헥소블로그를 쓸때 비주얼스튜디오 코드를 사용한다.<br>이번에는 이 헥소블러그를 사용할때, 편할수도 있을 플러그인들을 정리해 보겠다.<br>플러그인에 대한 자세한 사용법은 정보페이지 링크를 참조하길 바란다.</p>
-<hr>
-<h3 id="언어와-상관없이-공통으로-쓸만한-플러그인"><a href="#언어와-상관없이-공통으로-쓸만한-플러그인" class="headerlink" title="언어와 상관없이 공통으로 쓸만한 플러그인"></a>언어와 상관없이 공통으로 쓸만한 플러그인</h3><ul>
-<li><strong>Rainbow Brackets</strong><br>코드작성시 중첩된 브라켓(브레이스)를 색으로 구별 해줘서 눈이 편하다.<br><img src="/images/20180519-visual-stuido-code-markdown-plugin_1.png" alt="Rainbow Brackets 적용된 js 코드"></li>
-</ul>
-<ul>
-<li><strong>vscode-icons</strong><br>프로젝트 폴더 내부의 파일과 폴더아이콘을 구별하기 쉬운 아이콘으로 보여준다.<br><img src="/images/20180519-visual-stuido-code-markdown-plugin_2.png" alt="vscode-icons 적용된 폴더트리"></li>
-</ul>
-<ul>
-<li><strong>Active File In StatusBar</strong><br>파일을 선택했을때 창의 하단에 해당 파일의 절대경로를 보여준다.<br><a href="https://marketplace.visualstudio.com/items?itemName=RoscoP.ActiveFileInStatusBar" target="_blank" rel="external nofollow noopener noreferrer">Active File In StatusBar 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>indent-rainbow</strong><br>탭이나 스페이스로 발생된 여백을 색으로 구별해준다.<br><img src="/images/20180519-visual-stuido-code-markdown-plugin_4.png" alt="indent-rainbow 적용된 뒤 여백의 색변화"></li>
-</ul>
-<ul>
-<li><strong>Git History</strong><br>git history를 쉽게보여주고, 파일비교를 해준다.<br>솔직히 이건 안써봐서 잘 모르겠지만 편해보여 설치했다.<br>자세한 사용법은 아래를 참조하길 바란다.<br><a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory" target="_blank" rel="external nofollow noopener noreferrer">Git History 플러그인 정보페이지</a></li>
-</ul>
-<ul>
-<li><strong>Auto Close Tag</strong><br>HTML, XMl 등의 태그를 코딩할때 자동으로 닫아준다.<br><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag" target="_blank" rel="external nofollow noopener noreferrer">Auto Close Tag 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>Auto Rename Tag</strong><br>HTML, XML 태그를 수정할 경우, 자동으로 쌍으로 수정된다.<br><a href="https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag" target="_blank" rel="external nofollow noopener noreferrer">Auto Rename Tag 정보 페이지</a></li>
-</ul>
-<hr>
-<h3 id="프론트엔드-개발시-쓸만한-플러그인"><a href="#프론트엔드-개발시-쓸만한-플러그인" class="headerlink" title="프론트엔드 개발시 쓸만한 플러그인"></a>프론트엔드 개발시 쓸만한 플러그인</h3><ul>
-<li><strong>IntelliSense for CSS class names in HTML</strong><br>HTML코딩시 class에 css를 타이핑시 자동으로 찾아준다.<br><a href="https://marketplace.visualstudio.com/items?itemName=Zignd.html-css-class-completion" target="_blank" rel="external nofollow noopener noreferrer">IntelliSense for CSS class names in HTML 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>Debugger for Chrome</strong><br>HTML페이지를 크롬으로 디버깅 해준다.<br><a href="https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome" target="_blank" rel="external nofollow noopener noreferrer">Debugger for Chrome 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>Beautify</strong><br>HTML, javascript, css, JSON 등등의 코드들을 예쁘게 보여준다.<br><a href="https://marketplace.visualstudio.com/items?itemName=HookyQR.beautify" target="_blank" rel="external nofollow noopener noreferrer">Beautify 정보페이지</a></li>
-</ul>
-<ul>
-<li><strong>ESLint</strong><br>javascript 문법체크, 코드스타일 체크등의 기능을 제공한다.<br><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint" target="_blank" rel="external nofollow noopener noreferrer">ESLint 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>jshint</strong><br>JSLint에서 파생되었으며 JSLint 보다 덜 업격한 javascript 정적 분석툴<br><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.jshint" target="_blank" rel="external nofollow noopener noreferrer">JSLint 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>View In Browser</strong><br>HTML파일을 바로 브라우저로 볼수있게 해준다.<br><a href="https://marketplace.visualstudio.com/items?itemName=qinjia.view-in-browser" target="_blank" rel="external nofollow noopener noreferrer">View In Browser 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>npm</strong><br>음 잘은 모르겠다. 나중에 node 개발할때 편해보여 일단 설치했다.<br><a href="https://marketplace.visualstudio.com/items?itemName=eg2.vscode-npm-script" target="_blank" rel="external nofollow noopener noreferrer">npm 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>npm Intellisense</strong><br>음 잘은 모르겠다. 나중에 node 개발할때 편해보여 일단 설치했다.<br><a href="https://marketplace.visualstudio.com/items?itemName=christian-kohler.npm-intellisense" target="_blank" rel="external nofollow noopener noreferrer">npm Intellisense 정보 페이지</a></li>
-</ul>
-<hr>
-<h3 id="마크다운관련-플러그인"><a href="#마크다운관련-플러그인" class="headerlink" title="마크다운관련 플러그인"></a>마크다운관련 플러그인</h3><ul>
-<li><strong>Markdown All in One</strong><br>다양한 단축키로 마크다운 작성시 편하다.<br><a href="https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one" target="_blank" rel="external nofollow noopener noreferrer">Markdown All in One 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>Markdown Shortcuts</strong><br>마크다운에서 테이블 만들때 편해보여 설치했다. 최초 테이블 작성시 편해보인다.<br><a href="https://marketplace.visualstudio.com/items?itemName=mdickin.markdown-shortcuts" target="_blank" rel="external nofollow noopener noreferrer">Markdown Shortcuts 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>Markdown TOC</strong><br>작성된 마크다운의 H 태그들을 자동으로 바로가기 목차로 만들어준다.<br><a href="https://marketplace.visualstudio.com/items?itemName=AlanWalk.markdown-toc" target="_blank" rel="external nofollow noopener noreferrer">Markdown TOC 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>markdownlint</strong><br>마크다운을 lint 해준다.<br><a href="https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint" target="_blank" rel="external nofollow noopener noreferrer">markdownlint 정보 페이지</a></li>
-</ul>
-<ul>
-<li><strong>Table Formatter</strong><br>마크다운에서 table 사용시 들쭉날쭉한 테이블을 예쁘게 정렬해준다. 이미 작성한 테이블을 수정할때 편해보인다.<br><a href="https://marketplace.visualstudio.com/items?itemName=shuworks.vscode-table-formatter" target="_blank" rel="external nofollow noopener noreferrer">Table Formatter 정보 페이지</a></li>
-</ul>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1586,7 +1524,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">196</span>
+          <span class="site-state-item-count">197</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

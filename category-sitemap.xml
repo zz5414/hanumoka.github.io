@@ -8,6 +8,13 @@
     </url>
 
     <url>
+        <loc>https://www.hanumoka.net/categories/docker/</loc>
+        <lastmod>2020-04-18T12:57:03.546Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.2</priority>
+    </url>
+
+    <url>
         <loc>https://www.hanumoka.net/categories/windows/</loc>
         <lastmod>2020-04-15T16:50:12.042Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -190,13 +197,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/docker/</loc>
-        <lastmod>2020-04-15T16:50:11.979Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.2</priority>
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/categories/chrome/</loc>
         <lastmod>2020-04-15T16:50:11.976Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -239,14 +239,14 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/algorithm/</loc>
+        <loc>https://www.hanumoka.net/categories/VisualStudioCode/</loc>
         <lastmod>2020-04-15T16:50:11.965Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/VisualStudioCode/</loc>
+        <loc>https://www.hanumoka.net/categories/algorithm/</loc>
         <lastmod>2020-04-15T16:50:11.965Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
