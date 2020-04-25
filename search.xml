@@ -8,7 +8,7 @@
       <link href="/2020/04/25/docker-20200425-docker-react-node/"/>
       <url>/2020/04/25/docker-20200425-docker-react-node/</url>
       
-        <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Docker를 사용해서 React와 Node를 묶어 이미지를 만들고 그 이미지를 이용해서 컨테이너를 생성하고 실행하는 예제이다.</p><h2 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h2><ul><li>windows10</li><li>visual studo code</li><li>docker desktop</li></ul><h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><p>일단 create-react-app 으로 사용할 react 프로젝트를 생성한다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app react-docker-example1</span><br></pre></td></tr></table></figure><p>프로젝트 명은 react-docker-example1로 지정했다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled.png" alt="Docker%20React%20Node/Untitled.png"></p><p>프로젝트가 생성되면 정상동작하는지 확인 해 보자.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%201.png" alt="Docker%20React%20Node/Untitled%201.png"></p><p>잘 동작하는 것을 확인 할 수 있다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%202.png" alt="Docker%20React%20Node/Untitled%202.png"></p><p>프로젝트 경로로 진입해서 VisualStudoCode를 실행하자</p><p>아래 명령으로 현재경로에서 VisualStudoCode를 실행 할 수 있다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%203.png" alt="Docker%20React%20Node/Untitled%203.png"></p><p>프로젝트 최상위 경로에 <strong>DockerFile</strong>을 생성하고 내용을 아래처럼 채우자.</p><p><strong>node 이미지 버전의 경우 자신에 맞게 설정해주자.</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">FROM node:12.16.2 as builder</span><br><span class="line"></span><br><span class="line"><span class="comment"># 작업 폴더를 만들고 npm 설치</span></span><br><span class="line">RUN mkdir /usr/src/app</span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line">ENV PATH /usr/src/app/node_modules/.bin:<span class="variable">$PATH</span></span><br><span class="line">COPY package.json /usr/src/app/package.json</span><br><span class="line">RUN npm install --silent</span><br><span class="line">RUN npm install react-scripts@2.1.3 -g --silent</span><br><span class="line"></span><br><span class="line"><span class="comment"># 소스를 작업폴더로 복사하고 앱 실행</span></span><br><span class="line">COPY . /usr/src/app</span><br><span class="line">CMD [<span class="string">"npm"</span>, <span class="string">"start"</span>]</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%204.png" alt="Docker%20React%20Node/Untitled%204.png"></p><p>DockerFile을 만들었다면, 이제 이 DockerFile을 이용해서 image를 생성하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t react-docker-example1</span><br></pre></td></tr></table></figure><p>난 프로젝트명과 이미지명을 동일하게 지정했다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%205.png" alt="Docker%20React%20Node/Untitled%205.png"></p><p>난 DockerFile에 설정한 node 버전의 이미지가 없어서 다운받는데 좀 시간이 걸렸다.</p><p>node 이미지가 받아지면 DockerFile을 기반해서 새로운 이미지가 생성될 것이다.</p><p>아래 명령어로 확인해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%206.png" alt="Docker%20React%20Node/Untitled%206.png"></p><p>DockerFile에서 참조하고 있는 node 이미지와 그 기반으로 만들어진 react-docker-example1 이미지가 보인다.</p><p>아래 명령어로 생성한 react-docker-example1 이미지를 컨테이너화 하고 실행해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -p 3000:3000 --rm 이미지명또는아이디</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%207.png" alt="Docker%20React%20Node/Untitled%207.png"></p><p>docker run 옵션중 -it 로 인해 아래처럼 컨테이너 실행시 react 컨테이너에서 출력하는 콘솔이 터미널로 출력된다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**--rm** 옵션은 컨테이너가 종료될때 해당 컨테이너를 자동으로 지워준다.</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%208.png" alt="Docker%20React%20Node/Untitled%208.png"></p><p>정상적으로 컨테이너가 동작하는 것을 확인 할 수 있다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%209.png" alt="Docker%20React%20Node/Untitled%209.png"></p><p>새로운 터미널에서 아래 명령어로 실행중인 컨테이너를 확인해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%2010.png" alt="Docker%20React%20Node/Untitled%2010.png"></p><p>이제 해당 컨테니어를 종료해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop 컨테이너id</span><br></pre></td></tr></table></figure><p>일반적으로 위 명령어로 docker 컨테이너를 종료한다.</p><p>하지만 docker run 옵션으로 -it 사용했기에, docker run을 실행중인 터미널에서 ctrl+c 를 입력해도 docker 컨테이너가 종료된다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%2011.png" alt="Docker%20React%20Node/Untitled%2011.png"></p><p>다시 docker ps로 해당 컨테이너가 자동으로 삭제되었는지 확인해보자.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%2012.png" alt="Docker%20React%20Node/Untitled%2012.png"></p><p>끝!!!</p><h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="/images/2020/https://codechacha.com/ko/dockerizing-react-with-nginx/">https://codechacha.com/ko/dockerizing-react-with-nginx/</a></p><p>[<a href="https://blog.leedoing.com/171]" target="_blank" rel="external nofollow noopener noreferrer">https://blog.leedoing.com/171]</a>(/images/2020/</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Docker를 사용해서 React와 Node를 묶어 이미지를 만들고 그 이미지를 이용해서 컨테이너를 생성하고 실행하는 예제이다.</p><h2 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h2><ul><li>windows10</li><li>visual studo code</li><li>docker desktop</li></ul><h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><p>일단 create-react-app 으로 사용할 react 프로젝트를 생성한다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app react-docker-example1</span><br></pre></td></tr></table></figure><p>프로젝트 명은 react-docker-example1로 지정했다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled.png" alt="Docker%20React%20Node/Untitled.png"></p><p>프로젝트가 생성되면 정상동작하는지 확인 해 보자.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%201.png" alt="Docker%20React%20Node/Untitled%201.png"></p><p>잘 동작하는 것을 확인 할 수 있다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%202.png" alt="Docker%20React%20Node/Untitled%202.png"></p><p>프로젝트 경로로 진입해서 VisualStudoCode를 실행하자</p><p>아래 명령으로 현재경로에서 VisualStudoCode를 실행 할 수 있다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%203.png" alt="Docker%20React%20Node/Untitled%203.png"></p><p>프로젝트 최상위 경로에 <strong>DockerFile</strong>을 생성하고 내용을 아래처럼 채우자.</p><p><strong>node 이미지 버전의 경우 자신에 맞게 설정해주자.</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">FROM node:12.16.2 as builder</span><br><span class="line"></span><br><span class="line"><span class="comment"># 작업 폴더를 만들고 npm 설치</span></span><br><span class="line">RUN mkdir /usr/src/app</span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line">ENV PATH /usr/src/app/node_modules/.bin:<span class="variable">$PATH</span></span><br><span class="line">COPY package.json /usr/src/app/package.json</span><br><span class="line">RUN npm install --silent</span><br><span class="line">RUN npm install react-scripts@2.1.3 -g --silent</span><br><span class="line"></span><br><span class="line"><span class="comment"># 소스를 작업폴더로 복사하고 앱 실행</span></span><br><span class="line">COPY . /usr/src/app</span><br><span class="line">CMD [<span class="string">"npm"</span>, <span class="string">"start"</span>]</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%204.png" alt="Docker%20React%20Node/Untitled%204.png"></p><p>DockerFile을 만들었다면, 이제 이 DockerFile을 이용해서 image를 생성하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t react-docker-example1</span><br></pre></td></tr></table></figure><p>난 프로젝트명과 이미지명을 동일하게 지정했다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%205.png" alt="Docker%20React%20Node/Untitled%205.png"></p><p>난 DockerFile에 설정한 node 버전의 이미지가 없어서 다운받는데 좀 시간이 걸렸다.</p><p>node 이미지가 받아지면 DockerFile을 기반해서 새로운 이미지가 생성될 것이다.</p><p>아래 명령어로 확인해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%206.png" alt="Docker%20React%20Node/Untitled%206.png"></p><p>DockerFile에서 참조하고 있는 node 이미지와 그 기반으로 만들어진 react-docker-example1 이미지가 보인다.</p><p>아래 명령어로 생성한 react-docker-example1 이미지를 컨테이너화 하고 실행해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -p 3000:3000 --rm 이미지명또는아이디</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%207.png" alt="Docker%20React%20Node/Untitled%207.png"></p><p>docker run 옵션중 -it 로 인해 아래처럼 컨테이너 실행시 react 컨테이너에서 출력하는 콘솔이 터미널로 출력된다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**--rm** 옵션은 컨테이너가 종료될때 해당 컨테이너를 자동으로 지워준다.</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%208.png" alt="Docker%20React%20Node/Untitled%208.png"></p><p>정상적으로 컨테이너가 동작하는 것을 확인 할 수 있다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%209.png" alt="Docker%20React%20Node/Untitled%209.png"></p><p>새로운 터미널에서 아래 명령어로 실행중인 컨테이너를 확인해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%2010.png" alt="Docker%20React%20Node/Untitled%2010.png"></p><p>이제 해당 컨테니어를 종료해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop 컨테이너id</span><br></pre></td></tr></table></figure><p>일반적으로 위 명령어로 docker 컨테이너를 종료한다.</p><p>하지만 docker run 옵션으로 -it 사용했기에, docker run을 실행중인 터미널에서 ctrl+c 를 입력해도 docker 컨테이너가 종료된다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%2011.png" alt="Docker%20React%20Node/Untitled%2011.png"></p><p>다시 docker ps로 해당 컨테이너가 자동으로 삭제되었는지 확인해보자.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%2012.png" alt="Docker%20React%20Node/Untitled%2012.png"></p><p>끝!!!</p><h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href>https://codechacha.com/ko/dockerizing-react-with-nginx/</a><br><a href>https://blog.leedoing.com/171</a></p>]]></content>
       
       
       <categories>
@@ -910,9 +910,9 @@
             
             <tag> ubuntu </tag>
             
-            <tag> vim </tag>
-            
             <tag> virtualbox </tag>
+            
+            <tag> vim </tag>
             
         </tags>
       
@@ -1509,9 +1509,9 @@
       
         <tags>
             
-            <tag> SpringBoot </tag>
-            
             <tag> Spring </tag>
+            
+            <tag> SpringBoot </tag>
             
             <tag> ApplicationRunner </tag>
             
@@ -2459,9 +2459,9 @@
             
             <tag> javascript </tag>
             
-            <tag> 클로저 </tag>
-            
             <tag> closure </tag>
+            
+            <tag> 클로저 </tag>
             
             <tag> let </tag>
             
@@ -2597,9 +2597,9 @@
             
             <tag> javascript </tag>
             
-            <tag> 비동기 </tag>
-            
             <tag> callback </tag>
+            
+            <tag> 비동기 </tag>
             
             <tag> 콜백함수 </tag>
             
@@ -3879,9 +3879,9 @@
             
             <tag> Spring Tool Suite </tag>
             
-            <tag> 이클립스 </tag>
-            
             <tag> eclipse </tag>
+            
+            <tag> 이클립스 </tag>
             
             <tag> js파일 </tag>
             
@@ -4530,9 +4530,9 @@
       
         <tags>
             
-            <tag> firewall-cmd </tag>
-            
             <tag> CentOs </tag>
+            
+            <tag> firewall-cmd </tag>
             
             <tag> port </tag>
             
@@ -4563,11 +4563,11 @@
             
             <tag> CentOs7 </tag>
             
+            <tag> firewall-cmd </tag>
+            
             <tag> subversion </tag>
             
             <tag> install </tag>
-            
-            <tag> firewall-cmd </tag>
             
         </tags>
       
@@ -4623,9 +4623,9 @@
             
             <tag> Spring </tag>
             
-            <tag> Framework </tag>
-            
             <tag> Controller </tag>
+            
+            <tag> Framework </tag>
             
             <tag> Junit </tag>
             
@@ -4656,9 +4656,9 @@
             
             <tag> Spring </tag>
             
-            <tag> Framework </tag>
-            
             <tag> Controller </tag>
+            
+            <tag> Framework </tag>
             
             <tag> JSON </tag>
             
@@ -5285,11 +5285,11 @@
             
             <tag> 하이어라키 이벤트 모델 </tag>
             
+            <tag> 하이라키 이벤트 모델 </tag>
+            
             <tag> Hierachy Event Model </tag>
             
             <tag> event model </tag>
-            
-            <tag> 하이라키 이벤트 모델 </tag>
             
             <tag> 안드로이드 화면 터치 좌표 </tag>
             
@@ -6014,9 +6014,9 @@
             
             <tag> javascript </tag>
             
-            <tag> 클로저 </tag>
-            
             <tag> closure </tag>
+            
+            <tag> 클로저 </tag>
             
         </tags>
       
@@ -6045,9 +6045,9 @@
             
             <tag> javascript </tag>
             
-            <tag> 클로저 </tag>
-            
             <tag> closure </tag>
+            
+            <tag> 클로저 </tag>
             
         </tags>
       
@@ -6076,9 +6076,9 @@
             
             <tag> javascript </tag>
             
-            <tag> 클로저 </tag>
-            
             <tag> closure </tag>
+            
+            <tag> 클로저 </tag>
             
         </tags>
       
