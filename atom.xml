@@ -131,9 +131,9 @@
       <category term="maven" scheme="https://www.hanumoka.net/categories/maven/"/>
     
     
-      <category term="java" scheme="https://www.hanumoka.net/tags/java/"/>
-    
       <category term="maven" scheme="https://www.hanumoka.net/tags/maven/"/>
+    
+      <category term="java" scheme="https://www.hanumoka.net/tags/java/"/>
     
       <category term="local repository" scheme="https://www.hanumoka.net/tags/local-repository/"/>
     
@@ -166,9 +166,9 @@
     
       <category term="deploy" scheme="https://www.hanumoka.net/tags/deploy/"/>
     
-      <category term="nginx" scheme="https://www.hanumoka.net/tags/nginx/"/>
-    
       <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
+      <category term="nginx" scheme="https://www.hanumoka.net/tags/nginx/"/>
     
       <category term="react" scheme="https://www.hanumoka.net/tags/react/"/>
     
@@ -462,13 +462,13 @@
       <category term="docker" scheme="https://www.hanumoka.net/categories/docker/"/>
     
     
+      <category term="jenkins" scheme="https://www.hanumoka.net/tags/jenkins/"/>
+    
       <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
     
       <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
     
       <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
-    
-      <category term="jenkins" scheme="https://www.hanumoka.net/tags/jenkins/"/>
     
       <category term="dockerindocker" scheme="https://www.hanumoka.net/tags/dockerindocker/"/>
     
@@ -499,13 +499,13 @@
       <category term="docker" scheme="https://www.hanumoka.net/categories/docker/"/>
     
     
+      <category term="jenkins" scheme="https://www.hanumoka.net/tags/jenkins/"/>
+    
       <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
     
       <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
     
       <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
-    
-      <category term="jenkins" scheme="https://www.hanumoka.net/tags/jenkins/"/>
     
   </entry>
   
