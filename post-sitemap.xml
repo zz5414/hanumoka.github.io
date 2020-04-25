@@ -56,7 +56,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/07/08/web-20180708-what-is-YAML/</loc>
+        <loc>https://www.hanumoka.net/2018/08/15/web-20180815-web-virtual-dom/</loc>
         <lastmod>2020-04-15T16:50:12.040Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -64,7 +64,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/08/15/web-20180815-web-virtual-dom/</loc>
+        <loc>https://www.hanumoka.net/2018/07/08/web-20180708-what-is-YAML/</loc>
         <lastmod>2020-04-15T16:50:12.040Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -104,6 +104,14 @@
     </url>
 
     <url>
+        <loc>https://www.hanumoka.net/2018/08/26/vue-20180826-web-webpack/</loc>
+        <lastmod>2020-04-15T16:50:12.038Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.hanumoka.net/2018/08/22/vue-20180822-vue-Vue-CLI/</loc>
         <lastmod>2020-04-15T16:50:12.038Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -112,8 +120,8 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/08/26/vue-20180826-web-webpack/</loc>
-        <lastmod>2020-04-15T16:50:12.038Z</lastmod>
+        <loc>https://www.hanumoka.net/2019/12/28/ubuntu-20191228-ubuntu-open-port/</loc>
+        <lastmod>2020-04-15T16:50:12.037Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -136,15 +144,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/12/28/ubuntu-20191228-ubuntu-open-port/</loc>
-        <lastmod>2020-04-15T16:50:12.037Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://www.hanumoka.net/2019/10/05/ubuntu-20191005-ubuntu-docker-compose-install/</loc>
+        <loc>https://www.hanumoka.net/2019/12/28/ubuntu-20191228-ubuntu-create-react-app/</loc>
         <lastmod>2020-04-15T16:50:12.036Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -152,7 +152,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/12/28/ubuntu-20191228-ubuntu-create-react-app/</loc>
+        <loc>https://www.hanumoka.net/2019/10/05/ubuntu-20191005-ubuntu-docker-compose-install/</loc>
         <lastmod>2020-04-15T16:50:12.036Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -176,7 +176,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-visual-studio-code/</loc>
+        <loc>https://www.hanumoka.net/2019/09/26/ubuntu-20190926-ubuntu-grant-root/</loc>
         <lastmod>2020-04-15T16:50:12.035Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -184,7 +184,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/09/26/ubuntu-20190926-ubuntu-grant-root/</loc>
+        <loc>https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-visual-studio-code/</loc>
         <lastmod>2020-04-15T16:50:12.035Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -248,7 +248,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-docker/</loc>
+        <loc>https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-git/</loc>
         <lastmod>2020-04-15T16:50:12.031Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -264,7 +264,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-git/</loc>
+        <loc>https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-docker/</loc>
         <lastmod>2020-04-15T16:50:12.031Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -296,7 +296,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/03/21/typescript-20190321-typescript-webpack-build/</loc>
+        <loc>https://www.hanumoka.net/2019/01/29/ubuntu-20190129-ubuntu-install-docker/</loc>
         <lastmod>2020-04-15T16:50:12.029Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -304,7 +304,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/01/29/ubuntu-20190129-ubuntu-install-docker/</loc>
+        <loc>https://www.hanumoka.net/2019/03/21/typescript-20190321-typescript-webpack-build/</loc>
         <lastmod>2020-04-15T16:50:12.029Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -328,14 +328,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/01/09/springBoot-20190109-springboot-mobile/</loc>
-        <lastmod>2020-04-15T16:50:12.027Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/2019/01/07/springBoot-20190107-springboot-thymeleaf-layout-dialect/</loc>
         <lastmod>2020-04-15T16:50:12.027Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -344,8 +336,8 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/09/21/spring-20190921-spring-mybatis-sqlinjectionsafe/</loc>
-        <lastmod>2020-04-15T16:50:12.026Z</lastmod>
+        <loc>https://www.hanumoka.net/2019/01/09/springBoot-20190109-springboot-mobile/</loc>
+        <lastmod>2020-04-15T16:50:12.027Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -353,6 +345,14 @@
 
     <url>
         <loc>https://www.hanumoka.net/2019/01/04/springBoot-20190104-spring-applicationRunner/</loc>
+        <lastmod>2020-04-15T16:50:12.026Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.hanumoka.net/2019/09/21/spring-20190921-spring-mybatis-sqlinjectionsafe/</loc>
         <lastmod>2020-04-15T16:50:12.026Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -368,7 +368,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/09/11/spring-20180911-spring-Transactional/</loc>
+        <loc>https://www.hanumoka.net/2018/09/06/spring-20180906-spring-file-upload/</loc>
         <lastmod>2020-04-15T16:50:12.025Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -384,7 +384,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/09/06/spring-20180906-spring-file-upload/</loc>
+        <loc>https://www.hanumoka.net/2018/09/11/spring-20180911-spring-Transactional/</loc>
         <lastmod>2020-04-15T16:50:12.025Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -416,7 +416,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/08/18/spring-20180818-spring-RestController/</loc>
+        <loc>https://www.hanumoka.net/2018/08/10/spring-20180810-spring-board-paging/</loc>
         <lastmod>2020-04-15T16:50:12.023Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -424,7 +424,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/08/10/spring-20180810-spring-board-paging/</loc>
+        <loc>https://www.hanumoka.net/2018/08/18/spring-20180818-spring-RestController/</loc>
         <lastmod>2020-04-15T16:50:12.023Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -504,7 +504,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/08/01/spring-20180801-spring-Thymeleaf/</loc>
+        <loc>https://www.hanumoka.net/2018/07/31/spring-20180731-spring4-mvc-tiles3/</loc>
         <lastmod>2020-04-15T16:50:12.019Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -512,7 +512,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/07/31/spring-20180731-spring4-mvc-tiles3/</loc>
+        <loc>https://www.hanumoka.net/2018/08/01/spring-20180801-spring-Thymeleaf/</loc>
         <lastmod>2020-04-15T16:50:12.019Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -544,7 +544,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/04/29/spring-20180429-spring-controller-return-json/</loc>
+        <loc>https://www.hanumoka.net/2018/04/29/spring-20180429-spring-mvc-junit-test/</loc>
         <lastmod>2020-04-15T16:50:12.017Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -552,7 +552,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/04/29/spring-20180429-spring-mvc-junit-test/</loc>
+        <loc>https://www.hanumoka.net/2018/04/29/spring-20180429-spring-controller-return-json/</loc>
         <lastmod>2020-04-15T16:50:12.017Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -568,7 +568,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/04/18/spring-20180418-spring-set-korean/</loc>
+        <loc>https://www.hanumoka.net/2018/04/08/spring-20180408-spring-start-spring-legacy-project/</loc>
         <lastmod>2020-04-15T16:50:12.013Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -576,7 +576,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/04/08/spring-20180408-spring-start-spring-legacy-project/</loc>
+        <loc>https://www.hanumoka.net/2018/04/18/spring-20180418-spring-set-korean/</loc>
         <lastmod>2020-04-15T16:50:12.013Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -592,7 +592,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/04/07/spring-20180407-spring-install-sts/</loc>
+        <loc>https://www.hanumoka.net/2019/12/29/react-20191229-react-nginx-deploy/</loc>
         <lastmod>2020-04-15T16:50:12.012Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -600,7 +600,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/12/29/react-20191229-react-nginx-deploy/</loc>
+        <loc>https://www.hanumoka.net/2018/04/07/spring-20180407-spring-install-sts/</loc>
         <lastmod>2020-04-15T16:50:12.012Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -624,14 +624,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/07/21/programing-model-20180721-agile-for-me/</loc>
-        <lastmod>2020-04-15T16:50:12.010Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/2018/07/03/programing-model-20180703-Agile/</loc>
         <lastmod>2020-04-15T16:50:12.010Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -640,8 +632,8 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/08/19/programing-etc-20180819-log4j-logback-log4j2-SLF4J/</loc>
-        <lastmod>2020-04-15T16:50:12.009Z</lastmod>
+        <loc>https://www.hanumoka.net/2018/07/21/programing-model-20180721-agile-for-me/</loc>
+        <lastmod>2020-04-15T16:50:12.010Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -649,6 +641,14 @@
 
     <url>
         <loc>https://www.hanumoka.net/2018/08/28/programing-etc-20180828-VO-Value-Object-vs-DTO-Data-Transfer-Object/</loc>
+        <lastmod>2020-04-15T16:50:12.009Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.hanumoka.net/2018/08/19/programing-etc-20180819-log4j-logback-log4j2-SLF4J/</loc>
         <lastmod>2020-04-15T16:50:12.009Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -752,7 +752,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/07/07/maven-20180707-error-maven-pom-cantnot-read-lifecycle-mapping-for-artifact/</loc>
+        <loc>https://www.hanumoka.net/2020/01/24/maven-20200124-java-maven-local-repository/</loc>
         <lastmod>2020-04-15T16:50:12.003Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -760,7 +760,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2020/01/24/maven-20200124-java-maven-local-repository/</loc>
+        <loc>https://www.hanumoka.net/2018/07/07/maven-20180707-error-maven-pom-cantnot-read-lifecycle-mapping-for-artifact/</loc>
         <lastmod>2020-04-15T16:50:12.003Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -792,7 +792,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/10/23/jenkins-20191023-jenkins-connect-gitlab/</loc>
+        <loc>https://www.hanumoka.net/2018/05/23/jenkins-20180523-jenkins-use-job-with-svn/</loc>
         <lastmod>2020-04-15T16:50:12.001Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -800,7 +800,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/05/23/jenkins-20180523-jenkins-use-job-with-svn/</loc>
+        <loc>https://www.hanumoka.net/2019/10/23/jenkins-20191023-jenkins-connect-gitlab/</loc>
         <lastmod>2020-04-15T16:50:12.001Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -832,14 +832,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/11/02/javascript-20181102-javascript-callback-weakness-feat-callback-hell/</loc>
-        <lastmod>2020-04-15T16:50:11.998Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/2018/10/06/javascript-20181006-javascript-callback/</loc>
         <lastmod>2020-04-15T16:50:11.998Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -849,6 +841,14 @@
 
     <url>
         <loc>https://www.hanumoka.net/2018/10/24/javascript-20181024-javascript-callback/</loc>
+        <lastmod>2020-04-15T16:50:11.998Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.hanumoka.net/2018/11/02/javascript-20181102-javascript-callback-weakness-feat-callback-hell/</loc>
         <lastmod>2020-04-15T16:50:11.998Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -904,14 +904,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-closure-2/</loc>
-        <lastmod>2020-04-15T16:50:11.995Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-closure-1/</loc>
         <lastmod>2020-04-15T16:50:11.995Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -920,8 +912,8 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-Object-2/</loc>
-        <lastmod>2020-04-15T16:50:11.994Z</lastmod>
+        <loc>https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-closure-2/</loc>
+        <lastmod>2020-04-15T16:50:11.995Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -936,8 +928,8 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/01/02/java-20190102-java-install-openjdk-10-julu/</loc>
-        <lastmod>2020-04-15T16:50:11.993Z</lastmod>
+        <loc>https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-Object-2/</loc>
+        <lastmod>2020-04-15T16:50:11.994Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -945,6 +937,14 @@
 
     <url>
         <loc>https://www.hanumoka.net/2018/12/08/java-20181208-java-jdk-version-history/</loc>
+        <lastmod>2020-04-15T16:50:11.993Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.hanumoka.net/2019/01/02/java-20190102-java-install-openjdk-10-julu/</loc>
         <lastmod>2020-04-15T16:50:11.993Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -968,7 +968,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/12/02/java-20181202-java-int-add-overflow/</loc>
+        <loc>https://www.hanumoka.net/2018/12/02/java-20181202-java-singleton/</loc>
         <lastmod>2020-04-15T16:50:11.992Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -984,7 +984,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/12/02/java-20181202-java-singleton/</loc>
+        <loc>https://www.hanumoka.net/2018/12/02/java-20181202-java-int-add-overflow/</loc>
         <lastmod>2020-04-15T16:50:11.992Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1008,22 +1008,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/11/08/java-20181108-java7-switch/</loc>
-        <lastmod>2020-04-15T16:50:11.990Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
-        <loc>https://www.hanumoka.net/2018/11/16/java-20181116-java-break-label/</loc>
-        <lastmod>2020-04-15T16:50:11.990Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/2018/04/12/java-20180412-java-equals-hashCode/</loc>
         <lastmod>2020-04-15T16:50:11.990Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1032,7 +1016,23 @@
     </url>
 
     <url>
+        <loc>https://www.hanumoka.net/2018/11/08/java-20181108-java7-switch/</loc>
+        <lastmod>2020-04-15T16:50:11.990Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://www.hanumoka.net/2018/11/16/java-20181116-java-for-each/</loc>
+        <lastmod>2020-04-15T16:50:11.990Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.hanumoka.net/2018/11/16/java-20181116-java-break-label/</loc>
         <lastmod>2020-04-15T16:50:11.990Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1064,14 +1064,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2017/09/18/java-20170918-java-nested-class/</loc>
-        <lastmod>2020-04-15T16:50:11.988Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/2017/09/15/java-20170915-java-Anonymouse-class/</loc>
         <lastmod>2020-04-15T16:50:11.988Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1081,6 +1073,14 @@
 
     <url>
         <loc>https://www.hanumoka.net/2017/09/16/java-20170916-java8-interface/</loc>
+        <lastmod>2020-04-15T16:50:11.988Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.hanumoka.net/2017/09/18/java-20170918-java-nested-class/</loc>
         <lastmod>2020-04-15T16:50:11.988Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1112,7 +1112,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2017/09/08/java-20170908-java-floating-point-issue/</loc>
+        <loc>https://www.hanumoka.net/2017/09/08/java-20170908-java-datatype-orverlow/</loc>
         <lastmod>2020-04-15T16:50:11.986Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1120,7 +1120,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2017/09/08/java-20170908-java-datatype-orverlow/</loc>
+        <loc>https://www.hanumoka.net/2017/09/08/java-20170908-java-floating-point-issue/</loc>
         <lastmod>2020-04-15T16:50:11.986Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1208,7 +1208,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/01/24/git-20190124-git-error-Large-files-detected/</loc>
+        <loc>https://www.hanumoka.net/2018/05/16/git-20180516-git-install-on-windows/</loc>
         <lastmod>2020-04-15T16:50:11.981Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1216,7 +1216,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/05/16/git-20180516-git-install-on-windows/</loc>
+        <loc>https://www.hanumoka.net/2019/01/24/git-20190124-git-error-Large-files-detected/</loc>
         <lastmod>2020-04-15T16:50:11.981Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1248,14 +1248,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2019/10/13/docker-20191013-docker-compose-ubuntu-jenkins/</loc>
-        <lastmod>2020-04-15T16:50:11.979Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/2019/10/14/docker-20191014-docker-jenkins-docker-in-docker/</loc>
         <lastmod>2020-04-15T16:50:11.979Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1264,8 +1256,8 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/11/14/docker-20181114-docker-ubuntu-nginx/</loc>
-        <lastmod>2020-04-15T16:50:11.978Z</lastmod>
+        <loc>https://www.hanumoka.net/2019/10/13/docker-20191013-docker-compose-ubuntu-jenkins/</loc>
+        <lastmod>2020-04-15T16:50:11.979Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -1273,6 +1265,14 @@
 
     <url>
         <loc>https://www.hanumoka.net/2018/11/16/docker-20181116-docker-docker-basic/</loc>
+        <lastmod>2020-04-15T16:50:11.978Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.hanumoka.net/2018/11/14/docker-20181114-docker-ubuntu-nginx/</loc>
         <lastmod>2020-04-15T16:50:11.978Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1312,14 +1312,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/08/18/chrome-20180818-google-app-Restlet-Client/</loc>
-        <lastmod>2020-04-15T16:50:11.976Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/2018/04/29/docker-20180429-docker-install-mysql/</loc>
         <lastmod>2020-04-15T16:50:11.976Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1328,8 +1320,8 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/05/23/centOs-20180523-centos-set-network/</loc>
-        <lastmod>2020-04-15T16:50:11.975Z</lastmod>
+        <loc>https://www.hanumoka.net/2018/08/18/chrome-20180818-google-app-Restlet-Client/</loc>
+        <lastmod>2020-04-15T16:50:11.976Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -1337,6 +1329,14 @@
 
     <url>
         <loc>https://www.hanumoka.net/2018/05/23/centOs-20180523-centos-selinux-disable/</loc>
+        <lastmod>2020-04-15T16:50:11.975Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.hanumoka.net/2018/05/23/centOs-20180523-centos-set-network/</loc>
         <lastmod>2020-04-15T16:50:11.975Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1352,7 +1352,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/05/23/centOs-20180523-centos-install-jenkins/</loc>
+        <loc>https://www.hanumoka.net/2018/05/21/centOs-20180521-centos-install-vsftpd/</loc>
         <lastmod>2020-04-15T16:50:11.974Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1360,7 +1360,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/05/21/centOs-20180521-centos-install-vsftpd/</loc>
+        <loc>https://www.hanumoka.net/2018/05/23/centOs-20180523-centos-install-jenkins/</loc>
         <lastmod>2020-04-15T16:50:11.974Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1376,7 +1376,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/05/01/centOs-20180501-centOs-allow-firewall-port/</loc>
+        <loc>https://www.hanumoka.net/2018/04/30/centOs-20180430-centos-install-subversion/</loc>
         <lastmod>2020-04-15T16:50:11.973Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1384,7 +1384,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/04/30/centOs-20180430-centos-install-subversion/</loc>
+        <loc>https://www.hanumoka.net/2018/05/01/centOs-20180501-centOs-allow-firewall-port/</loc>
         <lastmod>2020-04-15T16:50:11.973Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1416,7 +1416,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/10/04/atom-20181004-atom-warning-The-package-spell-check-cannot-load-the-system-dictionary-for-en-US/</loc>
+        <loc>https://www.hanumoka.net/2018/11/06/atom-20181106-atom-live-server/</loc>
         <lastmod>2020-04-15T16:50:11.971Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1424,7 +1424,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/11/06/atom-20181106-atom-live-server/</loc>
+        <loc>https://www.hanumoka.net/2018/10/04/atom-20181004-atom-warning-The-package-spell-check-cannot-load-the-system-dictionary-for-en-US/</loc>
         <lastmod>2020-04-15T16:50:11.971Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1456,7 +1456,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2017/10/02/androidStudio-20171002-androidstudio-problem-tools-android-enable-adb-intergration/</loc>
+        <loc>https://www.hanumoka.net/2017/10/02/androidStudio-20171002-androidstudio-auto-import/</loc>
         <lastmod>2020-04-15T16:50:11.969Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1464,7 +1464,7 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2017/10/02/androidStudio-20171002-androidstudio-auto-import/</loc>
+        <loc>https://www.hanumoka.net/2017/10/02/androidStudio-20171002-androidstudio-problem-tools-android-enable-adb-intergration/</loc>
         <lastmod>2020-04-15T16:50:11.969Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1504,14 +1504,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2017/10/28/android-20171028-android-toolbar/</loc>
-        <lastmod>2020-04-15T16:50:11.967Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/2017/10/12/android-20171012-android-RGBA-chart/</loc>
         <lastmod>2020-04-15T16:50:11.967Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1521,6 +1513,14 @@
 
     <url>
         <loc>https://www.hanumoka.net/2017/12/28/android-20171228-android-delegation-event-model/</loc>
+        <lastmod>2020-04-15T16:50:11.967Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.hanumoka.net/2017/10/28/android-20171028-android-toolbar/</loc>
         <lastmod>2020-04-15T16:50:11.967Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
@@ -1552,14 +1552,6 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/2018/07/23/STS-20180723-STS-jre-unbound-error/</loc>
-        <lastmod>2020-04-15T16:50:11.964Z</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
-
-    </url>
-
-    <url>
         <loc>https://www.hanumoka.net/2018/07/22/STS-20180722-sts-exclude-javascript-files/</loc>
         <lastmod>2020-04-15T16:50:11.964Z</lastmod>
         <changefreq>weekly</changefreq>
@@ -1569,6 +1561,14 @@
 
     <url>
         <loc>https://www.hanumoka.net/2018/07/25/STS-20180725-STS-github-issue-plugin/</loc>
+        <lastmod>2020-04-15T16:50:11.964Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
+        <loc>https://www.hanumoka.net/2018/07/23/STS-20180723-STS-jre-unbound-error/</loc>
         <lastmod>2020-04-15T16:50:11.964Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
