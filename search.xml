@@ -138,9 +138,9 @@
             
             <tag> deploy </tag>
             
-            <tag> ubuntu </tag>
-            
             <tag> nginx </tag>
+            
+            <tag> ubuntu </tag>
             
             <tag> react </tag>
             
@@ -1284,9 +1284,9 @@
       
         <tags>
             
-            <tag> github </tag>
-            
             <tag> error </tag>
+            
+            <tag> github </tag>
             
             <tag> git </tag>
             
@@ -1509,9 +1509,9 @@
       
         <tags>
             
-            <tag> Spring </tag>
-            
             <tag> SpringBoot </tag>
+            
+            <tag> Spring </tag>
             
             <tag> ApplicationRunner </tag>
             
@@ -2182,9 +2182,9 @@
             
             <tag> docker </tag>
             
-            <tag> ubuntu </tag>
-            
             <tag> nginx </tag>
+            
+            <tag> ubuntu </tag>
             
             <tag> 웹서버 </tag>
             
@@ -2399,9 +2399,9 @@
             
             <tag> error </tag>
             
-            <tag> webpack </tag>
-            
             <tag> module </tag>
+            
+            <tag> webpack </tag>
             
         </tags>
       
@@ -3026,11 +3026,11 @@
             
             <tag> vue cli </tag>
             
-            <tag> vue </tag>
-            
             <tag> npm run dev </tag>
             
             <tag> npm run build </tag>
+            
+            <tag> vue </tag>
             
         </tags>
       
@@ -3119,15 +3119,15 @@
       
         <tags>
             
-            <tag> npm run dev </tag>
-            
-            <tag> npm run build </tag>
-            
             <tag> Vue </tag>
             
             <tag> Cli </tag>
             
             <tag> wabpack </tag>
+            
+            <tag> npm run dev </tag>
+            
+            <tag> npm run build </tag>
             
         </tags>
       
@@ -3518,11 +3518,11 @@
             
             <tag> spring </tag>
             
+            <tag> thymeleaf </tag>
+            
             <tag> @ControllerAdvice </tag>
             
             <tag> ControllerAdvice </tag>
-            
-            <tag> thymeleaf </tag>
             
         </tags>
       
@@ -4530,9 +4530,9 @@
       
         <tags>
             
-            <tag> CentOs </tag>
-            
             <tag> firewall-cmd </tag>
+            
+            <tag> CentOs </tag>
             
             <tag> port </tag>
             
@@ -4623,9 +4623,9 @@
             
             <tag> Spring </tag>
             
-            <tag> Controller </tag>
-            
             <tag> Framework </tag>
+            
+            <tag> Controller </tag>
             
             <tag> Junit </tag>
             
@@ -4656,9 +4656,9 @@
             
             <tag> Spring </tag>
             
-            <tag> Controller </tag>
-            
             <tag> Framework </tag>
+            
+            <tag> Controller </tag>
             
             <tag> JSON </tag>
             
@@ -5275,6 +5275,8 @@
       
         <tags>
             
+            <tag> android </tag>
+            
             <tag> 안드로이드 이벤트 모델 </tag>
             
             <tag> 델리게이션 이벤트 모델 </tag>
@@ -5284,8 +5286,6 @@
             <tag> 하이어라키 이벤트 모델 </tag>
             
             <tag> Hierachy Event Model </tag>
-            
-            <tag> android </tag>
             
             <tag> event model </tag>
             
@@ -5318,6 +5318,8 @@
       
         <tags>
             
+            <tag> android </tag>
+            
             <tag> 안드로이드 이벤트 모델 </tag>
             
             <tag> 델리게이션 이벤트 모델 </tag>
@@ -5327,8 +5329,6 @@
             <tag> 하이어라키 이벤트 모델 </tag>
             
             <tag> Hierachy Event Model </tag>
-            
-            <tag> android </tag>
             
             <tag> event model </tag>
             
