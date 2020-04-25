@@ -254,6 +254,117 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/07/27/spring-20180727-Spring-add-log4jdbc-log4j2-in-mysql-mybatis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/07/27/spring-20180727-Spring-add-log4jdbc-log4j2-in-mysql-mybatis/" class="post-title-link" itemprop="url">Spring MyBatis에 log4jdbc-log4j2 설정하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-07-27 20:40:56" itemprop="dateCreated datePublished" datetime="2018-07-27T20:40:56+09:00">2018-07-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="추가사항-20180819"><a href="#추가사항-20180819" class="headerlink" title="추가사항(20180819)"></a>추가사항(20180819)</h1><p>이 설정은 스프링 mybatis 환경에서 DAO Junit 테스트에 대해서만 로그가 발생한다.<br>기존의 log4j가 동작하지 않으며 java 소스의 logger 부분이 동작하지 않는다.<br>현재 log4j2의 환경설정에 문제가 있어 보인다. 찾는중 ….</p>
+<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>MyBatis를 사용해서 개발하다가 보면 가끔 잘못된 SQL이나 잘못된 속성의 이름으로 인해서 예외가 발생하는 경우가 종종 있다.<br>이런 경우를 대비해서 MyBatis의 로그를 보다 자세히 조사할 수 있도록 로그를 설정해 주는 것이 좋다.</p>
+<p>Log4jdbc-log4j2라는 라이브러리를 이용하면, 기존의 jdbc datasource보다 더 상세한 로그를 콘솔에서 확인할수 있다.<br>다만 log4jdbc를 이용하는 경우 속도가 기존보다 저하될수 있고, 데이터베이스에 따라서 지원되지 않는 경우도 있으므로 설정 후에 정상적 동작을 반드시 확인해야 한다.</p>
+<hr>
+<h1 id="Spring-MVC-프로젝트-MySql8-Mybatis-환경에-Log4jdbc-log4j2-적용실습"><a href="#Spring-MVC-프로젝트-MySql8-Mybatis-환경에-Log4jdbc-log4j2-적용실습" class="headerlink" title="Spring MVC 프로젝트 + MySql8 + Mybatis 환경에 Log4jdbc-log4j2 적용실습"></a>Spring MVC 프로젝트 + MySql8 + Mybatis 환경에 Log4jdbc-log4j2 적용실습</h1><p><strong>1.pom.xml에 log4jdbc-log4j2 라이브러리를 추가하자.</strong></p>
+<p>아래 내용을 pom.xml에 추가하자.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- mybatis log4jdbc-log4j2 라이브러리 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.bgee.log4jdbc-log4j2<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4jdbc-log4j2-jdbc4<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">version</span>&gt;</span>1.16<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2.root-context.xml파일에 dataSource를 수정하자.</strong></p>
+<p>root-context.xml파일의 dataSource 빈을 아래처럼 수정하자.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 	기존 데이터 소스 설정</span></span><br><span class="line"><span class="comment">&lt;bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"&gt;</span></span><br><span class="line"><span class="comment">&lt;property name="driverClassName" value="com.mysql.cj.jdbc.Driver"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">&lt;property name="url" value="jdbc:mysql://127.0.0.1:3306/mokaboard_dev?useSSL=false"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">&lt;property name="username" value="mokaboard"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">&lt;property name="password" value="password"&gt;&lt;/property&gt;</span></span><br><span class="line"><span class="comment">&lt;/bean&gt; </span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 변경된 datasouce --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"dataSource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"net.sf.log4jdbc.sql.jdbcapi.DriverSpy"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:log4jdbc:mysql://127.0.0.1:3306/mokaboard_dev?useSSL=false"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"mokaboard"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3.log4jdbc.log4j2.properties파일과 logback.xml 파일을 추가하자.</strong></p>
+<p>src/main/resource 경로에 log4jdbc.log4j2.properties 파일을 생성하고 아래 내용을 입력하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log4jdbc.spylogdelegator.name&#x3D;net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator</span><br></pre></td></tr></table></figure>
+
+<p>src/main/resource 경로에 logback.xml 파일을 생성하고 아래 내용을 입력하자.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">include</span> <span class="attr">resource</span>=<span class="string">"org/springframework/boot/logging/logback/base.xml"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"jdbc.splonly"</span> <span class="attr">level</span>=<span class="string">"DEBUG"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"jdbc.sqltiming"</span> <span class="attr">level</span>=<span class="string">"INFO"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"jdbc.audit"</span> <span class="attr">level</span>=<span class="string">"WARN"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"jdbc.resultset"</span> <span class="attr">level</span>=<span class="string">"ERROR"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"jdbc.resultsettable"</span> <span class="attr">level</span>=<span class="string">"ERROR"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">"jdbc.connection"</span> <span class="attr">level</span>=<span class="string">"INFO"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20180727-Spring-add-log4jdbc-log4j2-in-mysql-mybatis_1.png" alt="log4jdbc.log4j2.properties파일과 logback.xml 위치"></p>
+<p><strong>4.테스트 해보자</strong></p>
+<p>임의의 테이블을 생성하고, VO, DAO, DAOImpl, MybatisMapper.xml을 추가한뒤</p>
+<p>/src/test/java 경로에 단순히 테이블에 Mybatis를 이용해 데이터를 insert하고 그 결과 로그를 확인해 보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">INFO : org.springframework.test.context.support.DefaultTestContextBootstrapper - Loaded default TestExecutionListener class names from location [META-INF&#x2F;spring.factories]: [org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener]</span><br><span class="line">INFO : org.springframework.test.context.support.DefaultTestContextBootstrapper - Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@402f32ff, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@573f2bb1, org.springframework.test.context.support.DependencyInjectionTestExecutionListener@5ae9a829, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6d8a00e3, org.springframework.test.context.transaction.TransactionalTestExecutionListener@548b7f67, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7ac7a4e4]</span><br><span class="line">INFO : org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from file [C:\Users\amagr\Desktop\projectes\MokaBoard\src\main\webapp\WEB-INF\spring\root-context.xml]</span><br><span class="line">INFO : org.springframework.context.support.GenericApplicationContext - Refreshing org.springframework.context.support.GenericApplicationContext@548e7350: startup date [Fri Jul 27 23:48:12 KST 2018]; root of context hierarchy</span><br><span class="line">INFO : org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor - JSR-330 &#39;javax.inject.Inject&#39; annotation found and supported for autowiring</span><br><span class="line">Loading class &#96;com.mysql.jdbc.Driver&#39;. This is deprecated. The new driver class is &#96;com.mysql.cj.jdbc.Driver&#39;. The driver is automatically registered via the SPI and manual loading of the driver class is generally unnecessary.</span><br><span class="line">INFO : org.springframework.jdbc.datasource.DriverManagerDataSource - Loaded JDBC driver: net.sf.log4jdbc.sql.jdbcapi.DriverSpy</span><br><span class="line">Log4j 동작 테스트</span><br><span class="line">INFO : jdbc.connection - 1. Connection opened</span><br><span class="line">INFO : jdbc.audit - 1. Connection.new Connection returned </span><br><span class="line">INFO : jdbc.audit - 1. Connection.getAutoCommit() returned true</span><br><span class="line">INFO : jdbc.audit - 1. PreparedStatement.new PreparedStatement returned </span><br><span class="line">INFO : jdbc.audit - 1. Connection.prepareStatement(select now()) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@415b0b49</span><br><span class="line">INFO : jdbc.sqlonly - select now() </span><br><span class="line"></span><br><span class="line">INFO : jdbc.sqltiming - select now() </span><br><span class="line"> &#123;executed in 22 msec&#125;</span><br><span class="line">INFO : jdbc.audit - 1. PreparedStatement.execute() returned true</span><br><span class="line">INFO : jdbc.resultset - 1. ResultSet.new ResultSet returned </span><br><span class="line">INFO : jdbc.audit - 1. PreparedStatement.getResultSet() returned net.sf.log4jdbc.sql.jdbcapi.ResultSetSpy@383dc82c</span><br><span class="line">INFO : jdbc.resultset - 1. ResultSet.getMetaData() returned com.mysql.cj.jdbc.result.ResultSetMetaData@5f9edf14 - Field level information: </span><br><span class="line">	com.mysql.cj.result.Field@68746f22[catalog&#x3D;null,tableName&#x3D;null,originalTableName&#x3D;null,columnName&#x3D;now(),originalColumnName&#x3D;null,mysqlType&#x3D;12(FIELD_TYPE_DATETIME),sqlType&#x3D;93,flags&#x3D; BINARY, charsetIndex&#x3D;63, charsetName&#x3D;ISO-8859-1]</span><br><span class="line">INFO : jdbc.resultset - 1. ResultSet.getType() returned 1003</span><br><span class="line">INFO : jdbc.resultset - 1. ResultSet.next() returned true</span><br><span class="line">INFO : jdbc.resultset - 1. ResultSet.getString(now()) returned 2018-07-27 14:48:14</span><br><span class="line">INFO : jdbc.resultset - 1. ResultSet.wasNull() returned false</span><br><span class="line">INFO : jdbc.resultsettable - </span><br><span class="line">|--------------------|</span><br><span class="line">|now()               |</span><br><span class="line">|--------------------|</span><br><span class="line">|2018-07-27 14:48:14 |</span><br><span class="line">|--------------------|</span><br><span class="line"></span><br><span class="line">INFO : jdbc.resultset - 1. ResultSet.next() returned false</span><br><span class="line">INFO : jdbc.resultset - 1. ResultSet.close() returned void</span><br><span class="line">INFO : jdbc.audit - 1. PreparedStatement.getConnection() returned net.sf.log4jdbc.sql.jdbcapi.ConnectionSpy@4c2bb6e0</span><br><span class="line">INFO : jdbc.audit - 1. Connection.getMetaData() returned com.mysql.cj.jdbc.DatabaseMetaDataUsingInfoSchema@3e62d773</span><br><span class="line">INFO : jdbc.audit - 1. PreparedStatement.getMoreResults() returned false</span><br><span class="line">INFO : jdbc.audit - 1. PreparedStatement.getUpdateCount() returned -1</span><br><span class="line">INFO : jdbc.audit - 1. PreparedStatement.close() returned </span><br><span class="line">INFO : jdbc.connection - 1. Connection closed</span><br><span class="line">INFO : jdbc.audit - 1. Connection.close() returned </span><br><span class="line">DB 시간:2018-07-27 14:48:14</span><br><span class="line">INFO : jdbc.connection - 2. Connection opened</span><br><span class="line">INFO : jdbc.audit - 2. Connection.new Connection returned </span><br><span class="line">INFO : jdbc.audit - 2. Connection.getAutoCommit() returned true</span><br><span class="line">INFO : jdbc.audit - 2. PreparedStatement.new PreparedStatement returned </span><br><span class="line">INFO : jdbc.audit - 2. Connection.prepareStatement(insert into tbl_member (userid, userpw, username, email) </span><br><span class="line">		values(?, ?, ?, ?)) returned net.sf.log4jdbc.sql.jdbcapi.PreparedStatementSpy@3cce57c7</span><br><span class="line">INFO : jdbc.audit - 2. PreparedStatement.setString(1, &quot;user10&quot;) returned </span><br><span class="line">INFO : jdbc.audit - 2. PreparedStatement.setString(2, &quot;user10&quot;) returned </span><br><span class="line">INFO : jdbc.audit - 2. PreparedStatement.setString(3, &quot;USER10&quot;) returned </span><br><span class="line">INFO : jdbc.audit - 2. PreparedStatement.setString(4, &quot;user10@aaa.com&quot;) returned </span><br><span class="line">INFO : jdbc.sqlonly - insert into tbl_member (userid, userpw, username, email) values(&#39;user10&#39;, &#39;user10&#39;, &#39;USER10&#39;, </span><br><span class="line">&#39;user10@aaa.com&#39;) </span><br><span class="line"></span><br><span class="line">INFO : jdbc.sqltiming - insert into tbl_member (userid, userpw, username, email) values(&#39;user10&#39;, &#39;user10&#39;, &#39;USER10&#39;, </span><br><span class="line">&#39;user10@aaa.com&#39;) </span><br><span class="line"> &#123;executed in 21 msec&#125;</span><br><span class="line">INFO : jdbc.audit - 2. PreparedStatement.execute() returned false</span><br><span class="line">INFO : jdbc.audit - 2. PreparedStatement.getUpdateCount() returned 1</span><br><span class="line">INFO : jdbc.audit - 2. PreparedStatement.close() returned </span><br><span class="line">INFO : jdbc.connection - 2. Connection closed</span><br><span class="line">INFO : jdbc.audit - 2. Connection.close() returned </span><br><span class="line">INFO : org.springframework.context.support.GenericApplicationContext - Closing org.springframework.context.support.GenericApplicationContext@548e7350: startup date [Fri Jul 27 23:48:12 KST 2018]; root of context hierarchy</span><br></pre></td></tr></table></figure>
+
+<p>기존보다 뭔가 자세하고? 상세히 로그가 찍히는 것을 확인 할수 있다.</p>
+<p>이상, 끝!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/07/25/STS-20180725-STS-github-issue-plugin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1246,133 +1357,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/07/03/programing-model-20180703-Agile/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/07/03/programing-model-20180703-Agile/" class="post-title-link" itemprop="url">에자일(Agile)이란?</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-07-03 23:25:17" itemprop="dateCreated datePublished" datetime="2018-07-03T23:25:17+09:00">2018-07-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/programing-model/" itemprop="url" rel="index">
-                    <span itemprop="name">programing_model</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/20180703-Agile_1.png" alt></p>
-<h3 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h3><p>이글은 애자일의 의미, 맥락을 정리한 글이다.<br>구체적인 애자일 방법론에서 사용되는 기술명세는 다루고 있지 않다.</p>
-<hr>
-<h3 id="애자일-Agile-민첩"><a href="#애자일-Agile-민첩" class="headerlink" title="애자일(Agile:민첩)"></a>애자일(Agile:민첩)</h3><p>애자일은 어떤 단일 개념이 아니다.<br>애자일은 서로 다른 여러 맥락에 따른 방법론과 테크닉의 조합이다.<br>소프트웨어 프로젝트는 변화 자체가 기본 속성이다.<br>애자일은 개발팀과 기업들이 그러한 변화에 적응할 수 있도록 변화와 관련된 위험을 줄이기위한 방법론 중 하나이다.<br>애자일의 핵심은 변화에 민첩하게 대응하기 위한 빠른 피드백이다.</p>
-<p>개발자라면 한번쯤 들어 봤을법한 마틴파울러, 켄트벡과 같은 IT업계에 유명한 개발자들이 2001년 애자일 연합을 만들고, 애자일 매니페스토를 창안했다.</p>
-<hr>
-<h3 id="애자일-매니페스토"><a href="#애자일-매니페스토" class="headerlink" title="애자일 매니페스토"></a>애자일 매니페스토</h3><p>우리는 스스로 소프트웨어를 개발하고, 다른 사람들이 개발하는 것을 도와주면서 더 나은 소프트웨어 개발 방법들을 찾고 있다.<br>이 과정에서 우리는 다음과 같은 가치를 중요하게 생각한다.</p>
-<p>절차와 도구보다는 <strong>개성과 화합</strong>을<br>방대한 문서작업 보다는 <strong>동작하는 소프트웨어</strong>를<br>계약 조건에 대한 협상보다는 <strong>고객과의 협력</strong>을<br>계획을 따르는 것을 넘어서서 <strong>변화에 대처하는 것</strong>을<br>더 가치있게 여긴다.</p>
-<p>좌측의 사항도 가치가 있음을 인정하지만 우리는 우측의 사항에 더 높은 가치를 둔다는 것이다.</p>
-<hr>
-<h3 id="애자일-메니페스토의-원칙들"><a href="#애자일-메니페스토의-원칙들" class="headerlink" title="애자일 메니페스토의 원칙들"></a>애자일 메니페스토의 원칙들</h3><ol>
-<li>가치있는 소프트웨어를 일찍, 지속적으로 전달하여 고객을 만족시키는 것을 최우선으로 한다.</li>
-<li>개발의 막바지 단계이더라도 고객의 요구사항 변경을 환영한다. 애자일 프로세스들은 변화를 활용하여 고객의 경쟁력을 높이는 데 기여한다.</li>
-<li>동작하는 소프트웨어를 몇 주에서 몇 개월 단위로 자주 전달한다. 가능한 한 전달주기를 짧게 한다.</li>
-<li>비지니스 담당자들은 프로젝트 기간 내내 매일 개발자와 함께 일한다.</li>
-<li>프로젝트는 동기가 부여된 개인들로 구성한다. 그들이 필요로 하는 환경과 지원을 제공하고 프로젝트가 완료될 때까지 믿고 맡긴다.</li>
-<li>개발팀 내에서 정보를 전달하는 가장 효율적이고 효과적인 방법은 얼굴을 마주보고 대화하는 것이다.</li>
-<li>프로젝트의 진척도를 가늠하는 가장 기본 요소는 동작하는 소프트웨어다.</li>
-<li>애자일 프로세스들은 지속 가능한 개발을 이끈다. 투자자, 개발자, 사용자들은 일정한 개발속도를 계속 수용할 수 있어야 한다.</li>
-<li>기술적인 탁월함과 좋은 설계에 대한 지속적인 관심은 기민함을 높인다.</li>
-<li>단순함, 즉 하지 않아도 될 일은 최대한 하지 않아야 한다.</li>
-<li>최선의 아키텍처, 요구사항, 설계는 스스로 조직화되는 팀에서 나온다.</li>
-<li>개발팀은 정기적으로 일을 어떻게 하는 것이 더 효과적인지 되돌아보고 그에 맞추어 일하는 방식을 조율하고 바로잡는다.</li>
-</ol>
-<hr>
-<h3 id="절차적-관점에서의-애자일-원칙"><a href="#절차적-관점에서의-애자일-원칙" class="headerlink" title="절차적 관점에서의 애자일 원칙"></a>절차적 관점에서의 애자일 원칙</h3><p>애자일은 탐과 조직이 어떻게 구성되고 협업해야 하는지에 대한 것들을 규정한다.</p>
-<ul>
-<li>회의 방식</li>
-<li>구성원 각각의 역할</li>
-<li>요구사항 파악 방법</li>
-<li>작업 진척 속도 파악방법</li>
-<li>점진적/반복적으로 일할 때 취하는 방식</li>
-<li>진행 상황을 개발팀 밖의 관계자(고객, 영업 등)에게 전달하는 방식</li>
-<li>비지니스 피드백 방식</li>
-</ul>
-<hr>
-<h3 id="기술적인-관점에서의-애자일-원칙"><a href="#기술적인-관점에서의-애자일-원칙" class="headerlink" title="기술적인 관점에서의 애자일 원칙"></a>기술적인 관점에서의 애자일 원칙</h3><p>애자일 원칙의 기술적인 부분들은 개발, 확장, 유지보수, 제품을 출시(또는 납품, 서비스 배포)하면서 겪는 어려움들에 대해 특정한 기술적 관례나 기술 자체를 매우 구체적으로 가이드한다.<br>테스트 주도 개발(TDD), 페어 프로그래밍, 지속적인 통합, 단순한 디자인 원칙등과 같은 것들이다.<br>이러한 기술적 원칙들은 소프트웨어의 품질에 집중하여 팀이 결과물을 올바르게 만들어 가는지, 즉 <strong>목표한 것을 올바르게 실행하고 있는지</strong>에 대해 안심할 수 있게 한다.</p>
-<hr>
-<h3 id="애자일-방법론-사용시-주의점"><a href="#애자일-방법론-사용시-주의점" class="headerlink" title="애자일 방법론 사용시 주의점"></a>애자일 방법론 사용시 주의점</h3><p>애자일도 그저 수많은 방법론 중에 하나이다.<br>맹신은 금물이다.<br>그냥 따르기만 하면 갑자기 모든 것이 나아지는 마법의 방법론이 아니다.<br>애자일의 모든 절차들에는 기술적 탁월함이 전제되어 있어야 한다.<br>애자일 전환은 주로 절차, 동기부여 권한이양, 관료주의와 낭비의 제거, 우선순위, 업무의 가시화, 그리고 정보의 흐름에 집중한다.</p>
-<p>절차에만 집중하고 스프트웨어 개발을 공장 라인처럼 취급하면, 그저 시키는 일만 하고 출퇴근하는 공장 노동자와 다를 바 없는 개발자들만 생긴다.<br>이렇게 되면 비효율적인 피드백 시스템이 되어 전체 프로젝트에 해를 끼친다.</p>
-<p>완전한 애자일 전환을 위해서는 프로페셔널 소프트웨어 개발자들이 필요하다.<br>이들은 기술적 실행 관례, 기술적 전문성 그리고 관련도구들을 마스터하고 있어야 한다.<br>정기적으로 계속해서 배포되는 소프트웨어에 대해서도 높은 품질을 유지시키며, 완벽하게 테스트되고 쉽게 변형할 수 있는 소프트웨어를 개발할 수 있어야 한다.<br>완전한 애자일 전환을 위해서는 기업들이 소프트웨어 장인정신을 품어야 한다.</p>
-<hr>
-<h3 id="참고서적"><a href="#참고서적" class="headerlink" title="참고서적"></a>참고서적</h3><p>소프트웨어 장인(산드로 만쿠소)</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1443,7 +1427,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-count">198</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

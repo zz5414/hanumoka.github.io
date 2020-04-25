@@ -254,6 +254,141 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/14/docker-20181114-docker-ubuntu-nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/14/docker-20181114-docker-ubuntu-nginx/" class="post-title-link" itemprop="url">Docker에 Ubuntu에 nginx올려 웹서버 동작시키기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-11-14 10:33:05" itemprop="dateCreated datePublished" datetime="2018-11-14T10:33:05+09:00">2018-11-14</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <!-- TOC -->
+
+<ul>
+<li><a href="#들어가기">들어가기</a></li>
+<li><a href="#실습">실습</a></li>
+<li><a href="#마무리">마무리</a></li>
+</ul>
+<!-- /TOC -->
+
+<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>이번에는 Windows for Docker를 이용해서 Ubuntu 도커 이미지에 nginx를 설치하여 Ubuntu 도커 컨테이너에서 웹서버를 동작시키고, 호스트OS에서 브라우저로 접근해보려 한다.<br>사실 centos이미지를 사용하려 했으나, docker hub에 공유된 공식 centos 이미지는 뭔가 결핍된? 최소화된 상태의 이미지라 뭔가 docker file을 통해 전처리를 해야 하는 작업이 필요했다.<br>그래서 귀찮아서 centos를 ubuntu로 대체했다.</p>
+<p>테스트 해본결과 centos 공식 이미지에 systemctl 명령어가 동작을 하지 않았었다.</p>
+<p>docker를 사용하니 단순히 nignx 이미지를 가지고 웹서버를 돌릴수도 있을 것이다.<br>하지만 어떤 특정 서비스를 동작시키기 위해서 여러가지 다른 프로그램이나 기타 설정들이 필요 할 수도 있다.</p>
+<p>ubuntu이미지 기반에 nginx를 설치하는 형태로 서비스를 만들경우, ubuntu의 패키지 메니저를 사용할수 있기 때문에 기타적인 프로그램 설치, 연동, 설정등이 쉬워진다.</p>
+<h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어로 현재 호스트에 설치된 docker 이미지를 검색해보자.</p>
+<p><img src="/images/20181114-docker-ubuntu-nginx_1.png" alt="docker images"></p>
+<p>음 우분투가 없다.<br>다음 명령어로 docker hub에 ubuntu를 검색하자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181114-docker-ubuntu-nginx_2.png" alt="docker search ubuntu 결과"></p>
+<p>끙… 지금 docker hub쪽 서버가 좀 이상한지 docker search 명령어 응답이 재대로 안나온다.</p>
+<p>대신 windows for docker의 kitematic에서 ubuntu 이미지를 검색하면 공식 우분투 이미지를 확인 할 수 있다.</p>
+<p>끙 근데 역시 도커 허브 서버가 이상한지 이미지를 다운로드 할수가 없다.</p>
+<p><img src="/images/20181114-docker-ubuntu-nginx_3.png" alt="음 docker hub가 간혹 맛탱이가 가는듯 하다."></p>
+<p>이럴 때는 … 나중에 다시 하자.</p>
+<p>A FEW MOMENTS LATER…</p>
+<p><img src="/images/20181114-docker-ubuntu-nginx_4.png" alt="잉?"></p>
+<p>한 참뒤에도 안되서, 다시 kitematic에 들어가니 갑작이 docker hub 계정을 물어본다.</p>
+<p>음 뭔가 전에 입력된 것이 초기화 된듯 하다.</p>
+<p>아 시발 또 안된다. </p>
+<p>A FEW MOMENTS LATER…</p>
+<p><img src="/images/20181114-docker-ubuntu-nginx_5.png" alt="으 마침내 된다."></p>
+<p>검색된 이미지중 ubuntu 공식 이미지를 다운받자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어를 입력하면 자동으로 해당 이미지의 최신 tag 이미지를 받는다.</p>
+<p><img src="/images/20181114-docker-ubuntu-nginx_6.png" alt="다운로드 한뒤 docker images로 조회해 보면 이미지가 다운로드 된 것을 확인 할수있다."></p>
+<p>다음 명렁어로 ubuntu이미지를 컨테이너로 동작시키자.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name ubunto-nginx -p 80:80 -p 443:443 -i -t ubuntu /bin/bash</span><br></pre></td></tr></table></figure>
+
+<p>먼가 dockerfile을 사용하면 다양한 설정이 간편하게 다양한 설정을 가능할것 같은데, 아직 내가 공부가 부족해서 일단 이렇게 docker 명령어로 진행하겠다.<br>위 명렁어를 입력하면 바로 컨테이너가 실행되며 그 컨테이너의 쉘에 진입하게 된다.</p>
+<p>아래 명렁어를 순서대로 입력해자.<br>별 내용은 없어 모든 과정 화면 캡쳐는 생략한다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">apt-get update   #패키지 메니지 업데이트</span><br><span class="line">apt-get install curl    #쉘에서 url 접근을 위해 설치, 웹서버 동작 테스트용</span><br><span class="line">apt-get install nginx   #nginx 설치</span><br><span class="line">service nginx start     #nginx 웹서버 동작</span><br><span class="line">curl -X GET http://127.0.0.1:80   #우분투 도커 컨테이너 내부에서 nginx 서버 동작 확인.</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181114-docker-ubuntu-nginx_7.png" alt="우분투 컨테이너 내에서 nginx 웹서버의 동작을 확인했다."></p>
+<p>그럼 우분투 컨테이너 내부가 아닌 호스트 OS인 windows에서 접속이 되는지 확인해 보자.</p>
+<p><img src="/images/20181114-docker-ubuntu-nginx_8.png" alt="호스트 OS인 윈도우에서 브라우저로 우분투 컨테이너의 웹서버 접근 결과"></p>
+<p>오 잘 된다.<br>끝!</p>
+<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>음 인프라 관련 일을 해본적도 없고, 공부도 별로 못했고 그냥저냥 재미로 docker를 보고 있지만 뭔가 docker를 쉽게 사용하기 위해서는 서비스 단독 이미지를 사용하는 것보다 ubuntu와 같은 패키지 메니저가 설치된 이미지 기반에 서비스를 설치해서 사용하는 것이 편해보인다.</p>
+<p>평소에 잘 안쓰던 리눅스 공부도 되고 일석이조인듯….</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/13/vue-20181113-vue-how-to-make-vue-express-project/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1316,105 +1451,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/02/javascript-20181102-javascript-error-first-callback-pattern/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/02/javascript-20181102-javascript-error-first-callback-pattern/" class="post-title-link" itemprop="url">javascript - 오류 우선 콜백패턴 (error-first callback pattern)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-11-02 20:53:30" itemprop="dateCreated datePublished" datetime="2018-11-02T20:53:30+09:00">2018-11-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>오류 우선 콜백패턴(error-first callback pattern)은 자비스크립트에서 콜백을 사용할때, 콜백과 관련된 에러를 처리를 위한 일종의 코딩 약속과 같다.</p>
-<h1 id="오류-우선-콜백패턴-error-first-callback-pattern-규칙"><a href="#오류-우선-콜백패턴-error-first-callback-pattern-규칙" class="headerlink" title="오류 우선 콜백패턴 (error-first callback pattern) 규칙"></a>오류 우선 콜백패턴 (error-first callback pattern) 규칙</h1><ol>
-<li>콜백의 첫 번째 매개변수에 에러 객체를 사용한다.</li>
-<li>에러가 null이나 undefined이면 정상이라고 판단한다.</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fname = <span class="string">"hanumoka_is_good.txt"</span>;</span><br><span class="line">fs.readFile(fname, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(err) <span class="keyword">return</span> <span class="built_in">console</span>.error(<span class="string">`error reading file <span class="subst">$&#123;fname&#125;</span> : <span class="subst">$&#123;err.message&#125;</span>`</span>);  <span class="comment">// 반드시 return을 해야 한다.</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;fname&#125;</span> contents: <span class="subst">$&#123;data&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20181102-javascript-error-first-callback-pattern_1.png" alt="hanumoka_is_good.txt파일이 없는 상태에서 위 코드 실행결과"></p>
-<p>위 예제는 Node에서 파일을 읽어내는 소스이다.<br>if 조건문에서 err를 판단하여, 에러내용을 콘솔에 찍고 return 한다.<br><strong>중요한 점은 return을 해야 한다는 것이다.</strong></p>
-<p>예를 들어 hanumoka_is_good.txt 파일이 존재하지 않고, 위 소스를 동작시켰을때 err를 잡는 조건문에서 return을 하지 않는다면, hanumoka_is_good.txt파일이 있을경우 동작해야 할<br>다음 소스가 동작해 버리게 된다.</p>
-<p>파일이 없는대도 아래 소스가 동작 한다는 것이다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;fname&#125;</span> contents: <span class="subst">$&#123;data&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20181102-javascript-error-first-callback-pattern_2.png" alt="hanumoka_is_good.txt파일이 없는 상태에서 return 하지 않는 경우 실행결과."></p>
-<p>프로미스를 사용하지 않으면 오류 우선 콜백은 노드 개바의 표준이나 다름없다.<br>콜백을 사용하는 인터페이스를 만들 때는 오류 우선 콜백 패턴을 지키키면서 코딩을 해야 한다.</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1485,7 +1521,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-count">198</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

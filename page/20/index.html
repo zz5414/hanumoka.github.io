@@ -254,6 +254,149 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-closure-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/31/javascript-20170831-javascript-closure-3/" class="post-title-link" itemprop="url">javascript 클로저(closure)사용시 주의사항(3편)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2017-08-31 03:05:40" itemprop="dateCreated datePublished" datetime="2017-08-31T03:05:40+09:00">2017-08-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="클로저-closure-의-사용시-주의사항"><a href="#클로저-closure-의-사용시-주의사항" class="headerlink" title="클로저(closure)의 사용시 주의사항"></a>클로저(closure)의 사용시 주의사항</h2><p>클로저는 그 기묘한 특성?상 다양한 활용이 가능하지만, 무분별하게 사용시 성능문제나 코드의 난독화가 발생한다고 한다.<br>이번글에서는 클로저 사용시 결과 예측을 실수 할수있는 ,즉 헷갈리는 클로저 예제 소스를 통해서 주의할 점을 알아보도록 하겠다.</p>
+<p>1.클로저를 선언하는 외부함수의 유효범위 스코프는 클로저에 의해 변경이 가능하다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFunc</span>(<span class="params">argNum</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> num = argNum;</span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">	num += x;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'num:'</span> + num);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> exam = outerFunc(<span class="number">40</span>);</span><br><span class="line">exam(<span class="number">5</span>);</span><br><span class="line">exam(<span class="number">-10</span>);</span><br></pre></td></tr></table></figure>
+
+<p><strong>결과</strong></p>
+<blockquote>
+<ul>
+<li>num:45</li>
+<li>num:35</li>
+</ul>
+</blockquote>
+<p>사실 주의할 점 까지는 아니지만, 클로저의 가장 중요한 개념이다.<br>클로저를 처음 접할때 가장 햇갈리는 부분이 이부분일 것이다.</p>
+<p>클로저는 살아있다(alive)! 이 말이 무엇이냐면, outerFunc(40); 로 외부함수는 호출되고 종료되었지만, exam 이라는 변수에 클로저가 생성되고 할당 되었다.<br>이 클로저 exam 이 존재 하기 때문에 자바스크립트 엔진은 exam 이 생성될 때, 접근할 수 있는 영역에 대한 부분을 메모리에서 지우지 않고 보존하고 있다. 즉 exam 은 자신을 생성한 outerFunc의 살아있는 유효범위 스코프에 접근하여 값 접근 및 할당이 가능하다.</p>
+<ol start="2">
+<li>하나의 클로저가 여러 함수 객체의 스코프 체인에 들어가 있는 경우도 있다.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> x = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		func1 : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="built_in">console</span>.log(++x); &#125;,</span><br><span class="line">		func2 : <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="built_in">console</span>.log(-x); &#125;</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> exam = func();</span><br><span class="line">exam.func1();</span><br><span class="line">exam.func2();</span><br></pre></td></tr></table></figure>
+
+<p><strong>결과</strong></p>
+<blockquote>
+<ul>
+<li>2</li>
+<li>-2</li>
+</ul>
+</blockquote>
+<p>이 예제도 그렇게 어려운 예제는 아닐 것이다.<br>func()함수가 호출되며 하나의 객체를 리턴하고 그 객체는 func1, func2 두개의 메소드를 가지고 있다.<br>여기서 헷갈릴 가능성이 있는 부분은 리턴한 객체 exam 의 func1과 func2이 각각 다른 x에 접근 할 것이라 생각 할 수도 있다.<br>결과를 확인하면 exam.func1, 과 exam.func2과 동일한 x를 접근 하는 것을 확인 할 수 있다.</p>
+<p>func1과 func2는 [동일한 함수 호출]에 의해 만들어 졌기 때문에 같은 x[동일한 함수 호출의 유효범위 스코프]에 접근 하는 것이다.</p>
+<p>2번 예제를 통해 한가지 더 모호한 점은 클로저라는 어떤 대상의 구분이다.</p>
+<p><img src="/images/2017-06-11-javascript7_1.png" alt></p>
+<p>한개의 클로저의 범위를 정의 한다면, 한개의 외부함수의 유효범위 스코프와 그 유효범위 스코프를 공유하는 내부함수(1개 이상)라고 볼 수 있을것 같다.</p>
+<p>3.클로저를 정의하는 함수 내에서 루프를 이용하는 경우</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">constfuncs</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> funcs = [];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i =<span class="number">0</span>; i &lt; <span class="number">10</span>; i++)&#123;</span><br><span class="line">	funcs[i] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> i;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> funcs;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> funcs = constfuncs();</span><br><span class="line">funcs[<span class="number">0</span>]();</span><br><span class="line">funcs[<span class="number">4</span>]();</span><br><span class="line">funcs[<span class="number">9</span>]();</span><br></pre></td></tr></table></figure>
+
+<p><strong>결과</strong></p>
+<blockquote>
+<ul>
+<li>10</li>
+<li>10</li>
+<li>10</li>
+</ul>
+</blockquote>
+<p>결과를 0, 4, 9 가 리턴 될 것이라 예측 할 수도 있다. (필자 역시…)<br>여기서 중요한 점은 클로저와 연관된 유효범위 체인이 ‘살아있다’라는 것이다.<br>중첩함수의 유효범위에 대한 내부 사본이나 변수 바인딩의 스냅샷은 만들어지지 않는다.<br>이미 funcs<a href>0</a> 이 호출되는 시점에는 자신을 생성할 때 호출된 constFuncs 함수의 var i 는 for문이 완벽하게 동작하고 종료되었기 때문에 10인 것이다.</p>
+<ol start="4">
+<li>this와 arguments 사용시 주의점</li>
+</ol>
+<p>이 부분은 클로저 사용시 주의사항이라기 보다는 내부함수(중첩함수) 사용시 공통적으로 주의해야 할 부분이다.</p>
+<p>모든 함수 호출에는 this값이 있고, 외부 함수가 this 값을 별도로 변수로 저장하지 않으면 클로저는 외부 함수의 this값에 접근 할 수 없다.<br>arguments는 키워드는 아니지만, 모든 함수 호출에 자동으로 선언된다. 클로저 함수는 자신만의 arguments를 가지고 있기 때문에, 외부 함수가 argumengs을 다른 이름의 변수에 저장하지 않는 한, 클로저는 외부 함수의 arguments에 접근 할 수없다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFunc1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.dir(<span class="keyword">this</span>);</span><br><span class="line">	<span class="built_in">console</span>.dir(<span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">	"use strict"</span>;    <span class="comment">// this가 Window 전역객체로 할당 되는것을 강제로 막았다.</span></span><br><span class="line">        <span class="built_in">console</span>.dir(<span class="keyword">this</span>);</span><br><span class="line">	<span class="built_in">console</span>.dir(<span class="built_in">arguments</span> );</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> test1 = outerFunc1(<span class="number">111</span>, <span class="string">'가나다'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2017-06-11-javascript7_3.png" alt></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test1();</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2017-06-11-javascript7_4.png" alt></p>
+<p>리턴된 클로저를 호출시 this 는 undefined(use strict를 통해 강제로 막았기 때문에) 그리고 arguments객체는 존재는 하지만 클로저 자신이 호출될때 생성된 arguments이기 때문에 외부함수 outerFunc1의 arguments에는 접근 할 수 없다.</p>
+<p>해결방법 외부함수의 this와 arguments 객체를 외부함수 지역변수에 할당하자!</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">outerFunc2</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">console</span>.dir(<span class="keyword">this</span>);</span><br><span class="line">	<span class="built_in">console</span>.dir(<span class="built_in">arguments</span>);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">var</span> outThis = <span class="keyword">this</span>;       <span class="comment">// this를 클로저가 접근할 수 있도록 지역변수에 할당한다.</span></span><br><span class="line">	<span class="keyword">var</span> outArgu = <span class="built_in">arguments</span>;  <span class="comment">// arguments를 클로저가 접근할 수 있도록 지역변수에 할당한다.</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"><span class="meta">"use strict"</span>;</span><br><span class="line"><span class="built_in">console</span>.dir(outThis);</span><br><span class="line">	   <span class="built_in">console</span>.dir(outArgu );</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> test2 = outerFunc2(<span class="number">222</span>, <span class="string">'abc'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2017-06-11-javascript7_5.png" alt></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">test2();</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2017-06-11-javascript7_6.png" alt></p>
+<p>외부함수의 this 와 arguments 를 지역변수에 할당하여 클로저가 접근할 수 있도록 할 수 있다.</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/08/31/javascript-20170831-javascript-closure-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1114,7 +1257,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-count">198</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

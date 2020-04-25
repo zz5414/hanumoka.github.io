@@ -254,6 +254,146 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2020/04/25/docker-20200425-docker-react-node/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/25/docker-20200425-docker-react-node/" class="post-title-link" itemprop="url">Docker로 React-Node를 이미지로 만들어 컨터이너화 하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-25 23:51:38 / Updated at: 23:54:35" itemprop="dateCreated datePublished" datetime="2020-04-25T23:51:38+09:00">2020-04-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Docker를 사용해서 React와 Node를 묶어 이미지를 만들고 그 이미지를 이용해서 컨테이너를 생성하고 실행하는 예제이다.</p>
+<h2 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h2><ul>
+<li>windows10</li>
+<li>visual studo code</li>
+<li>docker desktop</li>
+</ul>
+<h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><p>일단 create-react-app 으로 사용할 react 프로젝트를 생성한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app react-docker-example1</span><br></pre></td></tr></table></figure>
+
+<p>프로젝트 명은 react-docker-example1로 지정했다.</p>
+<p><img src="/images/2020/Docker%20React%20Node/Untitled.png" alt="Docker%20React%20Node/Untitled.png"></p>
+<p>프로젝트가 생성되면 정상동작하는지 확인 해 보자.</p>
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%201.png" alt="Docker%20React%20Node/Untitled%201.png"></p>
+<p>잘 동작하는 것을 확인 할 수 있다.</p>
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%202.png" alt="Docker%20React%20Node/Untitled%202.png"></p>
+<p>프로젝트 경로로 진입해서 VisualStudoCode를 실행하자</p>
+<p>아래 명령으로 현재경로에서 VisualStudoCode를 실행 할 수 있다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%203.png" alt="Docker%20React%20Node/Untitled%203.png"></p>
+<p>프로젝트 최상위 경로에 <strong>DockerFile</strong>을 생성하고 내용을 아래처럼 채우자.</p>
+<p><strong>node 이미지 버전의 경우 자신에 맞게 설정해주자.</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">FROM node:12.16.2 as builder</span><br><span class="line"></span><br><span class="line"><span class="comment"># 작업 폴더를 만들고 npm 설치</span></span><br><span class="line">RUN mkdir /usr/src/app</span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line">ENV PATH /usr/src/app/node_modules/.bin:<span class="variable">$PATH</span></span><br><span class="line">COPY package.json /usr/src/app/package.json</span><br><span class="line">RUN npm install --silent</span><br><span class="line">RUN npm install react-scripts@2.1.3 -g --silent</span><br><span class="line"></span><br><span class="line"><span class="comment"># 소스를 작업폴더로 복사하고 앱 실행</span></span><br><span class="line">COPY . /usr/src/app</span><br><span class="line">CMD [<span class="string">"npm"</span>, <span class="string">"start"</span>]</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%204.png" alt="Docker%20React%20Node/Untitled%204.png"></p>
+<p>DockerFile을 만들었다면, 이제 이 DockerFile을 이용해서 image를 생성하자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t react-docker-example1</span><br></pre></td></tr></table></figure>
+
+<p>난 프로젝트명과 이미지명을 동일하게 지정했다.</p>
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%205.png" alt="Docker%20React%20Node/Untitled%205.png"></p>
+<p>난 DockerFile에 설정한 node 버전의 이미지가 없어서 다운받는데 좀 시간이 걸렸다.</p>
+<p>node 이미지가 받아지면 DockerFile을 기반해서 새로운 이미지가 생성될 것이다.</p>
+<p>아래 명령어로 확인해보자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%206.png" alt="Docker%20React%20Node/Untitled%206.png"></p>
+<p>DockerFile에서 참조하고 있는 node 이미지와 그 기반으로 만들어진 react-docker-example1 이미지가 보인다.</p>
+<p>아래 명령어로 생성한 react-docker-example1 이미지를 컨테이너화 하고 실행해보자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -p 3000:3000 --rm 이미지명또는아이디</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%207.png" alt="Docker%20React%20Node/Untitled%207.png"></p>
+<p>docker run 옵션중 -it 로 인해 아래처럼 컨테이너 실행시 react 컨테이너에서 출력하는 콘솔이 터미널로 출력된다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**--rm** 옵션은 컨테이너가 종료될때 해당 컨테이너를 자동으로 지워준다.</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%208.png" alt="Docker%20React%20Node/Untitled%208.png"></p>
+<p>정상적으로 컨테이너가 동작하는 것을 확인 할 수 있다.</p>
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%209.png" alt="Docker%20React%20Node/Untitled%209.png"></p>
+<p>새로운 터미널에서 아래 명령어로 실행중인 컨테이너를 확인해보자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%2010.png" alt="Docker%20React%20Node/Untitled%2010.png"></p>
+<p>이제 해당 컨테니어를 종료해보자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop 컨테이너id</span><br></pre></td></tr></table></figure>
+
+<p>일반적으로 위 명령어로 docker 컨테이너를 종료한다.</p>
+<p>하지만 docker run 옵션으로 -it 사용했기에, docker run을 실행중인 터미널에서 ctrl+c 를 입력해도 docker 컨테이너가 종료된다.</p>
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%2011.png" alt="Docker%20React%20Node/Untitled%2011.png"></p>
+<p>다시 docker ps로 해당 컨테이너가 자동으로 삭제되었는지 확인해보자.</p>
+<p><img src="/images/2020/Docker%20React%20Node/Untitled%2012.png" alt="Docker%20React%20Node/Untitled%2012.png"></p>
+<p>끝!!!</p>
+<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="/images/2020/https://codechacha.com/ko/dockerizing-react-with-nginx/">https://codechacha.com/ko/dockerizing-react-with-nginx/</a></p>
+<p>[<a href="https://blog.leedoing.com/171]" target="_blank" rel="external nofollow noopener noreferrer">https://blog.leedoing.com/171]</a>(/images/2020/</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2020/04/18/docker-20200418-docker-mongodb-start/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1605,117 +1745,6 @@ ls -al</code></pre><p><img src="/images/2020/Github%20push%20pull%20ssh%20window
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/12/19/hexo-20191219-hello-hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/19/hexo-20191219-hello-hexo/" class="post-title-link" itemprop="url">Hexo 블로그 만들기</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-12-19 22:32:38" itemprop="dateCreated datePublished" datetime="2019-12-19T22:32:38+09:00">2019-12-19</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/hexo/" itemprop="url" rel="index">
-                    <span itemprop="name">hexo</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>hexo는 jekyll과 같은 정적 블로그 생성 프레임 워크이다. </p>
-<p>다만 hexo는 루비가 아닌 javascript, node등을 기반으로한 정적 블로그 생성기이다.</p>
-<p>hexo도 markdown으로 글을 작성하며, github page와 연동해서 로컬에서 생성한 hexo 블로그를 웹에 공개 할수도 있다.</p>
-<p>hexo의 자세한 설명은 아래 공식 페이지에서 확인 할 수 있다.</p>
-<p><a href="https://hexo.io/ko/index.html" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a></p>
-<p>Hexo 블로그를 만들기 전에, 로컬에 미리 node가 설치 되어 있어야 한다.</p>
-<p>설치가 되어있지 않다면, 구글링해서 설치하길 바란다.</p>
-<p><img src="/images/Hexo20191219/Untitled.png" alt="/images/Hexo20191219/Untitled.png"></p>
-<p>블로그를 생성한 경로로 이동해서 터미널을 열고 아래 명령어를 순차적으로 입력하면된다.</p>
-<pre><code>npm install hexo-cli -g    #hexo cli를 글로벌로 설치
-hexo init hexoblog         #hexoblog라는 폴더로 hexo 블로그 생성     
-cd blog                    #생성된 폴더로 진입
-npm install                #의존성 설치
-hexo server                #hexo 블로그 기동</code></pre><p>아래 hexo init명령으로 hexoblog라는 hexo blog 폴더를 생성한다.</p>
-<p>요즘에는 자동으로 기본 디펜던시를 다운로드 해주는것 같다.</p>
-<p><img src="/images/Hexo20191219/Untitled%201.png" alt="/images/Hexo20191219/Untitled%201.png"></p>
-<p>아래처럼 폴더가 생성 된다.</p>
-<p><img src="/images/Hexo20191219/Untitled%202.png" alt="/images/Hexo20191219/Untitled%202.png"></p>
-<p><img src="/images/Hexo20191219/Untitled%203.png" alt="/images/Hexo20191219/Untitled%203.png"></p>
-<p>위 이미지에서 hexo-deployer-git 을 추가로 설치했다. </p>
-<p>해당 모듈은 나중에 gitpage에 hexo로 빌드한 정적 웹을 배포하는 용도의 모듈이다.</p>
-<p>마지막으로 hexo s 또는 hexo server 를 입력하면 hexo가 동작중이라는 문구와 url 이 나온다.</p>
-<p><img src="/images/Hexo20191219/Untitled%204.png" alt="/images/Hexo20191219/Untitled%204.png"></p>
-<p>브라우저로 hexo 블로그가 동작하는 것을 확인 할 수 있다.</p>
-<p>아래 블로그의 테마는 hexo의 기본 테마인 landscape 테마이다. </p>
-<p>다음글에서는 이 테마를 Next 테마로 변경하는 내용을 다뤄 보도록 하겠다.</p>
-<p><img src="/images/Hexo20191219/Untitled%205.png" alt="/images/Hexo20191219/Untitled%205.png"></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1786,7 +1815,7 @@ hexo server                #hexo 블로그 기동</code></pre><p>아래 hexo ini
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-count">198</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

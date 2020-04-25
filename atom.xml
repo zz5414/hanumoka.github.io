@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.hanumoka.net/"/>
-  <updated>2020-04-18T12:57:03.546Z</updated>
+  <updated>2020-04-25T14:54:35.103Z</updated>
   <id>https://www.hanumoka.net/</id>
   
   <author>
@@ -15,6 +15,37 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker로 React-Node를 이미지로 만들어 컨터이너화 하기</title>
+    <link href="https://www.hanumoka.net/2020/04/25/docker-20200425-docker-react-node/"/>
+    <id>https://www.hanumoka.net/2020/04/25/docker-20200425-docker-react-node/</id>
+    <published>2020-04-25T14:51:38.000Z</published>
+    <updated>2020-04-25T14:54:35.103Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;Docker를 사용해서 React와 Node를 묶어 이미지를 만들고 그 이미지를 이용해서 컨테이너를 생성하고
+        
+      
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="https://www.hanumoka.net/categories/docker/"/>
+    
+    
+      <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
+    
+      <category term="react" scheme="https://www.hanumoka.net/tags/react/"/>
+    
+      <category term="node" scheme="https://www.hanumoka.net/tags/node/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker에서 테스트용도의 mongodb 실행하기</title>
@@ -100,9 +131,9 @@
       <category term="maven" scheme="https://www.hanumoka.net/categories/maven/"/>
     
     
-      <category term="maven" scheme="https://www.hanumoka.net/tags/maven/"/>
-    
       <category term="java" scheme="https://www.hanumoka.net/tags/java/"/>
+    
+      <category term="maven" scheme="https://www.hanumoka.net/tags/maven/"/>
     
       <category term="local repository" scheme="https://www.hanumoka.net/tags/local-repository/"/>
     
@@ -431,13 +462,13 @@
       <category term="docker" scheme="https://www.hanumoka.net/categories/docker/"/>
     
     
-      <category term="jenkins" scheme="https://www.hanumoka.net/tags/jenkins/"/>
-    
       <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
     
       <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
     
       <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
+    
+      <category term="jenkins" scheme="https://www.hanumoka.net/tags/jenkins/"/>
     
       <category term="dockerindocker" scheme="https://www.hanumoka.net/tags/dockerindocker/"/>
     
@@ -468,13 +499,13 @@
       <category term="docker" scheme="https://www.hanumoka.net/categories/docker/"/>
     
     
-      <category term="jenkins" scheme="https://www.hanumoka.net/tags/jenkins/"/>
-    
       <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
     
       <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
     
       <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
+    
+      <category term="jenkins" scheme="https://www.hanumoka.net/tags/jenkins/"/>
     
   </entry>
   
@@ -639,43 +670,6 @@
       <category term="root" scheme="https://www.hanumoka.net/tags/root/"/>
     
       <category term="권한" scheme="https://www.hanumoka.net/tags/%EA%B6%8C%ED%95%9C/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>springboot mybatis ${} 사용시 sql injection 방어하기</title>
-    <link href="https://www.hanumoka.net/2019/09/21/spring-20190921-spring-mybatis-sqlinjectionsafe/"/>
-    <id>https://www.hanumoka.net/2019/09/21/spring-20190921-spring-mybatis-sqlinjectionsafe/</id>
-    <published>2019-09-21T04:51:59.000Z</published>
-    <updated>2020-04-15T16:50:12.026Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;개발환경&quot;&gt;&lt;a href=&quot;#개발환경&quot; class=&quot;headerlink&quot; title=&quot;개발환경&quot;&gt;&lt;/a&gt;개발환경&lt;/h1&gt;&lt;p&gt;springboot&lt;/p&gt;
-&lt;p&gt;jdk1.8&lt;/p&gt;
-&lt;p&gt;mysql&lt;/p&gt;
-&lt;p&gt;mybatis&lt;/p&gt;
-&lt;h1
-        
-      
-    
-    </summary>
-    
-    
-      <category term="spring" scheme="https://www.hanumoka.net/categories/spring/"/>
-    
-    
-      <category term="spring" scheme="https://www.hanumoka.net/tags/spring/"/>
-    
-      <category term="mybatis" scheme="https://www.hanumoka.net/tags/mybatis/"/>
-    
-      <category term="sqlinjection" scheme="https://www.hanumoka.net/tags/sqlinjection/"/>
-    
-      <category term="sqlijnectionsafe" scheme="https://www.hanumoka.net/tags/sqlijnectionsafe/"/>
     
   </entry>
   

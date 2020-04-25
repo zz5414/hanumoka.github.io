@@ -254,6 +254,103 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-vim/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-vim/" class="post-title-link" itemprop="url">ubuntu1804 vim설치</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 18:52:25" itemprop="dateCreated datePublished" datetime="2019-08-17T18:52:25+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="vim-설치하기"><a href="#vim-설치하기" class="headerlink" title="vim 설치하기"></a>vim 설치하기</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>위 두줄로 아주 간단하게 설치가 된다.</p>
+<p>하지만 vim을 제대로 사용하려면 vim 설정파일을 만들어 줘야 한다.</p>
+<h3 id="vim-설정파일-셋팅"><a href="#vim-설정파일-셋팅" class="headerlink" title="vim 설정파일 셋팅"></a>vim 설정파일 셋팅</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~&#x2F;.vimrc</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어로 home 디렉토리에 .vimrc라는 vim 설정파일을 생성하자.</p>
+<p>그리고 아래 내용을 복사 붙여넣기 하자.</p>
+<p>우분투에 붙여 넣기 할때에는 Shift+Insert 키를 눌러주면 된다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">set number    &quot; line 표시</span><br><span class="line">set ai    &quot; auto indent</span><br><span class="line">set si &quot; smart indent</span><br><span class="line">set cindent    &quot; c style indent</span><br><span class="line">set shiftwidth&#x3D;4    &quot; 자동 공백 채움 시 4칸</span><br><span class="line">set tabstop&#x3D;4    &quot; tab을 4칸 공백으로</span><br><span class="line">set ignorecase    &quot; 검색 시 대소문자 무시</span><br><span class="line">set hlsearch    &quot; 검색 시 하이라이트</span><br><span class="line">set nocompatible    &quot; 방향키로 이동 가능</span><br><span class="line">set fileencodings&#x3D;utf-8,euc-kr    &quot; 파일 저장 인코딩 : utf-8, euc-kr</span><br><span class="line">set fencs&#x3D;ucs-bom,utf-8,euc-kr    &quot; 한글 파일은 euc-kr, 유니코드는 유니코드</span><br><span class="line">set bs&#x3D;indent,eol,start    &quot; backspace 사용가능</span><br><span class="line">set ruler    &quot; 상태 표시줄에 커서 위치 표시</span><br><span class="line">set title    &quot; 제목 표시</span><br><span class="line">set showmatch    &quot; 다른 코딩 프로그램처럼 매칭되는 괄호 보여줌</span><br><span class="line">set wmnu    &quot; tab 을 눌렀을 때 자동완성 가능한 목록</span><br><span class="line">syntax on    &quot; 문법 하이라이트 on</span><br><span class="line">filetype indent on    &quot; 파일 종류에 따른 구문 강조</span><br><span class="line">set mouse&#x3D;a    &quot; 커서 이동을 마우스로 가능하도록</span><br></pre></td></tr></table></figure>
+
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://gabii.tistory.com/entry/Ubuntu-vim-%EC%84%A4%EC%B9%98-%EB%B0%8F-%EC%84%A4%EC%A0%95" target="_blank" rel="external nofollow noopener noreferrer">https://gabii.tistory.com/entry/Ubuntu-vim-설치-및-설정</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-ftp/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1477,107 +1574,6 @@ sudo apt-get upgrade</code></pre><p><img src="/images/2019/Untitled-8e694a7f-b2b
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/29/ubuntu-20190129-ubuntu-install-docker/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/29/ubuntu-20190129-ubuntu-install-docker/" class="post-title-link" itemprop="url">ubuntu에 docker 설치하기</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-01-29 16:52:30" itemprop="dateCreated datePublished" datetime="2019-01-29T16:52:30+09:00">2019-01-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>virtual box에 설치한 ubuntu에 docker를 한번 설치해보자.</p>
-<p>docker가 ubuntu에 최적헤 되어있다고 해서, docker for windows를 포기하고 virtual box에 ubuntu를 설치해서 사용해 보려고 한다.</p>
-<h1 id="ubuntu에서-docker-설치하기"><a href="#ubuntu에서-docker-설치하기" class="headerlink" title="ubuntu에서 docker 설치하기"></a>ubuntu에서 docker 설치하기</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl - fsSL http://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20190129-ubuntu-install-docker_1.png" alt="명령1"></p>
-<p>위  명령어를 입력하면 OK라고 나올 것이다.<br>아 물론 curl 이 없으면 미리 설치하자.</p>
-<p>그리고 아래 명령어를 입력하자.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20190129-ubuntu-install-docker_2.png" alt="명령2"></p>
-<p>그리고 아래 명령어를 입력해서 docker-ce를 설치하자.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce</span><br></pre></td></tr></table></figure>
-
-<h1 id="docker-확인"><a href="#docker-확인" class="headerlink" title="docker 확인"></a>docker 확인</h1><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker info</span><br></pre></td></tr></table></figure>
-
-<p>위 명령어를 입력하면 설치된 docker의 정보가 보일것이다. (안보인다면 문제가 있는 것)</p>
-<p>끝!!!</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1648,7 +1644,7 @@ sudo apt-get upgrade</code></pre><p><img src="/images/2019/Untitled-8e694a7f-b2b
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-count">198</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

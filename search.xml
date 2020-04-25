@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Docker로 React-Node를 이미지로 만들어 컨터이너화 하기</title>
+      <link href="/2020/04/25/docker-20200425-docker-react-node/"/>
+      <url>/2020/04/25/docker-20200425-docker-react-node/</url>
+      
+        <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Docker를 사용해서 React와 Node를 묶어 이미지를 만들고 그 이미지를 이용해서 컨테이너를 생성하고 실행하는 예제이다.</p><h2 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h2><ul><li>windows10</li><li>visual studo code</li><li>docker desktop</li></ul><h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><p>일단 create-react-app 으로 사용할 react 프로젝트를 생성한다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app react-docker-example1</span><br></pre></td></tr></table></figure><p>프로젝트 명은 react-docker-example1로 지정했다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled.png" alt="Docker%20React%20Node/Untitled.png"></p><p>프로젝트가 생성되면 정상동작하는지 확인 해 보자.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%201.png" alt="Docker%20React%20Node/Untitled%201.png"></p><p>잘 동작하는 것을 확인 할 수 있다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%202.png" alt="Docker%20React%20Node/Untitled%202.png"></p><p>프로젝트 경로로 진입해서 VisualStudoCode를 실행하자</p><p>아래 명령으로 현재경로에서 VisualStudoCode를 실행 할 수 있다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">code .</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%203.png" alt="Docker%20React%20Node/Untitled%203.png"></p><p>프로젝트 최상위 경로에 <strong>DockerFile</strong>을 생성하고 내용을 아래처럼 채우자.</p><p><strong>node 이미지 버전의 경우 자신에 맞게 설정해주자.</strong></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">FROM node:12.16.2 as builder</span><br><span class="line"></span><br><span class="line"><span class="comment"># 작업 폴더를 만들고 npm 설치</span></span><br><span class="line">RUN mkdir /usr/src/app</span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line">ENV PATH /usr/src/app/node_modules/.bin:<span class="variable">$PATH</span></span><br><span class="line">COPY package.json /usr/src/app/package.json</span><br><span class="line">RUN npm install --silent</span><br><span class="line">RUN npm install react-scripts@2.1.3 -g --silent</span><br><span class="line"></span><br><span class="line"><span class="comment"># 소스를 작업폴더로 복사하고 앱 실행</span></span><br><span class="line">COPY . /usr/src/app</span><br><span class="line">CMD [<span class="string">"npm"</span>, <span class="string">"start"</span>]</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%204.png" alt="Docker%20React%20Node/Untitled%204.png"></p><p>DockerFile을 만들었다면, 이제 이 DockerFile을 이용해서 image를 생성하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t react-docker-example1</span><br></pre></td></tr></table></figure><p>난 프로젝트명과 이미지명을 동일하게 지정했다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%205.png" alt="Docker%20React%20Node/Untitled%205.png"></p><p>난 DockerFile에 설정한 node 버전의 이미지가 없어서 다운받는데 좀 시간이 걸렸다.</p><p>node 이미지가 받아지면 DockerFile을 기반해서 새로운 이미지가 생성될 것이다.</p><p>아래 명령어로 확인해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%206.png" alt="Docker%20React%20Node/Untitled%206.png"></p><p>DockerFile에서 참조하고 있는 node 이미지와 그 기반으로 만들어진 react-docker-example1 이미지가 보인다.</p><p>아래 명령어로 생성한 react-docker-example1 이미지를 컨테이너화 하고 실행해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -p 3000:3000 --rm 이미지명또는아이디</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%207.png" alt="Docker%20React%20Node/Untitled%207.png"></p><p>docker run 옵션중 -it 로 인해 아래처럼 컨테이너 실행시 react 컨테이너에서 출력하는 콘솔이 터미널로 출력된다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**--rm** 옵션은 컨테이너가 종료될때 해당 컨테이너를 자동으로 지워준다.</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%208.png" alt="Docker%20React%20Node/Untitled%208.png"></p><p>정상적으로 컨테이너가 동작하는 것을 확인 할 수 있다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%209.png" alt="Docker%20React%20Node/Untitled%209.png"></p><p>새로운 터미널에서 아래 명령어로 실행중인 컨테이너를 확인해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Node/Untitled%2010.png" alt="Docker%20React%20Node/Untitled%2010.png"></p><p>이제 해당 컨테니어를 종료해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop 컨테이너id</span><br></pre></td></tr></table></figure><p>일반적으로 위 명령어로 docker 컨테이너를 종료한다.</p><p>하지만 docker run 옵션으로 -it 사용했기에, docker run을 실행중인 터미널에서 ctrl+c 를 입력해도 docker 컨테이너가 종료된다.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%2011.png" alt="Docker%20React%20Node/Untitled%2011.png"></p><p>다시 docker ps로 해당 컨테이너가 자동으로 삭제되었는지 확인해보자.</p><p><img src="/images/2020/Docker%20React%20Node/Untitled%2012.png" alt="Docker%20React%20Node/Untitled%2012.png"></p><p>끝!!!</p><h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="/images/2020/https://codechacha.com/ko/dockerizing-react-with-nginx/">https://codechacha.com/ko/dockerizing-react-with-nginx/</a></p><p>[<a href="https://blog.leedoing.com/171]" target="_blank" rel="external nofollow noopener noreferrer">https://blog.leedoing.com/171]</a>(/images/2020/</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> docker </tag>
+            
+            <tag> react </tag>
+            
+            <tag> node </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker에서 테스트용도의 mongodb 실행하기</title>
       <link href="/2020/04/18/docker-20200418-docker-mongodb-start/"/>
       <url>/2020/04/18/docker-20200418-docker-mongodb-start/</url>
@@ -76,9 +105,9 @@
       
         <tags>
             
-            <tag> maven </tag>
-            
             <tag> java </tag>
+            
+            <tag> maven </tag>
             
             <tag> local repository </tag>
             
@@ -382,13 +411,13 @@
       
         <tags>
             
-            <tag> jenkins </tag>
-            
             <tag> docker </tag>
             
             <tag> ubuntu </tag>
             
             <tag> dockercompose </tag>
+            
+            <tag> jenkins </tag>
             
             <tag> dockerindocker </tag>
             
@@ -417,13 +446,13 @@
       
         <tags>
             
-            <tag> jenkins </tag>
-            
             <tag> docker </tag>
             
             <tag> ubuntu </tag>
             
             <tag> dockercompose </tag>
+            
+            <tag> jenkins </tag>
             
         </tags>
       
@@ -881,9 +910,9 @@
             
             <tag> ubuntu </tag>
             
-            <tag> virtualbox </tag>
-            
             <tag> vim </tag>
+            
+            <tag> virtualbox </tag>
             
         </tags>
       
@@ -1255,9 +1284,9 @@
       
         <tags>
             
-            <tag> github </tag>
-            
             <tag> error </tag>
+            
+            <tag> github </tag>
             
             <tag> git </tag>
             
@@ -2149,8 +2178,6 @@
       
         <tags>
             
-            <tag> centos </tag>
-            
             <tag> docker </tag>
             
             <tag> nginx </tag>
@@ -2160,6 +2187,8 @@
             <tag> 웹서버 </tag>
             
             <tag> 우분투 </tag>
+            
+            <tag> centos </tag>
             
         </tags>
       
@@ -2430,9 +2459,9 @@
             
             <tag> javascript </tag>
             
-            <tag> closure </tag>
-            
             <tag> 클로저 </tag>
+            
+            <tag> closure </tag>
             
             <tag> let </tag>
             
@@ -2661,9 +2690,9 @@
       
         <tags>
             
-            <tag> 비동기 </tag>
-            
             <tag> 동기 </tag>
+            
+            <tag> 비동기 </tag>
             
             <tag> synchronous </tag>
             
@@ -2995,13 +3024,13 @@
             
             <tag> webpack </tag>
             
-            <tag> vue </tag>
-            
             <tag> vue cli </tag>
             
             <tag> npm run dev </tag>
             
             <tag> npm run build </tag>
+            
+            <tag> vue </tag>
             
         </tags>
       
@@ -3090,15 +3119,15 @@
       
         <tags>
             
-            <tag> npm run dev </tag>
-            
-            <tag> npm run build </tag>
-            
             <tag> Vue </tag>
             
             <tag> Cli </tag>
             
             <tag> wabpack </tag>
+            
+            <tag> npm run dev </tag>
+            
+            <tag> npm run build </tag>
             
         </tags>
       
@@ -3127,13 +3156,13 @@
             
             <tag> 개발환경 </tag>
             
-            <tag> vue cli </tag>
-            
             <tag> Vue.js </tag>
             
             <tag> nodejs </tag>
             
             <tag> cli </tag>
+            
+            <tag> vue cli </tag>
             
         </tags>
       
@@ -3427,9 +3456,9 @@
             
             <tag> Thymeleaf </tag>
             
-            <tag> thymeleaf-layout-dialect </tag>
-            
             <tag> dialect </tag>
+            
+            <tag> thymeleaf-layout-dialect </tag>
             
             <tag> head </tag>
             
@@ -3621,8 +3650,6 @@
             
             <tag> 템플릿 </tag>
             
-            <tag> 레이아웃 </tag>
-            
             <tag> spring4 </tag>
             
             <tag> Thymeleaf3 </tag>
@@ -3630,6 +3657,8 @@
             <tag> dialect </tag>
             
             <tag> thymeleaf layout dialect </tag>
+            
+            <tag> 레이아웃 </tag>
             
         </tags>
       
@@ -3660,11 +3689,11 @@
             
             <tag> Thymeleaf </tag>
             
+            <tag> spring4 </tag>
+            
             <tag> 레이아웃 </tag>
             
             <tag> thymeleaf-layout-dialect </tag>
-            
-            <tag> spring4 </tag>
             
         </tags>
       
@@ -3850,9 +3879,9 @@
             
             <tag> Spring Tool Suite </tag>
             
-            <tag> 이클립스 </tag>
-            
             <tag> eclipse </tag>
+            
+            <tag> 이클립스 </tag>
             
             <tag> js파일 </tag>
             
@@ -4046,11 +4075,11 @@
       
         <tags>
             
-            <tag> maven </tag>
-            
             <tag> STS </tag>
             
             <tag> error </tag>
+            
+            <tag> maven </tag>
             
             <tag> Cannot read lifecycle mapping metadata for artifact </tag>
             
@@ -4135,13 +4164,13 @@
       
         <tags>
             
-            <tag> jenkins </tag>
-            
             <tag> war </tag>
             
             <tag> deploy </tag>
             
             <tag> centos7 </tag>
+            
+            <tag> jenkins </tag>
             
             <tag> spring maven project </tag>
             
@@ -4530,13 +4559,13 @@
       
         <tags>
             
-            <tag> svn </tag>
-            
             <tag> firewall-cmd </tag>
             
             <tag> CentOs7 </tag>
             
             <tag> subversion </tag>
+            
+            <tag> svn </tag>
             
             <tag> install </tag>
             
@@ -4563,9 +4592,9 @@
       
         <tags>
             
-            <tag> jdk </tag>
-            
             <tag> CentOs7 </tag>
+            
+            <tag> jdk </tag>
             
             <tag> JAVA_HOME </tag>
             
@@ -4594,9 +4623,9 @@
             
             <tag> Spring </tag>
             
-            <tag> Framework </tag>
-            
             <tag> Controller </tag>
+            
+            <tag> Framework </tag>
             
             <tag> Junit </tag>
             
@@ -4627,9 +4656,9 @@
             
             <tag> Spring </tag>
             
-            <tag> Framework </tag>
-            
             <tag> Controller </tag>
+            
+            <tag> Framework </tag>
             
             <tag> JSON </tag>
             
@@ -4883,8 +4912,6 @@
       
         <tags>
             
-            <tag> tomcat </tag>
-            
             <tag> STS </tag>
             
             <tag> Spring </tag>
@@ -4894,6 +4921,8 @@
             <tag> framework </tag>
             
             <tag> SPRING TOOL SUITE </tag>
+            
+            <tag> tomcat </tag>
             
         </tags>
       
@@ -5545,13 +5574,13 @@
             
             <tag> java </tag>
             
-            <tag> nested class </tag>
-            
-            <tag> 중첩클래스 </tag>
-            
             <tag> nested interface </tag>
             
             <tag> 중첩인터페이스 </tag>
+            
+            <tag> nested class </tag>
+            
+            <tag> 중첩클래스 </tag>
             
         </tags>
       
@@ -5580,9 +5609,9 @@
             
             <tag> nested class </tag>
             
-            <tag> inner class </tag>
-            
             <tag> 중첩클래스 </tag>
+            
+            <tag> inner class </tag>
             
             <tag> 내부클래스 </tag>
             
@@ -5985,9 +6014,9 @@
             
             <tag> javascript </tag>
             
-            <tag> closure </tag>
-            
             <tag> 클로저 </tag>
+            
+            <tag> closure </tag>
             
         </tags>
       
@@ -6016,9 +6045,9 @@
             
             <tag> javascript </tag>
             
-            <tag> closure </tag>
-            
             <tag> 클로저 </tag>
+            
+            <tag> closure </tag>
             
         </tags>
       
@@ -6047,9 +6076,9 @@
             
             <tag> javascript </tag>
             
-            <tag> closure </tag>
-            
             <tag> 클로저 </tag>
+            
+            <tag> closure </tag>
             
         </tags>
       

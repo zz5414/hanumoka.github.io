@@ -254,6 +254,110 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/05/21/STS-20180521-STS-setting-svn-repo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/05/21/STS-20180521-STS-setting-svn-repo/" class="post-title-link" itemprop="url">STS(Spring Tool Suite) - SVN 원격리파지토리 사용하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-05-21 01:11:58" itemprop="dateCreated datePublished" datetime="2018-05-21T01:11:58+09:00">2018-05-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/STS/" itemprop="url" rel="index">
+                    <span itemprop="name">STS</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h4><p>CentOs에 hunumoka_spring_temlate 라는 svn 리파지토를 생성한 뒤 실습한 예제이다.<br>STS(Spring Tool Suite)에서는 기본적으로 git을 지원하며 svn을 사용하기 위해서는 추가적인 플러그인 설치가 필요하다.<br>이번 글에서는 STS에에서 svn사용을 위한 준비와 svn 원격리파지토리 연결을 실습하겠따.</p>
+<h4 id="STS에-svn-플러그인-설치"><a href="#STS에-svn-플러그인-설치" class="headerlink" title="STS에 svn 플러그인 설치"></a>STS에 svn 플러그인 설치</h4><p><img src="/images/20180521-STS-setting-svn-repo_1.png" alt="STS에서 help - Eclipse Maketplace 를 클릭한다."></p>
+<p><img src="/images/20180521-STS-setting-svn-repo_2.png" alt="svn을 검색하여 Subversive - SVN Team Provider를 설치한다."></p>
+<p>설치가 완료되면 STS를 재시작 하자.</p>
+<p><img src="/images/20180521-STS-setting-svn-repo_3.png" alt="STS에서 Window - show view 에서 svn을 검색하자"><br>SVN 관련 View들이 보이는 것을 확인 할 수 있다.<br>SVN Repositories를 선택하자.<br>SVN Repositories이 창에서 svn 원격리파지토를 설정하자.</p>
+<p><img src="/images/20180521-STS-setting-svn-repo_4.png" alt="SVN Repositores에서 new - Repositori Location 선택 "></p>
+<p><img src="/images/20180521-STS-setting-svn-repo_5.png" alt="New Repository Locaion 창에 svn 접속정보를 입력한다."></p>
+<h4 id="이슈발생"><a href="#이슈발생" class="headerlink" title="이슈발생"></a>이슈발생</h4><p><img src="/images/20180521-STS-setting-svn-repo_6.png" alt="STS에 SVN Connector를 설치하라고 나온다."></p>
+<p><img src="/images/20180521-STS-setting-svn-repo_10.png" alt="SVN Connector가 없어서 그런지, SVN 원격리파지토라는 등록이 되나, 그 내용이 정상적으로 보이지 않고 있다."></p>
+<p><img src="/images/20180521-STS-setting-svn-repo_7.png" alt="오류 메세지 정보대로 STS에 Window - Preferences - Team - SVN - SVN Connector에 찾아 들어가자."></p>
+<p><img src="/images/20180521-STS-setting-svn-repo_8.png" alt="Install Connection창에서 SVN Kit을 설치한다."><br>설치가 진행되며 또 STS가 리부팅 된다.</p>
+<p><img src="/images/20180521-STS-setting-svn-repo_9.png" alt="다시 STS에 Window - Preferences - Team - SVN - SVN Connector에 찾아 들어가자."><br>자동으로 방금 설치된 SVN Connector가 셋팅 된 것을 알 수 있다.<br>확인만 하고 넘어가자(만약 선택이 안되어 있다면, 직접 설정하자.)</p>
+<p><img src="/images/20180521-STS-setting-svn-repo_11.png" alt="아까 등록한 원격리파지토리에 빨간색 x 표시가 사라진 것을 확인 할 수 있다."></p>
+<h4 id="로컬-프로젝트를-SVN-원격-리파지토리를-Share-하기"><a href="#로컬-프로젝트를-SVN-원격-리파지토리를-Share-하기" class="headerlink" title="로컬 프로젝트를 SVN 원격 리파지토리를 Share 하기"></a>로컬 프로젝트를 SVN 원격 리파지토리를 Share 하기</h4><p>현재 SVN 원격 리파지토리는 생성된 뒤, 한번도 사용하지 않은 깨끗한 상태이다.<br>이제 이 원격 리파지토리에 프로젝트를 Share해 보자.</p>
+<p><img src="/images/20180521-STS-setting-svn-repo_12.png" alt="Package Explorer에서 프로젝트 우클릭 - Team - Share Prject를 클릭"></p>
+<p><img src="/images/20180521-STS-setting-svn-repo_13.png" alt="SVN을 선택하고 Next 클릭"></p>
+<p><img src="/images/20180521-STS-setting-svn-repo_14.png" alt="이미 등록된 SVN 리파지토리가 보인다. 선택하고 Next 클릭"></p>
+<p><img src="/images/20180521-STS-setting-svn-repo_15.png" alt="URL을 보면 svn URL 뒤에 프로젝트명이 두번 반복되는 것을 확인 할 수 있다."><br>svn 리파지토리명과 프로젝트명이 동일해서 반복된 것이다.<br>난 이 리파지토리에 hanumoka_spring_template만을 사용할 예정이다.<br>url 뒤의 hanumoka_spring_template를 제거하여 Finsh를 클릭하자.</p>
+<p>그뒤에 최초 커밋을 하라고 나오는데 적절한 커밋 멘트를 입력하고 진행하면 된다.</p>
+<p>끝!!!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/05/19/VisualStudioCode-20180519-visual-stuido-code-markdown-plugin/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1236,143 +1340,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/04/29/spring-20180429-spring-mybatis-mysql-setting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/04/29/spring-20180429-spring-mybatis-mysql-setting/" class="post-title-link" itemprop="url">SpringFramework MyBatis MySQL 연동하기</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-04-29 13:51:08" itemprop="dateCreated datePublished" datetime="2018-04-29T13:51:08+09:00">2018-04-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spring/" itemprop="url" rel="index">
-                    <span itemprop="name">spring</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h3><p>windows10 pro, STS, jdk1.8, mysql8(docker), mysql workbench 8</p>
-<hr>
-<h3 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h3><p><a href="/2018/04/07/spring-install-sts/">1.STS로 Spring 프레임워크 개발환경셋팅</a><br><a href="/2018/04/08/spring-start-spring-legacy-project/">2.Spring MVC 프로젝트를 생성하여 톰캣에서 실행하기</a><br><a href="/2018/04/18/spring-set-korean/">3.spring mvc 프로젝트 한글설정(utf8)</a></p>
-<p><a href="/2018/04/28/windows10pro-install-docker/">4.Windows10pro docker 설치하기</a><br><a href="/2018/04/29/docker-install-mysql/">5.Docker에서 mysql설치하고 접속해보기</a></p>
-<p><a href="/2018/04/29/spring-mysql-junit-connection-test/">6.Spring 프로젝트 mysql접속 junit 테스트 하기</a><br><a href="/2018/04/29/spring-mybatis-mysql-setting/">7.SpringFramework MyBatis MySQL 연동하기</a></p>
-<hr>
-<h3 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h3><p>STS의 스프링 MVC프로젝트와 docker에 설치한 mysql을 이용하여, 스프링 + MyBatis + MySLQ 설정을 해보자</p>
-<p><img src="/images/20180429-spring-mybatis-mysql-setting_1.png" alt="MyBatis 구성도"></p>
-<h3 id="스프링-프로젝트에-라이브러리-추가"><a href="#스프링-프로젝트에-라이브러리-추가" class="headerlink" title="스프링 프로젝트에 라이브러리 추가"></a>스프링 프로젝트에 라이브러리 추가</h3><p>pom.xml 아래 라이브러리들을 추가하자.</p>
-<p><strong>1.MyBatis</strong><br>mybatis 라이브러리</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.mybatis/mybatis --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.4.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>2.MyBatis-Spring</strong><br>Spring과 MyBatis를 연결하는 라이브러리</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.3.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>3.spring-jdbc</strong><br>Spring의 jdbc 라이브러리</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-jdbc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;org.springframework-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>4.spring-test</strong><br>Spring과 MyBatis의 정상적인 접속을 확인하기 위한 Spring junit test를 하기 위해 추가</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.springframework/spring-test --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-test<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;org.springframework-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>test<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="Spring-프로젝트의-root-context-xml-파일-수정"><a href="#Spring-프로젝트의-root-context-xml-파일-수정" class="headerlink" title="Spring 프로젝트의 root-context.xml 파일 수정"></a>Spring 프로젝트의 root-context.xml 파일 수정</h3><p><strong>root-context.xml파일 네임스페이스 추가</strong><br>aop, context, jdbc, mybatis-spring 네임스페이스 추가하자.<br>앞서 pom.xml에 라이브러리를 추가 했기 때문에 mybatis-spring와 같은 네임스페이스가 root-context.xml의 Namepaces 항목에 자동으로 보이게 되며, 간단히 클릭후 파일을 저장하면 된다.<br>(이걸 여태 몰라 난 일일이 웹에서 네임스페이스를 찾아 타이핑을 했더랬다.)</p>
-<p><img src="/images/20180429-spring-mybatis-mysql-setting_2.png" alt="root-context.xml에 네임스페이스 추가화면"><br>위에서 처럼 해당 네임스페이스를 선택한뒤 root-context.xml파일을 저장하면 자동으로 아래처럼 소스가 저장된다.</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">beans</span> <span class="attr">xmlns</span>=<span class="string">"http://www.springframework.org/schema/beans"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:aop</span>=<span class="string">"http://www.springframework.org/schema/aop"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:context</span>=<span class="string">"http://www.springframework.org/schema/context"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:jdbc</span>=<span class="string">"http://www.springframework.org/schema/jdbc"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xmlns:mybatis-spring</span>=<span class="string">"http://mybatis.org/schema/mybatis-spring"</span></span></span><br><span class="line"><span class="tag">	<span class="attr">xsi:schemaLocation</span>=<span class="string">"http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd</span></span></span><br><span class="line"><span class="tag"><span class="string">		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd"</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- Root Context: defines shared resources visible to all other web components --&gt;</span></span><br><span class="line">		</span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="Spring-프로젝트의-root-context-xml에-datasource-설정"><a href="#Spring-프로젝트의-root-context-xml에-datasource-설정" class="headerlink" title="Spring 프로젝트의 root-context.xml에 datasource 설정"></a>Spring 프로젝트의 root-context.xml에 datasource 설정</h3><p>root-context.xml파일에 spring jdbc를 이용하여 datasource를 설정하자.<br>접속하려는 db URL, db user 이름 비밀번호 정보가 필요하다.</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"datasource"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DriverManagerDataSource"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"driverClassName"</span> <span class="attr">value</span>=<span class="string">"com.mysql.jdbc.Driver"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"url"</span> <span class="attr">value</span>=<span class="string">"jdbc:mysql://127.0.0.1:3306/hanumoka_spring_template?useSSL=false"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"username"</span> <span class="attr">value</span>=<span class="string">"hanumoka"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"password"</span> <span class="attr">value</span>=<span class="string">"password"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h3 id="DataSource-테스트"><a href="#DataSource-테스트" class="headerlink" title="DataSource 테스트"></a>DataSource 테스트</h3><p>지금까지 진행한 설정을 spring-test를 통해 단위테스트를 진행하자.<br>spring-test 모듈의 장점은 spring 테스트를 할때 was상에서 하지 않기 때문에 가볍고, was에 고립된 테스트를 할 수 있따.</p>
-<p><strong>1.DataSourceTest.java 파일 작성</strong><br>스프링 프로젝트의 src/test/java 에 DataSourceTest.java 파일을 생성하다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.hanumoka.web;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.Connection;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.inject.Inject;</span><br><span class="line"><span class="keyword">import</span> javax.sql.DataSource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">ContextConfiguration</span>(<span class="title">locations</span> </span>= &#123;<span class="string">"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DataSourceTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Inject</span></span><br><span class="line">	<span class="keyword">private</span> DataSource ds;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testConection</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="keyword">try</span>(Connection con = ds.getConnection())&#123;</span><br><span class="line">			System.out.println(con);</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;<span class="comment">//try_</span></span><br><span class="line">	&#125;<span class="comment">//test_</span></span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>간단히 소스를 설명하자면,</p>
-<h4 id="RunWith-SpringJUnit4ClassRunner-class"><a href="#RunWith-SpringJUnit4ClassRunner-class" class="headerlink" title="@RunWith(SpringJUnit4ClassRunner.class)"></a>@RunWith(SpringJUnit4ClassRunner.class)</h4><p>는 Spring 테스트용 컨테이너를 사용하겠다는 의미이다.</p>
-<h4 id="ContextConfiguration-locations-“file-src-main-webapp-WEB-INF-spring-root-context-xml”"><a href="#ContextConfiguration-locations-“file-src-main-webapp-WEB-INF-spring-root-context-xml”" class="headerlink" title="@ContextConfiguration(locations = {“file:src/main/webapp/WEB-INF/spring/**/root-context.xml”})"></a>@ContextConfiguration(locations = {“file:src/main/webapp/WEB-INF/spring/**/root-context.xml”})</h4><p>는 테스트용 Spring 컨테이너에서 사용할 설정파일들을 지정한다.</p>
-<p>위 파일을 junit으로 실행하여 Spring 프레임워크에서 DataSource가 정상적으로 주입되고 커넥션을 가져오는지 확인하자.</p>
-<p><img src="/images/20180429-spring-mybatis-mysql-setting_3.png" alt="Spring DataSource junit 테스트"></p>
-<hr>
-<h3 id="Spring-프레임워크에-MyBatis-설정-셋팅"><a href="#Spring-프레임워크에-MyBatis-설정-셋팅" class="headerlink" title="Spring 프레임워크에 MyBatis 설정 셋팅"></a>Spring 프레임워크에 MyBatis 설정 셋팅</h3><h4 id="1-SqlSessionFactory-객체-설정"><a href="#1-SqlSessionFactory-객체-설정" class="headerlink" title="1.SqlSessionFactory 객체 설정"></a>1.SqlSessionFactory 객체 설정</h4><p>root-context.xml 파일에 SqlSessionFactoryBean bean을 추가하자.<br>SqlSessionFactoryBean는 MyBatis에서 SqlSessionFactory를 생성하는 빈이다.</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="2-mybatis-config-xml-파일-추가"><a href="#2-mybatis-config-xml-파일-추가" class="headerlink" title="2.mybatis-config.xml 파일 추가"></a>2.mybatis-config.xml 파일 추가</h4><p>mybatis-config.xml을 src/main/resources에 추가하자.<br>이 파일은 SQL Mapping정보등 스프링의 설정과 별도의 MyBatis의 설정 기능을 저장하는 용도의 파일이다.</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">configuration</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">"-//mybatis.org//DTD Config 3.0//EN"</span> <span class="meta-string">"http://mybatis.org/dtd/mybatis-3-config.dtd"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20180429-spring-mybatis-mysql-setting_4.png" alt="mybatis-config.xml 파일"></p>
-<h4 id="3-mybatis-config-xml-파일을-root-context-xml-에-추가"><a href="#3-mybatis-config-xml-파일을-root-context-xml-에-추가" class="headerlink" title="3.mybatis-config.xml 파일을 root-context.xml 에 추가"></a>3.mybatis-config.xml 파일을 root-context.xml 에 추가</h4><p>방금 생성한 mybatis-config.xml파일이 스프링 프레임워크가 동작할때 주입되게 설정이 필요하다.<br>root-context.xml의 sqlSessionFactory의 프로퍼티로 mybatis-config.xml을 추가하자.</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"sqlSessionFactory"</span> <span class="attr">class</span>=<span class="string">"org.mybatis.spring.SqlSessionFactoryBean"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"configLocation"</span> <span class="attr">value</span>=<span class="string">"classpath:/mybatis-config.xml"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="/images/20180429-spring-mybatis-mysql-setting_5.png" alt="root-context.xml를 수정하자"></p>
-<h4 id="4-mybatis-연결-테스트"><a href="#4-mybatis-연결-테스트" class="headerlink" title="4.mybatis 연결 테스트"></a>4.mybatis 연결 테스트</h4><p>mybatis의 SqlSessionFactory를 통해서 MySql에 접속하여 SqlSession객체가 생성되는지 테스트 해보자.<br>src/test/java 에 MyBatisTest.java 를 생성하자.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.hanumoka.web;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.inject.Inject;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSession;</span><br><span class="line"><span class="keyword">import</span> org.apache.ibatis.session.SqlSessionFactory;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.ContextConfiguration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringJUnit4ClassRunner;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">ContextConfiguration</span>(<span class="title">locations</span> </span>= &#123;<span class="string">"file:src/main/webapp/WEB-INF/spring/**/root-context.xml"</span>&#125;)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyBatisTest</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Inject</span></span><br><span class="line">	<span class="keyword">private</span> SqlSessionFactory sqlFactory;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testFactory</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		System.out.println(sqlFactory);</span><br><span class="line">	&#125;<span class="comment">//testFactory_</span></span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSession</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="keyword">try</span>(SqlSession session = sqlFactory.openSession())&#123;</span><br><span class="line">			System.out.println(session);</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;<span class="comment">//testSession_</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>생성한 파일을 junit테스트를 통해 테스트 하자.<br><img src="/images/20180429-spring-mybatis-mysql-setting_6.png" alt="spring mybatis mysql 설정 테스트 결과"></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1443,7 +1410,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-count">198</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

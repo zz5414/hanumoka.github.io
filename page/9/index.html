@@ -254,6 +254,105 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/02/javascript-20181102-javascript-error-first-callback-pattern/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/02/javascript-20181102-javascript-error-first-callback-pattern/" class="post-title-link" itemprop="url">javascript - 오류 우선 콜백패턴 (error-first callback pattern)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-11-02 20:53:30" itemprop="dateCreated datePublished" datetime="2018-11-02T20:53:30+09:00">2018-11-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>오류 우선 콜백패턴(error-first callback pattern)은 자비스크립트에서 콜백을 사용할때, 콜백과 관련된 에러를 처리를 위한 일종의 코딩 약속과 같다.</p>
+<h1 id="오류-우선-콜백패턴-error-first-callback-pattern-규칙"><a href="#오류-우선-콜백패턴-error-first-callback-pattern-규칙" class="headerlink" title="오류 우선 콜백패턴 (error-first callback pattern) 규칙"></a>오류 우선 콜백패턴 (error-first callback pattern) 규칙</h1><ol>
+<li>콜백의 첫 번째 매개변수에 에러 객체를 사용한다.</li>
+<li>에러가 null이나 undefined이면 정상이라고 판단한다.</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> fname = <span class="string">"hanumoka_is_good.txt"</span>;</span><br><span class="line">fs.readFile(fname, <span class="function"><span class="keyword">function</span>(<span class="params">err, data</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(err) <span class="keyword">return</span> <span class="built_in">console</span>.error(<span class="string">`error reading file <span class="subst">$&#123;fname&#125;</span> : <span class="subst">$&#123;err.message&#125;</span>`</span>);  <span class="comment">// 반드시 return을 해야 한다.</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;fname&#125;</span> contents: <span class="subst">$&#123;data&#125;</span>`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181102-javascript-error-first-callback-pattern_1.png" alt="hanumoka_is_good.txt파일이 없는 상태에서 위 코드 실행결과"></p>
+<p>위 예제는 Node에서 파일을 읽어내는 소스이다.<br>if 조건문에서 err를 판단하여, 에러내용을 콘솔에 찍고 return 한다.<br><strong>중요한 점은 return을 해야 한다는 것이다.</strong></p>
+<p>예를 들어 hanumoka_is_good.txt 파일이 존재하지 않고, 위 소스를 동작시켰을때 err를 잡는 조건문에서 return을 하지 않는다면, hanumoka_is_good.txt파일이 있을경우 동작해야 할<br>다음 소스가 동작해 버리게 된다.</p>
+<p>파일이 없는대도 아래 소스가 동작 한다는 것이다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;fname&#125;</span> contents: <span class="subst">$&#123;data&#125;</span>`</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181102-javascript-error-first-callback-pattern_2.png" alt="hanumoka_is_good.txt파일이 없는 상태에서 return 하지 않는 경우 실행결과."></p>
+<p>프로미스를 사용하지 않으면 오류 우선 콜백은 노드 개바의 표준이나 다름없다.<br>콜백을 사용하는 인터페이스를 만들 때는 오류 우선 콜백 패턴을 지키키면서 코딩을 해야 한다.</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/02/spring-20181102-spring-mysql-error-The-server-time-zone-value/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1412,147 +1511,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/09/11/spring-20180911-spring-Transactional/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/09/11/spring-20180911-spring-Transactional/" class="post-title-link" itemprop="url">spring - @Transactional(스프링 트랜잭션 적용하기.)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-09-11 15:08:14" itemprop="dateCreated datePublished" datetime="2018-09-11T15:08:14+09:00">2018-09-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spring/" itemprop="url" rel="index">
-                    <span itemprop="name">spring</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/20180911-spring-Transactional_1.png" alt="스프링로고"></p>
-<h3 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h3><p>Spring에서 트랜잭션을 설정하는 방법은 크게 XML파일을 이용한 설정과, 어노테이션을 이용한 설정이 있다.</p>
-<p>이 글에서는 @Transactional 어노테이션을 이용하면 간단하게 트랜잭션 처리에 대해 정리하겠다.</p>
-<p>AOP + tx:advice 태그를 이용한 트랜잭션 보다 간단하게 사용 할 수 있다.</p>
-<hr>
-<h3 id="root-contenxt-xml에-transactionManager-설정하기"><a href="#root-contenxt-xml에-transactionManager-설정하기" class="headerlink" title="root-contenxt.xml에 transactionManager 설정하기"></a>root-contenxt.xml에 transactionManager 설정하기</h3><p>일단 root-context.xml 파일에 트랜잭션 처리를 위한  transactionManager를 설정해야 한다.<br>아래 내용을 root-context.xml 파일에 추가하자.</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 트랜젝션 매니저 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"transactionManager"</span> <span class="attr">class</span>=<span class="string">"org.springframework.jdbc.datasource.DataSourceTransactionManager"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">"dataSource"</span> <span class="attr">ref</span>=<span class="string">"dataSource"</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line">	</span><br><span class="line">	<span class="comment">&lt;!-- @Transactional 애노테이션을 sacn하기 위한 설정 --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">tx:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="트랜잭션이-필요한-서비스에-Transactional-어노테이션을-달아주자"><a href="#트랜잭션이-필요한-서비스에-Transactional-어노테이션을-달아주자" class="headerlink" title="트랜잭션이 필요한 서비스에 @Transactional 어노테이션을 달아주자."></a>트랜잭션이 필요한 서비스에 @Transactional 어노테이션을 달아주자.</h3><p>정말 간단하다. 트랜잭션이 필요한 서비스 클래스에 @Transactional 어노테이션을 달아주면된다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//게시글 삭제</span></span><br><span class="line"><span class="meta">@Transactional</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">removeBoard</span><span class="params">(BoardVO vo)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">  replyDAO.removeAllRepl(vo.bno);  <span class="comment">//삭제할 게시글의 답글 삭제</span></span><br><span class="line">  boardDAO.deleteBoard(vo.bno);    <span class="comment">//게시글 삭제</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>위처럼 간단한 설정으로 트랜잭션 설정을 할 수 있다.</p>
-<hr>
-<h3 id="Transactional에-대한-조금더-자세한-설정"><a href="#Transactional에-대한-조금더-자세한-설정" class="headerlink" title="@Transactional에 대한 조금더 자세한 설정"></a>@Transactional에 대한 조금더 자세한 설정</h3><p>@Transactional 애노테이션은 위 예제의 처럼 <strong>클래스의 메소드</strong> 뿐만 아니라, <strong>인터페이스</strong>, <strong>클래스</strong> 선언에도 사용할수 있다.</p>
-<p>메소드에 선언된 @Transactional의 설정이 가산 우선되기 때문에, 공통적인 규칙은 인터페이스, 클래스 등에 적용하고 특별한 설정은 메소드에 적용할수 있다.</p>
-<hr>
-<h3 id="Transactional-속성"><a href="#Transactional-속성" class="headerlink" title="@Transactional 속성"></a>@Transactional 속성</h3><p><strong>isolation (격리레벨)</strong></p>
-<ul>
-<li>DEFAULT: DB 설정, 기본 격리 수준(기본설정)</li>
-<li>SERIALIZABLE : 가장 높은 격리, 성능 저하의 우려가 있음</li>
-<li>READ_UNCOMMITED : 커밋되지 않는 데이터에 대한 읽기를 허용</li>
-<li>READ_COMMITED : 커밋된 데이터에 대해 읽기 허용</li>
-<li>REPEATEABLE_READ : 동일 필드에 대해 다중 접근 시 모두 동일한 결과를 보장</li>
-</ul>
-<p>설정 예: @Transactional(isolation=Isolation.DEFAULT)</p>
-<p><strong>propagation (전파속성)</strong></p>
-<ul>
-<li>PROPAGATION_MANDATORY : 작업은 반드시 특정한 트랜잭션이 존재한 상태에서만 가능</li>
-<li>PROPAGATION_NESTED : 기존에 트랜잭션이 있는 경우, 포함되어서 실행</li>
-<li>PROPAGATION_NEVER : 트랜잭션 상황에 실행되면 예외 발생</li>
-<li>PROPAGATION_NOT_SUPPORTED : 트랜잭션이 있는 경우에는 트랜잭션이 끝날 때까지 보류된 후 실행</li>
-<li><strong>PROPAGATION_REQUIRED : 트랜젝션이 있으면 그 상황에서 실행, 없으면 새로운 트랜잭션 실행(기본설정)</strong></li>
-<li>PROPAGATION_REQUIRED_NEW : 대상은 자신만의 고유한 트랜잭션으로 실행</li>
-<li>PROPAGATION_SUPPORTS : 트랜젝션을 필요료 하지 않으나, 트랜잭션 상황에 있다면 포함되어서 실행</li>
-</ul>
-<p>설정 예: @Transactional(propagation=Propagation.REQUIRED)</p>
-<p><strong>readOnly 속성</strong></p>
-<ul>
-<li>true인 경우 insert, update, delete 실행 시 예외 발생, 기본 설정은 false</li>
-</ul>
-<p>설정 예: @Transactional(readOnly = true)</p>
-<p><strong>rollbackFor 속성</strong></p>
-<ul>
-<li>특정 예외가 발생 시 강제로 Rollback</li>
-</ul>
-<p>설정 예: @Transactional(rollbackFor=Exception.class)</p>
-<p><strong>noRollbackFor 속성</strong></p>
-<ul>
-<li>특정 예외의 발생 시 Rollback 처리되지 않음</li>
-</ul>
-<p>설정 예: @Transactional(noRollbackFor=Exception.class)</p>
-<p><strong>timeout 속성</strong></p>
-<ul>
-<li>지정한 시간 내에 해당 메소드 수행이 완료되이 않은 경우 rollback 수행. -1일 경우 no timeout(Default=-1)</li>
-</ul>
-<p>설정 예: @Transactional(timeout=10)</p>
-<h3 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h3><p>음.. 전파속성은 어떤경우에 사용할까???</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1623,7 +1581,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">197</span>
+          <span class="site-state-item-count">198</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
