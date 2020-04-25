@@ -415,9 +415,9 @@
             
             <tag> docker </tag>
             
-            <tag> ubuntu </tag>
-            
             <tag> dockercompose </tag>
+            
+            <tag> ubuntu </tag>
             
             <tag> dockerindocker </tag>
             
@@ -450,9 +450,9 @@
             
             <tag> docker </tag>
             
-            <tag> ubuntu </tag>
-            
             <tag> dockercompose </tag>
+            
+            <tag> ubuntu </tag>
             
         </tags>
       
@@ -479,9 +479,9 @@
             
             <tag> docker </tag>
             
-            <tag> ubuntu </tag>
-            
             <tag> dockercompose </tag>
+            
+            <tag> ubuntu </tag>
             
             <tag> gitlab </tag>
             
@@ -510,9 +510,9 @@
             
             <tag> docker </tag>
             
-            <tag> ubuntu </tag>
-            
             <tag> dockercompose </tag>
+            
+            <tag> ubuntu </tag>
             
             <tag> nexus </tag>
             
@@ -910,9 +910,9 @@
             
             <tag> ubuntu </tag>
             
-            <tag> virtualbox </tag>
-            
             <tag> vim </tag>
+            
+            <tag> virtualbox </tag>
             
         </tags>
       
@@ -1354,9 +1354,9 @@
             
             <tag> windows </tag>
             
-            <tag> docker </tag>
-            
             <tag> windows10 </tag>
+            
+            <tag> docker </tag>
             
             <tag> ubuntu </tag>
             
@@ -2246,9 +2246,9 @@
             
             <tag> callback </tag>
             
-            <tag> promise </tag>
-            
             <tag> callbackhell </tag>
+            
+            <tag> promise </tag>
             
             <tag> 프라미스 </tag>
             
@@ -2310,9 +2310,9 @@
             
             <tag> callback </tag>
             
-            <tag> callbackhell </tag>
-            
             <tag> javasript </tag>
+            
+            <tag> callbackhell </tag>
             
             <tag> 콜백헬 </tag>
             
@@ -2731,9 +2731,9 @@
             
             <tag> error </tag>
             
-            <tag> Atom </tag>
-            
             <tag> Tool </tag>
+            
+            <tag> Atom </tag>
             
             <tag> waring </tag>
             
@@ -3026,11 +3026,11 @@
             
             <tag> vue cli </tag>
             
-            <tag> vue </tag>
-            
             <tag> npm run dev </tag>
             
             <tag> npm run build </tag>
+            
+            <tag> vue </tag>
             
         </tags>
       
@@ -3119,15 +3119,15 @@
       
         <tags>
             
-            <tag> npm run dev </tag>
-            
-            <tag> npm run build </tag>
-            
             <tag> Vue </tag>
             
             <tag> Cli </tag>
             
             <tag> wabpack </tag>
+            
+            <tag> npm run dev </tag>
+            
+            <tag> npm run build </tag>
             
         </tags>
       
@@ -4075,9 +4075,9 @@
       
         <tags>
             
-            <tag> STS </tag>
-            
             <tag> maven </tag>
+            
+            <tag> STS </tag>
             
             <tag> error </tag>
             
@@ -4623,9 +4623,9 @@
             
             <tag> Spring </tag>
             
-            <tag> Framework </tag>
-            
             <tag> Controller </tag>
+            
+            <tag> Framework </tag>
             
             <tag> Junit </tag>
             
@@ -4656,9 +4656,9 @@
             
             <tag> Spring </tag>
             
-            <tag> Framework </tag>
-            
             <tag> Controller </tag>
+            
+            <tag> Framework </tag>
             
             <tag> JSON </tag>
             
@@ -4780,9 +4780,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> windows10 </tag>
+            
+            <tag> docker </tag>
             
             <tag> mysql </tag>
             
@@ -4912,9 +4912,9 @@
       
         <tags>
             
-            <tag> STS </tag>
-            
             <tag> tomcat </tag>
+            
+            <tag> STS </tag>
             
             <tag> Spring </tag>
             
@@ -5275,6 +5275,8 @@
       
         <tags>
             
+            <tag> android </tag>
+            
             <tag> 안드로이드 이벤트 모델 </tag>
             
             <tag> 델리게이션 이벤트 모델 </tag>
@@ -5286,8 +5288,6 @@
             <tag> 하이라키 이벤트 모델 </tag>
             
             <tag> Hierachy Event Model </tag>
-            
-            <tag> android </tag>
             
             <tag> event model </tag>
             
@@ -5318,6 +5318,8 @@
       
         <tags>
             
+            <tag> android </tag>
+            
             <tag> 안드로이드 이벤트 모델 </tag>
             
             <tag> 델리게이션 이벤트 모델 </tag>
@@ -5327,8 +5329,6 @@
             <tag> 하이어라키 이벤트 모델 </tag>
             
             <tag> Hierachy Event Model </tag>
-            
-            <tag> android </tag>
             
             <tag> event model </tag>
             
