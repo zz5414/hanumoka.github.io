@@ -245,6 +245,104 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/16/java-20181116-java-break-label/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/16/java-20181116-java-break-label/" class="post-title-link" itemprop="url">java - break label:(충접 루프 탈출)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-11-16 07:19:33" itemprop="dateCreated datePublished" datetime="2018-11-16T07:19:33+09:00">2018-11-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>java의 break문은 가장 가까운 반복문만 종료하고 바깥쪽 반복문은 종료시키지 못한다.</p>
+<p>중첩된 반복문을 탈출하기 위해서는 <strong>break 라벨명;</strong> 을 사용 하면된다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">Outter: <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++)&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">5</span>; j++)&#123;</span><br><span class="line">    System.out.println(<span class="string">"중첩 루푸 동작중 i:"</span> + i + <span class="string">"j:"</span> + j);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(i == <span class="number">2</span>)&#123;</span><br><span class="line">      <span class="keyword">break</span> Outter;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  &#125;<span class="comment">// _for</span></span><br><span class="line">&#125;<span class="comment">// _for</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181116-java-break-label_1.png" alt="위 코드 실행 결과"></p>
+<p>별 내용은 아니지만, 자꾸 문법을 까먹어서 정리한다.</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/14/docker-20181114-docker-ubuntu-nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1406,122 +1504,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/02/javascript-20181102-javascript-callback-weakness-feat-callback-hell/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/02/javascript-20181102-javascript-callback-weakness-feat-callback-hell/" class="post-title-link" itemprop="url">javascript 콜백사용의 위험성(클로저 그리고 let와 for문)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-11-02 21:19:49" itemprop="dateCreated datePublished" datetime="2018-11-02T21:19:49+09:00">2018-11-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>콜백의 비동기적 프로그래밍을 사용할때 주의할점이 좀 있다.<br>자바스크립트의 클로저와 함께 사요할때 콜백사용의 주의점을 정리해보겠다.</p>
-<h1 id="비동기-콜백사용시-클로저영역-변수-사용의-위험성"><a href="#비동기-콜백사용시-클로저영역-변수-사용의-위험성" class="headerlink" title="비동기 콜백사용시 클로저영역 변수 사용의 위험성"></a>비동기 콜백사용시 클로저영역 변수 사용의 위험성</h1><p>비동기적 실행에서 혼란스럽고 에러도 자주 일어나는 부분은 스코프와 클로저가 비동기적 실행에 영향을 미치는 부분이다.<br>함수를 호출하면 항상 클로저가 만들어진다.<br>매개변수를 포함해 함수 안에서 만든 변수는 모두 무언가가 자신에 접근할 수 있는 한 계속 존재한다.</p>
-<p>일단 아래 코드를 보고 실행결과를 예측해보자.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countdown</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> i;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"\nCountdown start..."</span>);</span><br><span class="line">  <span class="keyword">for</span>(i =<span class="number">5</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(i===<span class="number">0</span> ? <span class="string">"GO!"</span> : i);</span><br><span class="line">    &#125;, ( <span class="number">5</span> - i ) * <span class="number">1000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">countdown();</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20181102-javascript-callback-weakness-feat-callback-hell_1.png" alt="위 코드의 실행 결과"></p>
-<p>위 코드의 실행결과를 예측했다면, 이미 당신은 자바스크립트 클로저 마스터!<br>결과를 보면 GO! 라는 문구는 아예 찍히지도 않고 -1만 6번 찍히는것을 확인 할 수 있다.</p>
-<p>setTimeout의 호출에 사용되는 i는 정상적으로 5-5, 5-4, 5-3, 5-2, 5-1, 5-0 총 여섯번 호출된다.</p>
-<p>문제는 setTimeout에 등록된 콜백의 호출시점과 이 콜백이 접근하는 i가 속한 클로저의 위치이다.<br>let으로 선언된 변수는 블록 스코프에 소속된다.<br>i는 현재 countdouwn 함수의 블록스코프에 소속되어 있으므로, 정작 setTimeout함수의 등록된 콜백이 실행될 시점에는 for 문에 의해 i의 값은 -1상태가 되어버린 상태이다.<br>따라서 위와 같은 결과가 나오게 된다.</p>
-<p>위 코드에서 let i의 선언 위치를 countdouwn 함수의 블록스코프가 아니라, setTimeout을 호출하는 for문의 statement에 선언하면 정상적으로 코드가 동작하다.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countdown</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//let i;</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"\nCountdown start..."</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">5</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(i===<span class="number">0</span> ? <span class="string">"GO!"</span> : i);</span><br><span class="line">    &#125;, ( <span class="number">5</span> - i ) * <span class="number">1000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">countdown();</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20181102-javascript-callback-weakness-feat-callback-hell_2.png" alt="위 코드의 실행 결과"></p>
-<p>결과를 보면 카운팅이 정상적으로 되고 GO가 콘솔에 찍히는 것을 확인 할 수있다.</p>
-<p>하지만 난 위 코드가 정확히 이해가 가지 않는다.<br>비록 let i 선언이 for문의 스코프에 선언되었지만,<br>정작 setTimeout의 콜백이 호출되는 시점은 for문이 종료된 시점 이다.<br>즉 이번에도 콜백에서 사용하는 i는 for문의 statement에 선언되었지만 여전히 -1이라고 생각 했었다.</p>
-<p>여기에 대해 찾아보니 for문에서 let 변수를 선언했을때의 특이점이 있다.<br><strong>for문의 Statement에 let로 선언된 변수는 for문의 반복횟수 만큼의 클로저 영역을 생성한다.</strong><br>음 함수가 아니라 블록스코프도 클로저라고 불러도 되는지는 잘 모르겠지만…</p>
-<p>즉 위의 코드에서 setTimeout이 호출되는 시점에 전달되는 <strong>for문 statement에 선언된 let i</strong>는 총 6번 전달되며, <strong>그 시점별로 6개의 클로저가 생성된다.</strong><br>setTimeout에 전달된 콜백은 자신이 setTimeout으로 호출될 당시의 for반복문의 클로저의 i 에 접근하게 되는 것이다.</p>
-<p>물론 반복횟수별로 일종의 클로저 영역이 생성되므로, 브라우저 별로 성능저하가 있다고는 한다.</p>
-<p><strong>햇갈리지 말아야 하는 점은 for문의 블록스코프에 선언된 let가 아니라 for문의 statement에 선언된 let가 위처럼 반복횟수별로 클로저를 생성한다는 것이다.</strong></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">countdown</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="comment">//let i;</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"\nCountdown start..."</span>);</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i =<span class="number">5</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"---i:"</span>+ i);</span><br><span class="line">    <span class="keyword">let</span> a = <span class="number">0</span>;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"----a:"</span> + a++);</span><br><span class="line">      <span class="built_in">console</span>.log(i===<span class="number">0</span> ? <span class="string">"GO!"</span> : i);</span><br><span class="line">    &#125;, ( <span class="number">5</span> - i ) * <span class="number">1000</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">countdown();</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20181102-javascript-callback-weakness-feat-callback-hell_3.png" alt="위 코드의 실행 결과"></p>
-<p>콜백이 a에 접근할 때에는 이미 for문의 동작이 모두 끝난 상태이다.<br>그리고 for문의 블록스코프에 선언된 let a는 반복횟수 만큼 생성되는 클로저의 영역에 포함되지 않는다.</p>
-<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>promise등 콜백의 대안이 있긴 하지만, 아직도 콜백은 많이 사용되는 것 같다.<br>콜백을 사용할때 콜백이 접근할 영역의 스코프가 정확히 어디인지 주의하며 코딩할 필요가 있다.<br>끝!</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1592,20 +1574,20 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-count">199</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-count">556</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

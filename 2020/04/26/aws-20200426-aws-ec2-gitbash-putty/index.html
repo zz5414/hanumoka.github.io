@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://www.hanumoka.net').hostname,
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.6.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":true},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+<!-- 구글 애드센스 코드  -->
+<script data-ad-client="ca-pub-6388187282606796" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-100596920-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-100596920-1');
+</script>
+ 
+<!-- 네이버 웹 마스터-->
+<meta name="naver-site-verification" content="74bc91ee61c53c02f7d87ab3a442f99823f4f5f9">
+  <meta name="description" content="들어가기AWS에 ec2를 이용해서 Ubuntu를 설치하고 접속해보는 예제이다. ec2 하드웨어 사양은 무료티어(t2.micro)를 사용했다. 개발환경 windows10 putty aws 계정(미리 가입되어 있어야 한다.) git bash  실습일단 aws의 AWS Management Console에 접속하자.  EC2를 선택하자.  대시보드화면이 나오는데">
+<meta property="og:type" content="article">
+<meta property="og:title" content="aws-ec2에 ubuntu AMI(이미지)를 설치하고 접속해보기(t2.micro)">
+<meta property="og:url" content="https://www.hanumoka.net/2020/04/26/aws-20200426-aws-ec2-gitbash-putty/index.html">
+<meta property="og:site_name" content="Hanumoka, IT Blog">
+<meta property="og:description" content="들어가기AWS에 ec2를 이용해서 Ubuntu를 설치하고 접속해보는 예제이다. ec2 하드웨어 사양은 무료티어(t2.micro)를 사용했다. 개발환경 windows10 putty aws 계정(미리 가입되어 있어야 한다.) git bash  실습일단 aws의 AWS Management Console에 접속하자.  EC2를 선택하자.  대시보드화면이 나오는데">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%201.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%202.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%203.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%204.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%205.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%206.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%207.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%208.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%209.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2010.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2011.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2012.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2013.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2014.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2015.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2016.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2017.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2018.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2019.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2020.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2021.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2022.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2023.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2024.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2025.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2026.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2027.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2028.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2029.png">
+<meta property="og:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2030.png">
+<meta property="article:published_time" content="2020-04-26T07:34:18.000Z">
+<meta property="article:modified_time" content="2020-04-26T07:37:19.699Z">
+<meta property="article:author" content="Hanumoka">
+<meta property="article:tag" content="aws">
+<meta property="article:tag" content="ec2">
+<meta property="article:tag" content="t2.micro">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="putty">
+<meta property="article:tag" content="gitbash">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.hanumoka.net/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled.png">
+
+<link rel="canonical" href="https://www.hanumoka.net/2020/04/26/aws-20200426-aws-ec2-gitbash-putty/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>aws-ec2에 ubuntu AMI(이미지)를 설치하고 접속해보기(t2.micro) | Hanumoka, IT Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="Hanumoka, IT Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hanumoka, IT Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">그래봐야 코딩, 그래도 코딩</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>홈</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>About</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>태그</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>카테고리</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>아카이브</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>Schedule</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>Sitemap</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-fw fa-rss"></i>rss</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-fw fa-heartbeat"></i>Commonweal 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>검색
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="Searching..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/hanumoka" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="external nofollow noopener noreferrer" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2020/04/26/aws-20200426-aws-ec2-gitbash-putty/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          aws-ec2에 ubuntu AMI(이미지)를 설치하고 접속해보기(t2.micro)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-26 16:34:18 / Updated at: 16:37:19" itemprop="dateCreated datePublished" datetime="2020-04-26T16:34:18+09:00">2020-04-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/aws/" itemprop="url" rel="index">
+                    <span itemprop="name">aws</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>AWS에 ec2를 이용해서 Ubuntu를 설치하고 접속해보는 예제이다.</p>
+<p>ec2 하드웨어 사양은 무료티어(t2.micro)를 사용했다.</p>
+<h2 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h2><ul>
+<li>windows10</li>
+<li>putty</li>
+<li>aws 계정(미리 가입되어 있어야 한다.)</li>
+<li>git bash</li>
+</ul>
+<h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><p>일단 aws의 AWS Management Console에 접속하자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled.png"></p>
+<p><strong>EC2</strong>를 선택하자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%201.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%201.png"></p>
+<p>대시보드화면이 나오는데 화면 가운데 오랜지색 버튼인 <strong>인스턴스 시작</strong>을 눌러주자.</p>
+<p>다음 화면에서 EC2에 사용할 이미지(AMI)를 고를수 있다. </p>
+<p>나는 개인적으로 익숙한 Ubuntu18.04를 선택했다. </p>
+<p>이미지 설명에 <strong>프리티어 사용가능</strong>한 이미지로 선택했다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%202.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%202.png"></p>
+<p>위 이미지처럼 원하는 이미지의 <strong>선택</strong>버튼을 누르자.</p>
+<p>다음 화면에서는 EC2의 하드웨어 설정이 나온다. </p>
+<p>역시 무료사용이 가능한 프리티어 <strong>t2.micro</strong> @ 를 선택하고 <strong>다음:인스턴스 세부 정보 구성</strong>을 클릭한다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%203.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%203.png"></p>
+<p>다음 화면은 인스턴스 세부 정보 구성 화면이다. 기본 값을 건드리지 말고 <strong>다음:스토리지 추가</strong>를 클릭하자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%204.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%204.png"></p>
+<p>다음 화면은 스토리지 추가 화면이다. 설명을 보면 프리티어 사용가능 고객은 최대 30GB의 EBS 범용(SSD) 또는 마그네틱 스토리지를 사용할 수 있다고 한다.</p>
+<p>나는 그냥 기본으로 두고 <strong>다음: 태그 추가</strong> 버튼을 클릭했다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%205.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%205.png"></p>
+<p>다음화면은 태그 추가 화면이다.</p>
+<p>아무것도 하지 않고 <strong>다음: 보안:그룹 구성</strong>을 클릭하자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%206.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%206.png"></p>
+<p>다음화면은 보안그룹 구성 화면이다.</p>
+<p>기본적으로 SSH 유형만 설정되어있는데, 나는 <strong>규칙추가</strong>를 통해 <strong>HTTP, HTTPS</strong>도 추가해주었다.</p>
+<p>나중에 해당 인스턴스에 웹서버를 올려서 테스트 해볼까 하기 때문이다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%207.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%207.png"></p>
+<p>설정이 끝나면 <strong>검토 및 시작</strong> 버튼을 클릭하자.</p>
+<p>마지막 단계인 인서턴스 시작 검토 화면이다.</p>
+<p>지금까지 설정한 내용이 요약으로 보여진다.</p>
+<p><strong>시작하기</strong> 버튼을 클릭하자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%208.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%208.png"></p>
+<p>다음처럼 키페어를 생성하는 팝업 창이 열린다.</p>
+<p>여기서 생성한 <strong>키페어파일</strong>를 이용해서 생성된 인스턴스에 SSH로 접속이 가능하다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%209.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%209.png"></p>
+<p>만약 기존에 생성한 키페어가 있다면, 그것을 재 사용할수 있다.</p>
+<p>하지만 난 없으니 새 키페어 생성을 선택하고 키페어 이름을 지정한다.(영문)</p>
+<p>그리고 키페어 다운로드 버튼을 눌러, 입력한 <strong>키페어이름.pem</strong> 파일을 다운 받는다.</p>
+<p>해당 파일이 있어야 인스턴스에 접속이 가능하므로, <strong>외부에 유출되지 않게 잘 보관해야 한다.</strong></p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2010.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2010.png"></p>
+<p>아래처럼 pem 파일이 다운받아진다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2011.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2011.png"></p>
+<p>pem 파일을 다운 받은후 <strong>인스턴스 시작</strong> 버튼을 눌러주자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2012.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2012.png"></p>
+<p>아래처럼 인스턴스가 시작중이라고 나온다.</p>
+<p><strong>인스턴스 보기 버튼</strong>을 눌러주자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2013.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2013.png"></p>
+<p>다음처럼 대쉬보드 화면으로 이동하고 인스턴스 상태가 <strong>pending</strong>으로 나온다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2014.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2014.png"></p>
+<p>pending은 인스턴스가 준비되고 있다는 것을 의미한다. <strong>running</strong>으로 바뀔 때 까지 기다린다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2015.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2015.png"></p>
+<h2 id="Git-bash에서-ssh로-Ec2에-접속하기"><a href="#Git-bash에서-ssh로-Ec2에-접속하기" class="headerlink" title="Git bash에서 ssh로 Ec2에 접속하기"></a>Git bash에서 ssh로 Ec2에 접속하기</h2><p>이제 실행중인 인스턴스에 접속해보자.</p>
+<p>대쉬보드 화면에서 해당 인스턴스를 마우스 우클릭 후 <strong>연결</strong>을 클릭하자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2016.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2016.png"></p>
+<p>다음처럼 SSH 클라이언트로 인스턴스에 연결 할 수 있응 방법이 나온다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2017.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2017.png"></p>
+<p>빨간줄과, 녹색줄은 보안을 위해 지웠다.</p>
+<p>중요한건 <strong>예:</strong> 아래의 ssh 명령어 줄이다.</p>
+<p>ssh 명령의 형식은 아래와 같다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i <span class="string">"인스턴스 키패어.pem"</span> 계정명@인스턴스 주소</span><br></pre></td></tr></table></figure>
+
+<p>aws에서 ubunt 이미지로 인스턴스를 생성했을대 기본 계정으로 <strong>ubuntu</strong>를 생성해준다.</p>
+<p>@이 뒤에 인스턴스 주소는 aws에서 인스턴스를 생성할때 유니크한 도메인을 자동으로 생성해준다.</p>
+<p>팝업에 나오는 ssh 명령어 한줄을 그대로 복사한 뒤, git bash 창을 열고 접속해보자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2018.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2018.png"></p>
+<p>뭔가 연결을 진행할 거냐 물어보는데 <strong>yes를 눌러주자.</strong></p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2019.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2019.png"></p>
+<p>다음처럼 접속이 된 것을 확인 할 수 있다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2020.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2020.png"></p>
+<h2 id="putty로-Ec2-인스턴스에-접속하기"><a href="#putty로-Ec2-인스턴스에-접속하기" class="headerlink" title="putty로 Ec2 인스턴스에 접속하기."></a>putty로 Ec2 인스턴스에 접속하기.</h2><h3 id="과정요약"><a href="#과정요약" class="headerlink" title="과정요약"></a>과정요약</h3><ul>
+<li>키페어.pem 파일을 puttygen프로그램을 이용해서 ppk파일로 변환</li>
+<li>putty에 ppk파일을 등록</li>
+<li>putty로 Ec2 인스턴스에 접속</li>
+</ul>
+<h3 id="실습-1"><a href="#실습-1" class="headerlink" title="실습"></a>실습</h3><p>일단 puttygen.exe를 실행한다.</p>
+<p>보통 putty가 설치된 폴더에 같이 있다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2021.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2021.png"></p>
+<p>puttygen 프로그램의 <strong>Conversions-import key</strong> 항목을 선택한다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2022.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2022.png"></p>
+<p>아까 인스턴스 생성시 다운받은 키페어.pem 파일을 탐색창에서 찾아 연다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2023.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2023.png"></p>
+<p>그 다음에 Save private key 버튼을 클릭하면 새로운 ppk 파일을 생성 할 수 있다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2024.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2024.png"></p>
+<p>생성된 ppk 파일.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2025.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2025.png"></p>
+<p>이제 위에서 생성한 ppk 파일을 putty에 등록해서 사용하면된다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2026.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2026.png"></p>
+<p>일단 putty를 열고 카테고리에서 Connection-SSH-Auth 들어가서 Private key file for authentication 항목의 Browse를 클릭해서 ppk 파일을 등록하자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2027.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2027.png"></p>
+<p>다시 아까 인스턴스 연결에서 보았던 접속주소를 복사한다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2028.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2028.png"></p>
+<p>위 이미지의 녹색 영역이 접속주소이다.</p>
+<p>해당 내용을 putty <strong>session</strong>에 Host Name에 입력하고 Open  버튼을 클릭하자.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2029.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2029.png"></p>
+<p>다음처럼 접속이 잘 되는 것을 확인 할 수 있다.</p>
+<p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2030.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2030.png"></p>
+<p>끝!!!</p>
+<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p>책: 당신이 지금 알아야 할 AWS(이영호, 한동수)</p>
+
+      
+          
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+      <div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- hanumoka -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="8283223202" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </div>
+      <div>
+      <!-- Utterances 댓글 -->
+      <script src="https://utteranc.es/client.js" repo="hanumoka/hanumoka.github.io" issue-term="pathname" theme="github-light" crossorigin="anonymous" async>
+      </script>
+      <div style="font-size: 1rem;
+                  font-weight: 400;
+                  line-height: 1.5;
+                  text-align: left;
+                  box-sizing: border-box;
+                  position: relative;
+                  padding: .75rem 1.25rem;
+                  margin-bottom: 1rem;
+                  border: 1px solid transparent;
+                  border-radius: .25rem;
+                  color: #721c24;
+                  background-color: #f8d7da;
+                  border-color: #f5c6cb;
+                  margin-top: 1rem;">
+        Notice: 댓글을 사용하시려면, github에 로그인을 해주세요.(Utterances 댓글을 사용중입니다.)
+      </div>
+    <div>
+          <div class="post-tags">
+              <a href="/tags/aws/" rel="tag"># aws</a>
+              <a href="/tags/ec2/" rel="tag"># ec2</a>
+              <a href="/tags/t2-micro/" rel="tag"># t2.micro</a>
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/putty/" rel="tag"># putty</a>
+              <a href="/tags/gitbash/" rel="tag"># gitbash</a>
+          </div>
+        
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/25/docker-20200425-docker-react-node/" rel="prev" title="Docker로 React-Node를 이미지로 만들어 컨터이너화 하기">
+      <i class="fa fa-chevron-left"></i> Docker로 React-Node를 이미지로 만들어 컨터이너화 하기
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </div></div></footer>
+    
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          목차
+        </li>
+        <li class="sidebar-nav-overview">
+          흝어보기
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#들어가기"><span class="nav-number">1.</span> <span class="nav-text">들어가기</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#개발환경"><span class="nav-number">1.1.</span> <span class="nav-text">개발환경</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#실습"><span class="nav-number">2.</span> <span class="nav-text">실습</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Git-bash에서-ssh로-Ec2에-접속하기"><span class="nav-number">2.1.</span> <span class="nav-text">Git bash에서 ssh로 Ec2에 접속하기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#putty로-Ec2-인스턴스에-접속하기"><span class="nav-number">2.2.</span> <span class="nav-text">putty로 Ec2 인스턴스에 접속하기.</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#과정요약"><span class="nav-number">2.2.1.</span> <span class="nav-text">과정요약</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#실습-1"><span class="nav-number">2.2.2.</span> <span class="nav-text">실습</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#참고자료"><span class="nav-number">3.</span> <span class="nav-text">참고자료</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Hanumoka</p>
+  <div class="site-description" itemprop="description">아마추어 개발자의 블로그</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">199</span>
+          <span class="site-state-item-name">포스트</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">카테고리</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">556</span>
+        <span class="site-state-item-name">태그</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hanumoka" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hanumoka" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:amagramer@gmail.com" title="E-Mail → mailto:amagramer@gmail.com" rel="external nofollow noopener noreferrer" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    <div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 왼쪽 사이드 광고 -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="9032012837" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+    </div>
+    
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hanumoka</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Gemini</a> v7.6.0
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

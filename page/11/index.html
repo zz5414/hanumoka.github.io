@@ -245,6 +245,152 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/22/vue-20180822-vue-Vue-CLI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/22/vue-20180822-vue-Vue-CLI/" class="post-title-link" itemprop="url">Vue CLI를 이용해서 프로젝트 만들어보기.</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-22 15:53:21" itemprop="dateCreated datePublished" datetime="2018-08-22T15:53:21+09:00">2018-08-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/vue/" itemprop="url" rel="index">
+                    <span itemprop="name">vue</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h3><p>저번 포스트에서 Vue 개발환경을 설정했다.<br>이번에는 Vue CLI를 이용해서 간편하게 Vue 프로젝트를 만들어보자.<br>Node와 Vue-Cli를 미리 설치해야 한다. </p>
+<h3 id="Vue-CLI-Commnad-Line-Interface-란"><a href="#Vue-CLI-Commnad-Line-Interface-란" class="headerlink" title="Vue CLI(Commnad Line Interface) 란?"></a>Vue CLI(Commnad Line Interface) 란?</h3><p>뷰 코어팀에서 제공하는 일종의 터미널용 도구이다.<br>저번 글에서 node를 설치한 뒤에 아래 명령어로, Vue CLI를 설치했다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install vue-cli -global</span><br></pre></td></tr></table></figure>
+
+<p>Vue CLI를 설치하면 터미널에서 간단한 명령어를 통해서 프로토타입 프로젝트를 쉽게 만들수 있다.<br>(사실 처음 CLI라는 용어에 <em>이건 뭐지? Vue 전용 터미멀 프로그램인가?</em> 라고 혼동이 좀 왔었다.)</p>
+<p><img src="/images/20180822-vue-Vue-CLI_1.png" alt="cmd창에서 vue 명령을 입력해서 위처럼 나와야 vue cli 설치가 된 것이다."></p>
+<h3 id="Vue-CLI-프로젝트-생성-명령어"><a href="#Vue-CLI-프로젝트-생성-명령어" class="headerlink" title="Vue CLI 프로젝트 생성 명령어"></a>Vue CLI 프로젝트 생성 명령어</h3><table>
+<thead>
+<tr>
+<th>템플릿 종류</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>vue init webpack</td>
+<td>고급 웹팩 기능을 활용한 프로젝트 구성 방식, 테스팅, 문법 검사 등을 지원</td>
+</tr>
+<tr>
+<td>vue init webpack-simple</td>
+<td>웹팩 최소 기능을 활용한 프로젝트 구성방식, 빠른 화면 프로토타이핑용</td>
+</tr>
+<tr>
+<td>vue init browserify</td>
+<td>고급 브라우저파리 기능을 활용한 프로젝트 구성 방식, 테스팅, 문법 검사 등을 지원</td>
+</tr>
+<tr>
+<td>vue init browserify-simple</td>
+<td>브라우저파이 최소 기능을 활용한 프로젝트 구성 방식, 빠른 화면 프로토타이핑용</td>
+</tr>
+<tr>
+<td>vue init simple</td>
+<td>최소 뷰 기능만 들어간 HTML 파일 1개 생성</td>
+</tr>
+<tr>
+<td>vue init pwa</td>
+<td>웹팩 기반의 프로그레시브 웹 앱(PWA, Progressive Web App) 기능을 지원하는 뷰 프로젝트</td>
+</tr>
+</tbody></table>
+<p>webpack, browserify 같은 모듈 번들러 프로젝트는 자체적으로 Vue 로더를 포함하고 있다.<br>Vue 로더는 vue.확장자 파일을 HTML, SCRIPT, STYLE로 변환해 준다.<br>따라서 Vue 로더가 포함돤 프로젝트를 생성하면 Vue 확장자 파일을 사용 할 수 있다.</p>
+<h3 id="Vue-CLI-로-webpack-simple-프로젝트-생성하기"><a href="#Vue-CLI-로-webpack-simple-프로젝트-생성하기" class="headerlink" title="Vue CLI 로 webpack-simple 프로젝트 생성하기."></a>Vue CLI 로 webpack-simple 프로젝트 생성하기.</h3><p>원하는 경로에 프로젝트 폴더를 생성하고, cmd로 그 경로로 이동하여 vue init webpack-simple 명령어를 입력하자.<br>나는 TestVue라는 폴더를 만들었다.</p>
+<p><img src="/images/20180822-vue-Vue-CLI_2.png" alt="Vue init webpack-simple을 입력하고 프로젝트 관련된 설정을 입력해야한다."></p>
+<p><img src="/images/20180822-vue-Vue-CLI_3.png" alt="해당 경로로 이동하면 폴더와 파일이 생성된 것을 확인 할 수 있다."></p>
+<p><strong>index.html:</strong> 뷰로 만든 웹 앱의 시작점. npm run dev 실생시 로딩되는 엔트리 파일이다.<br><strong>webpack.config.js:</strong> 웹 팩 설정파일. 웹팩 빌드를 위해 필요한 로직들을 정의 하는 파일이다.<br><strong>package.json:</strong> npm 설정파일이 있다. Vue 어플리케이션에서 필요한 라이브러리 정보를 포함하고 있다.</p>
+<p>pakcage.json을 보면 알겠지만, 초기 프로젝트 생성시 npm intall을 이용해서 라이브러리를 받아야 한다.<br>cmd 에서 npm install 을 입력하자.</p>
+<p><img src="/images/20180822-vue-Vue-CLI_4.png" alt="npm install을 입력한뒤, node_modules 폴더 생성을 확인하자."></p>
+<p>package.json 파일 내부를 보면 아래와 같은데</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"name"</span>: <span class="string">"webpack-cli-template"</span>,</span><br><span class="line">  <span class="attr">"description"</span>: <span class="string">"vue project"</span>,</span><br><span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</span><br><span class="line">  <span class="attr">"author"</span>: <span class="string">"hanumoka"</span>,</span><br><span class="line">  <span class="attr">"license"</span>: <span class="string">"MIT"</span>,</span><br><span class="line">  <span class="attr">"private"</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">"scripts"</span>: &#123;</span><br><span class="line">    <span class="attr">"dev"</span>: <span class="string">"cross-env NODE_ENV=development webpack-dev-server --open --hot"</span>,</span><br><span class="line">    <span class="attr">"build"</span>: <span class="string">"cross-env NODE_ENV=production webpack --progress --hide-modules"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"dependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"vue"</span>: <span class="string">"^2.5.11"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"browserslist"</span>: [</span><br><span class="line">    <span class="string">"&gt; 1%"</span>,</span><br><span class="line">    <span class="string">"last 2 versions"</span>,</span><br><span class="line">    <span class="string">"not ie &lt;= 8"</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">"devDependencies"</span>: &#123;</span><br><span class="line">    <span class="attr">"babel-core"</span>: <span class="string">"^6.26.0"</span>,</span><br><span class="line">    <span class="attr">"babel-loader"</span>: <span class="string">"^7.1.2"</span>,</span><br><span class="line">    <span class="attr">"babel-preset-env"</span>: <span class="string">"^1.6.0"</span>,</span><br><span class="line">    <span class="attr">"babel-preset-stage-3"</span>: <span class="string">"^6.24.1"</span>,</span><br><span class="line">    <span class="attr">"cross-env"</span>: <span class="string">"^5.0.5"</span>,</span><br><span class="line">    <span class="attr">"css-loader"</span>: <span class="string">"^0.28.7"</span>,</span><br><span class="line">    <span class="attr">"file-loader"</span>: <span class="string">"^1.1.4"</span>,</span><br><span class="line">    <span class="attr">"vue-loader"</span>: <span class="string">"^13.0.5"</span>,</span><br><span class="line">    <span class="attr">"vue-template-compiler"</span>: <span class="string">"^2.4.4"</span>,</span><br><span class="line">    <span class="attr">"webpack"</span>: <span class="string">"^3.6.0"</span>,</span><br><span class="line">    <span class="attr">"webpack-dev-server"</span>: <span class="string">"^2.9.1"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>scripts 부분을 보면 dev, build 명령어를 확인 할 수 있다.<br><strong>npm run dev, npm run build</strong> 명령어가 등록되어 있다.</p>
+<p><strong>npm run dev</strong>를 cmd에 입력해 보면 webpack-dev-server(node 기반 웹서버) 가 자동으로 동작하며 자동으로 브라우저가 열리며(localhost:8080) 아래처럼 방금 생성한 Vue프로젝트가 열린다.(index.html)</p>
+<p><img src="/images/20180822-vue-Vue-CLI_5.png" alt="npm run dev를 이용하여 Vue 프로젝트 실행하기."></p>
+<p>서버가 실행되어 있는 동안 코드를 수정하면 바로바로 적용된다.<br>만 그대로 개발할때 사용하는 용도이다.</p>
+<p><strong>npm run build</strong>명령을 입력하면 dist폴더에 빌드 webpack이 빌드 결과물을 생성하는데, 이부분은 webpack에 대한 지식과 vue의 실제 배포방법을 몰라서 넘어가겠다.</p>
+<p>조금더 공부하고, 다음글에서 위 Vue 프로젝트를 빌드 + 배포하는 방법을 알아보겠다.</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/21/vue-20180821-vue-develoment-enviroments-at-windows10/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1305,102 +1451,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/10/spring-20180810-spring-UriComponentsBuilder/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/08/10/spring-20180810-spring-UriComponentsBuilder/" class="post-title-link" itemprop="url">Spring MVC UriComponentsBuilder(서버단에서 쉽게 URI 만들기)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-08-10 06:12:29" itemprop="dateCreated datePublished" datetime="2018-08-10T06:12:29+09:00">2018-08-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/spring/" itemprop="url" rel="index">
-                    <span itemprop="name">spring</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>아주 간혹 Spring 서버단에서 문자열 URI를 만들어야 할때가 있다.<br>그냥 자바 String으로 만들어도 되지만, Spring MVC의 org.springframework.web.util 패키지의 UriComponentsBuilder를 사용하면 조금더 쉽고, 명확하게 URI 문자열을 생성 할 수 있다.</p>
-<h1 id="UriComponentsBuilder-예제"><a href="#UriComponentsBuilder-예제" class="headerlink" title="UriComponentsBuilder 예제"></a>UriComponentsBuilder 예제</h1><p>아래처럼 사용하면된다.<br>URI같은 것을 동적으로 만드는 거 자체가 짜증나긴 하지만, Java String으로 만드는 것보다야 편한듯 하다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testURI</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		</span><br><span class="line">		UriComponents uriComponents = UriComponentsBuilder.newInstance()</span><br><span class="line">				.path(<span class="string">"/samplehome/board/read"</span>)</span><br><span class="line">				.queryParam(<span class="string">"bno"</span>, <span class="number">12</span>)</span><br><span class="line">				.queryParam(<span class="string">"perPageNum"</span>, <span class="number">20</span>)</span><br><span class="line">				.build();</span><br><span class="line">		</span><br><span class="line">		logger.info(<span class="string">"/samplehome/board/read?bno=12&amp;perPageNum=20"</span>);</span><br><span class="line">		logger.info(uriComponents.toString());  <span class="comment">// /samplehome/board/read?bno=12&amp;perPageNum=20 가 생성된다.</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testURI2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		UriComponents uriComponents = UriComponentsBuilder.newInstance()</span><br><span class="line">				.path(<span class="string">"/&#123;a&#125;/&#123;b&#125;/&#123;c&#125;"</span>)</span><br><span class="line">				.queryParam(<span class="string">"bno"</span>, <span class="number">12</span>)</span><br><span class="line">				.queryParam(<span class="string">"perPageNum"</span>, <span class="number">20</span>)</span><br><span class="line">				.build()</span><br><span class="line">				.expand(<span class="string">"samplehome"</span>, <span class="string">"board"</span>, <span class="string">"read"</span>)</span><br><span class="line">				.encode();</span><br><span class="line">		</span><br><span class="line">		logger.info(<span class="string">"/samplehome/board/read?bno=12&amp;perPageNum=20"</span>);  </span><br><span class="line">		logger.info(uriComponents.toString()); <span class="comment">// /samplehome/board/read?bno=12&amp;perPageNum=20 가 생성된다.</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1471,20 +1521,20 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-count">199</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-count">556</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

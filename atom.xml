@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.hanumoka.net/"/>
-  <updated>2020-04-25T17:45:05.322Z</updated>
+  <updated>2020-04-26T07:37:19.699Z</updated>
   <id>https://www.hanumoka.net/</id>
   
   <author>
@@ -15,6 +15,44 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>aws-ec2에 ubuntu AMI(이미지)를 설치하고 접속해보기(t2.micro)</title>
+    <link href="https://www.hanumoka.net/2020/04/26/aws-20200426-aws-ec2-gitbash-putty/"/>
+    <id>https://www.hanumoka.net/2020/04/26/aws-20200426-aws-ec2-gitbash-putty/</id>
+    <published>2020-04-26T07:34:18.000Z</published>
+    <updated>2020-04-26T07:37:19.699Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;AWS에 ec2를 이용해서 Ubuntu를 설치하고 접속해보는 예제이다.&lt;/p&gt;
+&lt;p&gt;ec2 하드웨어 사양은
+        
+      
+    
+    </summary>
+    
+    
+      <category term="aws" scheme="https://www.hanumoka.net/categories/aws/"/>
+    
+    
+      <category term="aws" scheme="https://www.hanumoka.net/tags/aws/"/>
+    
+      <category term="ec2" scheme="https://www.hanumoka.net/tags/ec2/"/>
+    
+      <category term="t2.micro" scheme="https://www.hanumoka.net/tags/t2-micro/"/>
+    
+      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
+      <category term="putty" scheme="https://www.hanumoka.net/tags/putty/"/>
+    
+      <category term="gitbash" scheme="https://www.hanumoka.net/tags/gitbash/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker로 React-Node를 이미지로 만들어 컨터이너화 하기</title>
@@ -164,11 +202,11 @@
       <category term="react" scheme="https://www.hanumoka.net/categories/react/"/>
     
     
+      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
       <category term="deploy" scheme="https://www.hanumoka.net/tags/deploy/"/>
     
       <category term="nginx" scheme="https://www.hanumoka.net/tags/nginx/"/>
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
     
       <category term="react" scheme="https://www.hanumoka.net/tags/react/"/>
     
@@ -200,9 +238,9 @@
       <category term="ubuntu" scheme="https://www.hanumoka.net/categories/ubuntu/"/>
     
     
-      <category term="port" scheme="https://www.hanumoka.net/tags/port/"/>
-    
       <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
+      <category term="port" scheme="https://www.hanumoka.net/tags/port/"/>
     
       <category term="iptables" scheme="https://www.hanumoka.net/tags/iptables/"/>
     
@@ -464,11 +502,11 @@
     
       <category term="jenkins" scheme="https://www.hanumoka.net/tags/jenkins/"/>
     
+      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
       <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
     
       <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
     
       <category term="dockerindocker" scheme="https://www.hanumoka.net/tags/dockerindocker/"/>
     
@@ -501,11 +539,11 @@
     
       <category term="jenkins" scheme="https://www.hanumoka.net/tags/jenkins/"/>
     
+      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
       <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
     
       <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
     
   </entry>
   
@@ -532,11 +570,11 @@
       <category term="docker" scheme="https://www.hanumoka.net/categories/docker/"/>
     
     
+      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
       <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
     
       <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
     
       <category term="gitlab" scheme="https://www.hanumoka.net/tags/gitlab/"/>
     
@@ -565,11 +603,11 @@
       <category term="docker" scheme="https://www.hanumoka.net/categories/docker/"/>
     
     
+      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
       <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
     
       <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
     
       <category term="nexus" scheme="https://www.hanumoka.net/tags/nexus/"/>
     
@@ -598,9 +636,9 @@
       <category term="ubuntu" scheme="https://www.hanumoka.net/categories/ubuntu/"/>
     
     
-      <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
-    
       <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
+      <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
     
       <category term="docker-compose" scheme="https://www.hanumoka.net/tags/docker-compose/"/>
     
@@ -638,38 +676,6 @@
       <category term="multi" scheme="https://www.hanumoka.net/tags/multi/"/>
     
       <category term="module" scheme="https://www.hanumoka.net/tags/module/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu 일반계정에 root권한 부여하기</title>
-    <link href="https://www.hanumoka.net/2019/09/26/ubuntu-20190926-ubuntu-grant-root/"/>
-    <id>https://www.hanumoka.net/2019/09/26/ubuntu-20190926-ubuntu-grant-root/</id>
-    <published>2019-09-26T14:10:37.000Z</published>
-    <updated>2020-04-15T16:50:12.035Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h3 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h3&gt;&lt;p&gt;ubuntu에서 이것저것 하다보면 관리자 권한으로 명령어를 실행해야 할 일이 많다.&lt;/p&gt;
-&lt;p&gt;매번 sudo
-        
-      
-    
-    </summary>
-    
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/categories/ubuntu/"/>
-    
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
-    
-      <category term="root" scheme="https://www.hanumoka.net/tags/root/"/>
-    
-      <category term="권한" scheme="https://www.hanumoka.net/tags/%EA%B6%8C%ED%95%9C/"/>
     
   </entry>
   

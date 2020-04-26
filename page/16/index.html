@@ -245,6 +245,105 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/04/29/spring-20180429-spring-RedirectAttributes/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/04/29/spring-20180429-spring-RedirectAttributes/" class="post-title-link" itemprop="url">Spring RedirectAttributes(Spring Controller에서 redirect 하기)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-04-29 21:04:23" itemprop="dateCreated datePublished" datetime="2018-04-29T21:04:23+09:00">2018-04-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h3><p>스프링 웹 프로젝트를 개발할 때 가끔 컨트롤러에서 다른 컨트롤러로 redirect 처리해야 할 경우가 있다. </p>
+<h3 id="Spring-Controller에서-redirect-처리하기"><a href="#Spring-Controller에서-redirect-처리하기" class="headerlink" title="Spring Controller에서 redirect 처리하기"></a>Spring Controller에서 redirect 처리하기</h3><p>간단하게 컨트롤러에서 return 값을 <strong>redirect:/경로</strong> 로 처리하면 된다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/doA"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">doA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	logger.info(<span class="string">"doA called..."</span>);		</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"redirect:/doB"</span>;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/doB"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doB</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	logger.info(<span class="string">"doB called..."</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Spring-Controller에서-redirect-처리시-파라미터-넘기기-RedirectAttributes"><a href="#Spring-Controller에서-redirect-처리시-파라미터-넘기기-RedirectAttributes" class="headerlink" title="Spring Controller에서 redirect 처리시 파라미터 넘기기(RedirectAttributes)"></a>Spring Controller에서 redirect 처리시 파라미터 넘기기(RedirectAttributes)</h3><p>Spring Controller doA에에서 doB 컨트롤러로 리다이렉트 할때 파라미터를 넘겨야 할 경우 RedirectAttributes 를 사용하면된다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/doA"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">doA</span><span class="params">(RedirectAttributes rttr)</span> </span>&#123;</span><br><span class="line">	logger.info(<span class="string">"doA called..."</span>);</span><br><span class="line">	</span><br><span class="line">	rttr.addFlashAttribute(<span class="string">"msg"</span>, <span class="string">"리다이렉트시 전달할 메세지"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="string">"redirect:/doB"</span>;</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/doB"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doB</span><span class="params">(@ModelAttribute String msg)</span> </span>&#123;</span><br><span class="line">	logger.info(<span class="string">"doB called... msg:"</span>+ msg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20180429-spring-RedirectAttributes_1.png" alt="doA 컨트롤러에 브라우저 접속시 결과"></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/04/29/spring-20180429-spring-mybatis-mysql-setting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1359,107 +1458,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/03/29/centOs-20180329-centos-vi-swap-file/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/03/29/centOs-20180329-centos-vi-swap-file/" class="post-title-link" itemprop="url">CentOs - swap file 복구하기</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-03-29 11:01:25" itemprop="dateCreated datePublished" datetime="2018-03-29T11:01:25+09:00">2018-03-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/centOs/" itemprop="url" rel="index">
-                    <span itemprop="name">centOs</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="swap-파일이란"><a href="#swap-파일이란" class="headerlink" title="swap 파일이란?"></a>swap 파일이란?</h4><p><img src="/images/20180329-centos-vi-swap-file_1.png" alt="swap파일"></p>
-<p>위와 같이<br>리눅스 운영체제에서 숨김파일형태로 swap 확장자를 갖는 파일을 말한다.<br>swap 파일은 임시파일로서 vi로 특정 문서를 수정할때 자동 생성되며, 파일을 수정 중 정상적인 종료를 하지 않을시 자동으로 제거되지 않고 남아버린다.</p>
-<p>만약 해당 수정내용이 필요 없다면, 생성된 swap 파일을 제거 해버리면 되지만 만약 복구를 하고 싶다면<br>아래와 같이 vi를 호출하면 된다.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi -r 파일명</span><br></pre></td></tr></table></figure>
-<p><img src="/images/20180329-centos-vi-swap-file_2.png" alt="swap파일"><br>다음화면이 나오면 엔터를 눌러 수정중이던 상태로 파일을 되돌릴 수 있다.<br><img src="/images/20180329-centos-vi-swap-file_3.png" alt="swap파일"></p>
-<p>파일을 정상적으로 수정한 뒤에 swap 파일은 자동으로 제거되지 않으므로, 아래와 같이 입력하여 swap 파일을 제거하면 된다.</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm .파일명.swap</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/20180329-centos-vi-swap-file_4.png" alt="swap파일"></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1530,20 +1528,20 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-count">199</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-count">556</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

@@ -4,6 +4,41 @@
   
     
     <entry>
+      <title>aws-ec2에 ubuntu AMI(이미지)를 설치하고 접속해보기(t2.micro)</title>
+      <link href="/2020/04/26/aws-20200426-aws-ec2-gitbash-putty/"/>
+      <url>/2020/04/26/aws-20200426-aws-ec2-gitbash-putty/</url>
+      
+        <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>AWS에 ec2를 이용해서 Ubuntu를 설치하고 접속해보는 예제이다.</p><p>ec2 하드웨어 사양은 무료티어(t2.micro)를 사용했다.</p><h2 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h2><ul><li>windows10</li><li>putty</li><li>aws 계정(미리 가입되어 있어야 한다.)</li><li>git bash</li></ul><h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><p>일단 aws의 AWS Management Console에 접속하자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled.png"></p><p><strong>EC2</strong>를 선택하자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%201.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%201.png"></p><p>대시보드화면이 나오는데 화면 가운데 오랜지색 버튼인 <strong>인스턴스 시작</strong>을 눌러주자.</p><p>다음 화면에서 EC2에 사용할 이미지(AMI)를 고를수 있다. </p><p>나는 개인적으로 익숙한 Ubuntu18.04를 선택했다. </p><p>이미지 설명에 <strong>프리티어 사용가능</strong>한 이미지로 선택했다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%202.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%202.png"></p><p>위 이미지처럼 원하는 이미지의 <strong>선택</strong>버튼을 누르자.</p><p>다음 화면에서는 EC2의 하드웨어 설정이 나온다. </p><p>역시 무료사용이 가능한 프리티어 <strong>t2.micro</strong> @ 를 선택하고 <strong>다음:인스턴스 세부 정보 구성</strong>을 클릭한다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%203.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%203.png"></p><p>다음 화면은 인스턴스 세부 정보 구성 화면이다. 기본 값을 건드리지 말고 <strong>다음:스토리지 추가</strong>를 클릭하자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%204.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%204.png"></p><p>다음 화면은 스토리지 추가 화면이다. 설명을 보면 프리티어 사용가능 고객은 최대 30GB의 EBS 범용(SSD) 또는 마그네틱 스토리지를 사용할 수 있다고 한다.</p><p>나는 그냥 기본으로 두고 <strong>다음: 태그 추가</strong> 버튼을 클릭했다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%205.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%205.png"></p><p>다음화면은 태그 추가 화면이다.</p><p>아무것도 하지 않고 <strong>다음: 보안:그룹 구성</strong>을 클릭하자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%206.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%206.png"></p><p>다음화면은 보안그룹 구성 화면이다.</p><p>기본적으로 SSH 유형만 설정되어있는데, 나는 <strong>규칙추가</strong>를 통해 <strong>HTTP, HTTPS</strong>도 추가해주었다.</p><p>나중에 해당 인스턴스에 웹서버를 올려서 테스트 해볼까 하기 때문이다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%207.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%207.png"></p><p>설정이 끝나면 <strong>검토 및 시작</strong> 버튼을 클릭하자.</p><p>마지막 단계인 인서턴스 시작 검토 화면이다.</p><p>지금까지 설정한 내용이 요약으로 보여진다.</p><p><strong>시작하기</strong> 버튼을 클릭하자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%208.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%208.png"></p><p>다음처럼 키페어를 생성하는 팝업 창이 열린다.</p><p>여기서 생성한 <strong>키페어파일</strong>를 이용해서 생성된 인스턴스에 SSH로 접속이 가능하다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%209.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%209.png"></p><p>만약 기존에 생성한 키페어가 있다면, 그것을 재 사용할수 있다.</p><p>하지만 난 없으니 새 키페어 생성을 선택하고 키페어 이름을 지정한다.(영문)</p><p>그리고 키페어 다운로드 버튼을 눌러, 입력한 <strong>키페어이름.pem</strong> 파일을 다운 받는다.</p><p>해당 파일이 있어야 인스턴스에 접속이 가능하므로, <strong>외부에 유출되지 않게 잘 보관해야 한다.</strong></p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2010.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2010.png"></p><p>아래처럼 pem 파일이 다운받아진다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2011.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2011.png"></p><p>pem 파일을 다운 받은후 <strong>인스턴스 시작</strong> 버튼을 눌러주자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2012.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2012.png"></p><p>아래처럼 인스턴스가 시작중이라고 나온다.</p><p><strong>인스턴스 보기 버튼</strong>을 눌러주자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2013.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2013.png"></p><p>다음처럼 대쉬보드 화면으로 이동하고 인스턴스 상태가 <strong>pending</strong>으로 나온다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2014.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2014.png"></p><p>pending은 인스턴스가 준비되고 있다는 것을 의미한다. <strong>running</strong>으로 바뀔 때 까지 기다린다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2015.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2015.png"></p><h2 id="Git-bash에서-ssh로-Ec2에-접속하기"><a href="#Git-bash에서-ssh로-Ec2에-접속하기" class="headerlink" title="Git bash에서 ssh로 Ec2에 접속하기"></a>Git bash에서 ssh로 Ec2에 접속하기</h2><p>이제 실행중인 인스턴스에 접속해보자.</p><p>대쉬보드 화면에서 해당 인스턴스를 마우스 우클릭 후 <strong>연결</strong>을 클릭하자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2016.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2016.png"></p><p>다음처럼 SSH 클라이언트로 인스턴스에 연결 할 수 있응 방법이 나온다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2017.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2017.png"></p><p>빨간줄과, 녹색줄은 보안을 위해 지웠다.</p><p>중요한건 <strong>예:</strong> 아래의 ssh 명령어 줄이다.</p><p>ssh 명령의 형식은 아래와 같다.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i <span class="string">"인스턴스 키패어.pem"</span> 계정명@인스턴스 주소</span><br></pre></td></tr></table></figure><p>aws에서 ubunt 이미지로 인스턴스를 생성했을대 기본 계정으로 <strong>ubuntu</strong>를 생성해준다.</p><p>@이 뒤에 인스턴스 주소는 aws에서 인스턴스를 생성할때 유니크한 도메인을 자동으로 생성해준다.</p><p>팝업에 나오는 ssh 명령어 한줄을 그대로 복사한 뒤, git bash 창을 열고 접속해보자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2018.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2018.png"></p><p>뭔가 연결을 진행할 거냐 물어보는데 <strong>yes를 눌러주자.</strong></p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2019.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2019.png"></p><p>다음처럼 접속이 된 것을 확인 할 수 있다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2020.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2020.png"></p><h2 id="putty로-Ec2-인스턴스에-접속하기"><a href="#putty로-Ec2-인스턴스에-접속하기" class="headerlink" title="putty로 Ec2 인스턴스에 접속하기."></a>putty로 Ec2 인스턴스에 접속하기.</h2><h3 id="과정요약"><a href="#과정요약" class="headerlink" title="과정요약"></a>과정요약</h3><ul><li>키페어.pem 파일을 puttygen프로그램을 이용해서 ppk파일로 변환</li><li>putty에 ppk파일을 등록</li><li>putty로 Ec2 인스턴스에 접속</li></ul><h3 id="실습-1"><a href="#실습-1" class="headerlink" title="실습"></a>실습</h3><p>일단 puttygen.exe를 실행한다.</p><p>보통 putty가 설치된 폴더에 같이 있다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2021.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2021.png"></p><p>puttygen 프로그램의 <strong>Conversions-import key</strong> 항목을 선택한다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2022.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2022.png"></p><p>아까 인스턴스 생성시 다운받은 키페어.pem 파일을 탐색창에서 찾아 연다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2023.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2023.png"></p><p>그 다음에 Save private key 버튼을 클릭하면 새로운 ppk 파일을 생성 할 수 있다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2024.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2024.png"></p><p>생성된 ppk 파일.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2025.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2025.png"></p><p>이제 위에서 생성한 ppk 파일을 putty에 등록해서 사용하면된다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2026.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2026.png"></p><p>일단 putty를 열고 카테고리에서 Connection-SSH-Auth 들어가서 Private key file for authentication 항목의 Browse를 클릭해서 ppk 파일을 등록하자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2027.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2027.png"></p><p>다시 아까 인스턴스 연결에서 보았던 접속주소를 복사한다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2028.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2028.png"></p><p>위 이미지의 녹색 영역이 접속주소이다.</p><p>해당 내용을 putty <strong>session</strong>에 Host Name에 입력하고 Open  버튼을 클릭하자.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2029.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2029.png"></p><p>다음처럼 접속이 잘 되는 것을 확인 할 수 있다.</p><p><img src="/images/2020/aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2030.png" alt="aws%20ec2%20ubuntu%20AMI%20t2%20micro/Untitled%2030.png"></p><p>끝!!!</p><h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p>책: 당신이 지금 알아야 할 AWS(이영호, 한동수)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> aws </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> aws </tag>
+            
+            <tag> ec2 </tag>
+            
+            <tag> t2.micro </tag>
+            
+            <tag> ubuntu </tag>
+            
+            <tag> putty </tag>
+            
+            <tag> gitbash </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker로 React-Node를 이미지로 만들어 컨터이너화 하기</title>
       <link href="/2020/04/25/docker-20200425-docker-react-node/"/>
       <url>/2020/04/25/docker-20200425-docker-react-node/</url>
@@ -136,11 +171,11 @@
       
         <tags>
             
+            <tag> ubuntu </tag>
+            
             <tag> deploy </tag>
             
             <tag> nginx </tag>
-            
-            <tag> ubuntu </tag>
             
             <tag> react </tag>
             
@@ -169,9 +204,9 @@
       
         <tags>
             
-            <tag> port </tag>
-            
             <tag> ubuntu </tag>
+            
+            <tag> port </tag>
             
             <tag> iptables </tag>
             
@@ -413,11 +448,11 @@
             
             <tag> jenkins </tag>
             
+            <tag> ubuntu </tag>
+            
             <tag> docker </tag>
             
             <tag> dockercompose </tag>
-            
-            <tag> ubuntu </tag>
             
             <tag> dockerindocker </tag>
             
@@ -448,11 +483,11 @@
             
             <tag> jenkins </tag>
             
+            <tag> ubuntu </tag>
+            
             <tag> docker </tag>
             
             <tag> dockercompose </tag>
-            
-            <tag> ubuntu </tag>
             
         </tags>
       
@@ -477,11 +512,11 @@
       
         <tags>
             
+            <tag> ubuntu </tag>
+            
             <tag> docker </tag>
             
             <tag> dockercompose </tag>
-            
-            <tag> ubuntu </tag>
             
             <tag> gitlab </tag>
             
@@ -508,11 +543,11 @@
       
         <tags>
             
+            <tag> ubuntu </tag>
+            
             <tag> docker </tag>
             
             <tag> dockercompose </tag>
-            
-            <tag> ubuntu </tag>
             
             <tag> nexus </tag>
             
@@ -539,9 +574,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> ubuntu </tag>
+            
+            <tag> docker </tag>
             
             <tag> docker-compose </tag>
             
@@ -661,9 +696,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> ubuntu </tag>
+            
+            <tag> docker </tag>
             
             <tag> virtualbox </tag>
             
@@ -937,9 +972,9 @@
       
         <tags>
             
-            <tag> filezilla </tag>
-            
             <tag> ubuntu </tag>
+            
+            <tag> filezilla </tag>
             
             <tag> virtualbox </tag>
             
@@ -1226,9 +1261,9 @@
       
         <tags>
             
-            <tag> docker </tag>
-            
             <tag> ubuntu </tag>
+            
+            <tag> docker </tag>
             
         </tags>
       
@@ -1253,9 +1288,9 @@
       
         <tags>
             
-            <tag> vi </tag>
-            
             <tag> ubuntu </tag>
+            
+            <tag> vi </tag>
             
             <tag> 우분투 </tag>
             
@@ -1284,9 +1319,9 @@
       
         <tags>
             
-            <tag> github </tag>
-            
             <tag> error </tag>
+            
+            <tag> github </tag>
             
             <tag> git </tag>
             
@@ -1354,11 +1389,11 @@
             
             <tag> windows </tag>
             
+            <tag> ubuntu </tag>
+            
             <tag> windows10 </tag>
             
             <tag> docker </tag>
-            
-            <tag> ubuntu </tag>
             
             <tag> 설치 </tag>
             
@@ -2180,11 +2215,11 @@
             
             <tag> centos </tag>
             
+            <tag> ubuntu </tag>
+            
             <tag> docker </tag>
             
             <tag> nginx </tag>
-            
-            <tag> ubuntu </tag>
             
             <tag> 웹서버 </tag>
             
@@ -2399,9 +2434,9 @@
             
             <tag> error </tag>
             
-            <tag> module </tag>
-            
             <tag> webpack </tag>
+            
+            <tag> module </tag>
             
         </tags>
       
@@ -2463,9 +2498,9 @@
             
             <tag> closure </tag>
             
-            <tag> let </tag>
-            
             <tag> callback </tag>
+            
+            <tag> let </tag>
             
             <tag> 콜백 </tag>
             
@@ -2731,9 +2766,9 @@
             
             <tag> error </tag>
             
-            <tag> Tool </tag>
-            
             <tag> Atom </tag>
+            
+            <tag> Tool </tag>
             
             <tag> waring </tag>
             
@@ -3879,9 +3914,9 @@
             
             <tag> Spring Tool Suite </tag>
             
-            <tag> 이클립스 </tag>
-            
             <tag> eclipse </tag>
+            
+            <tag> 이클립스 </tag>
             
             <tag> js파일 </tag>
             
@@ -4563,11 +4598,11 @@
             
             <tag> CentOs7 </tag>
             
+            <tag> firewall-cmd </tag>
+            
             <tag> subversion </tag>
             
             <tag> install </tag>
-            
-            <tag> firewall-cmd </tag>
             
         </tags>
       
@@ -4984,9 +5019,9 @@
             
             <tag> deploy </tag>
             
-            <tag> Hexo </tag>
-            
             <tag> ssh </tag>
+            
+            <tag> Hexo </tag>
             
             <tag> 배포 </tag>
             
@@ -5275,8 +5310,6 @@
       
         <tags>
             
-            <tag> android </tag>
-            
             <tag> 안드로이드 이벤트 모델 </tag>
             
             <tag> 델리게이션 이벤트 모델 </tag>
@@ -5288,6 +5321,8 @@
             <tag> 하이라키 이벤트 모델 </tag>
             
             <tag> Hierachy Event Model </tag>
+            
+            <tag> android </tag>
             
             <tag> event model </tag>
             
@@ -5318,8 +5353,6 @@
       
         <tags>
             
-            <tag> android </tag>
-            
             <tag> 안드로이드 이벤트 모델 </tag>
             
             <tag> 델리게이션 이벤트 모델 </tag>
@@ -5329,6 +5362,8 @@
             <tag> 하이어라키 이벤트 모델 </tag>
             
             <tag> Hierachy Event Model </tag>
+            
+            <tag> android </tag>
             
             <tag> event model </tag>
             

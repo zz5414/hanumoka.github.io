@@ -245,6 +245,125 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-chrome/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/08/17/ubuntu-20190817-ubuntu-chrome/" class="post-title-link" itemprop="url">Ubuntu1804에 크롬브라우저 설치</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-08-17 18:54:52" itemprop="dateCreated datePublished" datetime="2019-08-17T18:54:52+09:00">2019-08-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>우분투 데스크탑을 설치 했으니, 음 뭔가 일반적이 pc처럼 사용하기 위한 필수적인 프로그램들을 설치해보자.</p>
+<h3 id="우분투에-구글-크롬-설치하기"><a href="#우분투에-구글-크롬-설치하기" class="headerlink" title="우분투에 구글 크롬 설치하기"></a>우분투에 구글 크롬 설치하기</h3><p>기본적으로 파이어폭스가 있지만, 구글크롬만한 브라우저가 어디 있을까?</p>
+<p>일단 우분투에서 터미널을 열고 크롬 브라우저 패키지 설치용 인증키를 받자.</p>
+<p>아래 명령어를 입력하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -q -O - https:&#x2F;&#x2F;dl-ssl.google.com&#x2F;linux&#x2F;linux_signing_key.pub | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-bd83912f-0b74-48be-968e-9da370252ac3.png" alt></p>
+<p>그리고 아래 명령어도 입력해주자. 실제 구글크롬 패키지를 다운 받는 설정정보인듯 하다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c &#39;echo &quot;deb [arch&#x3D;amd64] http:&#x2F;&#x2F;dl.google.com&#x2F;linux&#x2F;chrome&#x2F;deb&#x2F; stable main&quot; &gt;&gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google.list&#39;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-16d4a724-cdc7-451a-9c13-35510664b6c0.png" alt></p>
+<p>그리고 아래 명령으로 패키지 리스트를 업데이트 해준다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-dc322d97-d21f-4554-90a0-84e2f2b026db.png" alt></p>
+<p>아래 명령으로 크롬을 설치하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install google-chrome-stable</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-89e4b1f6-2db4-4f8f-9f77-2e065aa0c80c.png" alt></p>
+<p>설치를 위해 생성햇던 파일을 지워주자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google*</span><br><span class="line">sudo rm -rf &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google.list</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-b1f19b2c-8dbf-498a-9ff4-6e534b84afb1.png" alt></p>
+<p>위 아이콘을 눌러 설치된 크롬을 확인하자.</p>
+<p><img src="/images/2019/Untitled-6fe37658-8910-48df-a200-07835c008fd8.png" alt></p>
+<p>끝!!!</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://webnautes.tistory.com/1184" target="_blank" rel="external nofollow noopener noreferrer">https://webnautes.tistory.com/1184</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-vim/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1518,133 +1637,6 @@ sudo apt-get upgrade</code></pre><p><img src="/images/2019/Untitled-8e694a7f-b2b
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/30/java-20190130-java8-system-out-println/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/01/30/java-20190130-java8-system-out-println/" class="post-title-link" itemprop="url">java8 - system.out::println(double colone, method reference)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-01-30 12:47:50" itemprop="dateCreated datePublished" datetime="2019-01-30T12:47:50+09:00">2019-01-30</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>::(double conlon operator)이라고도 부르는것 같은데, 정식 명칭은 method reference라고 부른다.</p>
-<h1 id="method-reference-이해하기"><a href="#method-reference-이해하기" class="headerlink" title="method reference 이해하기"></a>method reference 이해하기</h1><p>메소드 참조(method reference)는 메소드를 참조해서 매개변수의 정보 및 리턴 타입을 미리 알아내어, 람다식에서 사용하는 매개 변수를 생략하는 방식의 표현법이다.</p>
-<p>말로 조금 풀어보자면 대상::메소드 가 있다면, 대상에서 메소드의 정보를 추출하여 람다식 처럼 익명 구현객체를 생성하는 것이다. 다만 참조하는 메소드의 매개변수를 생략 할 수 있다.</p>
-<p>아래 단계별로 소스로 method reference를 알아보자.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">	List&lt;Integer&gt; testList = Arrays.asList(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//1단계: 함수인터페이스를 익명구현객체로 구현</span></span><br><span class="line">	testList.forEach(<span class="keyword">new</span> Consumer&lt;Integer&gt;() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">accept</span><span class="params">(Integer x)</span> </span>&#123;</span><br><span class="line">			System.out.println(x);</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//2단계: 1단계를 람다식으로 간단하게 표현</span></span><br><span class="line">	testList.forEach((x) -&gt; System.out.println(x));</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//3단계: 2단계를 더 간단하게 표현 : methed reference </span></span><br><span class="line">	testList.forEach(System.out::println);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//method reference도 익명구현객체를 생상하므로 이처럼 참조변수에 할당 할 수 있다.</span></span><br><span class="line">   Consumer&lt;Integer&gt; c = System.out::println;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>1~3단계 모두 익명구현객체를 생성하는 코드이다. 점점 약식화된 표현식이며 3단계가 method refernece이다.</p>
-<p>람다식도 굉장시 간단하지만, 위처럼 참조하는 메소드의 매개변수에 어떠한 변화 없이 그냥 사용할경우 매개변수를 생략할 수 있다.</p>
-<p>처음에는 뭔가 코드 가독성이 떨어지는 것 같았지만, 보다보니 간편한거 같기도 하다.</p>
-<h1 id="사용법1"><a href="#사용법1" class="headerlink" title="사용법1"></a>사용법1</h1><p>메소드 참조는 정적 또는 인스턴스 메소드, 그리고 생성자도 참조 할 수 있다.</p>
-<p><strong>참조할 메소드가 정적메소드인경우</strong></p>
-<p>클래스::정적메소드</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">talk</span><span class="params">(String x)</span></span>&#123;</span><br><span class="line">    System.out.println( x + <span class="string">"하하하"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Consumer&lt;String&gt; c2 = Test::talk;</span><br></pre></td></tr></table></figure>
-
-<p><strong>참조할 메소드가 인스턴스 메소드인경우</strong></p>
-<p>먼저 클래스 이용하여 객체를 생성한뒤, 아래처럼 참조변수를 이용해서 메소드를 참조한다.</p>
-<p>참조변수::메소드</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">talk</span><span class="params">(String x)</span></span>&#123;</span><br><span class="line">    System.out.println( x + <span class="string">"하하하"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Test t1 = <span class="keyword">new</span> Test();</span><br><span class="line"></span><br><span class="line">Consumer&lt;String&gt; c3 = t1::talk;</span><br></pre></td></tr></table></figure>
-
-<h1 id="사용법2"><a href="#사용법2" class="headerlink" title="사용법2"></a>사용법2</h1><p>람다식에서 실행될 코드 컨텍스트 내부에는 람다식 외부의 클래스 멤버의 메소드를 사용할 수도 있고, 람다식에 매개변수의 멤버 메소드를 사용할 수도 있다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(a, b) -&gt; &#123; a.instanceMethod(b); &#125;</span><br></pre></td></tr></table></figure>
-
-<p>메소드 참조에서 위 코드를 아래처럼 표현할 수 있다.</p>
-<p>클래스 :: instanceMethod</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">testB</span><span class="params">(B b)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// TODO Auto-generated method stub</span></span><br><span class="line">		A a = <span class="keyword">new</span> A();</span><br><span class="line">		B b = <span class="keyword">new</span> B();</span><br><span class="line">    <span class="comment">//람다방식</span></span><br><span class="line">		ToIntBiFunction&lt;A, B&gt; f1 = (x, y) -&gt; x.testB(y);</span><br><span class="line">		System.out.println(f1.applyAsInt(a, b));</span><br><span class="line">		<span class="comment">//메소드 참조방식</span></span><br><span class="line">		ToIntBiFunction&lt;A, B&gt; f2 = A::testB;</span><br><span class="line">		System.out.println(f2.applyAsInt(a, b));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="생성자-참조"><a href="#생성자-참조" class="headerlink" title="생성자 참조"></a>생성자 참조</h1><p>람도식으로 생성자를 호출해서 객체를 생성할 수 있다.</p>
-<p>(a, b) -&gt; { return new 클래스(a, b); }</p>
-<p>메소드 참조역시 람다처럼 생성자 참조가 가능하다.</p>
-<p>클래스 :: new</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Account</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	String name;</span><br><span class="line">	String id;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Account</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.id = <span class="string">"test"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Account</span><span class="params">(String name, String id)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name = name;</span><br><span class="line">		<span class="keyword">this</span>.id = id;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test3</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">		<span class="comment">//람다 방식</span></span><br><span class="line">		Function&lt;String, Account&gt; f1 = (x) -&gt; &#123; <span class="keyword">return</span> <span class="keyword">new</span> Account(x); &#125;;</span><br><span class="line">		Account ac1 = f1.apply(<span class="string">"오레오"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//메소드참조방식, 함수적인터페이스 타입을 이용해서 오버로딩된 생성자를 선택적 호출할수 있다.(Function)</span></span><br><span class="line">		Function&lt;String, Account&gt; f2 = Account::<span class="keyword">new</span>;</span><br><span class="line">		Account ac2 = f2.apply(<span class="string">"메로나"</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="comment">//메소드참조방식, 함수적인터페이스 타입을 이용해서 오버로딩된 생성자를 선택적 호출할수 있다.(BiFunction)</span></span><br><span class="line">		BiFunction&lt;String, String ,Account&gt; f3 = Account::<span class="keyword">new</span>;</span><br><span class="line">		Account ac3 = f3.apply(<span class="string">"초코파이"</span>, <span class="string">"오예스"</span>);</span><br><span class="line">		</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>method referece는 람다를 더 간결하게 표현하는 문법니다.<br>하지만 개인적으로 너무 간결하여 코드의 가독성이 떨어지는 것이 아닌가 생각해본다.<br>List의 foreach에 System.out::println 정도 쓰기에는 좋아보이긴 한다.</p>
-<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="https://stackoverflow.com/questions/31020269/what-is-the-use-of-system-outprintln-in-java-8" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/31020269/what-is-the-use-of-system-outprintln-in-java-8</a></p>
-<p><a href="https://stackoverflow.com/questions/20001427/double-colon-operator-in-java-8" target="_blank" rel="external nofollow noopener noreferrer">https://stackoverflow.com/questions/20001427/double-colon-operator-in-java-8</a></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1715,20 +1707,20 @@ sudo apt-get upgrade</code></pre><p><img src="/images/2019/Untitled-8e694a7f-b2b
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-count">199</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-count">556</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

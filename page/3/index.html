@@ -245,6 +245,133 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/09/26/ubuntu-20190926-ubuntu-grant-root/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/09/26/ubuntu-20190926-ubuntu-grant-root/" class="post-title-link" itemprop="url">ubuntu 일반계정에 root권한 부여하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-09-26 23:10:37" itemprop="dateCreated datePublished" datetime="2019-09-26T23:10:37+09:00">2019-09-26</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h3><p>ubuntu에서 이것저것 하다보면 관리자 권한으로 명령어를 실행해야 할 일이 많다.</p>
+<p>매번 sudo 명령어 형태로 명령어를 호출하기에는 불편하다.</p>
+<p>sudo su로 root 계정으로 로그인 하여 명령어를 호출하면 간단하지만, 이때 문제가</p>
+<p>cd ~ 명령어 사용히 /root 로 이동한다는 것이다.</p>
+<p>이런 경우 일반계정을 아예 root 계정의 그룹에 추가하면 해결이 된다.</p>
+<h3 id="일반계정에-root-계정-권한-부여"><a href="#일반계정에-root-계정-권한-부여" class="headerlink" title="일반계정에 root 계정 권한 부여"></a>일반계정에 root 계정 권한 부여</h3><p>나는 현재 가상머신 ubuntu에 hanumoka-ubuntu1804라는 일반계정을 가지고 있다. (아 계정명을 너무 길게 지었다.)</p>
+<p>일단, 환경설정 파일을 수정하기 위해 관리자로 로그인하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo su</span><br></pre></td></tr></table></figure>
+
+<p>그리고 /etc/sudoers 파일을 수정해야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;sudoers</span><br><span class="line"></span><br><span class="line">root All&#x3D;(ALL:ALL) ALL </span><br><span class="line">일반계정명 All&#x3D;(ALL:ALL) ALL   &lt;-  이렇게 추가하자.</span><br></pre></td></tr></table></figure>
+<p><img src="/images/2019/Untitled_20190928_ubuntu.png" alt></p>
+<p>파일을 저장하자.</p>
+<p>그리고 /etc/passwd 파일을 수정하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;passwd</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-eac0a2dd-be61-436b-bef2-f92f15a5d9be.png" alt></p>
+<p>맨 위에 보면 root:x 뒤에 0:0 가 보일것이다. </p>
+<p>앞의 0은 uid(유저아이디) 뒤의 0는 gid(그룹아이디)를 의미하는데, 슈퍼유저의 uid는 0 슈퍼유저의 gid도 0이다.</p>
+<p>root의 권한이 필요한 일반계정의 uid와 gid를 0:0으로 변경해주자.</p>
+<p><img src="/images/2019/Untitled-0872416e-0d60-4bdd-aa9a-98f71344151d.png" alt></p>
+<p>내 경우 hanumoka-ubuntu1804라는 계정의 uid:gid를 0:0으로 변경했다.</p>
+<p>해당 파일을 저장하자.</p>
+<p>그리고 root 그룹에 일반계정 hanumoka-ubuntu1804를 포함시키자.</p>
+<pre><code>vim /etc/group</code></pre><p><img src="/images/2019/Untitled-7b66a74d-647b-4a0d-bee0-d134d62e29a5.png" alt></p>
+<p>파일을 열면 맨위 root:x:0: 이렇게 되어 있을 것이다.</p>
+<pre><code>root:x:0: 를 root:x:0:일반계정명 으로 수정해주자.</code></pre><p><img src="/images/2019/Untitled-3465c469-7416-4de1-972b-834d642f3c4b.png" alt></p>
+<p>파일을 저장하고 나온 뒤, root 권한을 부여한 계정에 접속해서 sudo 없이 명령어가 실행되는지 확인해보자.</p>
+<p><img src="/images/2019/Untitled-82196000-db48-4c4f-977a-d24035d4f2e9.png" alt></p>
+<p>기존에는 sudo docker ps 로 실행 해야 했지만, 이제는 docker ps 로 바로 명령어가 실행되는 것을 확인 할 수 있다.</p>
+<p>끝.</p>
+<p>참고로 일반계정아 root 권한을 주면 우분투 로그인시 목록에 나오지 않는다.</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://itgameworld.tistory.com/75" target="_blank" rel="external nofollow noopener noreferrer">https://itgameworld.tistory.com/75</a></p>
+<p><a href="https://crasy.tistory.com/149" target="_blank" rel="external nofollow noopener noreferrer">https://crasy.tistory.com/149</a></p>
+<p><a href="https://zetawiki.com/wiki/%EC%82%AC%EC%9A%A9%EC%9E%90%EC%95%84%EC%9D%B4%EB%94%94_UID,_%EA%B7%B8%EB%A3%B9%EC%95%84%EC%9D%B4%EB%94%94_GID" target="_blank" rel="external nofollow noopener noreferrer">https://zetawiki.com/wiki/사용자아이디_UID,_그룹아이디_GID</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/09/21/spring-20190921-spring-mybatis-sqlinjectionsafe/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1314,125 +1441,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-chrome/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/17/ubuntu-20190817-ubuntu-chrome/" class="post-title-link" itemprop="url">Ubuntu1804에 크롬브라우저 설치</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-08-17 18:54:52" itemprop="dateCreated datePublished" datetime="2019-08-17T18:54:52+09:00">2019-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>우분투 데스크탑을 설치 했으니, 음 뭔가 일반적이 pc처럼 사용하기 위한 필수적인 프로그램들을 설치해보자.</p>
-<h3 id="우분투에-구글-크롬-설치하기"><a href="#우분투에-구글-크롬-설치하기" class="headerlink" title="우분투에 구글 크롬 설치하기"></a>우분투에 구글 크롬 설치하기</h3><p>기본적으로 파이어폭스가 있지만, 구글크롬만한 브라우저가 어디 있을까?</p>
-<p>일단 우분투에서 터미널을 열고 크롬 브라우저 패키지 설치용 인증키를 받자.</p>
-<p>아래 명령어를 입력하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -q -O - https:&#x2F;&#x2F;dl-ssl.google.com&#x2F;linux&#x2F;linux_signing_key.pub | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2019/Untitled-bd83912f-0b74-48be-968e-9da370252ac3.png" alt></p>
-<p>그리고 아래 명령어도 입력해주자. 실제 구글크롬 패키지를 다운 받는 설정정보인듯 하다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo sh -c &#39;echo &quot;deb [arch&#x3D;amd64] http:&#x2F;&#x2F;dl.google.com&#x2F;linux&#x2F;chrome&#x2F;deb&#x2F; stable main&quot; &gt;&gt; &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google.list&#39;</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2019/Untitled-16d4a724-cdc7-451a-9c13-35510664b6c0.png" alt></p>
-<p>그리고 아래 명령으로 패키지 리스트를 업데이트 해준다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2019/Untitled-dc322d97-d21f-4554-90a0-84e2f2b026db.png" alt></p>
-<p>아래 명령으로 크롬을 설치하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install google-chrome-stable</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2019/Untitled-89e4b1f6-2db4-4f8f-9f77-2e065aa0c80c.png" alt></p>
-<p>설치를 위해 생성햇던 파일을 지워주자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google*</span><br><span class="line">sudo rm -rf &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;google.list</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2019/Untitled-b1f19b2c-8dbf-498a-9ff4-6e534b84afb1.png" alt></p>
-<p>위 아이콘을 눌러 설치된 크롬을 확인하자.</p>
-<p><img src="/images/2019/Untitled-6fe37658-8910-48df-a200-07835c008fd8.png" alt></p>
-<p>끝!!!</p>
-<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://webnautes.tistory.com/1184" target="_blank" rel="external nofollow noopener noreferrer">https://webnautes.tistory.com/1184</a></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1503,20 +1511,20 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-count">199</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-count">556</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

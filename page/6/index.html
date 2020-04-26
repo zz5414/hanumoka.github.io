@@ -245,6 +245,107 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/04/springBoot-20190104-spring-applicationRunner/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/04/springBoot-20190104-spring-applicationRunner/" class="post-title-link" itemprop="url">SpringBoot-ApplicationRunner, CommandLineRunner(스프링부트 구동시 동작시킬 코드실행)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-01-04 15:18:41" itemprop="dateCreated datePublished" datetime="2019-01-04T15:18:41+09:00">2019-01-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">springBoot</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Spring boot 어플리케이션을 시작시키면서 동시에 동작시킬 코드가 있다면, ApplicationRunner와 CommandLineRunner 인터페이스를 구현한 bean을 사용하면 된다.</p>
+<h1 id="사용법-예시"><a href="#사용법-예시" class="headerlink" title="사용법 예시"></a>사용법 예시</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> hanumoka.portfolio.nao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.ApplicationArguments;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.ApplicationRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.CommandLineRunner;</span><br><span class="line"><span class="keyword">import</span> org.springframework.core.annotation.Order;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Order</span>(<span class="number">1</span>)</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestApplicationRunner</span> <span class="keyword">implements</span> <span class="title">ApplicationRunner</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(ApplicationArguments args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"============ApplicationRunner"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Order</span>(<span class="number">2</span>)</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestApplicationRunner2</span> <span class="keyword">implements</span> <span class="title">ApplicationRunner</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(ApplicationArguments args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"============ApplicationRunner2"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Order</span>(<span class="number">1</span>)</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestCommandLineRunner</span> <span class="keyword">implements</span> <span class="title">CommandLineRunner</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">(String... args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"============CommandLineRunner1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>두 인터페이스 모두 함수형 인터페이스이며, 구현한 run메소드의 파라미터인 args를 통해서 springboot어플리케이션 실행시 전달받은 파라미터(Program arguemnts) 값을 읽어올수 있다.<br>VM Opions값은 읽어 올수 없다.</p>
+<p><strong>실행결과</strong></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">  .   ____          _            __ _ _</span><br><span class="line"> /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \</span><br><span class="line">( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \</span><br><span class="line"> \\/  ___)| |_)| | | | | || (_| |  ) ) ) )</span><br><span class="line">  '  |____| .__|_| |_|_| |_\__, | / / / /</span><br><span class="line"> =========|_|==============|___/=/_/_/_/</span><br><span class="line"> :: Spring Boot ::        (v2.<span class="number">1</span>.<span class="number">1</span>.RELEASE)</span><br><span class="line"></span><br><span class="line"><span class="number">2019</span>-<span class="number">01</span>-<span class="number">04</span> <span class="number">15</span>:<span class="number">38</span>:<span class="number">24</span>.<span class="number">445</span>  INFO <span class="number">14840</span> --- [           main] hanumoka.portfolio.nao.NaoApplication    : Starting NaoApplication on DESKTOP-EU9BLID with PID <span class="number">14840</span> (C:\Users\amagr\Desktop\Project\nao\target\classes started by amagr <span class="keyword">in</span> C:\Users\amagr\Desktop\Project\nao)</span><br><span class="line"><span class="number">2019</span>-<span class="number">01</span>-<span class="number">04</span> <span class="number">15</span>:<span class="number">38</span>:<span class="number">24</span>.<span class="number">449</span>  INFO <span class="number">14840</span> --- [           main] hanumoka.portfolio.nao.NaoApplication    : No active profile <span class="built_in">set</span>, falling back to default profiles: default</span><br><span class="line"><span class="number">2019</span>-<span class="number">01</span>-<span class="number">04</span> <span class="number">15</span>:<span class="number">38</span>:<span class="number">25</span>.<span class="number">519</span>  WARN <span class="number">14840</span> --- [           main] io.undertow.websockets.jsr               : UT026010: Buffer pool was <span class="keyword">not</span> <span class="built_in">set</span> on WebSocketDeploymentInfo, the default pool will be used</span><br><span class="line"><span class="number">2019</span>-<span class="number">01</span>-<span class="number">04</span> <span class="number">15</span>:<span class="number">38</span>:<span class="number">25</span>.<span class="number">539</span>  INFO <span class="number">14840</span> --- [           main] io.undertow.servlet                      : Initializing Spring embedded WebApplicationContext</span><br><span class="line"><span class="number">2019</span>-<span class="number">01</span>-<span class="number">04</span> <span class="number">15</span>:<span class="number">38</span>:<span class="number">25</span>.<span class="number">539</span>  INFO <span class="number">14840</span> --- [           main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed <span class="keyword">in</span> <span class="number">1043</span> ms</span><br><span class="line"><span class="number">2019</span>-<span class="number">01</span>-<span class="number">04</span> <span class="number">15</span>:<span class="number">38</span>:<span class="number">25</span>.<span class="number">729</span>  INFO <span class="number">14840</span> --- [           main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'</span><br><span class="line"><span class="number">2019</span>-<span class="number">01</span>-<span class="number">04</span> <span class="number">15</span>:<span class="number">38</span>:<span class="number">25</span>.<span class="number">931</span>  INFO <span class="number">14840</span> --- [           main] org.xnio                                 : XNIO version <span class="number">3</span>.<span class="number">3</span>.<span class="number">8</span>.Final</span><br><span class="line"><span class="number">2019</span>-<span class="number">01</span>-<span class="number">04</span> <span class="number">15</span>:<span class="number">38</span>:<span class="number">25</span>.<span class="number">940</span>  INFO <span class="number">14840</span> --- [           main] org.xnio.nio                             : XNIO NIO Implementation Version <span class="number">3</span>.<span class="number">3</span>.<span class="number">8</span>.Final</span><br><span class="line"><span class="number">2019</span>-<span class="number">01</span>-<span class="number">04</span> <span class="number">15</span>:<span class="number">38</span>:<span class="number">25</span>.<span class="number">988</span>  INFO <span class="number">14840</span> --- [           main] o.s.b.w.e.u.UndertowServletWebServer     : Undertow started on port(s) <span class="number">1290</span> (http) with context <span class="built_in">path</span> ''</span><br><span class="line">포트:<span class="number">1290</span></span><br><span class="line"><span class="number">2019</span>-<span class="number">01</span>-<span class="number">04</span> <span class="number">15</span>:<span class="number">38</span>:<span class="number">25</span>.<span class="number">991</span>  INFO <span class="number">14840</span> --- [           main] hanumoka.portfolio.nao.NaoApplication    : Started NaoApplication <span class="keyword">in</span> <span class="number">1</span>.<span class="number">854</span> seconds (JVM running <span class="keyword">for</span> <span class="number">2</span>.<span class="number">285</span>)</span><br><span class="line">============ApplicationRunner</span><br><span class="line">============CommandLineRunner1</span><br><span class="line">============ApplicationRunner2</span><br></pre></td></tr></table></figure>
+
+<p>springboot 구동시 시작된 뒤, ApplicationRunner, CommandLineRunner 인터페이스로 구현한 run메소드가 동작하는 것을 확인 할 수 있다.<br>위 처럼, Order어노테이션으로 이들간의 동작 순서를 지정 할 수도 있다.</p>
+<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="https://dzone.com/articles/spring-boot-applicationrunner-and-commandlinerunne" target="_blank" rel="external nofollow noopener noreferrer">https://dzone.com/articles/spring-boot-applicationrunner-and-commandlinerunne</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/04/springBoot-20190104-springboot-undertow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1228,103 +1329,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/12/02/java-20181202-java-int-add-overflow/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/02/java-20181202-java-int-add-overflow/" class="post-title-link" itemprop="url">Java - 정수 오버플로 확인(Check int overflow)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-12-02 07:18:45" itemprop="dateCreated datePublished" datetime="2018-12-02T07:18:45+09:00">2018-12-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>음 Java에서 숫자 연산을 할때 고려해야 해야할 점이 여러개 있다.</p>
-<p>실수 연산의 경우 부동소수점에 의한 정밀도<br>float 타입에 정수를 할당 할 경우 float 타입의 가수범위등…</p>
-<p>하지만 가장 기본이 되는것은 역시 해당 타입이 표현할수 있는 숫자범위를 초과하는 값을 할당 할 경우이다.</p>
-<p>다음 코드는 int 두값을 더할 때, 그 결과가 int 타입에 저장할 때 그 범위가 초가되면 ArithmeticException를 발생시키는 코드이다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java_test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CheckOverflowExmaple</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">try</span> &#123;</span><br><span class="line">			</span><br><span class="line">			System.out.println(<span class="string">"맥스:"</span> + Integer.MAX_VALUE);</span><br><span class="line">			System.out.println(<span class="string">"민:"</span> + Integer.MIN_VALUE);</span><br><span class="line">			</span><br><span class="line">			<span class="keyword">int</span> result = safeAdd(<span class="number">2000000000</span>, -<span class="number">2000000000</span>);</span><br><span class="line">			System.out.println(result);</span><br><span class="line">			</span><br><span class="line">		&#125;<span class="keyword">catch</span>(Exception e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">safeAdd</span><span class="params">(<span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>( right&gt;<span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span>(left &gt; (Integer.MAX_VALUE - right)) &#123;</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException(<span class="string">"오버플로어 발생2"</span>);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">			<span class="keyword">if</span>(left &lt;(Integer.MIN_VALUE - right)) &#123;</span><br><span class="line">				<span class="keyword">throw</span> <span class="keyword">new</span> ArithmeticException(<span class="string">"오버플로어 발생2"</span>); </span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">return</span> left + right;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1395,20 +1399,20 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-count">199</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-count">556</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

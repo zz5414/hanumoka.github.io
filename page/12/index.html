@@ -245,6 +245,102 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/10/spring-20180810-spring-UriComponentsBuilder/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/10/spring-20180810-spring-UriComponentsBuilder/" class="post-title-link" itemprop="url">Spring MVC UriComponentsBuilder(서버단에서 쉽게 URI 만들기)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-10 06:12:29" itemprop="dateCreated datePublished" datetime="2018-08-10T06:12:29+09:00">2018-08-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>아주 간혹 Spring 서버단에서 문자열 URI를 만들어야 할때가 있다.<br>그냥 자바 String으로 만들어도 되지만, Spring MVC의 org.springframework.web.util 패키지의 UriComponentsBuilder를 사용하면 조금더 쉽고, 명확하게 URI 문자열을 생성 할 수 있다.</p>
+<h1 id="UriComponentsBuilder-예제"><a href="#UriComponentsBuilder-예제" class="headerlink" title="UriComponentsBuilder 예제"></a>UriComponentsBuilder 예제</h1><p>아래처럼 사용하면된다.<br>URI같은 것을 동적으로 만드는 거 자체가 짜증나긴 하지만, Java String으로 만드는 것보다야 편한듯 하다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testURI</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		</span><br><span class="line">		UriComponents uriComponents = UriComponentsBuilder.newInstance()</span><br><span class="line">				.path(<span class="string">"/samplehome/board/read"</span>)</span><br><span class="line">				.queryParam(<span class="string">"bno"</span>, <span class="number">12</span>)</span><br><span class="line">				.queryParam(<span class="string">"perPageNum"</span>, <span class="number">20</span>)</span><br><span class="line">				.build();</span><br><span class="line">		</span><br><span class="line">		logger.info(<span class="string">"/samplehome/board/read?bno=12&amp;perPageNum=20"</span>);</span><br><span class="line">		logger.info(uriComponents.toString());  <span class="comment">// /samplehome/board/read?bno=12&amp;perPageNum=20 가 생성된다.</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testURI2</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		UriComponents uriComponents = UriComponentsBuilder.newInstance()</span><br><span class="line">				.path(<span class="string">"/&#123;a&#125;/&#123;b&#125;/&#123;c&#125;"</span>)</span><br><span class="line">				.queryParam(<span class="string">"bno"</span>, <span class="number">12</span>)</span><br><span class="line">				.queryParam(<span class="string">"perPageNum"</span>, <span class="number">20</span>)</span><br><span class="line">				.build()</span><br><span class="line">				.expand(<span class="string">"samplehome"</span>, <span class="string">"board"</span>, <span class="string">"read"</span>)</span><br><span class="line">				.encode();</span><br><span class="line">		</span><br><span class="line">		logger.info(<span class="string">"/samplehome/board/read?bno=12&amp;perPageNum=20"</span>);  </span><br><span class="line">		logger.info(uriComponents.toString()); <span class="comment">// /samplehome/board/read?bno=12&amp;perPageNum=20 가 생성된다.</span></span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/07/spring-20180807-spring-thymeleaf-layout-dialect2-head/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1664,104 +1760,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/07/28/html-20180728-html-tag-attribute-lang/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/07/28/html-20180728-html-tag-attribute-lang/" class="post-title-link" itemprop="url">HTML - html태그의 lang 속성</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-07-28 20:04:28" itemprop="dateCreated datePublished" datetime="2018-07-28T20:04:28+09:00">2018-07-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/html/" itemprop="url" rel="index">
-                    <span itemprop="name">html</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="/images/20180728-html-tag-attribute-lang_1.png" alt="html lang=&#39;ko&#39;"></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"ko"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>html 태그에서는 lang이라는 속성을 사용해서 문서에서 사용할 언어를 지정할수 있다.<br>예를 들어 한국어라면 korea의 약자인 ko를 사용한다.</p>
-<p>간단히 &#60;html&#92;&#62; 이라고만 해도 문제가 없는데 굳이 사용 언어를 명시하는 이유는 무엇일까?<br>우선 검색 사이트에서 특정 언어로 제한해 검색할 때 그 대상이 될 수 있기 때문이다.<br>예를 들어 검색 옵션중에서 ‘한국어로 된 문서’로 범위를 제한할 경우, &#60;html lang=”ko”&#92;&#62;라고 된 문서를 우선 검색한다.</p>
-<p>또한 화면 낭독기에서 웹 문서를 소리내어 읽어줄 때 언어가 명시되면 그 언어에 맞추어 발음이나 억양, 목소리 등을 다르게 해서 들려줄수 있다.</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1832,20 +1830,20 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">198</span>
+          <span class="site-state-item-count">199</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">36</span>
+        <span class="site-state-item-count">37</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">551</span>
+        <span class="site-state-item-count">556</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>
