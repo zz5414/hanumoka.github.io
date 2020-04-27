@@ -8,15 +8,15 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/aws/</loc>
-        <lastmod>2020-04-26T07:37:19.699Z</lastmod>
+        <loc>https://www.hanumoka.net/categories/docker/</loc>
+        <lastmod>2020-04-27T13:24:05.997Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/docker/</loc>
-        <lastmod>2020-04-25T17:45:05.322Z</lastmod>
+        <loc>https://www.hanumoka.net/categories/aws/</loc>
+        <lastmod>2020-04-26T07:37:19.699Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
@@ -29,14 +29,14 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/web/</loc>
+        <loc>https://www.hanumoka.net/categories/webpack/</loc>
         <lastmod>2020-04-15T16:50:12.041Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/webpack/</loc>
+        <loc>https://www.hanumoka.net/categories/web/</loc>
         <lastmod>2020-04-15T16:50:12.041Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
@@ -246,14 +246,14 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/algorithm/</loc>
+        <loc>https://www.hanumoka.net/categories/VisualStudioCode/</loc>
         <lastmod>2020-04-15T16:50:11.965Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/VisualStudioCode/</loc>
+        <loc>https://www.hanumoka.net/categories/algorithm/</loc>
         <lastmod>2020-04-15T16:50:11.965Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>

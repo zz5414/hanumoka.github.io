@@ -245,6 +245,164 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/08/31/apache-20170831-apache-install-windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/08/31/apache-20170831-apache-install-windows/" class="post-title-link" itemprop="url">apache웹서버 윈도우에 설치하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2017-08-31 03:09:49" itemprop="dateCreated datePublished" datetime="2017-08-31T03:09:49+09:00">2017-08-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/apache/" itemprop="url" rel="index">
+                    <span itemprop="name">apache</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="아파치-Apache-웹서버-윈도우10-환경에-설치"><a href="#아파치-Apache-웹서버-윈도우10-환경에-설치" class="headerlink" title="아파치(Apache) 웹서버 윈도우10 환경에  설치"></a>아파치(Apache) 웹서버 윈도우10 환경에  설치</h3><p>windows10 64bit 운영체제에 아파치 웹서버를 설치하는 방법을 설명하겠다.</p>
+<br>
+1. 웹 브라우저를 통해 https://www.apachelounge.com/download/ 로 이동
+>![](/images/2017-06-11-apache설치_1.png)
+원하는 아파치 웹서버 버전을 선택후 64bit zip 파일을 클릭하여 다운받는다.
+>![](/images/2017-06-11-apache설치_2.png)
+
+
+<ol start="2">
+<li>해당 파일을 C:\ 경로로 이동후 압축을 푼다.<blockquote>
+<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_3.png" alt><br>폴더 내부로 이동하여 Apache24 폴더를 잘라내기 한 후 다시 C:\ 경로로 이동하여 붙여넣기 한다.</p>
+</blockquote>
+</li>
+</ol>
+<p>최종적으로 아래와 같이 폴더 구성이 되면 된다.</p>
+<blockquote>
+<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_4.png" alt></p>
+</blockquote>
+<ol start="3">
+<li>아파치 웹서버 설치전 환경 설정<blockquote>
+<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_5.png" alt></p>
+</blockquote>
+</li>
+</ol>
+<p>C:\Apache24\conf 경로로 이동하여 httpd.conf 파일을 수정해야 한다.<br>파일을 메모장으로 연뒤 원하는 항목을 수정하면 되는데 여러 항목중에 다음 항목들이 중요하다.</p>
+<blockquote>
+<p>기본셋팅<br>ServerRoot “c:/Apache24”<br>Listen 80<br>DocumentRoot “c:/Apache24/htdocs”</p>
+</blockquote>
+<p>ServerRoot 항목은 기본적으로 “c:/Apache24” (경로 구분을 역슬래시로 해야 한다.) 되어 있다. 이 디폴트 셋팅을 그대로 사용하기 위해서 2번처럼 폴더 경로를 지정한 것이다. 만약 위 설명과 다른 폴더경로에 웹서버 폴더를 셋팅 했다면 ServerRoot 항목의 셋팅을 알맞게 수정해 주면 된다.</p>
+<p>Listen 항목은 웹서버의 포트(port)설정이다. 웹서버는 기본적으로 80포트이다.(디폴트라 생략이 가능하다. <a href="http://www.naver.com" target="_blank" rel="external nofollow noopener noreferrer">www.naver.com</a> 와 <a href="http://www.naver.com:80" target="_blank" rel="external nofollow noopener noreferrer">www.naver.com:80</a> 은 같다)<br>원하는 포트가 있다면 역시 수정하라. (필자는 8080으로 수정하였다. )</p>
+<p>DocumentRoot 항목은 웹서버에서 실행할 웹사이트 root 폴더를 지정해야 한다. ServerRoot처럼 디폴트로 “c:/Apache24/htdocs”로 셋팅 되어 있다.<br>원하는 경로가 있다면 수정하라.<br>부연설명으로 웹서버 기본 url(현재는 <a href="http://localhost:80" target="_blank" rel="external nofollow noopener noreferrer">http://localhost:80</a>) 접근시 웹서버는 DocumentRoot 에 설정된 폴더 내부의 index.html 를 디폴트로 리다이렉트 한다.</p>
+<ol start="4">
+<li>설치<br>관리자 모드로 cmd(명령 프롬프트) 창을 연다.<br>키보드의 윈도우 버튼을 누른뒤 cmd라고 검색하면 나온다.<br>명령 프롬프트 항목에 마우스 우클릭 한 뒤 “관리자 권한으로 실행”을 선택한다.<blockquote>
+<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_6.png" alt></p>
+</blockquote>
+</li>
+</ol>
+<p>cmd 창이 열리면 cd C:\Apache243\bin 을 입력하여 경로를 이동한다.</p>
+<p>이동한뒤 아래 명령어를 입력하여 아파치 서버를 설치한다.<br>httpd.exe -k install</p>
+<p>뭔가 error라고 나오긴 하는데 무시해도 지장 없다.(도메인 관련 error 인것 같다)</p>
+<p>만약 설치한 아파치 서버를 삭제 하고 싶다면 아래 명령어를 입력하면 된다.<br>httpd.exe -k uninstall</p>
+<ol start="5">
+<li>httpd.exe -k install  명령어 입력 후<blockquote>
+<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_7.png" alt></p>
+</blockquote>
+</li>
+</ol>
+<p>윈도우 탐색기에서 C:\Apache24\bin 경로로 이동후 AapcheMonitor 응용 프로그램을 실행한다.</p>
+<p>윈도우의 오른쪽 하단 작업 표시줄을 보면 ApacheMonitor가 실핼된 것을 확인 할수 있다.</p>
+<blockquote>
+<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_8.png" alt></p>
+</blockquote>
+<p>해당 아이콘을 우클릭후 Apache2.4 &gt; Start 를 클릭하면 웹서버가 동작한다.<br>반대로 웹서버를 종료하고 싶다면 Stop 을 클릭하면 된다.</p>
+<ol start="6">
+<li>웹서버 동작 확인</li>
+</ol>
+<p>웹서버를 start 한뒤에 인터넷 브라우저 창을 열고 주소창에</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:설정한포트번호</span><br></pre></td></tr></table></figure>
+<p>또는 </p>
+<pre><code>http://127.0.0.1:설정한포트번호 </code></pre><p>를 입력한다.</p>
+<p>필자는 http.conf 파일에서 포트를 8080 으로 수정하였으므로</p>
+<p><a href="http://localhost:8080" target="_blank" rel="external nofollow noopener noreferrer">http://localhost:8080</a> 을 입력하겠다.</p>
+<blockquote>
+<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_9.png" alt></p>
+</blockquote>
+<p>위처럼 DocumentRoot 경로의 index.html 브라우저창에 열리는 것을 확인할 수 있다.<br>윈도우 관리도구등 기타 설명은 상단의 유투브 영상을 참고하길 바란다.</p>
+<h3 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h3>
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/08/31/web-20170831-REST/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1441,7 +1599,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">199</span>
+          <span class="site-state-item-count">200</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1454,7 +1612,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">556</span>
+        <span class="site-state-item-count">558</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

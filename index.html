@@ -245,6 +245,148 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2020/04/27/docker-20200427-docker-react-nginx/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/27/docker-20200427-docker-react-nginx/" class="post-title-link" itemprop="url">Docker를 이용해 React와 Nginx를 묶어서 이미지화 하고 컨테이너화 하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-04-27 22:14:11 / Updated at: 22:24:05" itemprop="dateCreated datePublished" datetime="2020-04-27T22:14:11+09:00">2020-04-27</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>React 프로젝트를 만약 서버에 배포해야 한다면, 어떻게 해야할까?</p>
+<p>서버에 Apache나 Nginx등을 설치하고 웹 서버 설정을 한뒤, React로 build한 소스를 해당 서버에 FTP로 전송하면된다.</p>
+<p>이런 방법도 좋지만, Docker를 사용해서 웹서버를 React와 묶어놓은 이미지가 있다면 어떤 서버든 docker engine만 설치되어 있다면 바로 실행시킬수 있을것 같다.</p>
+<p>이런식으로 배포할경우 웹서버의 설정역시 Docker의 설정으로 관리할 수 있을것이다.</p>
+<p>이번에는 Docker를 이용해서 React와 Nginx를 합쳐 이미지화하고 그 이미지를 컨테이너화 하여 실행해보자.</p>
+<h2 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h2><ul>
+<li>windows10</li>
+<li>docker desktop</li>
+<li>VisualStudioCode</li>
+<li>GitBash</li>
+</ul>
+<h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><p>일단 테스트할 react 프로젝트를 생성하자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app docker-react-ngnix</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/Docker%20React%20Nginx/Untitled.png" alt="Docker%20React%20Nginx/Untitled.png"></p>
+<p>생성된 프로젝트으 root 경로에 <strong>Dockerfile-prod</strong> 이라는 파일을 생성하자.</p>
+<p>여기서 파일명은 무엇으로 해도 상관 없으나 prod(production)이라고 표시해두면, Dockerfile, Dockerfile-dev, Dockerfile-prod등 배포 환경에 따라서 관리하기가 편하다.</p>
+<p><img src="/images/2020/Docker%20React%20Nginx/Untitled%201.png" alt="Docker%20React%20Nginx/Untitled%201.png"></p>
+<p>그리고 해당파일을 아래처럼 채우자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">FROM node:12.16.2 as builder</span><br><span class="line"></span><br><span class="line"><span class="comment"># 작업 폴더를 만들고 npm 설치</span></span><br><span class="line">RUN mkdir /usr/src/app</span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line">ENV PATH /usr/src/app/node_modules/.bin:<span class="variable">$PATH</span></span><br><span class="line">COPY package.json /usr/src/app/package.json</span><br><span class="line">RUN npm install --silent</span><br><span class="line">RUN npm install react-scripts@3.4.1 -g --silent</span><br><span class="line"></span><br><span class="line"><span class="comment"># 소스를 작업폴더로 복사하고 빌드</span></span><br><span class="line">COPY . /usr/src/app</span><br><span class="line">RUN npm run build</span><br><span class="line"></span><br><span class="line">FROM nginx:latest</span><br><span class="line"><span class="comment"># nginx의 기본 설정을 삭제하고 앱에서 설정한 파일을 복사</span></span><br><span class="line">RUN rm -rf /etc/nginx/conf.d</span><br><span class="line">COPY conf /etc/nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 위에서 생성한 앱의 빌드산출물을 nginx의 샘플 앱이 사용하던 폴더로 이동</span></span><br><span class="line">COPY --from=builder /usr/src/app/build /usr/share/nginx/html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 80포트 오픈하고 nginx 실행</span></span><br><span class="line">EXPOSE 80</span><br><span class="line">CMD [<span class="string">"nginx"</span>, <span class="string">"-g"</span>, <span class="string">"daemon off;"</span>]</span><br></pre></td></tr></table></figure>
+
+<p>Node, react-script, nginx 등 원하는 버전을 설정하자.</p>
+<p><img src="/images/2020/Docker%20React%20Nginx/Untitled%202.png" alt="Docker%20React%20Nginx/Untitled%202.png"></p>
+<p>이미지를 생성할 Dockerfile-prod는 만들었으니, 이 Dockerfile-prod파일에서 사용하는 nginx설정 파일을 만들어 줘야 한다.</p>
+<p><img src="/images/2020/Docker%20React%20Nginx/Untitled%203.png" alt="Docker%20React%20Nginx/Untitled%203.png"></p>
+<p>프로젝트 root 경로에 conf/conf.d 파일을 만들어주자.</p>
+<p><img src="/images/2020/Docker%20React%20Nginx/Untitled%204.png" alt="Docker%20React%20Nginx/Untitled%204.png"></p>
+<p>그리고 해당 파일 내부를 아래처럼 채워주자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.html;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    </span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>위 내용은 Nginx의 설정 파일이다.</p>
+<p>이제 준비는 끝났다.</p>
+<p>프로젝트 root 경로, 즉 Dockerfile-prod 파일이 있는 경로에 터미널을 열고 아래 명령으로 이미지를 생성하자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f Dockerfile-prod -t docker-react-ngnix</span><br></pre></td></tr></table></figure>
+
+<p><strong>위 명령어 설명</strong></p>
+<ul>
+<li>-f Dockerfile-prod : 해당 파일을 기반하여 docker image를 생성한다.</li>
+<li>-t docker-react-ngnix : 생성할 이미지를 지정한다.</li>
+</ul>
+<p><img src="/images/2020/Docker%20React%20Nginx/Untitled%205.png" alt="Docker%20React%20Nginx/Untitled%205.png"></p>
+<p>위 이미지에서는 마지막에 <strong>.(콤마)</strong> 가 찍혀 있지만 앞에 -f 옵션으로 Dockerfile을 지정해 주었기 때문에 없어도 상관 없다.  ****</p>
+<p><img src="/images/2020/Docker%20React%20Nginx/Untitled%206.png" alt="Docker%20React%20Nginx/Untitled%206.png"></p>
+<p>위 처럼 docker-react-ngnix 이미지가 생성 되었고, 해다 이미지에서 참조하는 nginx, node 이미지들도 다운이 되었다.</p>
+<p>다음 명령어로 docker-react-ngnix 이미지를 컨테이너화 하고 실행시키자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -p 80:80 docker-react-ngnix</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/Docker%20React%20Nginx/Untitled%207.png" alt="Docker%20React%20Nginx/Untitled%207.png"></p>
+<p>그리고 새로운 터미널에서 다음 명령어로 실행중인 docker 프로세스를 확인해 보자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+
+<p>아래처럼 컨테이너가 실행중임을 확인 할 수 있다.</p>
+<p><img src="/images/2020/Docker%20React%20Nginx/Untitled%208.png" alt="Docker%20React%20Nginx/Untitled%208.png"></p>
+<p>아래처럼 브라우저에서도 정상 동작을 확인 할 수 있다.</p>
+<p><img src="/images/2020/Docker%20React%20Nginx/Untitled%209.png" alt="Docker%20React%20Nginx/Untitled%209.png"></p>
+<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p>[<a href="https://codechacha.com/ko/dockerizing-react-with-nginx/]" target="_blank" rel="external nofollow noopener noreferrer">https://codechacha.com/ko/dockerizing-react-with-nginx/]</a>(</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2020/04/26/aws-20200426-aws-ec2-gitbash-putty/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1565,111 +1707,6 @@ ls -al</code></pre><p><img src="/images/2020/Github%20push%20pull%20ssh%20window
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/12/28/obsStudio-20191228-OBSstudio-nvidia-setting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/28/obsStudio-20191228-OBSstudio-nvidia-setting/" class="post-title-link" itemprop="url">OBS Studio 디스플레이 캡쳐 검은화면 설정</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-12-28 13:06:07" itemprop="dateCreated datePublished" datetime="2019-12-28T13:06:07+09:00">2019-12-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OBSstudio/" itemprop="url" rel="index">
-                    <span itemprop="name">OBSstudio</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="문제발생"><a href="#문제발생" class="headerlink" title="문제발생"></a>문제발생</h1><p>나는 코딩 테스트나 개발환경 셋팅을 할때, 그것들을 기록하고 싶은경우 OBS Studio 라는 화면 녹화 프로그램을 사용한다.</p>
-<p>노트북에서 OBS Studio를 잘 쓰다가, 뭔가 업데이트(Windows인지, Nvidia인지 모르겠지만)된 뒤로 갑작이 OBS Studio의 디스플레이 캡쳐가 검은 화면으로 나오면서, 녹화시에 검은 화면만 녹화가 되었다.</p>
-<p>참고로 특정 Window 화면 녹화는 정상적으로 되었다.</p>
-<h1 id="해결방법"><a href="#해결방법" class="headerlink" title="해결방법"></a>해결방법</h1><p>내 경우에는 다음과 같은 방법으로 문제를 해결 했다.</p>
-<p>만약 OBS studio가 실행중이라면 일단 종료를 시킨다.</p>
-<p>그리고 바탕화면에서 마우스 우클릭으로 NVIDIA 제어판으로 들어간다.</p>
-<p><img src="/images/2019/20191228OBSStudio/Untitled.png" alt="설정1"></p>
-<p>열린 NVIDIA 제어판에서 3D 설정 - 3D설정 관리로 화면 진입후 프로그램 설정 탭을 선택한다.</p>
-<p>내 경우에는 1.사용자 정의할 프로그램 선택에 OBS Studio가 이미 등록이 되어 있었으나, 만약 없다면 추가 버튼으로 OBS Studio를 추가해 준다.</p>
-<p>그리고 2.이 프로그램에 대한 기본 그래픽 프로세서 선택에서 통합 그래픽을 선택하고 적용버튼을 클릭해서 설정을 저장한다.</p>
-<p>이 설정으로 나는 문제를 해결 했다.</p>
-<p><img src="/images/2019/20191228OBSStudio/Untitled%201.png" alt="설정2"></p>
-<p>끝!!!</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1740,7 +1777,7 @@ ls -al</code></pre><p><img src="/images/2020/Github%20push%20pull%20ssh%20window
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">199</span>
+          <span class="site-state-item-count">200</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1753,7 +1790,7 @@ ls -al</code></pre><p><img src="/images/2020/Github%20push%20pull%20ssh%20window
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">556</span>
+        <span class="site-state-item-count">558</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

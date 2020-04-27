@@ -245,6 +245,111 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/12/28/obsStudio-20191228-OBSstudio-nvidia-setting/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/28/obsStudio-20191228-OBSstudio-nvidia-setting/" class="post-title-link" itemprop="url">OBS Studio 디스플레이 캡쳐 검은화면 설정</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-12-28 13:06:07" itemprop="dateCreated datePublished" datetime="2019-12-28T13:06:07+09:00">2019-12-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OBSstudio/" itemprop="url" rel="index">
+                    <span itemprop="name">OBSstudio</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="문제발생"><a href="#문제발생" class="headerlink" title="문제발생"></a>문제발생</h1><p>나는 코딩 테스트나 개발환경 셋팅을 할때, 그것들을 기록하고 싶은경우 OBS Studio 라는 화면 녹화 프로그램을 사용한다.</p>
+<p>노트북에서 OBS Studio를 잘 쓰다가, 뭔가 업데이트(Windows인지, Nvidia인지 모르겠지만)된 뒤로 갑작이 OBS Studio의 디스플레이 캡쳐가 검은 화면으로 나오면서, 녹화시에 검은 화면만 녹화가 되었다.</p>
+<p>참고로 특정 Window 화면 녹화는 정상적으로 되었다.</p>
+<h1 id="해결방법"><a href="#해결방법" class="headerlink" title="해결방법"></a>해결방법</h1><p>내 경우에는 다음과 같은 방법으로 문제를 해결 했다.</p>
+<p>만약 OBS studio가 실행중이라면 일단 종료를 시킨다.</p>
+<p>그리고 바탕화면에서 마우스 우클릭으로 NVIDIA 제어판으로 들어간다.</p>
+<p><img src="/images/2019/20191228OBSStudio/Untitled.png" alt="설정1"></p>
+<p>열린 NVIDIA 제어판에서 3D 설정 - 3D설정 관리로 화면 진입후 프로그램 설정 탭을 선택한다.</p>
+<p>내 경우에는 1.사용자 정의할 프로그램 선택에 OBS Studio가 이미 등록이 되어 있었으나, 만약 없다면 추가 버튼으로 OBS Studio를 추가해 준다.</p>
+<p>그리고 2.이 프로그램에 대한 기본 그래픽 프로세서 선택에서 통합 그래픽을 선택하고 적용버튼을 클릭해서 설정을 저장한다.</p>
+<p>이 설정으로 나는 문제를 해결 했다.</p>
+<p><img src="/images/2019/20191228OBSStudio/Untitled%201.png" alt="설정2"></p>
+<p>끝!!!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/12/25/elasticsearch-20191225-Elasticsearch-hello-Elasticsearch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1632,304 +1737,6 @@ docker-compose --version</code></pre><p><img src="/images/2019/Untitled-53125fd8
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/10/04/springBoot-20191004-springboot-gradle-multimodule/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/04/springBoot-20191004-springboot-gradle-multimodule/" class="post-title-link" itemprop="url">springboot - gradle을 이용한 멀티모듈 프로젝트 만들기</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-10-04 01:54:26" itemprop="dateCreated datePublished" datetime="2019-10-04T01:54:26+09:00">2019-10-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/springBoot/" itemprop="url" rel="index">
-                    <span itemprop="name">springBoot</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="springboot-gradle-멀티모듈-프로젝트-만들기"><a href="#springboot-gradle-멀티모듈-프로젝트-만들기" class="headerlink" title="springboot gradle 멀티모듈 프로젝트 만들기"></a>springboot gradle 멀티모듈 프로젝트 만들기</h1><h1 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h1><p>windows10</p>
-<p>intelliJ 커뮤니티 버전</p>
-<p>jdk1.8</p>
-<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>intelliJ 에서 gradle 기반 springboot 멀티 모듈 프로젝트를 한번 만들어보자.</p>
-<p>멀티모듈을 어떻게 디자인 해야하는지는 다루지 않고, gradle을 이용해서 어떻게 모듈을 생성하고 모듈간의 의존성을 셋팅을 하는가에 중점을 둔 글이다.</p>
-<h3 id="1-인텔리J에서-gradle-프로젝트-생성"><a href="#1-인텔리J에서-gradle-프로젝트-생성" class="headerlink" title="1. 인텔리J에서 gradle 프로젝트 생성"></a>1. 인텔리J에서 gradle 프로젝트 생성</h3><p>일단 intelliJ 에서 gradle 프로젝트를 생성하자.</p>
-<p><a href="http://start.spring.io" target="_blank" rel="external nofollow noopener noreferrer">http://start.spring.io</a> 로 이동해서 spring boot gradle 프로젝트를 생성하자.</p>
-<p>(나는 인텔리J 커뮤니티 버전을 사용중이라 springboot 프로젝트를 생성할 때 주로 <a href="http://start.spring.io" target="_blank" rel="external nofollow noopener noreferrer">http://start.spring.io</a> 를 주로 사용한다.)</p>
-<p>아래처럼 설정하여 프로젝트를 생성하자.</p>
-<p><strong>Project</strong> : Gradle Project</p>
-<p><strong>Language</strong>: Java</p>
-<p><strong>Spring Boot</strong>: 2.1.9(현재 2점대 이상으로 선택하면 될듯)</p>
-<p><strong>Project Metadata</strong></p>
-<p><strong>Group</strong> : com.hanumoka.go</p>
-<p><strong>Artifact</strong> : go-modules</p>
-<p><strong>Option</strong> </p>
-<p><strong>Packaging</strong>: War</p>
-<p><strong>Java</strong> : 8</p>
-<p><strong>Dependencies</strong>: Spring web, Thymeleaf</p>
-<p>위에서 중요한 부분은 Group이다. </p>
-<p>com.hanumoka.go는 이 프로젝트의 공통 패키지이며, Artifact: go-modules 는 실제 생성되는 실행 프로그램을 구별하는 명칭이 아니라 모듈의 묶음일 뿐이다.</p>
-<p>개인적으로 프로젝트를 war로 설정해서 생성한 이유는 애시당초 war로 프로젝트를 생성하면 프로젝트 빌드시 war, jar 빌드가 쉽기 때문이다.</p>
-<p><img src="/images/2019/Untitled-5341e670-96cc-4c30-87ce-b3b5e1f8f70e.png" alt></p>
-<p><img src="/images/2019/Untitled-74760319-2255-4c62-8e0e-420b86d1ff1f.png" alt></p>
-<p><img src="/images/2019/Untitled-d9a4929d-6637-4b35-abe6-7f30e72831a3.png" alt></p>
-<p>Spring web은 필수이며  Thymeleaf 스프링 컨트롤러의 동작을 확인하기 위해 추가했다.</p>
-<p>설정된 값을을 이용해서 압축된 프로젝트를 다운로드 하자.</p>
-<p><img src="/images/2019/Untitled-b2e2e41a-d83f-42c6-8d3a-b8be0f1620e9.png" alt></p>
-<p>해당 파일을 압축을 풀고 intelliJ로 open하자.</p>
-<p><img src="/images/2019/Untitled-cb15ce0d-2329-42a8-a064-88a35931aa4f.png" alt></p>
-<p>위처럼 gradle 이 제대로 빌드 되는지 확인하자.</p>
-<p>컨트롤러와 html 페이지를 추가해서 스프링 컨트롤러 동작을 한번 시켜보자.</p>
-<p>com.hanumoka.go.gomodules 패키지를 선택하고 controller 패키지를 생성하고, HomeController를 생성하고 html을 리다이렉팅 할 수 있는 RequestMapping 메소드를 추가하자.</p>
-<p><img src="/images/2019/Untitled-1de55a38-69bf-4f45-aa47-c4b608000a3a.png" alt></p>
-<p><img src="/images/2019/Untitled-453cfccc-a5da-4ab9-bc06-32d1dd1da2d8.png" alt></p>
-<p>GoModulesApplication 를 선택하고 run 시켜서, <a href="http://localhost:8080" target="_blank" rel="external nofollow noopener noreferrer">http://localhost:8080</a> 로 접속해서 컨트롤러가 동작하는지 보자.</p>
-<p><img src="/images/2019/Untitled-a0b353dd-cff9-46b3-91e9-162e3b25cf80.png" alt></p>
-<p><img src="/images/2019/Untitled-c37042c7-7134-4ea7-a560-0d269625b277.png" alt></p>
-<p>스프링 컨트롤러가 정상 동작하는 것을 확인 할 수 있다.</p>
-<h3 id="2-모듈-추가하기"><a href="#2-모듈-추가하기" class="headerlink" title="2. 모듈 추가하기"></a>2. 모듈 추가하기</h3><p>1번에서 한 일은 그냥 gradle 기반 springboot 프로젝트를 생성하고 동작시킨 것이다.</p>
-<p>이제 실제 사용할 모듈을 구상하고 추가하고 셋팅해야 한다.</p>
-<p>이 글은 gradle환경에서 springboot 프로젝트에서 모듈을 추가하고 연결하는 설정을 기록하는데 초점을 두고 있다.</p>
-<p>따라서 간단하게 Service 모듈과 Controller 모듈을 생성하고 Controller 모듈이 Service 모듈을 사용하는 시나리오로 진행 하겠다.</p>
-<p>실제 모듈을 설계하고 구성하는 일은 많은 고심이 필요해 보인다.(이부분은 나중에 좀 연구해 봐야 겠다.)</p>
-<p><img src="/images/2019/Untitled-763d4bb6-6264-4ddd-ad37-e1bbf1583016.png" alt></p>
-<p>일단 프로젝트 루트 경로의 build.gradle, settigns.gradle 은 프로젝트 전체에 적용되는 설정 파일이다. </p>
-<p>사실 gradle을 잘 몰라 자세한 설명을 할 수가 없다. </p>
-<p>하지만 이후로 추가될 모듈에 관련된 공통적인 설정은 이 두 파일에 기술된다.</p>
-<p><img src="/images/2019/Untitled-0409dc23-9fe8-4d84-af69-622f0b2d146c.png" alt></p>
-<p>그리고 프로젝트 루트 경로의 src 폴더는 모듈을 추가함으로써 사라질 예정이다.</p>
-<p><img src="/images/2019/Untitled-1bf0b85f-d119-4e8d-8e5a-1ff8ff2e5f39.png" alt></p>
-<h3 id="일단-a-module-이라는-이름의-모듈을-추가해보자"><a href="#일단-a-module-이라는-이름의-모듈을-추가해보자" class="headerlink" title="일단 a-module 이라는 이름의 모듈을 추가해보자."></a>일단 a-module 이라는 이름의 모듈을 추가해보자.</h3><p>일단 루트 경로의 settings.gradle을  확인해보자.</p>
-<p>아래처럼 루트 프로젝트 네임만 있을 것이다. 나중에 모듈을 추가하면 모듈 정보가 추가될 것이다.</p>
-<p>일단 넘어가자.</p>
-<pre><code>rootProject.name = &apos;go-modules&apos;</code></pre><p>그리고 루트 경로의 build.gradle 파일을 열어서 내용물을 모두 지우고 아래 내용으로 치환하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    ext &#123;</span><br><span class="line">        springBootVersion &#x3D; &#39;2.1.9.RELEASE&#39;</span><br><span class="line">    &#125;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenCentral()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath(&quot;org.springframework.boot:spring-boot-gradle-plugin:$&#123;springBootVersion&#125;&quot;)</span><br><span class="line">        classpath &quot;io.spring.gradle:dependency-management-plugin:1.0.8.RELEASE&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">subprojects &#123;</span><br><span class="line"></span><br><span class="line">    apply plugin: &#39;java&#39;</span><br><span class="line">    apply plugin: &#39;eclipse&#39;</span><br><span class="line">    apply plugin: &#39;org.springframework.boot&#39;</span><br><span class="line">    apply plugin: &#39;io.spring.dependency-management&#39;</span><br><span class="line"></span><br><span class="line">    group &#x3D; &#39;com.hanumoka.go&#39;</span><br><span class="line">    version &#x3D; &#39;0.0.0&#39;</span><br><span class="line">    sourceCompatibility &#x3D; 1.8</span><br><span class="line"></span><br><span class="line">    repositories &#123;</span><br><span class="line">        mavenCentral()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    task initSourceFolders &#123;</span><br><span class="line">        sourceSets*.java.srcDirs*.each &#123;</span><br><span class="line">            if( !it.exists() ) &#123;</span><br><span class="line">                it.mkdirs()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        sourceSets*.resources.srcDirs*.each &#123;</span><br><span class="line">            if( !it.exists() ) &#123;</span><br><span class="line">                it.mkdirs()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dependencies &#123;</span><br><span class="line">        compileOnly(&#39;org.projectlombok:lombok&#39;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>buildscript  부분에서 공통 스브링부트 버전등을 설정한다.</p>
-<p>subprojects 는 추가될 모듈둘에 공통적으로 적용될 내용들이 기술되어 있다.</p>
-<p>이제 a-module 을 추가해보자. 아래처럼 모듈을 클릭하자.</p>
-<p><img src="/images/2019/Untitled-64586004-bf5a-4a95-af5d-2c80215154e5.png" alt></p>
-<p>아래 내용을 확인하고 next 버튼을 클릭하자.</p>
-<p><img src="/images/2019/Untitled-728f02ae-0958-433b-aded-dfc20c6639c0.png" alt></p>
-<p>아래처럼 GroupId : com.hanumoka.go</p>
-<p>ArtifactId : a-module 를 입력하고 next 를 클릭하자.</p>
-<p><img src="/images/2019/Untitled-3919234e-a81d-45fa-a06c-07f35ff6d8c2.png" alt></p>
-<p>a-module 이라는 모듈명을 확인하고 Finish 버튼을 클릭하자.</p>
-<p><img src="/images/2019/Untitled-cdbb921e-edd1-48e7-8419-f4f584e6e5e6.png" alt></p>
-<p>아래처럼 a-module이 추가되었다. 하늘색 작은 상자가 표시 되어 있는데, 이것이 모듈을 의미한다.</p>
-<p><img src="/images/2019/Untitled-9e0e20d4-d3d0-4bfb-8da3-b0fa3b9190a0.png" alt></p>
-<p>모듈을 추가했으니 프로젝트 루트 경로의 settings.gradle 파일을 열어보자.</p>
-<p>아래처럼 include ‘a-module’ 이라는 내용이 자동으로 추가된 것을 확인 할 수 있다.</p>
-<p>만약 없다면, 추가해주자.</p>
-<p><img src="/images/2019/Untitled-d4e72ab9-3593-449c-8bcf-074294dda1a3.png" alt></p>
-<p>그리고 루트 경로의 settings.gradle 파일을 열어보자.</p>
-<p>그리고 아래 내용을 추가해주자. 프로젝트해당 모듈이 있다고 등록하는 것이다. 나중에 이 모듈에 대한 디펜던시도 추가할 것이다.</p>
-<pre><code>project(&apos;:a-module&apos;) {
-}</code></pre><p><img src="/images/2019/Untitled-8ef73c78-899a-4472-acd5-7c4fd6dab19c.png" alt></p>
-<p>이제 생성했던 a-module 폴더로 들어가서 a-module 폴더의 build.gradle 파일을 열어보자.</p>
-<p>기존의 내용들을 지우고 아래 내용으로 치환하자.</p>
-<p>이 파일은 a-module을 위한 독자적인 파일이다.</p>
-<pre><code>dependencies {
-    compile(&apos;org.springframework.boot:spring-boot-starter-thymeleaf&apos;)
-    compile(&apos;org.springframework.boot:spring-boot-starter-web&apos;)
-    testCompile(&apos;org.springframework.boot:spring-boot-starter-test&apos;)
-}</code></pre><p><img src="/images/2019/Untitled-4f8a1a40-e697-482a-8733-3e0c749dcf7b.png" alt></p>
-<p>그리고 아래처럼 모듈 내부의 패키지와 파일들을 구성하자.</p>
-<p><img src="/images/2019/Untitled-cc91f841-ef40-40ed-9499-79c23105eb78.png" alt></p>
-<p><strong>공통 패키지는 com.hanumoka.go 이다.</strong></p>
-<p><strong>BeanScan의 기준이 되는 AmoduleApp.class, ServletInitializer.class 는 이곳이 둬야 한다.</strong></p>
-<p>아래 AmoduleApp.class 파일이다.</p>
-<pre><code>package com.hanumoka.go;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
-public class AmoduleApp {
-    public static void main(String[] args) {
-        SpringApplication.run(AmoduleApp.class, args);
-    }
-}</code></pre><p>아래 ServletInitializer.class 파일이다.</p>
-<pre><code>package com.hanumoka.go;
-
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-
-public class ServletInitializer extends SpringBootServletInitializer {
-
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-        return application.sources(AmoduleApp.class);
-    }
-
-}</code></pre><p>아래 HomeController.class 이다.</p>
-<p>추가한 a-module을 다른 모듈과 구분하기 위해 amodule 을 추가했다.</p>
-<pre><code>package com.hanumoka.go.amodule.controller;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@Controller
-public class HomeController {
-
-    @RequestMapping(&quot;/&quot;)
-    public String index(){
-        return &quot;index&quot;;
-    }
-}</code></pre><p>기존에 루트 경로에 있던 src 폴더 내부를 옮겨와서 AmoduleApp 파일명만 변경한 것이다.</p>
-<p>그리고 루트 경로의 src 폴더를 제거하자.</p>
-<p>지금까지 작업은 기존의 단일 프로젝트의 src를 a-module로 옮긴것이다.</p>
-<p>AmoduleApp 을 실행 하면, 스프링 앱이 동작하고 <a href="http://localhost:8080" target="_blank" rel="external nofollow noopener noreferrer">http://localhost:8080</a> 접근시 index.html 이 보여야 한다.</p>
-<p>지금까지 한 작업으로 springboot 단일 프로젝트를 springboot 모듈 프로젝트로 변경 되었다.</p>
-<p>이제 b-module을 추가하고 a-module에서 b-module을 사용하는 구조로 만들어보자.</p>
-<h3 id="b-module-이라는-모듈-추가하기"><a href="#b-module-이라는-모듈-추가하기" class="headerlink" title="b-module 이라는 모듈 추가하기"></a>b-module 이라는 모듈 추가하기</h3><p>앞서 a-module 추가하듯이 b-module도 추가하자.</p>
-<p>아래와 같은 구조가 될 것이고, src 폴더는 앞에서 말한것 처럼 제거 했다.</p>
-<p><img src="/images/2019/Untitled-eb7e58f7-4c94-4821-9647-63d58d52c801.png" alt></p>
-<p>루트 경로에 settings.gradle 폴더르르 보면 역시 b-module 이 추가된 것을 볼 수 있다.</p>
-<p><img src="/images/2019/Untitled-2a9d2015-3aa7-4c45-ae73-e04758fb8bcb.png" alt></p>
-<p>루트 경로의 build.gradle 에 가서 앞서 등록했던 a-module에 dependencies 를 방금 추가한 b-module 로 추가하자.</p>
-<p>해당 내용은 a-modul이 b-module에 의존성을 갖는다는 것이다.</p>
-<pre><code>project(&apos;:a-module&apos;) {
-    dependencies {
-        compile project(&apos;:b-module&apos;)
-    }
-}</code></pre><p><img src="/images/2019/Untitled-a5baeacc-585a-4ad5-90dd-24effcf2ab22.png" alt></p>
-<p>b-module을 열고 아래처럼 구성하자.</p>
-<p>b-module은 a-module에서 사용할 서비스로 Bservice.class를 제공한다.</p>
-<p><img src="/images/2019/Untitled-e2cf2f53-0c69-4946-b61f-ffb807c0fdfd.png" alt></p>
-<p>Bservice.class</p>
-<pre><code>package com.hanumoka.go.bmodule.service;
-
-import org.springframework.stereotype.Service;
-
-@Service
-public class Bservice {
-    public String test(){
-        return &quot;Bservice test()...&quot;;
-    }
-}</code></pre><p>그리고 b-module 하위이 build.gradle 을 아래로 치환 했다.</p>
-<pre><code>bootJar{
-    enabled = false;
-}
-jar {
-    enabled = true;
-}
-
-dependencies {
-    compile(&apos;org.springframework.boot:spring-boot-starter&apos;)
-}</code></pre><h3 id="A-module-컨트롤러에서-B-module-서비스를-사용해보자"><a href="#A-module-컨트롤러에서-B-module-서비스를-사용해보자" class="headerlink" title="A-module 컨트롤러에서 B-module 서비스를 사용해보자."></a>A-module 컨트롤러에서 B-module 서비스를 사용해보자.</h3><p>A-module의 HomeController.class를 아래처럼 수정하자.</p>
-<pre><code>package com.hanumoka.go.amodule.controller;
-
-import com.hanumoka.go.bmodule.service.Bservice;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-@Controller
-public class HomeController {
-
-    @Autowired
-    Bservice bservice;
-
-    @RequestMapping(&quot;/&quot;)
-    public String index(){
-
-        System.out.println(bservice.test());
-        return &quot;index&quot;;
-    }
-}</code></pre><p><img src="/images/2019/Untitled-c078d4ae-a987-432f-857e-3aa2797fcdbd.png" alt></p>
-<p>이제 a-module의 AmoduleApp을 실행해서 a-module의 컨트롤러가 동작할때 b-module의 서비스를 호출하는지 확인해보자.</p>
-<p>아래처럼 동작을 확인 할 수 있다.</p>
-<p><img src="/images/2019/Untitled-f2b2ebe0-c361-4915-86dc-2941cf8b1bfc.png" alt></p>
-<p>go-module 을 빌드하면 아래처럼 a-module 의 빌드 결과물을 확인 할 수 있다.</p>
-<p>화면에는 안 보이지만 b-module 역시 빌드 결과물이 생겼다.</p>
-<p>하지만 a-module에만 SpringBootApplication을 등록했으므로, 실제 실행 시킬수 있는 jar 파일은</p>
-<p>a-module-0.0.0.jar 이다.</p>
-<p><img src="/images/2019/Untitled-97d20444-23a5-49dc-b013-d79fa718d076.png" alt></p>
-<p>직접 jar를 실행시켜, 정상동작을 확인하자.</p>
-<pre><code>java -jar a-module-0.0.0.jar </code></pre><h3 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h3><p>이 글에서는 간단하게 gradle 기반으로 spring boot 멀티 모듈을 구축하는 방법을 정리하였다.</p>
-<p>사실 실제 멀티 모듈을 설계하고 구축하는 일은 어려운 일이고, 많은 고민이 필요해 보인다.</p>
-<p>하지만 나처럼 gradle 자체를 잘 모르는 사람은 실제 구축 자체가 어려운 일이므로 이렇게 기록해 놓는다.</p>
-<p><strong>해당 예제는 아래 github에 올려놓았다.</strong></p>
-<p><a href="https://github.com/hanumoka/springboot_gradle_multimodule" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/hanumoka/springboot_gradle_multimodule</a></p>
-<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://bkjeon1614.tistory.com/38" target="_blank" rel="external nofollow noopener noreferrer">https://bkjeon1614.tistory.com/38</a></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -2000,7 +1807,7 @@ public class HomeController {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">199</span>
+          <span class="site-state-item-count">200</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -2013,7 +1820,7 @@ public class HomeController {
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">556</span>
+        <span class="site-state-item-count">558</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

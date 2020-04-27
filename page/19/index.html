@@ -245,6 +245,122 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/09/16/java-20170916-java8-interface/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/09/16/java-20170916-java8-interface/" class="post-title-link" itemprop="url">java8 interface의 변화(default method, static method)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2017-09-16 14:47:20" itemprop="dateCreated datePublished" datetime="2017-09-16T14:47:20+09:00">2017-09-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>java8에서 interface의 문법이 약간 변경되어 그 내용을 정리하고자 한다.<br>java7 까지는 인터페이스에 상수, 실행블록이 없는 추상 메소드 선언만 가능했다. 하지만 <strong>java8부터 인터페이스에 디폴트메소드와 정적메소드도 추가로 선언이 가능하다. 이로인해 java의 인터페이스는 더욱 유연해진 코딩을 할 수 있다.</strong></p>
+<h4 id="java8의-인터페이스-형태"><a href="#java8의-인터페이스-형태" class="headerlink" title="java8의 인터페이스 형태"></a>java8의 인터페이스 형태</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> 인터페이스명</span>&#123;</span><br><span class="line">  <span class="comment">//상수</span></span><br><span class="line">  타입 상수명 = 값;</span><br><span class="line">  <span class="comment">//추상 메소드</span></span><br><span class="line">  타입 메소드명(매개변수, ...);</span><br><span class="line">  <span class="comment">//디폴트 메소드</span></span><br><span class="line">  <span class="keyword">default</span> 타입 메소드명(매개변수, ...)&#123; ... &#125;</span><br><span class="line">  <span class="comment">//정적 메소드</span></span><br><span class="line">  <span class="keyword">static</span> 타입 메소드명(매개변수)&#123; ...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>자바8에서 인터페이스의 디폴트메소드와 추상메소드가 추가된 이유가 있다.</strong><br>어떤 프로그램에서 인터페이스 A가 있고 이 인터페이스를 구현한 A1, A2, A3…, A10 총 10개의 구현 클래스가 있다고 가정하자. 5년정도 사융하다가 인터페이스 A에 추가기능이 필요해서 추상메소드를 한개 추가하고 새로이 B1이라는 클래스로 인터페이스 A를 구현하게 된다. 문제는 기존에 사용하던 A1 ~ A10의 구현객체에서 B1클래스를 위해 추가된 추상메소드를 추가로 구현해야 한다는 점이다.<br>java8에서는 인터페이스의 디폴트 메소드와, 정적메소드를 추가하여 프로그래밍의 유연성을 높여주고 있다.</p>
+<hr>
+<h4 id="인터페이스의-디폴트메소드-default-method"><a href="#인터페이스의-디폴트메소드-default-method" class="headerlink" title="인터페이스의 디폴트메소드(default method)"></a>인터페이스의 디폴트메소드(default method)</h4><p>디폴트 메소드는 인터페이스에 선언되지만 사실은 객체(구현객체)가 가지고 있는 인스턴스 메소드라고 생각해야 된다. 따라서 <strong>인터페이스를 구현한 객체를 통해서 호출 해야만 한다.</strong> 자바8에서 디폴트 메소드를 허용한 이유는 기존 인터페이스를 확장해서 새로운 기능을 추가하기 위해서이다. 만약 구현객체에서 인터페이스의 디폴트메소드가 적절하지 못하다면, 오버라이딩 하여 수정해서 사용하면 된다.</p>
+<p><strong>형태 : [public] default 리턴타입 메소드명(매개변수, …){ … }</strong></p>
+<h4 id="인터페이스의-정적메소드-static-method"><a href="#인터페이스의-정적메소드-static-method" class="headerlink" title="인터페이스의 정적메소드(static method)"></a>인터페이스의 정적메소드(static method)</h4><p>정적 메소드도 역시 자바8 부터 작성할 수 있는데, 디폴트 메소드와는 달리 객체가 없어도 인터페이스만으로 호출이 가능하다.</p>
+<p><strong>형태 : [public] static 리턴타입 메소드명(매개변수, …){ … }</strong></p>
+<h4 id="java8의-인터페이스의-디폴트메소드-추상메소드-예제"><a href="#java8의-인터페이스의-디폴트메소드-추상메소드-예제" class="headerlink" title="java8의 인터페이스의 디폴트메소드, 추상메소드 예제"></a>java8의 인터페이스의 디폴트메소드, 추상메소드 예제</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">Java8InterfaceTest</span></span>&#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">int</span> talkCnt = <span class="number">0</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>;</span><br><span class="line">  <span class="comment">//디폴트 메소드</span></span><br><span class="line">  <span class="function"><span class="keyword">default</span> <span class="keyword">void</span> <span class="title">talk</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(msg != <span class="keyword">null</span> &amp;&amp; msg.equals(<span class="string">""</span>))&#123;</span><br><span class="line">      System.out.println(msg);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"난 디폴트 메소드다!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  &#125;<span class="comment">// talk</span></span><br><span class="line">  <span class="comment">//정적 메소드</span></span><br><span class="line">  <span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">talk2</span><span class="params">(String msg)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(msg != <span class="keyword">null</span> &amp;&amp; msg.equals(<span class="string">""</span>))&#123;</span><br><span class="line">      System.out.println(msg);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      System.out.println(<span class="string">"난 정적 메소드다!"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">  &#125;<span class="comment">// talk2</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InterfaceTest1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    Java8InterfaceTest.talk2(<span class="keyword">null</span>); <span class="comment">// 정적메소드 호출</span></span><br><span class="line">    </span><br><span class="line">    Java8InterfaceTest test1 = <span class="keyword">new</span> Java8InterfaceTest()&#123;</span><br><span class="line"></span><br><span class="line">      <span class="meta">@Override</span></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"달려라!"</span>);</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    test1.run();</span><br><span class="line">    test1.talk(<span class="keyword">null</span>); <span class="comment">// 디폴트 메소드 호출</span></span><br><span class="line">    </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="실행결과"><a href="#실행결과" class="headerlink" title="실행결과"></a>실행결과</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">난 정적 메소드다!</span><br><span class="line">달려라!</span><br><span class="line">난 디폴트 메소드다!</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="인터페이스의-상속에서-디폴트메소드의-변화"><a href="#인터페이스의-상속에서-디폴트메소드의-변화" class="headerlink" title="인터페이스의 상속에서 디폴트메소드의 변화"></a>인터페이스의 상속에서 디폴트메소드의 변화</h4><p>인터페이스는 인터페이스를 상속 할 수 있다. 자식 인터페이스에서 부모의 인터페이스를 상속할 때, 부모의 디폴트 메소드를 어떻게 할지 선택 할 수있다.</p>
+<ol>
+<li><p>부모 인터페이스의 디폴트 메소드를 그냥 상속한다.</p>
+</li>
+<li><p>부모 인터페이스의 디폴트 메소드를 재정의(Override)한다.</p>
+</li>
+<li><p><strong>부모 인터페이스의 디폴트 메소드를 추상메소드로 재 선언한다.</strong></p>
+</li>
+</ol>
+<p>인터페이스의 디폴트메소드는 인터페이스의 강제성을 조금 유연하게 해주는 기능이다. 하지만 좋게 말하면 유연이고 나쁘게 말한다면 느슨한 것이다. <strong>만약 이 느슨한것을 다시 엄격하게 수정할 필요가 있다면 인터페이스를 상속하여 다시 추상메소드로 재 선언 하는것도 방법이다.</strong><br><em>개인적으로 java8의 인터페이스의 변화는 개발자의 자유도를 높여주는 기능처럼 보이며, 상당히 마음에 든다.</em></p>
+<hr>
+<h4 id="인터페이스-상수-선언-public-static-final-할-때-주의할점"><a href="#인터페이스-상수-선언-public-static-final-할-때-주의할점" class="headerlink" title="인터페이스 상수 선언(public static final)할 때 주의할점"></a>인터페이스 상수 선언(public static final)할 때 주의할점</h4><p>java8의 특징은 아니지만, 자주 햇갈리는 부분이라 추가로 기록한다.<br>일반적인 클래스에서 상수(static final)의 초기화는 선언과 동시 그리고 정적영역(static block) 두 곳 모두에서 가능하다. 하지만 <strong>인터페이스의 상수는 정적영역(static block)에서 초기화 할수 없기 때문에 반드시 선언과 동시에 초기화 해야 한다.</strong> </p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/09/15/java-20170915-java-Anonymouse-class/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1171,164 +1287,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2017/08/31/apache-20170831-apache-install-windows/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2017/08/31/apache-20170831-apache-install-windows/" class="post-title-link" itemprop="url">apache웹서버 윈도우에 설치하기</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2017-08-31 03:09:49" itemprop="dateCreated datePublished" datetime="2017-08-31T03:09:49+09:00">2017-08-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/apache/" itemprop="url" rel="index">
-                    <span itemprop="name">apache</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="아파치-Apache-웹서버-윈도우10-환경에-설치"><a href="#아파치-Apache-웹서버-윈도우10-환경에-설치" class="headerlink" title="아파치(Apache) 웹서버 윈도우10 환경에  설치"></a>아파치(Apache) 웹서버 윈도우10 환경에  설치</h3><p>windows10 64bit 운영체제에 아파치 웹서버를 설치하는 방법을 설명하겠다.</p>
-<br>
-1. 웹 브라우저를 통해 https://www.apachelounge.com/download/ 로 이동
->![](/images/2017-06-11-apache설치_1.png)
-원하는 아파치 웹서버 버전을 선택후 64bit zip 파일을 클릭하여 다운받는다.
->![](/images/2017-06-11-apache설치_2.png)
-
-
-<ol start="2">
-<li>해당 파일을 C:\ 경로로 이동후 압축을 푼다.<blockquote>
-<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_3.png" alt><br>폴더 내부로 이동하여 Apache24 폴더를 잘라내기 한 후 다시 C:\ 경로로 이동하여 붙여넣기 한다.</p>
-</blockquote>
-</li>
-</ol>
-<p>최종적으로 아래와 같이 폴더 구성이 되면 된다.</p>
-<blockquote>
-<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_4.png" alt></p>
-</blockquote>
-<ol start="3">
-<li>아파치 웹서버 설치전 환경 설정<blockquote>
-<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_5.png" alt></p>
-</blockquote>
-</li>
-</ol>
-<p>C:\Apache24\conf 경로로 이동하여 httpd.conf 파일을 수정해야 한다.<br>파일을 메모장으로 연뒤 원하는 항목을 수정하면 되는데 여러 항목중에 다음 항목들이 중요하다.</p>
-<blockquote>
-<p>기본셋팅<br>ServerRoot “c:/Apache24”<br>Listen 80<br>DocumentRoot “c:/Apache24/htdocs”</p>
-</blockquote>
-<p>ServerRoot 항목은 기본적으로 “c:/Apache24” (경로 구분을 역슬래시로 해야 한다.) 되어 있다. 이 디폴트 셋팅을 그대로 사용하기 위해서 2번처럼 폴더 경로를 지정한 것이다. 만약 위 설명과 다른 폴더경로에 웹서버 폴더를 셋팅 했다면 ServerRoot 항목의 셋팅을 알맞게 수정해 주면 된다.</p>
-<p>Listen 항목은 웹서버의 포트(port)설정이다. 웹서버는 기본적으로 80포트이다.(디폴트라 생략이 가능하다. <a href="http://www.naver.com" target="_blank" rel="external nofollow noopener noreferrer">www.naver.com</a> 와 <a href="http://www.naver.com:80" target="_blank" rel="external nofollow noopener noreferrer">www.naver.com:80</a> 은 같다)<br>원하는 포트가 있다면 역시 수정하라. (필자는 8080으로 수정하였다. )</p>
-<p>DocumentRoot 항목은 웹서버에서 실행할 웹사이트 root 폴더를 지정해야 한다. ServerRoot처럼 디폴트로 “c:/Apache24/htdocs”로 셋팅 되어 있다.<br>원하는 경로가 있다면 수정하라.<br>부연설명으로 웹서버 기본 url(현재는 <a href="http://localhost:80" target="_blank" rel="external nofollow noopener noreferrer">http://localhost:80</a>) 접근시 웹서버는 DocumentRoot 에 설정된 폴더 내부의 index.html 를 디폴트로 리다이렉트 한다.</p>
-<ol start="4">
-<li>설치<br>관리자 모드로 cmd(명령 프롬프트) 창을 연다.<br>키보드의 윈도우 버튼을 누른뒤 cmd라고 검색하면 나온다.<br>명령 프롬프트 항목에 마우스 우클릭 한 뒤 “관리자 권한으로 실행”을 선택한다.<blockquote>
-<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_6.png" alt></p>
-</blockquote>
-</li>
-</ol>
-<p>cmd 창이 열리면 cd C:\Apache243\bin 을 입력하여 경로를 이동한다.</p>
-<p>이동한뒤 아래 명령어를 입력하여 아파치 서버를 설치한다.<br>httpd.exe -k install</p>
-<p>뭔가 error라고 나오긴 하는데 무시해도 지장 없다.(도메인 관련 error 인것 같다)</p>
-<p>만약 설치한 아파치 서버를 삭제 하고 싶다면 아래 명령어를 입력하면 된다.<br>httpd.exe -k uninstall</p>
-<ol start="5">
-<li>httpd.exe -k install  명령어 입력 후<blockquote>
-<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_7.png" alt></p>
-</blockquote>
-</li>
-</ol>
-<p>윈도우 탐색기에서 C:\Apache24\bin 경로로 이동후 AapcheMonitor 응용 프로그램을 실행한다.</p>
-<p>윈도우의 오른쪽 하단 작업 표시줄을 보면 ApacheMonitor가 실핼된 것을 확인 할수 있다.</p>
-<blockquote>
-<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_8.png" alt></p>
-</blockquote>
-<p>해당 아이콘을 우클릭후 Apache2.4 &gt; Start 를 클릭하면 웹서버가 동작한다.<br>반대로 웹서버를 종료하고 싶다면 Stop 을 클릭하면 된다.</p>
-<ol start="6">
-<li>웹서버 동작 확인</li>
-</ol>
-<p>웹서버를 start 한뒤에 인터넷 브라우저 창을 열고 주소창에</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:설정한포트번호</span><br></pre></td></tr></table></figure>
-<p>또는 </p>
-<pre><code>http://127.0.0.1:설정한포트번호 </code></pre><p>를 입력한다.</p>
-<p>필자는 http.conf 파일에서 포트를 8080 으로 수정하였으므로</p>
-<p><a href="http://localhost:8080" target="_blank" rel="external nofollow noopener noreferrer">http://localhost:8080</a> 을 입력하겠다.</p>
-<blockquote>
-<p><img src="/images/2017-06-11-apache%EC%84%A4%EC%B9%98_9.png" alt></p>
-</blockquote>
-<p>위처럼 DocumentRoot 경로의 index.html 브라우저창에 열리는 것을 확인할 수 있다.<br>윈도우 관리도구등 기타 설명은 상단의 유투브 영상을 참고하길 바란다.</p>
-<h3 id="Related-Posts"><a href="#Related-Posts" class="headerlink" title="Related Posts"></a>Related Posts</h3>
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1399,7 +1357,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">199</span>
+          <span class="site-state-item-count">200</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1412,7 +1370,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">556</span>
+        <span class="site-state-item-count">558</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

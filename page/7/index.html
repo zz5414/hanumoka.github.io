@@ -245,6 +245,115 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/12/02/jquery-20181202-jquery-noConflict/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/12/02/jquery-20181202-jquery-noConflict/" class="post-title-link" itemprop="url">jquery noConflict</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-12-02 12:19:08" itemprop="dateCreated datePublished" datetime="2018-12-02T12:19:08+09:00">2018-12-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/jquery/" itemprop="url" rel="index">
+                    <span itemprop="name">jquery</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+        <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <!-- 헤드 광고 -->
+          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+      </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>인터넷에서 MIT 라이센스의 bootstrap 테마를 조물락 거리는 중.</p>
+<p>Jquery의 $ 별칭이 동작을 안하는 경우가 있었다.</p>
+<p>찾아보니 Jquery의 noConflict라는 기능이었다.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$.noConflict();</span><br><span class="line"></span><br><span class="line">jQuery(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params">$</span>) </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>bootstrap 테마의 main.js를 보니 위처럼 전역에 $.noConflict 라는 것이 호출되어 있었고, jquery를 사용할 때 별칭 대신 JQuery키워드로 되어 있었다.</p>
+<h1 id="Jquery의-noConflcit"><a href="#Jquery의-noConflcit" class="headerlink" title="Jquery의 noConflcit"></a>Jquery의 noConflcit</h1><p>Jquery 라이브러리를 포함해서 다른 자바스크립트 라이브러리에서도 $라는 특수문자를 함수 또는 변수명으로 사용한다.<br>Jquery에서 $ 특수문자는 JQuery의 별칭으로, 별다른 기능이 없다.<br>따라서 Jquery와 다른 기타 javascript 라이브러리를 사용할 경우, $ 특수문자의 충돌을 대비해서 Jquery에서 $ 특수문자 사용권한을 다른 라이브러리에 위힘하는 것이<br>$.noConflcit 이다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"other_lib.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"jquery.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">$.noConflict();</span></span><br><span class="line"><span class="javascript">jQuery( <span class="built_in">document</span> ).ready(<span class="function"><span class="keyword">function</span>(<span class="params"> $ </span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">  <span class="comment">// Code that uses jQuery's $ can follow here.</span></span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="actionscript"><span class="comment">// Code that uses other library's $ can follow here.</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>위 처럼 Jquery와 다른 javascript를 동시에 사용할 경우, 만약 other_lib.js가 $ 특수문자를 내부적으로 사용할 경우, Jquery에서 $사용 권한을 포기할 필요가 있다.<br>위 처럼 전역 스코프에서 $.noConflict 메소드를 호출하여 권한을 포기하면 other_lib.js에서 $ 특수문자를 사용할 수 있다.<br>다만 위처럼 Jquery.ready 내부에서 $를 사용할수 있기는 하지만, 이 경우 $ 특수문자가 어디 라이브러리에 속해있는지 햇갈릴수 있어서 별로인 방법같다.</p>
+<h1 id="Jquery-두가지-버전을-같이-사용할-경우-noConflict"><a href="#Jquery-두가지-버전을-같이-사용할-경우-noConflict" class="headerlink" title="Jquery 두가지 버전을 같이 사용할 경우 noConflict"></a>Jquery 두가지 버전을 같이 사용할 경우 noConflict</h1><p>이런 상황이 있는지는 모르겠으나, 두가지 버전의 Jquery를 동시에 사용해야 할 경우 noConflict를 통해 Jquery 버전을 구별해서 코딩 할 수 있다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>jQuery.noConflict demo<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-1.10.2.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"log"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h3</span>&gt;</span>Before $.noConflict(true)<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-1.6.2.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> $log = $( <span class="string">"#log"</span> );</span></span><br><span class="line"> </span><br><span class="line"><span class="javascript">$log.append( <span class="string">"2nd loaded jQuery version ($): "</span> + $.fn.jquery + <span class="string">"&lt;br&gt;"</span> );</span></span><br><span class="line"> </span><br><span class="line"><span class="actionscript"><span class="comment">// Restore globally scoped jQuery variables to the first version loaded</span></span></span><br><span class="line"><span class="actionscript"><span class="comment">// (the newer version)</span></span></span><br><span class="line"> </span><br><span class="line"><span class="actionscript">jq162 = jQuery.noConflict( <span class="literal">true</span> );</span></span><br><span class="line"> </span><br><span class="line"><span class="handlebars"><span class="xml">$log.append( "<span class="tag">&lt;<span class="name">h3</span>&gt;</span>After $.noConflict(true)<span class="tag">&lt;/<span class="name">h3</span>&gt;</span>" );</span></span></span><br><span class="line"><span class="javascript">$log.append( <span class="string">"1st loaded jQuery version ($): "</span> + $.fn.jquery + <span class="string">"&lt;br&gt;"</span> );</span></span><br><span class="line"><span class="actionscript">$log.append( <span class="string">"2nd loaded jQuery version (jq162): "</span> + jq162.fn.jquery + <span class="string">"&lt;br&gt;"</span> );</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>위 소스를 보면 두개의 Jquery 라이브러리를 동시에 load해서 사용하고 있다.<br>마지막으로 load된 1.6.2 버전의 Jquery가 뒤에 로드가 되었기 때문에 Jquery에 대한 </p>
+<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="https://www.codingfactory.net/10795" target="_blank" rel="external nofollow noopener noreferrer">https://www.codingfactory.net/10795</a><br><a href="https://api.jquery.com/jquery.noconflict/" target="_blank" rel="external nofollow noopener noreferrer">https://api.jquery.com/jquery.noconflict/</a></p>
+<p>많은 자바스크립트 라이브러리들은 사용한다 $ 를 함수 또는 변수명으로, Jquery 에서 하는 것 처럼.<br>Jquery 경우에는, $ 는 Jquery의 별칭일 뿐이다.<br>따라서 모든 기능은 $ 별칭 없이 유효하다.<br>만약 당신이 또다른 자바스크립트 라이브러리 를 사용하길 원한다면 Jquery와 같이,<br>$ 키워드의 사용권한을 다른 라이브러리로 되돌려라. $.noConfilct() 를 호출함으로써<br>Jquery가 초기화 하는 동안 $의 old refereces 들은 저장된다.<br>noconfilct()는 간단히 그것들을 원복 시킨다.</p>
+<p>만약 몇가지 이유 때문에 Jquery  두 버전을 로드했을 경우, 두번째 제이쿼리 버전에서 $.noConflict(true)를 호출하는 것은 return 할 것이다.<br>the globally scoped jQuery variables 를 첫번째 제이쿼리의 버전에게</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/12/02/java-20181202-java-int-add-overflow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1742,105 +1851,6 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/16/java-20181116-java-for-each/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/11/16/java-20181116-java-for-each/" class="post-title-link" itemprop="url">java-향상된 for 문(for each)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-11-16 07:39:35" itemprop="dateCreated datePublished" datetime="2018-11-16T07:39:35+09:00">2018-11-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-        <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-          <!-- 헤드 광고 -->
-          <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="3292600994" data-ad-format="auto" data-full-width-responsive="true"></ins>
-          <script>
-              (adsbygoogle = window.adsbygoogle || []).push({});
-          </script>
-      </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>for each 문은 java5 부터 배열 및 컬랙션 등을 쉽게 처리하기 위해 추가된 문법이다.</p>
-<p>음 난 왜 생소하지… javascript에서만 보던 건데… 여튼</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">String[] numbers = &#123;<span class="string">"one"</span>, <span class="string">"two"</span>, <span class="string">"three"</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(String number : numbers)&#123;</span><br><span class="line">  System.out.println(<span class="string">"number:"</span> + number);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>아주 간단하다. 기존의 for문의 <strong>초기값; 조건; 증가감식</strong> 등의 statment 대신 <strong>타입명 인덱스별명 : 배열이나 컬랙션</strong> 형태의 statement를 사용한다.</p>
-<p>음 numbers의 타입으로 타입을 컴파일러가 유추할수 있을텐데, 굳이 타입명을 명시하게 하는 것은 조금 의아하다.</p>
-<p>여튼 단순히 배열, 컬랙션 등을 순차적으로 돌리고 싶을때 간편하게 사용할 수 있다.</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1911,7 +1921,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">199</span>
+          <span class="site-state-item-count">200</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
@@ -1924,7 +1934,7 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">556</span>
+        <span class="site-state-item-count">558</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

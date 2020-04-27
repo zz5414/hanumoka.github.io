@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.hanumoka.net/"/>
-  <updated>2020-04-26T07:37:19.699Z</updated>
+  <updated>2020-04-27T13:24:05.997Z</updated>
   <id>https://www.hanumoka.net/</id>
   
   <author>
@@ -15,6 +15,42 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Docker를 이용해 React와 Nginx를 묶어서 이미지화 하고 컨테이너화 하기</title>
+    <link href="https://www.hanumoka.net/2020/04/27/docker-20200427-docker-react-nginx/"/>
+    <id>https://www.hanumoka.net/2020/04/27/docker-20200427-docker-react-nginx/</id>
+    <published>2020-04-27T13:14:11.000Z</published>
+    <updated>2020-04-27T13:24:05.997Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;React 프로젝트를 만약 서버에 배포해야 한다면, 어떻게 해야할까?&lt;/p&gt;
+&lt;p&gt;서버에 Apache나
+        
+      
+    
+    </summary>
+    
+    
+      <category term="docker" scheme="https://www.hanumoka.net/categories/docker/"/>
+    
+    
+      <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
+    
+      <category term="react" scheme="https://www.hanumoka.net/tags/react/"/>
+    
+      <category term="node" scheme="https://www.hanumoka.net/tags/node/"/>
+    
+      <category term="ngnix" scheme="https://www.hanumoka.net/tags/ngnix/"/>
+    
+      <category term="prod" scheme="https://www.hanumoka.net/tags/prod/"/>
+    
+  </entry>
   
   <entry>
     <title>aws-ec2에 ubuntu AMI(이미지)를 설치하고 접속해보기(t2.micro)</title>
@@ -238,9 +274,9 @@
       <category term="ubuntu" scheme="https://www.hanumoka.net/categories/ubuntu/"/>
     
     
-      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
-    
       <category term="port" scheme="https://www.hanumoka.net/tags/port/"/>
+    
+      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
     
       <category term="iptables" scheme="https://www.hanumoka.net/tags/iptables/"/>
     
@@ -641,41 +677,6 @@
       <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
     
       <category term="docker-compose" scheme="https://www.hanumoka.net/tags/docker-compose/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>springboot - gradle을 이용한 멀티모듈 프로젝트 만들기</title>
-    <link href="https://www.hanumoka.net/2019/10/04/springBoot-20191004-springboot-gradle-multimodule/"/>
-    <id>https://www.hanumoka.net/2019/10/04/springBoot-20191004-springboot-gradle-multimodule/</id>
-    <published>2019-10-03T16:54:26.000Z</published>
-    <updated>2020-04-15T16:50:12.028Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;springboot-gradle-멀티모듈-프로젝트-만들기&quot;&gt;&lt;a href=&quot;#springboot-gradle-멀티모듈-프로젝트-만들기&quot; class=&quot;headerlink&quot; title=&quot;springboot gradle 멀티모듈 프로젝트
-        
-      
-    
-    </summary>
-    
-    
-      <category term="springBoot" scheme="https://www.hanumoka.net/categories/springBoot/"/>
-    
-    
-      <category term="spring" scheme="https://www.hanumoka.net/tags/spring/"/>
-    
-      <category term="springboot" scheme="https://www.hanumoka.net/tags/springboot/"/>
-    
-      <category term="gradle" scheme="https://www.hanumoka.net/tags/gradle/"/>
-    
-      <category term="multi" scheme="https://www.hanumoka.net/tags/multi/"/>
-    
-      <category term="module" scheme="https://www.hanumoka.net/tags/module/"/>
     
   </entry>
   
