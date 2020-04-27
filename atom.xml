@@ -176,9 +176,9 @@
     
       <category term="github" scheme="https://www.hanumoka.net/tags/github/"/>
     
-      <category term="ssh" scheme="https://www.hanumoka.net/tags/ssh/"/>
-    
       <category term="git" scheme="https://www.hanumoka.net/tags/git/"/>
+    
+      <category term="ssh" scheme="https://www.hanumoka.net/tags/ssh/"/>
     
   </entry>
   
@@ -238,9 +238,9 @@
       <category term="react" scheme="https://www.hanumoka.net/categories/react/"/>
     
     
-      <category term="deploy" scheme="https://www.hanumoka.net/tags/deploy/"/>
-    
       <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
+      <category term="deploy" scheme="https://www.hanumoka.net/tags/deploy/"/>
     
       <category term="nginx" scheme="https://www.hanumoka.net/tags/nginx/"/>
     
