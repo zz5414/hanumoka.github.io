@@ -106,14 +106,14 @@
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/OBSstudio/</loc>
+        <loc>https://www.hanumoka.net/categories/node/</loc>
         <lastmod>2020-04-15T16:50:12.007Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
     </url>
 
     <url>
-        <loc>https://www.hanumoka.net/categories/node/</loc>
+        <loc>https://www.hanumoka.net/categories/OBSstudio/</loc>
         <lastmod>2020-04-15T16:50:12.007Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.2</priority>
