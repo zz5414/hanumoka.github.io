@@ -270,7 +270,7 @@ gtag('config', 'UA-100596920-1');
               <span class="post-meta-item-text">작성일</span>
               
 
-              <time title="Post created: 2020-05-19 23:22:25 / Updated at: 23:26:34" itemprop="dateCreated datePublished" datetime="2020-05-19T23:22:25+09:00">2020-05-19</time>
+              <time title="Post created: 2020-05-19 23:22:25 / Updated at: 23:31:49" itemprop="dateCreated datePublished" datetime="2020-05-19T23:22:25+09:00">2020-05-19</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -359,22 +359,22 @@ gtag('config', 'UA-100596920-1');
 <p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2014.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2014.png"></p>
 <p>아래처럼 private.csr 인증 요청서가 생성 되었다.</p>
 <p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2015.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2015.png"></p>
-<h2 id="CRT-인증서-만들기"><a href="#CRT-인증서-만들기" class="headerlink" title="CRT(인증서)만들기"></a>CRT(인증서)만들기</h2><p>이제 인증요청서로 테스트 용도의 가짜 CRT를 만들어보자.</p>
-<h3 id="CA-역할을-할-CA-대칭키-생성"><a href="#CA-역할을-할-CA-대칭키-생성" class="headerlink" title="CA 역할을 할 CA 대칭키 생성"></a>CA 역할을 할 CA 대칭키 생성</h3><p>아래 명령어로 CA역할을 할 CA 대칭키(aes256)를 생성하자.</p>
+<h1 id="CRT-인증서-만들기"><a href="#CRT-인증서-만들기" class="headerlink" title="CRT(인증서)만들기"></a>CRT(인증서)만들기</h1><p>이제 인증요청서로 테스트 용도의 가짜 CRT를 만들어보자.</p>
+<h2 id="CA-역할을-할-CA-대칭키-생성"><a href="#CA-역할을-할-CA-대칭키-생성" class="headerlink" title="CA 역할을 할 CA 대칭키 생성"></a>CA 역할을 할 CA 대칭키 생성</h2><p>아래 명령어로 CA역할을 할 CA 대칭키(aes256)를 생성하자.</p>
 <p>(사실 왜 대칭키를 생성하는지 모르겠다.)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genrsa -aes256 -out rootCA.key 2048</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2016.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2016.png"></p>
 <p>아래처럼 rootCA.key 가 생성 되었다.</p>
 <p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2017.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2017.png"></p>
-<h3 id="rootCA-key를-이용해서-rootCA-pem-생성"><a href="#rootCA-key를-이용해서-rootCA-pem-생성" class="headerlink" title="rootCA.key를 이용해서 rootCA.pem 생성"></a>rootCA.key를 이용해서 rootCA.pem 생성</h3><p>(사실 이녀석도 뭔지 잘 모르겠다.)</p>
+<h2 id="rootCA-key를-이용해서-rootCA-pem-생성"><a href="#rootCA-key를-이용해서-rootCA-pem-생성" class="headerlink" title="rootCA.key를 이용해서 rootCA.pem 생성"></a>rootCA.key를 이용해서 rootCA.pem 생성</h2><p>(사실 이녀석도 뭔지 잘 모르겠다.)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req -X509 -new -nodes -key rootCA.key -days 2650 -out rootCA.pem</span><br></pre></td></tr></table></figure>
 
 <p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2018.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2018.png"></p>
 <p>비밀번호등 국가코드, 도시 기타 등등 정보를 입력해야 한다.(테스트니 대충 넣자)</p>
 <p>아래처럼 rootCA.pem 파일이 생성된다.</p>
 <p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2019.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2019.png"></p>
-<h3 id="웹서버에-HTTPS적용을-위해-필요한-CRT-인증서를-생성"><a href="#웹서버에-HTTPS적용을-위해-필요한-CRT-인증서를-생성" class="headerlink" title="웹서버에 HTTPS적용을 위해 필요한 CRT 인증서를 생성"></a>웹서버에 HTTPS적용을 위해 필요한 CRT 인증서를 생성</h3><p>이제 마지막으로 CRT를 즉 웹서버에 HTTPS를 적용하기 위한 인증서를 생성해보자.</p>
+<h2 id="웹서버에-HTTPS적용을-위해-필요한-CRT-인증서를-생성"><a href="#웹서버에-HTTPS적용을-위해-필요한-CRT-인증서를-생성" class="headerlink" title="웹서버에 HTTPS적용을 위해 필요한 CRT 인증서를 생성"></a>웹서버에 HTTPS적용을 위해 필요한 CRT 인증서를 생성</h2><p>이제 마지막으로 CRT를 즉 웹서버에 HTTPS를 적용하기 위한 인증서를 생성해보자.</p>
 <p>아래 명령어를 이용해서 앞서 생성한, 인증 요청서(private.csr) , rootCA.pem, rootCA.key 를 이용해서 웹서버에 등록할 CA 인증서 private.crt 를 생성하자.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x509 -req -<span class="keyword">in</span> private.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out private.crt -days 3650</span><br></pre></td></tr></table></figure>
 
