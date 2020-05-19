@@ -245,6 +245,131 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/07/08/docker-20180708-docker-mysql-with-dataonly-by-dockerfile/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/07/08/docker-20180708-docker-mysql-with-dataonly-by-dockerfile/" class="post-title-link" itemprop="url">docker - Mysql 컨테이너에 데이터전용(dataonly) 컨테이너 연결하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-07-08 17:55:30" itemprop="dateCreated datePublished" datetime="2018-07-08T17:55:30+09:00">2018-07-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 20200427hexo_post_head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h3><p>시스템을 운영하다보면 다양한 데이터(DB, 로그 …)가 생성, 축적되며 이 데이터는 프로그램이 종료된 후에도 스토리지 등에 저장된다.<br>이를 영속 데이터라 하며 시스템 가동 시간에 따라 증감하고 변화한다.<br>스토리지 저장 공간은 한정되어 있고 장애로 인해 데이터가 소실될 수도 있으므로 이를 잘 관리하는 것은 중요하다.</p>
+<h3 id="데이터-전용-컨테이너-dataonly-란"><a href="#데이터-전용-컨테이너-dataonly-란" class="headerlink" title="데이터 전용 컨테이너(dataonly)란?"></a>데이터 전용 컨테이너(dataonly)란?</h3><p>다양한 종류의 컨테이너를 동시에 여러개 서비스 할수 있는 도커에서도 위와 같은 영속적인 데이터를 관리할 필요가 있다.</p>
+<p>Docker 기능으로는 데이터 전용 컨테이너에서 데이터를 관리하는 방법과 로컬호스트를 마운트하여 데이터를 저장하는 방법이 있다.</p>
+<p>로컬호스트에 마운트하는 방법도 간단하고 좋은 방법이지만, 개인적으로 데이터 전용 컨테이너를 만들어 다양한 컨테이너에서 발생하는 데이터를 일관적으로 관리하는 방법이 좋아보인다.<br>데이터 전용 컨테이너란 말 그대로 데이터만 전문적으로 저장할 용도의 컨테이너를 말한다.<br>이번 글에서는 데이터 전용 컨테이너를 만들고 mysql 컨테이너를 연동시키는 방법을 정리해 보겠다.</p>
+<h3 id="데이터-전용-컨테이너-생성하기"><a href="#데이터-전용-컨테이너-생성하기" class="headerlink" title="데이터 전용 컨테이너 생성하기"></a>데이터 전용 컨테이너 생성하기</h3><p>먼저 데이터를 저장하는 데이터 저뇽 컨테이너를 생성하자.<br>데이터 전용 컨테이너는 데이터를 저장하는 역할만 가지며 다른 기능은 수행하지 않는다.<br>필요한 Linux 커맨드의 실행만을 확인하면 되므로 Docker Hub에 공개된 BusyBox 공식 이미지를 사용한다.</p>
+<p><strong>busybox</strong>란 표준 Linux 커맨드를 하나의 바이너리 파일에 저장한 애플리케이션이다.<br>가전제품, 네트워크 장비, 모바일 장치 등의 임베디드 기기에서 자주 사용되고 있다.</p>
+<p>Dockerfile 작성하지 파일명은 dockfile 이고 확장자는 없다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 1.Docker 이미지 가져오기</span><br><span class="line">FROM busybox</span><br><span class="line"></span><br><span class="line"># 2.작성자 정보 </span><br><span class="line">MAINTAINER 0.1 your-name@your-domain.com</span><br><span class="line"></span><br><span class="line"># 3.데이터 설정</span><br><span class="line">VOLUME &#x2F;var&#x2F;lib&#x2F;mysql</span><br></pre></td></tr></table></figure>
+
+<p>VOLUME으로 지정한 디렉터리는 다른 컨테이너가 마운트할 수 있는 불롬이 된다.<br>MySQL 데이터를 저장해야 하므로 /var/lib/mysql 디렉터리로 지정한다.</p>
+<p>다음 명령으로 dataonly 라는 이름의 데이터 전용 컨테이너 이미지를 생성하자.<br>아래 명령은 dockfile과 같은 경로에서 실행해야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t dataonly .</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20180708-docker-mysql-with-dataonly-by-dockerfile_1.png" alt="결과1"></p>
+<p>데이터 전용 컨테이너를 구동 시키자</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it --name dataonly dataonly</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20180708-docker-mysql-with-dataonly-by-dockerfile_2.png" alt="결과2"></p>
+<p>일단 데이터 컨테이너는 중지시켰다.<br>참고로 중지된 상태에서도 데이터는 마운트가 된다. </p>
+<h3 id="Mysql-컨테이너-생성하기"><a href="#Mysql-컨테이너-생성하기" class="headerlink" title="Mysql 컨테이너 생성하기"></a>Mysql 컨테이너 생성하기</h3><p>Mysql 컨테이너는 docker-compose을 이용하여 생성하겠다.<br>원하는 경로에 docker-compose.xml 파일을 생성하고 아래 내용을 입력했다.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#DB 서버 설정</span></span><br><span class="line"><span class="attr">dbserver:</span></span><br><span class="line"> <span class="comment">#이미지 지정</span></span><br><span class="line"> <span class="attr">image:</span> <span class="string">mysql</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment">#포트지정</span></span><br><span class="line"> <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">"3306:3306"</span></span><br><span class="line"> </span><br><span class="line"> <span class="comment">#데이터 저장 장소 지정</span></span><br><span class="line"> <span class="attr">volumes_from:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">dataonly</span></span><br><span class="line"> </span><br><span class="line">  <span class="comment">#환경변수 지정</span></span><br><span class="line"> <span class="attr">environment:</span></span><br><span class="line">  <span class="attr">MYSQL_ROOT_PASSWORD:</span> <span class="string">password</span></span><br></pre></td></tr></table></figure>
+
+<p>volumes_from에서 앞서 생성한 데이터 컨테이너를 마운트 설정한다.</p>
+<p>아래 명령을 입력하여, 백그라운드로 mysql 컨테이너를 구동하자.<br>아래 명령은 docker-compose.yml 파일과 같은 경로에서 실행해야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>이미지가 없어서 새로 다운받고 자동으로 컨테이너를 실행하는 것을 확인 할 수 있다.</p>
+<p><img src="/images/20180708-docker-mysql-with-dataonly-by-dockerfile_3.png" alt="결과3"></p>
+<h3 id="데이터-컨테이너-시동-및-mysql-마운트-확인"><a href="#데이터-컨테이너-시동-및-mysql-마운트-확인" class="headerlink" title="데이터 컨테이너 시동 및 mysql 마운트 확인"></a>데이터 컨테이너 시동 및 mysql 마운트 확인</h3><p>아래 명령으로 데이터 컨테이너를 동작시키고, mysql컨테이너가 마운트 된 위치를 열어보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start -ia dataonly</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20180708-docker-mysql-with-dataonly-by-dockerfile_4.png" alt="결과4"></p>
+<p>위 화면을 보면 /var/lib/mysql 디렉터리가 마운트 된 것을 확인할수 있다.</p>
+<p>아래 화면에서 mysql 컨테이너에 접속하여 mysql 서버의 동작도 확인했다.</p>
+<p><img src="/images/20180708-docker-mysql-with-dataonly-by-dockerfile_5.png" alt="결과5"></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/07/07/maven-20180707-error-maven-Fatal-error-compiling-tools-jar/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1327,173 +1452,11 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/05/21/centOs-20180521-centos-install-vsftpd/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/05/21/centOs-20180521-centos-install-vsftpd/" class="post-title-link" itemprop="url">centOs7 - vsftpd 설치하기</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-05-21 14:27:00" itemprop="dateCreated datePublished" datetime="2018-05-21T14:27:00+09:00">2018-05-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/centOs/" itemprop="url" rel="index">
-                    <span itemprop="name">centOs</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 20200427hexo_post_head -->
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h4><p>로컬 pc에 있는 war파일을 centos7의 톰캣에 배포 하려니, centOs에 ftp가 없다.<br>그래서 레드헷 계열에서 쓰는 기존 ftp보다 보안및 성능이 강화된 vsftpd설치하고 사용해보자.</p>
-<p>실습의 편의를 위해 selinux를 disable 했으며, root 계정으로 접속하는 예제이다.<br><strong>주의: 이실습은 보안은 개나 줘버린 예제이다.</strong><br>그리고 실습을 진행하면서 자잘한 문제사항을 발견하게 된다.<br>만약 예제를 따라 실습한다면, 한번 전체적으로 읽어보고 따라하길 바란다.</p>
-<h4 id="실습환경"><a href="#실습환경" class="headerlink" title="실습환경"></a>실습환경</h4><p>centos7(vsftpd), ftp 클라이언트(filezilla)</p>
-<h4 id="centOs7에-vsftpd-설치하기"><a href="#centOs7에-vsftpd-설치하기" class="headerlink" title="centOs7에 vsftpd 설치하기"></a>centOs7에 vsftpd 설치하기</h4><p>vsftpd가 설치되어있는지 일단 확인하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum list installed vsftpd</span><br></pre></td></tr></table></figure>
-
-<p>설치가 안되어 있다면, 다음 명령으로 vsftpd를 설치하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install vsftpd -y</span><br></pre></td></tr></table></figure>
-
-<p>그리고 vsftpd를 업데이트 하자</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update vsftpd</span><br></pre></td></tr></table></figure>
-
-<p>/etc/vsftpd/vsftpd.conf 파일을 수정하자.<br>/etc/vsftpd/vsftpd.conf 은 vsftpd의 설정파일이다.</p>
-<p>기존의 vsftpd.conf 파일을 vsftpd.conf_back으로 바꿔보관하고,</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mv vsftpd.conf vsfptd.conf_back</span><br><span class="line">vi vsftpd.conf</span><br></pre></td></tr></table></figure>
-
-<p>새로운 vsftpd.conf 파일을 만들어 아래 내용을 채우고 저장한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">anonymous_enable&#x3D;NO</span><br><span class="line">local_enable&#x3D;YES</span><br><span class="line">write_enable&#x3D;YES</span><br><span class="line">local_umask&#x3D;022</span><br><span class="line">dirmessage_enable&#x3D;YES</span><br><span class="line">xferlog_enable&#x3D;YES</span><br><span class="line">connect_from_port_20&#x3D;YES</span><br><span class="line">xferlog_file&#x3D;&#x2F;var&#x2F;log&#x2F;xferlog</span><br><span class="line">xferlog_std_format&#x3D;YES</span><br><span class="line">chroot_local_user&#x3D;YES</span><br><span class="line">listen&#x3D;YES</span><br><span class="line">pam_service_name&#x3D;vsftpd</span><br><span class="line">userlist_enable&#x3D;YES</span><br><span class="line">tcp_wrappers&#x3D;YES</span><br></pre></td></tr></table></figure>
-
-<p>vsftpd를 실행하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd start</span><br></pre></td></tr></table></figure>
-
-
-<p>다음 명령으로 동작중인 vsftpd 포트를 확인 할 수 있다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost vsftpd]# netstat --tcp -anp | grep vsftpd</span><br><span class="line">tcp        0      0 0.0.0.0:21              0.0.0.0:*               LISTEN      18131&#x2F;vsftpd</span><br></pre></td></tr></table></figure>
-
-<p>다음 명령으로 vsfptd 서비스가 항상 동작하도록 설정하자</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable vsftpd.service</span><br></pre></td></tr></table></figure>
-
-<p>방화벽에서 21, 20포트를 열어준다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --zone&#x3D;public --add-port&#x3D;21&#x2F;tcp</span><br><span class="line">sudo firewall-cmd --permanent --zone&#x3D;public --add-port&#x3D;20&#x2F;tcp</span><br><span class="line">sudo firewall-cmd --reload</span><br></pre></td></tr></table></figure>
-
-<h3 id="Windows-pc에서-filezilla를-이용헤서-ftp-에-접속해보자"><a href="#Windows-pc에서-filezilla를-이용헤서-ftp-에-접속해보자" class="headerlink" title="Windows pc에서 filezilla를 이용헤서 ftp 에 접속해보자"></a>Windows pc에서 filezilla를 이용헤서 ftp 에 접속해보자</h3><p>일단 root 계정으로 접속해보자.</p>
-<p><img src="/images/20180521-centos-install-vsftpd_1.png" alt="하지만 오류가 발생하며 접속이 안된다."></p>
-<p>530 Permission denied 오류를 찾아보니, vsftpd에 기본적으로 접속거부 리스트에 root 계정이 포함되어 있다고 한다.</p>
-<p>아래 두 파일에 이 접속거부 계정 정보가 있다.<br>/etc/vsftpd/ftpusers<br>/etc/vsftpd/user_list</p>
-<p>/etc/vsftpd/ftpusers 를 열어보니, 아래와 같다</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost vsftpd]<span class="comment"># vi /etc/vsftpd/ftpusers</span></span><br><span class="line"><span class="comment"># Users that are not allowed to login via ftp</span></span><br><span class="line">root</span><br><span class="line">bin</span><br><span class="line">daemon</span><br><span class="line">adm</span><br><span class="line">lp</span><br><span class="line">sync</span><br><span class="line">shutdown</span><br><span class="line">halt</span><br><span class="line">mail</span><br><span class="line">news</span><br><span class="line">uucp</span><br><span class="line">operator</span><br><span class="line">games</span><br><span class="line">nobody</span><br></pre></td></tr></table></figure>
-
-<p>root 계정을 지워서 저장하자.<br>일단 실습용이니 보안은 개나 줘버리자. ㄷㄷㄷ</p>
-<p>/etc/vsftpd/user_list 파일을 열어보자</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost vsftpd]# vi &#x2F;etc&#x2F;vsftpd&#x2F;user_list</span><br><span class="line"># vsftpd userlist</span><br><span class="line"># If userlist_deny&#x3D;NO, only allow users in this file</span><br><span class="line"># If userlist_deny&#x3D;YES (default), never allow users in this file, and</span><br><span class="line"># do not even prompt for a password.</span><br><span class="line"># Note that the default vsftpd pam config also checks &#x2F;etc&#x2F;vsftpd&#x2F;ftpusers</span><br><span class="line"># for users that are denied.</span><br><span class="line">root</span><br><span class="line">bin</span><br><span class="line">daemon</span><br><span class="line">adm</span><br><span class="line">lp</span><br><span class="line">sync</span><br><span class="line">shutdown</span><br><span class="line">halt</span><br><span class="line">mail</span><br><span class="line">news</span><br><span class="line">uucp</span><br><span class="line">operator</span><br><span class="line">games</span><br><span class="line">nobody</span><br></pre></td></tr></table></figure>
-
-<p>역시 root 가 있다. 이 파일에서도 root 를 제거하고 저장하자.</p>
-<p>서비스를 재 시작하고 접속이 root계정을 이용해 파일질라고 접속해보자</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
-
-<p>이번엔 </p>
-<p><strong>500 OOPS: vsftpd: refusing to run with writable root inside chroot() 라는 오류 메세지가 뜬다.</strong></p>
-<p><img src="/images/20180521-centos-install-vsftpd_2.png" alt="500 OOPS 오류 발생"></p>
-<p>찾아보니 chroot내에 쓰기 권한이 없어서 발생하는 문제라고 한다.</p>
-<p>/etc/vsftpd/vsftpd.conf 파일을 수정해야 한다.</p>
-<p>하단에 아래 스크립트를 추가하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">allow_writeable_chroot&#x3D;yes</span><br></pre></td></tr></table></figure>
-
-<p>다시 vsftpd 서비스를 재시작 하자.</p>
-<p>다시 파일질라에서 root 계정으로 접속해보자</p>
-<p>또다시 안된다. 산넘어 산이다. </p>
-<p><img src="/images/20180521-centos-install-vsftpd_3.png" alt="디렉터리 목록 조회 실패 오류"></p>
-<p>인터넷에 찾아보니 vsftpd 에 passive 모드에 대한 설정이 필요하다고 한다.</p>
-<p>ftp 서버 만들어 쓰는데 참 할게 많다. </p>
-<p>다시 /etc/vsftpd/vsftpd.conf파일을 열어 하단에 아래 내용을 추가한다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pasv_enable&#x3D;Yes</span><br><span class="line">pasv_max_port&#x3D;40000</span><br><span class="line">pasv_min_port&#x3D;40000</span><br></pre></td></tr></table></figure>
-
-<p>40000 번 포트를 방화벽에서 열어주자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># firewall-cmd --permanent --add-port&#x3D;40000&#x2F;tcp</span><br><span class="line"># firewall-cmd --reload</span><br><span class="line">service vsftpd restart</span><br></pre></td></tr></table></figure>
-
-<h3 id="최종-etc-vsftpd-vsftpd-conf-파일-내용"><a href="#최종-etc-vsftpd-vsftpd-conf-파일-내용" class="headerlink" title="최종 /etc/vsftpd/vsftpd.conf 파일 내용"></a>최종 /etc/vsftpd/vsftpd.conf 파일 내용</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">anonymous_enable&#x3D;NO</span><br><span class="line">local_enable&#x3D;YES</span><br><span class="line">write_enable&#x3D;YES</span><br><span class="line">local_umask&#x3D;022</span><br><span class="line">dirmessage_enable&#x3D;YES</span><br><span class="line">xferlog_enable&#x3D;YES</span><br><span class="line">connect_from_port_20&#x3D;YES</span><br><span class="line">xferlog_file&#x3D;&#x2F;var&#x2F;log&#x2F;xferlog</span><br><span class="line">xferlog_std_format&#x3D;YES</span><br><span class="line">chroot_local_user&#x3D;YES</span><br><span class="line">listen&#x3D;YES</span><br><span class="line">listen_port&#x3D;21</span><br><span class="line">pam_service_name&#x3D;vsftpd</span><br><span class="line">userlist_enable&#x3D;YES</span><br><span class="line">tcp_wrappers&#x3D;YES</span><br><span class="line">allow_writeable_chroot&#x3D;YES</span><br><span class="line">pasv_enable&#x3D;Yes</span><br><span class="line">pasv_max_port&#x3D;40000</span><br><span class="line">pasv_min_port&#x3D;40000</span><br></pre></td></tr></table></figure>
-
-<p>음 vsftp 패시브모드 설정도 끝냈다. 다시 접속 시도해보자</p>
-<p>접속이 되는 것을 확인했다. 파일질라에서 능동, 수동 둘다 접속이 가능하다.</p>
-<p><img src="/images/20180521-centos-install-vsftpd_4.png" alt="접속확인"></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/13/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/15/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1559,20 +1522,20 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">200</span>
+          <span class="site-state-item-count">201</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">558</span>
+        <span class="site-state-item-count">566</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

@@ -245,6 +245,114 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/12/28/ubuntu-20191228-ubuntu-install-nvm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/12/28/ubuntu-20191228-ubuntu-install-nvm/" class="post-title-link" itemprop="url">Ubuntu18.04 NVM으로 NODE 설치하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-12-28 21:13:48" itemprop="dateCreated datePublished" datetime="2019-12-28T21:13:48+09:00">2019-12-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 20200427hexo_post_head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p>ubuntu18.04에 NVM으로 Node를 설치해보겠다.</p>
+<p>ubuntu에 node를 설치해보신 분들을 알겠지만, 이게 여간 귀찮은 것이 아니다.</p>
+<p>ubuntu에 패키지 메니저인 apt로 node를 설치할경우 2019.12.28 현재 기준으로 node 8버전을 설치시켜준다. ㅡㅡ;;;;;</p>
+<p>물론 최신 버전을 설치할 수 있지만, 리눅스에서는 NVM(Node Versioin Manager)를 이용해서, 동시에 여러개의 node를 설치하고 상황에 따라서 원하는 버전을 선택해서 사용할 수 있다.</p>
+<h1 id="NVM-설치하기"><a href="#NVM-설치하기" class="headerlink" title="NVM 설치하기"></a>NVM 설치하기</h1><pre><code>curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh</code></pre><p>위 명령어를 이용해서 nvm 설치스크립트를 다운로드 한다.</p>
+<pre><code>bash install_nvm.sh</code></pre><p>위 명령어를 이용해서 다운로드한 nvm 설치 스크립트를 실행 시킨다.</p>
+<p>설치 스크립트가 실행되면서 export명령이 자동으로 동작하여 nvm에 필요한 환경변수를 설정해 준다. </p>
+<p>아래 명령어로 os 가 리부트 되도 환경변수가 유지되게 설정하자.</p>
+<pre><code>source ~/.profile</code></pre><p><img src="/images/2019/20191228Ubuntu1804NVMNODE/Untitled.png" alt="Ubuntu18%2004%20NVM%20NODE/Untitled.png"></p>
+<p>아래 명령어를 사용하면 이제 nvm으로 사용가능한 node 버전이 리스트로 출력된다.</p>
+<pre><code>nvm ls-remote</code></pre><p><img src="/images/2019/20191228Ubuntu1804NVMNODE/Untitled%201.png" alt="Ubuntu18%2004%20NVM%20NODE/Untitled%201.png"></p>
+<pre><code>nvm install 12.14.0</code></pre><p>2019.12.28 기준으로 node 12.14.0이 최신 LTS라고 나온다.</p>
+<p>위 명령으로 원하는 버전의 node를 설치하자.</p>
+<p>아래처럼 node와 npm이 설치된 것을 확인할 수 있다.</p>
+<p><img src="/images/2019/20191228Ubuntu1804NVMNODE/Untitled%202.png" alt="Ubuntu18%2004%20NVM%20NODE/Untitled%202.png"></p>
+<p>끝!!!</p>
+<p>NVM에 더 자세한 사용법등을 알고 싶다면, 아래 참고자료를 살피길 바란다.</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04" target="_blank" rel="external nofollow noopener noreferrer">https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/12/28/obsStudio-20191228-OBSstudio-nvidia-setting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1616,112 +1724,11 @@ hexo server                #hexo 블로그 기동</code></pre><p>아래 hexo ini
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/10/05/ubuntu-20191005-ubuntu-docker-compose-install/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/10/05/ubuntu-20191005-ubuntu-docker-compose-install/" class="post-title-link" itemprop="url">ubuntu 18.04 docker compose install</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-10-05 22:15:54" itemprop="dateCreated datePublished" datetime="2019-10-05T22:15:54+09:00">2019-10-05</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 20200427hexo_post_head -->
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="ubuntu-18-04-docker-compose-install"><a href="#ubuntu-18-04-docker-compose-install" class="headerlink" title="ubuntu 18.04 docker compose install"></a>ubuntu 18.04 docker compose install</h1><h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>이전에 ubuntu 18.04 가상머신에 docker 를 설치했다.</p>
-<p>윈도우에는 docker for windows로 설치하면 docker와 docker compose 가 한방에 설치되는데, ubuntu에서는 docker compose를 추가로 따로 설치해 줘야 한다.</p>
-<p>이번에는 docker compose를 설치 해보려 한다.</p>
-<h1 id="ubuntu-18-04-docker-compse-설치하기"><a href="#ubuntu-18-04-docker-compse-설치하기" class="headerlink" title="ubuntu 18.04 docker compse 설치하기"></a>ubuntu 18.04 docker compse 설치하기</h1><p><a href="https://github.com/docker/compose/releases" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/docker/compose/releases</a></p>
-<p>일단 위 경로로 가서 최신 docker compose 버전을 살펴보자 rc 버전은(release candidate)로 일종의 베타 버전이라고 한다. </p>
-<p>원하는 버전을 선택해서 설치하면 된다.</p>
-<pre><code>sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-docker-compose --version</code></pre><p><img src="/images/2019/Untitled-53125fd8-bb2f-42d8-b477-a8e35a8122f8.png" alt></p>
-<p>간단하게 설치를 할 수 있다.</p>
-<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04" target="_blank" rel="external nofollow noopener noreferrer">https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04</a></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1787,20 +1794,20 @@ docker-compose --version</code></pre><p><img src="/images/2019/Untitled-53125fd8
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">200</span>
+          <span class="site-state-item-count">201</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">558</span>
+        <span class="site-state-item-count">566</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

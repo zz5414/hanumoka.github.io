@@ -245,6 +245,175 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2020/05/19/security-20200519-make-ssl-crt-for-test-https/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/19/security-20200519-make-ssl-crt-for-test-https/" class="post-title-link" itemprop="url">개발시 HTTPS 테스트를 위한 SSL인증서(OpenSSL) 생성하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+              
+
+              <time title="Post created: 2020-05-19 23:22:25 / Updated at: 23:26:34" itemprop="dateCreated datePublished" datetime="2020-05-19T23:22:25+09:00">2020-05-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/security/" itemprop="url" rel="index">
+                    <span itemprop="name">security</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 20200427hexo_post_head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>이 예제는 Nginx등과 같은 웹서버에 HTTPS를 적용하기 위한 테스트용 SSL 인증서를 생성하는 예제이다.</p>
+<h2 id="실습환경"><a href="#실습환경" class="headerlink" title="실습환경"></a>실습환경</h2><ul>
+<li>Windows10</li>
+<li>OpenSSL</li>
+<li>cmd</li>
+</ul>
+<h1 id="테스트용-HTTPS-인증서-생성하기"><a href="#테스트용-HTTPS-인증서-생성하기" class="headerlink" title="테스트용 HTTPS 인증서 생성하기"></a>테스트용 HTTPS 인증서 생성하기</h1><p>웹서버에 HTTPS를 적용하려면, CA에서 발급하는 SSL인증서가 필요하다.<br>보통 사설업체에 Domain을 기준으로 돈을 주고 인증서를 신청하는데, 지금은 테스트 용이므로 로컬에서 가짜 인증서를 만들어 보자.</p>
+<h2 id="Windows10에-OpenSSL-설치하기"><a href="#Windows10에-OpenSSL-설치하기" class="headerlink" title="Windows10에 OpenSSL 설치하기"></a>Windows10에 OpenSSL 설치하기</h2><p>인증서를 생성하기 위해서는 OpenSSL이라는 툴이 필요하다. 아래 링크해서 해당 툴을 다운 받자.</p>
+<p><a href="https://sourceforge.net/projects/openssl/files/latest/download?source=typ_redirect" target="_blank" rel="external nofollow noopener noreferrer">https://sourceforge.net/projects/openssl/files/latest/download?source=typ_redirect</a></p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled.png"></p>
+<p>광고를 좀 봐주면서 시간이 지나면, OpenSSL zip파일이 다운로드가 된다.</p>
+<p>아래처럼 zip파일 압축을 풀어주자.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%201.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%201.png"></p>
+<p>압축이 풀린 폴더 내부에 bin폴더 내부로 들어가 보면 아래처럼 openssl.exe 파일이 있다.<br>해당 파일을 관리자 권한으로 실행한 cmd로 실행해보자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl-1.0.2j-fips-x86_64\OpenSSL\bin\openssl.exe</span><br></pre></td></tr></table></figure>
+
+<p>내 경우 문제가 발생했는데, openssl.exe 실행시 openssl.cnf 파일을 읽어오시 못한다는 경고가 나온다. </p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%202.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%202.png"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARNING: can<span class="string">'t open config file: C:/OpenSSL/openssl.cnf</span></span><br></pre></td></tr></table></figure>
+
+<p>경고 메세지를 보면 OepnSSL 폴더가 C 드라이브 바로 아래에서 읽어 오고 있다.</p>
+<p>따라서 OpenSSL 폴더를 C 드라이브 경로로 옮겨서 다시 실행해보자.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%203.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%203.png"></p>
+<p>OpenSSL 폴더를 C 드라이브로 옮겼다.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%204.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%204.png"></p>
+<p>C:\OpenSSL\bin\openssl.cnf 파일을 복해서 C:\OpenSSL로 옮겨주자.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%205.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%205.png"></p>
+<p>다시 C:\OpenSSL\bin\openssl.exe 파일을 관리자 권한 cmd로 실행해보자.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%206.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%206.png"></p>
+<p>아래처럼 정상적으로 openSSL이 실행된다.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%207.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%207.png"></p>
+<h2 id="RSA-개인키를-생성하자"><a href="#RSA-개인키를-생성하자" class="headerlink" title="RSA 개인키를 생성하자."></a>RSA 개인키를 생성하자.</h2><p>OpenSSL 커멘드에 아래 명령어를 입력해서 개인키를 생성하자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genrsa -out private.key 2048</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%208.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%208.png"></p>
+<p>아래처럼 openSSL.exe 실행경로에 private.key 파일이 생성된 것을 확인 할 수 있다.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%209.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%209.png"></p>
+<p>파일을 열어보면 아래처럼 개인키가 보인다.</p>
+<p>테스트 용도라서 이렇게 노출하지만, 실제 절대 외부로 노출되서는 안되는 개인키 이다.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2010.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2010.png"></p>
+<h2 id="RSA-개인키를-이용해서-RSA-공개키를-생성하자"><a href="#RSA-개인키를-이용해서-RSA-공개키를-생성하자" class="headerlink" title="RSA 개인키를 이용해서 RSA 공개키를 생성하자."></a>RSA 개인키를 이용해서 RSA 공개키를 생성하자.</h2><p>개인키가 있는 경로에서 아래 명령어를 입력해서 공개키를 생성하자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsa -<span class="keyword">in</span> private.key -pubout -out public.key</span><br></pre></td></tr></table></figure>
+
+<p>아래처럼 public.key 가 생성된다. (이미지에서는 명령어 입력시 오타를 쳐서 파일명이 이상하다.)</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2011.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2011.png"></p>
+<p>공개키 파일을 열어보면 아래와 같다.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2012.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2012.png"></p>
+<h1 id="CSR-인증요청서-생성하기"><a href="#CSR-인증요청서-생성하기" class="headerlink" title="CSR(인증요청서) 생성하기"></a>CSR(인증요청서) 생성하기</h1><p>CA 인증기관에게 인증서를 받기위한 인증요청서를 생성해야 한다.<br>신청할 때에는 국가코드, 도시, 회사명, 부서명, 이메일, 도메인주소등 다양한 정보를 입력 받게된다.</p>
+<p>이 CSR은 앞서 생성한 RSA 개인키를 이용해서 생성 할 수 있다.</p>
+<p>openSSL커맨드로 아래 명령어를 입력하자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req -new -key private.key -out private.csr</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2013.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2013.png"></p>
+<p>아래처럼 국가 코드를 입력하라고 나온다. kr 이라고 입력하고 넘어가면</p>
+<p>아래처럼 추가정보를 입력하라고 주르륵 나온다. 테스트 용이니 대충 입력하고 넘기자.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2014.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2014.png"></p>
+<p>아래처럼 private.csr 인증 요청서가 생성 되었다.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2015.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2015.png"></p>
+<h2 id="CRT-인증서-만들기"><a href="#CRT-인증서-만들기" class="headerlink" title="CRT(인증서)만들기"></a>CRT(인증서)만들기</h2><p>이제 인증요청서로 테스트 용도의 가짜 CRT를 만들어보자.</p>
+<h3 id="CA-역할을-할-CA-대칭키-생성"><a href="#CA-역할을-할-CA-대칭키-생성" class="headerlink" title="CA 역할을 할 CA 대칭키 생성"></a>CA 역할을 할 CA 대칭키 생성</h3><p>아래 명령어로 CA역할을 할 CA 대칭키(aes256)를 생성하자.</p>
+<p>(사실 왜 대칭키를 생성하는지 모르겠다.)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genrsa -aes256 -out rootCA.key 2048</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2016.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2016.png"></p>
+<p>아래처럼 rootCA.key 가 생성 되었다.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2017.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2017.png"></p>
+<h3 id="rootCA-key를-이용해서-rootCA-pem-생성"><a href="#rootCA-key를-이용해서-rootCA-pem-생성" class="headerlink" title="rootCA.key를 이용해서 rootCA.pem 생성"></a>rootCA.key를 이용해서 rootCA.pem 생성</h3><p>(사실 이녀석도 뭔지 잘 모르겠다.)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req -X509 -new -nodes -key rootCA.key -days 2650 -out rootCA.pem</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2018.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2018.png"></p>
+<p>비밀번호등 국가코드, 도시 기타 등등 정보를 입력해야 한다.(테스트니 대충 넣자)</p>
+<p>아래처럼 rootCA.pem 파일이 생성된다.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2019.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2019.png"></p>
+<h3 id="웹서버에-HTTPS적용을-위해-필요한-CRT-인증서를-생성"><a href="#웹서버에-HTTPS적용을-위해-필요한-CRT-인증서를-생성" class="headerlink" title="웹서버에 HTTPS적용을 위해 필요한 CRT 인증서를 생성"></a>웹서버에 HTTPS적용을 위해 필요한 CRT 인증서를 생성</h3><p>이제 마지막으로 CRT를 즉 웹서버에 HTTPS를 적용하기 위한 인증서를 생성해보자.</p>
+<p>아래 명령어를 이용해서 앞서 생성한, 인증 요청서(private.csr) , rootCA.pem, rootCA.key 를 이용해서 웹서버에 등록할 CA 인증서 private.crt 를 생성하자.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x509 -req -<span class="keyword">in</span> private.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out private.crt -days 3650</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2020.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2020.png"></p>
+<p>아래처럼 private.crt 파일이 생성되었다. 모양세도 지금까지 생성한 파일과는 좀 다르다.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2021.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2021.png"></p>
+<p>파일을 열어보면 아래처럼 나온다.</p>
+<p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2022.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2022.png"></p>
+<p>실습 끝!!!</p>
+<h1 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h1><p>사실 이런 인증서 부분에 대해 정확히 알지 못해, 실습을 하면서도 다 이해하지 못했다.<br>특히 CA 인증서 생성부분… 시간이 좀 나면 해당 내용을 공부해서 보충 해야 겠다.</p>
+<h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="https://namjackson.tistory.com/24" target="_blank" rel="external nofollow noopener noreferrer">https://namjackson.tistory.com/24</a><br><a href="https://opentutorials.org/course/228/4894" target="_blank" rel="external nofollow noopener noreferrer">https://opentutorials.org/course/228/4894</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2020/04/27/docker-20200427-docker-react-nginx/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -268,10 +437,16 @@ gtag('config', 'UA-100596920-1');
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">작성일</span>
-              
 
-              <time title="Post created: 2020-04-27 22:14:11 / Updated at: 22:24:05" itemprop="dateCreated datePublished" datetime="2020-04-27T22:14:11+09:00">2020-04-27</time>
+              <time title="Post created: 2020-04-27 22:14:11" itemprop="dateCreated datePublished" datetime="2020-04-27T22:14:11+09:00">2020-04-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-28 20:23:49" itemprop="dateModified" datetime="2020-04-28T20:23:49+09:00">2020-04-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -342,7 +517,7 @@ gtag('config', 'UA-100596920-1');
 <li>-t docker-react-ngnix : 생성할 이미지를 지정한다.</li>
 </ul>
 <p><img src="/images/2020/Docker%20React%20Nginx/Untitled%205.png" alt="Docker%20React%20Nginx/Untitled%205.png"></p>
-<p>위 이미지에서는 마지막에 <strong>.(콤마)</strong> 가 찍혀 있지만 앞에 -f 옵션으로 Dockerfile을 지정해 주었기 때문에 없어도 상관 없다.  ****</p>
+<p>위 이미지에서는 마지막에 <strong>.(콤마)</strong> 가 찍혀 있지만 앞에 -f 옵션으로 Dockerfile을 지정해 주었기 때문에 없어도 될거 같지만, 반드시 찍어주어야 한다.</p>
 <p><img src="/images/2020/Docker%20React%20Nginx/Untitled%206.png" alt="Docker%20React%20Nginx/Untitled%206.png"></p>
 <p>위 처럼 docker-react-ngnix 이미지가 생성 되었고, 해다 이미지에서 참조하는 nginx, node 이미지들도 다운이 되었다.</p>
 <p>다음 명령어로 docker-react-ngnix 이미지를 컨테이너화 하고 실행시키자.</p>
@@ -1579,119 +1754,11 @@ ls -al</code></pre><p><img src="/images/2020/Github%20push%20pull%20ssh%20window
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/12/28/ubuntu-20191228-ubuntu-install-nvm/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/12/28/ubuntu-20191228-ubuntu-install-nvm/" class="post-title-link" itemprop="url">Ubuntu18.04 NVM으로 NODE 설치하기</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-12-28 21:13:48" itemprop="dateCreated datePublished" datetime="2019-12-28T21:13:48+09:00">2019-12-28</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 20200427hexo_post_head -->
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h1><p>ubuntu18.04에 NVM으로 Node를 설치해보겠다.</p>
-<p>ubuntu에 node를 설치해보신 분들을 알겠지만, 이게 여간 귀찮은 것이 아니다.</p>
-<p>ubuntu에 패키지 메니저인 apt로 node를 설치할경우 2019.12.28 현재 기준으로 node 8버전을 설치시켜준다. ㅡㅡ;;;;;</p>
-<p>물론 최신 버전을 설치할 수 있지만, 리눅스에서는 NVM(Node Versioin Manager)를 이용해서, 동시에 여러개의 node를 설치하고 상황에 따라서 원하는 버전을 선택해서 사용할 수 있다.</p>
-<h1 id="NVM-설치하기"><a href="#NVM-설치하기" class="headerlink" title="NVM 설치하기"></a>NVM 설치하기</h1><pre><code>curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh</code></pre><p>위 명령어를 이용해서 nvm 설치스크립트를 다운로드 한다.</p>
-<pre><code>bash install_nvm.sh</code></pre><p>위 명령어를 이용해서 다운로드한 nvm 설치 스크립트를 실행 시킨다.</p>
-<p>설치 스크립트가 실행되면서 export명령이 자동으로 동작하여 nvm에 필요한 환경변수를 설정해 준다. </p>
-<p>아래 명령어로 os 가 리부트 되도 환경변수가 유지되게 설정하자.</p>
-<pre><code>source ~/.profile</code></pre><p><img src="/images/2019/20191228Ubuntu1804NVMNODE/Untitled.png" alt="Ubuntu18%2004%20NVM%20NODE/Untitled.png"></p>
-<p>아래 명령어를 사용하면 이제 nvm으로 사용가능한 node 버전이 리스트로 출력된다.</p>
-<pre><code>nvm ls-remote</code></pre><p><img src="/images/2019/20191228Ubuntu1804NVMNODE/Untitled%201.png" alt="Ubuntu18%2004%20NVM%20NODE/Untitled%201.png"></p>
-<pre><code>nvm install 12.14.0</code></pre><p>2019.12.28 기준으로 node 12.14.0이 최신 LTS라고 나온다.</p>
-<p>위 명령으로 원하는 버전의 node를 설치하자.</p>
-<p>아래처럼 node와 npm이 설치된 것을 확인할 수 있다.</p>
-<p><img src="/images/2019/20191228Ubuntu1804NVMNODE/Untitled%202.png" alt="Ubuntu18%2004%20NVM%20NODE/Untitled%202.png"></p>
-<p>끝!!!</p>
-<p>NVM에 더 자세한 사용법등을 알고 싶다면, 아래 참고자료를 살피길 바란다.</p>
-<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04" target="_blank" rel="external nofollow noopener noreferrer">https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-18-04</a></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1757,20 +1824,20 @@ ls -al</code></pre><p><img src="/images/2020/Github%20push%20pull%20ssh%20window
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">200</span>
+          <span class="site-state-item-count">201</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">558</span>
+        <span class="site-state-item-count">566</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

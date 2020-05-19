@@ -4,11 +4,50 @@
   
     
     <entry>
+      <title>개발시 HTTPS 테스트를 위한 SSL인증서(OpenSSL) 생성하기</title>
+      <link href="/2020/05/19/security-20200519-make-ssl-crt-for-test-https/"/>
+      <url>/2020/05/19/security-20200519-make-ssl-crt-for-test-https/</url>
+      
+        <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>이 예제는 Nginx등과 같은 웹서버에 HTTPS를 적용하기 위한 테스트용 SSL 인증서를 생성하는 예제이다.</p><h2 id="실습환경"><a href="#실습환경" class="headerlink" title="실습환경"></a>실습환경</h2><ul><li>Windows10</li><li>OpenSSL</li><li>cmd</li></ul><h1 id="테스트용-HTTPS-인증서-생성하기"><a href="#테스트용-HTTPS-인증서-생성하기" class="headerlink" title="테스트용 HTTPS 인증서 생성하기"></a>테스트용 HTTPS 인증서 생성하기</h1><p>웹서버에 HTTPS를 적용하려면, CA에서 발급하는 SSL인증서가 필요하다.<br>보통 사설업체에 Domain을 기준으로 돈을 주고 인증서를 신청하는데, 지금은 테스트 용이므로 로컬에서 가짜 인증서를 만들어 보자.</p><h2 id="Windows10에-OpenSSL-설치하기"><a href="#Windows10에-OpenSSL-설치하기" class="headerlink" title="Windows10에 OpenSSL 설치하기"></a>Windows10에 OpenSSL 설치하기</h2><p>인증서를 생성하기 위해서는 OpenSSL이라는 툴이 필요하다. 아래 링크해서 해당 툴을 다운 받자.</p><p><a href="https://sourceforge.net/projects/openssl/files/latest/download?source=typ_redirect" target="_blank" rel="external nofollow noopener noreferrer">https://sourceforge.net/projects/openssl/files/latest/download?source=typ_redirect</a></p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled.png"></p><p>광고를 좀 봐주면서 시간이 지나면, OpenSSL zip파일이 다운로드가 된다.</p><p>아래처럼 zip파일 압축을 풀어주자.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%201.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%201.png"></p><p>압축이 풀린 폴더 내부에 bin폴더 내부로 들어가 보면 아래처럼 openssl.exe 파일이 있다.<br>해당 파일을 관리자 권한으로 실행한 cmd로 실행해보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl-1.0.2j-fips-x86_64\OpenSSL\bin\openssl.exe</span><br></pre></td></tr></table></figure><p>내 경우 문제가 발생했는데, openssl.exe 실행시 openssl.cnf 파일을 읽어오시 못한다는 경고가 나온다. </p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%202.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%202.png"></p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WARNING: can<span class="string">'t open config file: C:/OpenSSL/openssl.cnf</span></span><br></pre></td></tr></table></figure><p>경고 메세지를 보면 OepnSSL 폴더가 C 드라이브 바로 아래에서 읽어 오고 있다.</p><p>따라서 OpenSSL 폴더를 C 드라이브 경로로 옮겨서 다시 실행해보자.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%203.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%203.png"></p><p>OpenSSL 폴더를 C 드라이브로 옮겼다.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%204.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%204.png"></p><p>C:\OpenSSL\bin\openssl.cnf 파일을 복해서 C:\OpenSSL로 옮겨주자.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%205.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%205.png"></p><p>다시 C:\OpenSSL\bin\openssl.exe 파일을 관리자 권한 cmd로 실행해보자.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%206.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%206.png"></p><p>아래처럼 정상적으로 openSSL이 실행된다.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%207.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%207.png"></p><h2 id="RSA-개인키를-생성하자"><a href="#RSA-개인키를-생성하자" class="headerlink" title="RSA 개인키를 생성하자."></a>RSA 개인키를 생성하자.</h2><p>OpenSSL 커멘드에 아래 명령어를 입력해서 개인키를 생성하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genrsa -out private.key 2048</span><br></pre></td></tr></table></figure><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%208.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%208.png"></p><p>아래처럼 openSSL.exe 실행경로에 private.key 파일이 생성된 것을 확인 할 수 있다.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%209.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%209.png"></p><p>파일을 열어보면 아래처럼 개인키가 보인다.</p><p>테스트 용도라서 이렇게 노출하지만, 실제 절대 외부로 노출되서는 안되는 개인키 이다.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2010.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2010.png"></p><h2 id="RSA-개인키를-이용해서-RSA-공개키를-생성하자"><a href="#RSA-개인키를-이용해서-RSA-공개키를-생성하자" class="headerlink" title="RSA 개인키를 이용해서 RSA 공개키를 생성하자."></a>RSA 개인키를 이용해서 RSA 공개키를 생성하자.</h2><p>개인키가 있는 경로에서 아래 명령어를 입력해서 공개키를 생성하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsa -<span class="keyword">in</span> private.key -pubout -out public.key</span><br></pre></td></tr></table></figure><p>아래처럼 public.key 가 생성된다. (이미지에서는 명령어 입력시 오타를 쳐서 파일명이 이상하다.)</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2011.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2011.png"></p><p>공개키 파일을 열어보면 아래와 같다.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2012.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2012.png"></p><h1 id="CSR-인증요청서-생성하기"><a href="#CSR-인증요청서-생성하기" class="headerlink" title="CSR(인증요청서) 생성하기"></a>CSR(인증요청서) 생성하기</h1><p>CA 인증기관에게 인증서를 받기위한 인증요청서를 생성해야 한다.<br>신청할 때에는 국가코드, 도시, 회사명, 부서명, 이메일, 도메인주소등 다양한 정보를 입력 받게된다.</p><p>이 CSR은 앞서 생성한 RSA 개인키를 이용해서 생성 할 수 있다.</p><p>openSSL커맨드로 아래 명령어를 입력하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req -new -key private.key -out private.csr</span><br></pre></td></tr></table></figure><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2013.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2013.png"></p><p>아래처럼 국가 코드를 입력하라고 나온다. kr 이라고 입력하고 넘어가면</p><p>아래처럼 추가정보를 입력하라고 주르륵 나온다. 테스트 용이니 대충 입력하고 넘기자.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2014.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2014.png"></p><p>아래처럼 private.csr 인증 요청서가 생성 되었다.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2015.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2015.png"></p><h2 id="CRT-인증서-만들기"><a href="#CRT-인증서-만들기" class="headerlink" title="CRT(인증서)만들기"></a>CRT(인증서)만들기</h2><p>이제 인증요청서로 테스트 용도의 가짜 CRT를 만들어보자.</p><h3 id="CA-역할을-할-CA-대칭키-생성"><a href="#CA-역할을-할-CA-대칭키-생성" class="headerlink" title="CA 역할을 할 CA 대칭키 생성"></a>CA 역할을 할 CA 대칭키 생성</h3><p>아래 명령어로 CA역할을 할 CA 대칭키(aes256)를 생성하자.</p><p>(사실 왜 대칭키를 생성하는지 모르겠다.)</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genrsa -aes256 -out rootCA.key 2048</span><br></pre></td></tr></table></figure><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2016.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2016.png"></p><p>아래처럼 rootCA.key 가 생성 되었다.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2017.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2017.png"></p><h3 id="rootCA-key를-이용해서-rootCA-pem-생성"><a href="#rootCA-key를-이용해서-rootCA-pem-생성" class="headerlink" title="rootCA.key를 이용해서 rootCA.pem 생성"></a>rootCA.key를 이용해서 rootCA.pem 생성</h3><p>(사실 이녀석도 뭔지 잘 모르겠다.)</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">req -X509 -new -nodes -key rootCA.key -days 2650 -out rootCA.pem</span><br></pre></td></tr></table></figure><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2018.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2018.png"></p><p>비밀번호등 국가코드, 도시 기타 등등 정보를 입력해야 한다.(테스트니 대충 넣자)</p><p>아래처럼 rootCA.pem 파일이 생성된다.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2019.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2019.png"></p><h3 id="웹서버에-HTTPS적용을-위해-필요한-CRT-인증서를-생성"><a href="#웹서버에-HTTPS적용을-위해-필요한-CRT-인증서를-생성" class="headerlink" title="웹서버에 HTTPS적용을 위해 필요한 CRT 인증서를 생성"></a>웹서버에 HTTPS적용을 위해 필요한 CRT 인증서를 생성</h3><p>이제 마지막으로 CRT를 즉 웹서버에 HTTPS를 적용하기 위한 인증서를 생성해보자.</p><p>아래 명령어를 이용해서 앞서 생성한, 인증 요청서(private.csr) , rootCA.pem, rootCA.key 를 이용해서 웹서버에 등록할 CA 인증서 private.crt 를 생성하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x509 -req -<span class="keyword">in</span> private.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out private.crt -days 3650</span><br></pre></td></tr></table></figure><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2020.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2020.png"></p><p>아래처럼 private.crt 파일이 생성되었다. 모양세도 지금까지 생성한 파일과는 좀 다르다.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2021.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2021.png"></p><p>파일을 열어보면 아래처럼 나온다.</p><p><img src="/images/2020/HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2022.png" alt="HTTPS%20SSL%20OpenSSL%2080f6b0d2700149518b84d5d8a5a4509e/Untitled%2022.png"></p><p>실습 끝!!!</p><h1 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h1><p>사실 이런 인증서 부분에 대해 정확히 알지 못해, 실습을 하면서도 다 이해하지 못했다.<br>특히 CA 인증서 생성부분… 시간이 좀 나면 해당 내용을 공부해서 보충 해야 겠다.</p><h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p><a href="https://namjackson.tistory.com/24" target="_blank" rel="external nofollow noopener noreferrer">https://namjackson.tistory.com/24</a><br><a href="https://opentutorials.org/course/228/4894" target="_blank" rel="external nofollow noopener noreferrer">https://opentutorials.org/course/228/4894</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> security </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> https </tag>
+            
+            <tag> ssl </tag>
+            
+            <tag> openssl </tag>
+            
+            <tag> crt </tag>
+            
+            <tag> pem </tag>
+            
+            <tag> 인증서 </tag>
+            
+            <tag> test </tag>
+            
+            <tag> 테스트 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Docker를 이용해 React와 Nginx를 묶어서 이미지화 하고 컨테이너화 하기</title>
       <link href="/2020/04/27/docker-20200427-docker-react-nginx/"/>
       <url>/2020/04/27/docker-20200427-docker-react-nginx/</url>
       
-        <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>React 프로젝트를 만약 서버에 배포해야 한다면, 어떻게 해야할까?</p><p>서버에 Apache나 Nginx등을 설치하고 웹 서버 설정을 한뒤, React로 build한 소스를 해당 서버에 FTP로 전송하면된다.</p><p>이런 방법도 좋지만, Docker를 사용해서 웹서버를 React와 묶어놓은 이미지가 있다면 어떤 서버든 docker engine만 설치되어 있다면 바로 실행시킬수 있을것 같다.</p><p>이런식으로 배포할경우 웹서버의 설정역시 Docker의 설정으로 관리할 수 있을것이다.</p><p>이번에는 Docker를 이용해서 React와 Nginx를 합쳐 이미지화하고 그 이미지를 컨테이너화 하여 실행해보자.</p><h2 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h2><ul><li>windows10</li><li>docker desktop</li><li>VisualStudioCode</li><li>GitBash</li></ul><h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><p>일단 테스트할 react 프로젝트를 생성하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app docker-react-ngnix</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Nginx/Untitled.png" alt="Docker%20React%20Nginx/Untitled.png"></p><p>생성된 프로젝트으 root 경로에 <strong>Dockerfile-prod</strong> 이라는 파일을 생성하자.</p><p>여기서 파일명은 무엇으로 해도 상관 없으나 prod(production)이라고 표시해두면, Dockerfile, Dockerfile-dev, Dockerfile-prod등 배포 환경에 따라서 관리하기가 편하다.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%201.png" alt="Docker%20React%20Nginx/Untitled%201.png"></p><p>그리고 해당파일을 아래처럼 채우자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">FROM node:12.16.2 as builder</span><br><span class="line"></span><br><span class="line"><span class="comment"># 작업 폴더를 만들고 npm 설치</span></span><br><span class="line">RUN mkdir /usr/src/app</span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line">ENV PATH /usr/src/app/node_modules/.bin:<span class="variable">$PATH</span></span><br><span class="line">COPY package.json /usr/src/app/package.json</span><br><span class="line">RUN npm install --silent</span><br><span class="line">RUN npm install react-scripts@3.4.1 -g --silent</span><br><span class="line"></span><br><span class="line"><span class="comment"># 소스를 작업폴더로 복사하고 빌드</span></span><br><span class="line">COPY . /usr/src/app</span><br><span class="line">RUN npm run build</span><br><span class="line"></span><br><span class="line">FROM nginx:latest</span><br><span class="line"><span class="comment"># nginx의 기본 설정을 삭제하고 앱에서 설정한 파일을 복사</span></span><br><span class="line">RUN rm -rf /etc/nginx/conf.d</span><br><span class="line">COPY conf /etc/nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 위에서 생성한 앱의 빌드산출물을 nginx의 샘플 앱이 사용하던 폴더로 이동</span></span><br><span class="line">COPY --from=builder /usr/src/app/build /usr/share/nginx/html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 80포트 오픈하고 nginx 실행</span></span><br><span class="line">EXPOSE 80</span><br><span class="line">CMD [<span class="string">"nginx"</span>, <span class="string">"-g"</span>, <span class="string">"daemon off;"</span>]</span><br></pre></td></tr></table></figure><p>Node, react-script, nginx 등 원하는 버전을 설정하자.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%202.png" alt="Docker%20React%20Nginx/Untitled%202.png"></p><p>이미지를 생성할 Dockerfile-prod는 만들었으니, 이 Dockerfile-prod파일에서 사용하는 nginx설정 파일을 만들어 줘야 한다.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%203.png" alt="Docker%20React%20Nginx/Untitled%203.png"></p><p>프로젝트 root 경로에 conf/conf.d 파일을 만들어주자.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%204.png" alt="Docker%20React%20Nginx/Untitled%204.png"></p><p>그리고 해당 파일 내부를 아래처럼 채워주자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.html;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    </span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>위 내용은 Nginx의 설정 파일이다.</p><p>이제 준비는 끝났다.</p><p>프로젝트 root 경로, 즉 Dockerfile-prod 파일이 있는 경로에 터미널을 열고 아래 명령으로 이미지를 생성하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f Dockerfile-prod -t docker-react-ngnix</span><br></pre></td></tr></table></figure><p><strong>위 명령어 설명</strong></p><ul><li>-f Dockerfile-prod : 해당 파일을 기반하여 docker image를 생성한다.</li><li>-t docker-react-ngnix : 생성할 이미지를 지정한다.</li></ul><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%205.png" alt="Docker%20React%20Nginx/Untitled%205.png"></p><p>위 이미지에서는 마지막에 <strong>.(콤마)</strong> 가 찍혀 있지만 앞에 -f 옵션으로 Dockerfile을 지정해 주었기 때문에 없어도 상관 없다.  ****</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%206.png" alt="Docker%20React%20Nginx/Untitled%206.png"></p><p>위 처럼 docker-react-ngnix 이미지가 생성 되었고, 해다 이미지에서 참조하는 nginx, node 이미지들도 다운이 되었다.</p><p>다음 명령어로 docker-react-ngnix 이미지를 컨테이너화 하고 실행시키자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -p 80:80 docker-react-ngnix</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%207.png" alt="Docker%20React%20Nginx/Untitled%207.png"></p><p>그리고 새로운 터미널에서 다음 명령어로 실행중인 docker 프로세스를 확인해 보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><p>아래처럼 컨테이너가 실행중임을 확인 할 수 있다.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%208.png" alt="Docker%20React%20Nginx/Untitled%208.png"></p><p>아래처럼 브라우저에서도 정상 동작을 확인 할 수 있다.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%209.png" alt="Docker%20React%20Nginx/Untitled%209.png"></p><h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p>[<a href="https://codechacha.com/ko/dockerizing-react-with-nginx/]" target="_blank" rel="external nofollow noopener noreferrer">https://codechacha.com/ko/dockerizing-react-with-nginx/]</a>(</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>React 프로젝트를 만약 서버에 배포해야 한다면, 어떻게 해야할까?</p><p>서버에 Apache나 Nginx등을 설치하고 웹 서버 설정을 한뒤, React로 build한 소스를 해당 서버에 FTP로 전송하면된다.</p><p>이런 방법도 좋지만, Docker를 사용해서 웹서버를 React와 묶어놓은 이미지가 있다면 어떤 서버든 docker engine만 설치되어 있다면 바로 실행시킬수 있을것 같다.</p><p>이런식으로 배포할경우 웹서버의 설정역시 Docker의 설정으로 관리할 수 있을것이다.</p><p>이번에는 Docker를 이용해서 React와 Nginx를 합쳐 이미지화하고 그 이미지를 컨테이너화 하여 실행해보자.</p><h2 id="개발환경"><a href="#개발환경" class="headerlink" title="개발환경"></a>개발환경</h2><ul><li>windows10</li><li>docker desktop</li><li>VisualStudioCode</li><li>GitBash</li></ul><h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><p>일단 테스트할 react 프로젝트를 생성하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx create-react-app docker-react-ngnix</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Nginx/Untitled.png" alt="Docker%20React%20Nginx/Untitled.png"></p><p>생성된 프로젝트으 root 경로에 <strong>Dockerfile-prod</strong> 이라는 파일을 생성하자.</p><p>여기서 파일명은 무엇으로 해도 상관 없으나 prod(production)이라고 표시해두면, Dockerfile, Dockerfile-dev, Dockerfile-prod등 배포 환경에 따라서 관리하기가 편하다.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%201.png" alt="Docker%20React%20Nginx/Untitled%201.png"></p><p>그리고 해당파일을 아래처럼 채우자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">FROM node:12.16.2 as builder</span><br><span class="line"></span><br><span class="line"><span class="comment"># 작업 폴더를 만들고 npm 설치</span></span><br><span class="line">RUN mkdir /usr/src/app</span><br><span class="line">WORKDIR /usr/src/app</span><br><span class="line">ENV PATH /usr/src/app/node_modules/.bin:<span class="variable">$PATH</span></span><br><span class="line">COPY package.json /usr/src/app/package.json</span><br><span class="line">RUN npm install --silent</span><br><span class="line">RUN npm install react-scripts@3.4.1 -g --silent</span><br><span class="line"></span><br><span class="line"><span class="comment"># 소스를 작업폴더로 복사하고 빌드</span></span><br><span class="line">COPY . /usr/src/app</span><br><span class="line">RUN npm run build</span><br><span class="line"></span><br><span class="line">FROM nginx:latest</span><br><span class="line"><span class="comment"># nginx의 기본 설정을 삭제하고 앱에서 설정한 파일을 복사</span></span><br><span class="line">RUN rm -rf /etc/nginx/conf.d</span><br><span class="line">COPY conf /etc/nginx</span><br><span class="line"></span><br><span class="line"><span class="comment"># 위에서 생성한 앱의 빌드산출물을 nginx의 샘플 앱이 사용하던 폴더로 이동</span></span><br><span class="line">COPY --from=builder /usr/src/app/build /usr/share/nginx/html</span><br><span class="line"></span><br><span class="line"><span class="comment"># 80포트 오픈하고 nginx 실행</span></span><br><span class="line">EXPOSE 80</span><br><span class="line">CMD [<span class="string">"nginx"</span>, <span class="string">"-g"</span>, <span class="string">"daemon off;"</span>]</span><br></pre></td></tr></table></figure><p>Node, react-script, nginx 등 원하는 버전을 설정하자.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%202.png" alt="Docker%20React%20Nginx/Untitled%202.png"></p><p>이미지를 생성할 Dockerfile-prod는 만들었으니, 이 Dockerfile-prod파일에서 사용하는 nginx설정 파일을 만들어 줘야 한다.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%203.png" alt="Docker%20React%20Nginx/Untitled%203.png"></p><p>프로젝트 root 경로에 conf/conf.d 파일을 만들어주자.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%204.png" alt="Docker%20React%20Nginx/Untitled%204.png"></p><p>그리고 해당 파일 내부를 아래처럼 채워주자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">    listen 80;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">        index  index.html index.htm;</span><br><span class="line">        try_files <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.html;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    error_page   500 502 503 504  /50x.html;</span><br><span class="line">    </span><br><span class="line">    location = /50x.html &#123;</span><br><span class="line">        root   /usr/share/nginx/html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>위 내용은 Nginx의 설정 파일이다.</p><p>이제 준비는 끝났다.</p><p>프로젝트 root 경로, 즉 Dockerfile-prod 파일이 있는 경로에 터미널을 열고 아래 명령으로 이미지를 생성하자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -f Dockerfile-prod -t docker-react-ngnix</span><br></pre></td></tr></table></figure><p><strong>위 명령어 설명</strong></p><ul><li>-f Dockerfile-prod : 해당 파일을 기반하여 docker image를 생성한다.</li><li>-t docker-react-ngnix : 생성할 이미지를 지정한다.</li></ul><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%205.png" alt="Docker%20React%20Nginx/Untitled%205.png"></p><p>위 이미지에서는 마지막에 <strong>.(콤마)</strong> 가 찍혀 있지만 앞에 -f 옵션으로 Dockerfile을 지정해 주었기 때문에 없어도 될거 같지만, 반드시 찍어주어야 한다.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%206.png" alt="Docker%20React%20Nginx/Untitled%206.png"></p><p>위 처럼 docker-react-ngnix 이미지가 생성 되었고, 해다 이미지에서 참조하는 nginx, node 이미지들도 다운이 되었다.</p><p>다음 명령어로 docker-react-ngnix 이미지를 컨테이너화 하고 실행시키자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -p 80:80 docker-react-ngnix</span><br></pre></td></tr></table></figure><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%207.png" alt="Docker%20React%20Nginx/Untitled%207.png"></p><p>그리고 새로운 터미널에서 다음 명령어로 실행중인 docker 프로세스를 확인해 보자.</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><p>아래처럼 컨테이너가 실행중임을 확인 할 수 있다.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%208.png" alt="Docker%20React%20Nginx/Untitled%208.png"></p><p>아래처럼 브라우저에서도 정상 동작을 확인 할 수 있다.</p><p><img src="/images/2020/Docker%20React%20Nginx/Untitled%209.png" alt="Docker%20React%20Nginx/Untitled%209.png"></p><h1 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h1><p>[<a href="https://codechacha.com/ko/dockerizing-react-with-nginx/]" target="_blank" rel="external nofollow noopener noreferrer">https://codechacha.com/ko/dockerizing-react-with-nginx/]</a>(</p>]]></content>
       
       
       <categories>
@@ -237,9 +276,9 @@
       
         <tags>
             
-            <tag> port </tag>
-            
             <tag> ubuntu </tag>
+            
+            <tag> port </tag>
             
             <tag> iptables </tag>
             
@@ -1352,9 +1391,9 @@
       
         <tags>
             
-            <tag> error </tag>
-            
             <tag> github </tag>
+            
+            <tag> error </tag>
             
             <tag> git </tag>
             
@@ -2314,9 +2353,9 @@
             
             <tag> callback </tag>
             
-            <tag> callbackhell </tag>
-            
             <tag> promise </tag>
+            
+            <tag> callbackhell </tag>
             
             <tag> 프라미스 </tag>
             
@@ -2378,9 +2417,9 @@
             
             <tag> callback </tag>
             
-            <tag> javasript </tag>
-            
             <tag> callbackhell </tag>
+            
+            <tag> javasript </tag>
             
             <tag> 콜백헬 </tag>
             
@@ -2665,9 +2704,9 @@
             
             <tag> javascript </tag>
             
-            <tag> callback </tag>
-            
             <tag> 비동기 </tag>
+            
+            <tag> callback </tag>
             
             <tag> 콜백함수 </tag>
             
@@ -2799,9 +2838,9 @@
             
             <tag> error </tag>
             
-            <tag> Atom </tag>
-            
             <tag> Tool </tag>
+            
+            <tag> Atom </tag>
             
             <tag> waring </tag>
             
@@ -3522,11 +3561,11 @@
             
             <tag> spring </tag>
             
+            <tag> dialect </tag>
+            
             <tag> Thymeleaf </tag>
             
             <tag> thymeleaf-layout-dialect </tag>
-            
-            <tag> dialect </tag>
             
             <tag> head </tag>
             
@@ -3586,11 +3625,11 @@
             
             <tag> spring </tag>
             
+            <tag> thymeleaf </tag>
+            
             <tag> @ControllerAdvice </tag>
             
             <tag> ControllerAdvice </tag>
-            
-            <tag> thymeleaf </tag>
             
         </tags>
       
@@ -3718,8 +3757,6 @@
             
             <tag> 템플릿 </tag>
             
-            <tag> 레이아웃 </tag>
-            
             <tag> spring4 </tag>
             
             <tag> Thymeleaf3 </tag>
@@ -3727,6 +3764,8 @@
             <tag> dialect </tag>
             
             <tag> thymeleaf layout dialect </tag>
+            
+            <tag> 레이아웃 </tag>
             
         </tags>
       
@@ -3755,13 +3794,13 @@
             
             <tag> 템플릿 </tag>
             
-            <tag> Thymeleaf </tag>
+            <tag> spring4 </tag>
             
             <tag> 레이아웃 </tag>
             
-            <tag> thymeleaf-layout-dialect </tag>
+            <tag> Thymeleaf </tag>
             
-            <tag> spring4 </tag>
+            <tag> thymeleaf-layout-dialect </tag>
             
         </tags>
       
@@ -3947,9 +3986,9 @@
             
             <tag> Spring Tool Suite </tag>
             
-            <tag> 이클립스 </tag>
-            
             <tag> eclipse </tag>
+            
+            <tag> 이클립스 </tag>
             
             <tag> js파일 </tag>
             
@@ -4631,11 +4670,11 @@
             
             <tag> CentOs7 </tag>
             
-            <tag> firewall-cmd </tag>
-            
             <tag> subversion </tag>
             
             <tag> install </tag>
+            
+            <tag> firewall-cmd </tag>
             
         </tags>
       
@@ -5642,13 +5681,13 @@
             
             <tag> java </tag>
             
-            <tag> nested interface </tag>
-            
-            <tag> 중첩인터페이스 </tag>
-            
             <tag> nested class </tag>
             
             <tag> 중첩클래스 </tag>
+            
+            <tag> nested interface </tag>
+            
+            <tag> 중첩인터페이스 </tag>
             
         </tags>
       
@@ -5677,9 +5716,9 @@
             
             <tag> nested class </tag>
             
-            <tag> 중첩클래스 </tag>
-            
             <tag> inner class </tag>
+            
+            <tag> 중첩클래스 </tag>
             
             <tag> 내부클래스 </tag>
             

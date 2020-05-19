@@ -245,6 +245,107 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/10/05/ubuntu-20191005-ubuntu-docker-compose-install/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/05/ubuntu-20191005-ubuntu-docker-compose-install/" class="post-title-link" itemprop="url">ubuntu 18.04 docker compose install</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-10-05 22:15:54" itemprop="dateCreated datePublished" datetime="2019-10-05T22:15:54+09:00">2019-10-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
+                    <span itemprop="name">ubuntu</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 20200427hexo_post_head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ubuntu-18-04-docker-compose-install"><a href="#ubuntu-18-04-docker-compose-install" class="headerlink" title="ubuntu 18.04 docker compose install"></a>ubuntu 18.04 docker compose install</h1><h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>이전에 ubuntu 18.04 가상머신에 docker 를 설치했다.</p>
+<p>윈도우에는 docker for windows로 설치하면 docker와 docker compose 가 한방에 설치되는데, ubuntu에서는 docker compose를 추가로 따로 설치해 줘야 한다.</p>
+<p>이번에는 docker compose를 설치 해보려 한다.</p>
+<h1 id="ubuntu-18-04-docker-compse-설치하기"><a href="#ubuntu-18-04-docker-compse-설치하기" class="headerlink" title="ubuntu 18.04 docker compse 설치하기"></a>ubuntu 18.04 docker compse 설치하기</h1><p><a href="https://github.com/docker/compose/releases" target="_blank" rel="external nofollow noopener noreferrer">https://github.com/docker/compose/releases</a></p>
+<p>일단 위 경로로 가서 최신 docker compose 버전을 살펴보자 rc 버전은(release candidate)로 일종의 베타 버전이라고 한다. </p>
+<p>원하는 버전을 선택해서 설치하면 된다.</p>
+<pre><code>sudo curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version</code></pre><p><img src="/images/2019/Untitled-53125fd8-bb2f-42d8-b477-a8e35a8122f8.png" alt></p>
+<p>간단하게 설치를 할 수 있다.</p>
+<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04" target="_blank" rel="external nofollow noopener noreferrer">https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04</a></p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/10/04/springBoot-20191004-springboot-gradle-multimodule/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1501,128 +1602,11 @@ public class HomeController {
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-language-change-key/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-language-change-key/" class="post-title-link" itemprop="url">Virtualbox Ubunto1804 한영변경키</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-08-17 19:02:44" itemprop="dateCreated datePublished" datetime="2019-08-17T19:02:44+09:00">2019-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 20200427hexo_post_head -->
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>버추얼박스에 설치된 우분투에서 한영키를 눌렀을때 한영이 변경되지 않는다.</p>
-<p>이번에는 이 문제를 해결해보겠다.</p>
-<p>일단 Virtualbox Ubuntu에서 게스트 확장 프로그램을 설치해야한다.</p>
-<p>장치 - 게스트 확장 CD 이미지 삽입을 클릭하자.</p>
-<p><img src="/images/2019/1/Untitled-64ebf1d9-605e-4ccd-83f5-29c971289172.png" alt></p>
-<p>OS 업그레이드 완료후 재시작 하면, virtualbox에서 장치 → 게스트 확장 CD 이미지 삽입을 클릭하자.</p>
-<p><img src="/images/2019/1/Untitled-20a1651b-e860-41c4-9de2-30d9cc0ced26.png" alt></p>
-<p>위와 같은 창이 열린다 실행을 클릭하면 자동으로 터미널이 열리고 무언가 설치가 된다.</p>
-<p><img src="/images/2019/1/Untitled-3a61933d-32ad-437e-8533-95faaaed1e0d.png" alt></p>
-<p>위처럼 Press Return to close this windows 라는 문구가 나오면 터미널에서 엔터를 클릭해서 터미널을 닫아주자.</p>
-<p>그리고 우분투를 재시작 하자.</p>
-<p>그리고 우분투의 설정으로 들어가자.</p>
-<p><img src="/images/2019/1/Untitled-e0c96162-3ba4-4724-84cd-e3c8c974af28.png" alt></p>
-<p>지역 및 언어에서 입력소스에서 한국어(101/104키 호환)을 선택하고 마이너스(-)를 눌러 제거하자.</p>
-<p><img src="/images/2019/1/Untitled-fe05268f-f4db-481f-8fc2-36236c05a9a0.png" alt></p>
-<p>그리고 톱니바퀴 아이콘을 클릭하자.</p>
-<p><img src="/images/2019/1/Untitled-87c824be-838c-4ec3-b341-0f98fe941737.png" alt></p>
-<p>이처럼 현재 설정된 한영 변환키가 보인다.</p>
-<p>나는 현재 레오폴드 FC660c 키보드를 사용중인데, 보통 키보드보다 키가 적은 키보드다 보니 한영변환키 대신 오른쪽 Alt키를 사용해야 한다.</p>
-<p>위 화면에서 추가버튼을 누르자.</p>
-<p><img src="/images/2019/1/Untitled-407da2f7-c4c0-435d-9d4f-c65650c9be46.png" alt></p>
-<p>새로운 창이 나오는데 여기서 원하는 한영키를 입력하면 위처럼 해당 키가 보인다.</p>
-<p>확인을 누르자.</p>
-<p>터미널을 열고 한영키가 제대로 동작하는지 확인해보자.</p>
-<p><img src="/images/2019/1/Untitled-6e0de10a-67d4-42c2-9954-2703b12831d0.png" alt></p>
-<p>끝!!!</p>
-<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p>[<a href="https://webnautes.tistory.com/1199]" target="_blank" rel="external nofollow noopener noreferrer">https://webnautes.tistory.com/1199]</a>(</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1688,20 +1672,20 @@ public class HomeController {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">200</span>
+          <span class="site-state-item-count">201</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">558</span>
+        <span class="site-state-item-count">566</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

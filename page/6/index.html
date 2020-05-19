@@ -245,6 +245,130 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/07/springBoot-20190107-springboot-thymeleaf-layout-dialect/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/01/07/springBoot-20190107-springboot-thymeleaf-layout-dialect/" class="post-title-link" itemprop="url">SpringBoot - thymeleaf layout dialect(tympeleaf 레이아웃 적용하기)</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-01-07 07:01:02" itemprop="dateCreated datePublished" datetime="2019-01-07T07:01:02+09:00">2019-01-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/springBoot/" itemprop="url" rel="index">
+                    <span itemprop="name">springBoot</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 20200427hexo_post_head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>예전에 spring4 레거시 프로젝트 + xml 설정환경에서 tymeleaf 템플릿 엔진과 thymeleaf layout dialect(tymeleaf 레이아웃)를 적용했었다.<br>이번에는 springboot에 thymeleaf와 thymeleaf layout dialect를 적용해 보겠다.</p>
+<p>개발환경: java8, springboot2, spring5, maven</p>
+<h1 id="라이브러리-추가"><a href="#라이브러리-추가" class="headerlink" title="라이브러리 추가"></a>라이브러리 추가</h1><p>pom.xml에 thymeleaf와 thymeleaf layout dialect를 추가하자.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>nz.net.ultraq.thymeleaf<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>thymeleaf-layout-dialect<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="comment">&lt;!--&lt;version&gt;2.3.0&lt;/version&gt;--&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>thymeleaf는 thymeleaf템플릿 엔진을 사용하기 위한 기초 라이브러리이며, thymeleaf-layout-dialect는 thymeleaf템플릿 엔진 기반 레이아웃을 구성할때 필요한 라이브러리이다.<br>자애로운 spring-boot-starter-parent께서 위 둘의 버전관리를 자동으로 해주시니, version을 생략해도 된다.<br>본인의 경우 2.1.1 버전이 적용되었다.</p>
+<h1 id="html파일로-레이아웃-구성"><a href="#html파일로-레이아웃-구성" class="headerlink" title="html파일로 레이아웃 구성"></a>html파일로 레이아웃 구성</h1><p><img src="/images/20190107-springboot-thymeleaf-layout-dialect_1.png" alt="폴더구조와 html파일들"></p>
+<p>springboot web 프로젝트에서 기본적으로 resources/templates에서 뷰를 찾는다.<br>template/layout/default.html은 thymeleaf의 레이아웃이 되는 파일이다.<br>template/fragments/config.html template/fragments/footer.html template/fragments/header.html 파일은 defaout.html 레이아웃의 내부를 구성하는 부품 화면이 된다.<br>template/index.html은 핵심인 contents가 되는 페이지이다.</p>
+<hr>
+<p><strong>default.html</strong></p>
+<p>이 파일이 thymeleaf 레이아웃을 잡아주는 핵심파일이 된다.<br>head th:replace는 head 영역의 부속 페이지를 말한다. 부속페이지는 fragments/config(html을 생략한다.) 그리고 그 파일의 configFragment 태그를 잘라와 사용한다는 의미이다.<br>header footer도 비슷한 의미이다.<br>layout이 되는 html의 태그는 xmlns:layout=”<a href="http://www.ultraq.net.nz/thymeleaf/layout&quot;를" target="_blank" rel="external nofollow noopener noreferrer">http://www.ultraq.net.nz/thymeleaf/layout&quot;를</a> 삽입해야 한다.<br>layout:fragment=”content” 부분은 서버의 요청별로 달라지는 컨텐츠 페이지가 된다.(index.html)</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lagn</span>=<span class="string">"ko"</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span> <span class="attr">xmlns:layout</span>=<span class="string">"http://www.ultraq.net.nz/thymeleaf/layout"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">th:replace</span>=<span class="string">"fragments/config :: configFragment"</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">header</span> <span class="attr">th:replace</span>=<span class="string">"fragments/header :: headerFragment"</span>&gt;</span><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">layout:fragment</span>=<span class="string">"content"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">th:replace</span>=<span class="string">"fragments/footer :: footerFragment"</span>&gt;</span><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>config.html</strong></p>
+<p>head의 공통적인 부분을 담당하는 페이지이다.<br>css, js 파일따위를 관리 할 수 있다.<br>특의한 점은 &lt;th:block layout:fragment=”css”&gt; &lt;th:block layout:fragment=”script”&gt; 인데, 레이아웃의 content가 되는 index.html에 작성된 css나, js를 가져와서 적용하는 부분이다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xmlns:layout</span>=<span class="string">"http://www.ultraq.net.nz/thymeleaf/layout"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">th:fragment</span>=<span class="string">"configFragment"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 공통으로 쓰이는 css파일을넣는다.--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span></span></span><br><span class="line"><span class="tag">          <span class="attr">href</span>=<span class="string">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"</span> /&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 컨텐츠페이지의 CSS 영역이 들어감 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th:block</span> <span class="attr">layout:fragment</span>=<span class="string">"css"</span>&gt;</span><span class="tag">&lt;/<span class="name">th:block</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 공통으로 쓰이는 css파일을넣는다.--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://code.jquery.com/jquery-2.2.4.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 컨텐츠페이지의 스크립트 영역이 들어감 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">th:block</span> <span class="attr">layout:fragment</span>=<span class="string">"script"</span>&gt;</span><span class="tag">&lt;/<span class="name">th:block</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>footer.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span> <span class="attr">th:fragment</span>=<span class="string">"footerFragment"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"border: 1px solid gold"</span>&gt;</span></span><br><span class="line">        Footer영역입니다.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>header.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">header</span> <span class="attr">th:fragment</span>=<span class="string">"headerFragment"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"border: 1px solid green"</span>&gt;</span></span><br><span class="line">        header.html 입니다.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- &lt;a th:href="@&#123;/index&#125;"&gt;index 페이지 이동&lt;/a&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><strong>index.html</strong></p>
+<p>컨텐츠가 되는 index.html 페이지이다.<br>html 태그의 어트리뷰트가 다름을 주의하자.<br>layout:decorator 로 이 페이지가 렌더링 될때 사용살 layout을 지정한다.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.thymeleaf.org"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xmlns:layout</span>=<span class="string">"http://www.ultraq.net.nz/thymeleaf/layout"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">layout:decorator</span>=<span class="string">"layout/default"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- index.html 고유 CSS 추가 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">th:block</span> <span class="attr">layout:fragment</span>=<span class="string">"css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">th:block</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- index.html 고유 스크립트 추가 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">th:block</span> <span class="attr">layout:fragment</span>=<span class="string">"script"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">th:block</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">layout:fragment</span>=<span class="string">"content"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"border: 1px solid red"</span>&gt;</span></span><br><span class="line">        index.html 입니다.</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<h1 id="실행결과"><a href="#실행결과" class="headerlink" title="실행결과"></a>실행결과</h1><p><img src="/images/20190107-springboot-thymeleaf-layout-dialect_2.png" alt="springboot thymeleaf 레이아웃 적용 결과"></p>
+<p>간단하게 동작을 확인할 수 있다.<br>spring개발팀이 밀고 있어써 그런지 thymeleaf의 설정법은 기타 템플릿 엔진보다 간편한것 같다.</p>
+<p>끝!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/01/06/java-20190106-java-pojo-vs-bean/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1187,133 +1311,11 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/12/03/java-20181203-java8-interface-public-default-static/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/12/03/java-20181203-java8-interface-public-default-static/" class="post-title-link" itemprop="url">java8 interface의 public default, public static 메소드(default메소드와 접근제어자 혼동)</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-12-03 03:20:47" itemprop="dateCreated datePublished" datetime="2018-12-03T03:20:47+09:00">2018-12-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/java/" itemprop="url" rel="index">
-                    <span itemprop="name">java</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 20200427hexo_post_head -->
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>아! 자과감 들고 괴로워…<br>이 글은 java8의 interface의 public default 메소드를 보며 햇갈렸던 내용을 정리한다.</p>
-<h1 id="Java8의-public-default와-public-static-메소드"><a href="#Java8의-public-default와-public-static-메소드" class="headerlink" title="Java8의 public default와 public static 메소드"></a>Java8의 public default와 public static 메소드</h1><p>Java8에서 확장성을 위해 Interface에 default, static 메소드라는 것을 추가했다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">testInterface</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//상수</span></span><br><span class="line">  타입 상수명 = 값;</span><br><span class="line">  <span class="comment">//추상메소드 </span></span><br><span class="line">  타입 메소드명(매개변수,...);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//디폴트 메소드</span></span><br><span class="line">  <span class="keyword">default</span> 타입 메소드명(매개변수,...)&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//정적 메소드</span></span><br><span class="line">  <span class="keyword">static</span> 타입 메소드명(매개변수,...)&#123;</span><br><span class="line">    ....</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>디폴트 메소드는 인터페이스를 구현한 객체에서 호출할수 있으며, 정적메소드는 인터페이스명으로 접근하여 호출할수 있다.<br>직관 적이며 간단하다.</p>
-<p>그런데 자바 책을 복습겸 책을 뒤적이다보니, 이런 설명을 보았다.</p>
-<ul>
-<li>인터페이스의 디폴트 메소드는 public 특성을 갖기 때문에 public을 생략하더라도 자동적으로 컴파일 과정에서 붙게 된다.</li>
-<li>인터페이스의 정적 메소드는 public 특성을 갖기 때문에 public을 생략하더라도 자동적으로 컴파일 과정에서 붙게 된다.</li>
-</ul>
-<p>즉 컴파일 될때 아래처럼 public 접근제어자가 추가된다는 것이다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">interface</span> <span class="title">testInterface</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  ...</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//디폴트 메소드</span></span><br><span class="line">  [<span class="keyword">public</span>] <span class="keyword">default</span> 타입 메소드명(매개변수,...)&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//정적 메소드</span></span><br><span class="line">  [<span class="keyword">public</span>] <span class="keyword">static</span> 타입 메소드명(매개변수,...)&#123;</span><br><span class="line">    ....</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>원래 java의 interface의 메소드는 기본적으로 public 접근 제한을 갖고, 인터페이스를 구현하는 클래스는 public 보다 낮은 접근 제한으로 작성할수 없다.</strong><br>따라서 당연한 소리일 것이다.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TestIn</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">default</span> String <span class="title">fn1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"디폴트 메소드"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">fn2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"정적 메소드"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">fn3</span><span class="params">()</span></span>;</span><br><span class="line">		</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>위처럼 직접 타이핑으로 public default 메소드를 인터페이스에 선언할 수도 있다.</p>
-<p><strong>여기가 내가 햇갈린 부분인데, java의 접근제어자 default와 java8의 interface내부에 선언된 default 메소드이다.</strong><br>나는 위 코드를 보고, fn1메소드는 public 접근제어자와 default 접근제어자를 중복으로 갖는것인가? 라고 착각했다.</p>
-<p>아이고 copy &amp; paste만 하다보니, 확실히 감이 떨어졌다.</p>
-<h1 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h1><ul>
-<li><p>interface에 선언된 default라는 키워드는 접근제어자가 아니고, default method를 선언하기 위한 키워드이다.</p>
-</li>
-<li><p>그리고 default 접근제어자는 사실 default 키워드로 명시하지 않으며, 또한 어떠한 접근제어자 키워드도 사용하지 않는다.</p>
-</li>
-</ul>
-<p><strong>default 접근제어 클래스</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">fn1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"메소드"</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//디폴트 클래스</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test3</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>클래스의 default 필드</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">//디폴트 클래스</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test3</span></span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//디폴트 접근제어 멤버변수</span></span><br><span class="line">  String name;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//디폴트 접근제어 메소드</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">doSomething</span><span class="params">()</span></span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="마무리"><a href="#마무리" class="headerlink" title="마무리"></a>마무리</h1><p>아이고, 아는것보다 모르는게 점점 많아지는 것은 기분탓이겠지.</p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1379,20 +1381,20 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">200</span>
+          <span class="site-state-item-count">201</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">558</span>
+        <span class="site-state-item-count">566</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

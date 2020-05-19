@@ -245,6 +245,123 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/24/spring-20180824-spring4-aop-logging/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/24/spring-20180824-spring4-aop-logging/" class="post-title-link" itemprop="url">Spirng AOP를 이용하여 Service클래스에 로그 찍기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-08-24 19:48:26" itemprop="dateCreated datePublished" datetime="2018-08-24T19:48:26+09:00">2018-08-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/spring/" itemprop="url" rel="index">
+                    <span itemprop="name">spring</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 20200427hexo_post_head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h3><p>Spring MVC 프로젝트에서 Service에 Aop Advice를 걸어서 log4j로그를 찍는 예제이다.<br>xml설정이 아닌 어노테이션을 이용할 것이다.</p>
+<hr>
+<p>특정 패키지의 모든 service 클래스가 동작할때 파라미터등 기타 정보를 출력하는 로그와 메소드가 동작하면서 걸린 시간을 로그하는 예제이다.</p>
+<h3 id="AOP-기초-설정하기"><a href="#AOP-기초-설정하기" class="headerlink" title="AOP 기초 설정하기"></a>AOP 기초 설정하기</h3><p><strong>1.pom.xml에 라이브러리 추가.</strong></p>
+<p>일단 properties에 aspect 공통 버전을 설정한다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">java-version</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">java-version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">org.springframework-version</span>&gt;</span>4.3.8.RELEASE<span class="tag">&lt;/<span class="name">org.springframework-version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">org.aspectj-version</span>&gt;</span>1.8.9<span class="tag">&lt;/<span class="name">org.aspectj-version</span>&gt;</span> <span class="comment">&lt;!-- aspoect 버전 설정  --&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">org.slf4j-version</span>&gt;</span>1.6.6<span class="tag">&lt;/<span class="name">org.slf4j-version</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>그리고 spring aop, aspectj 라이브러리를 추가한다.<br>AspectJ는 자바용 AOP 지원을 제공할 목적으로 시작된 라이브러리다.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-aop<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;org.springframework-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 트랜잭션 처리용 라이브러리 --&gt;</span>		</span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-tx<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;org.springframework-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- AspectJ --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjrt<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;org.aspectj-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		</span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.aspectj<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>aspectjtools<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;org.aspectj-version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2.root-context.xml 설정하기.</strong></p>
+<p><img src="/images/20180824-spring4-aop-logging_1.png" alt="root-context.xml의 namesspaces탭에서 aop, tx 네임스페이스를 추가하자."></p>
+<p>그리고 root-context.xml파일에 아래 내용을 추가하자.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- AspectJ라이브러리를 이용한 Proxy 객체를 생성 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:aspectj-autoproxy</span>&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="comment">&lt;!-- XML 방식으로 AOP 기능을 설정할 때 사용 : 이 예제에는 어노테이션을 사용하므로 필요없긴 하다.--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3.Advice 클래스 생성하기.</strong></p>
+<p>특정 패키지에 SampleAdvice 클래스를 생성하자.<br>내용은 아래와 같다.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.hanumoka.sample.aop;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.JoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Around;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Aspect;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.Before;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SampleAdvice</span> </span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(SampleAdvice<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">	</span><br><span class="line"><span class="comment">//@Before("execution(* com.hanumoka.sample.service.BoardService*.*(..))")</span></span><br><span class="line"><span class="comment">//target 메소도의 파라미터등 정볼르 출력한다.</span></span><br><span class="line"><span class="meta">@Before</span>(<span class="string">"execution(* com.hanumoka.sample.service.*.*(..))"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">startLog</span><span class="params">(JoinPoint jp)</span> </span>&#123;</span><br><span class="line">		</span><br><span class="line">	logger.info(<span class="string">"-------------------------------------"</span>);</span><br><span class="line">	logger.info(<span class="string">"-------------------------------------"</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">/* 전달되는 모든 파라미터들을 Object의 배열로 가져온다. */</span></span><br><span class="line">	 logger.info(<span class="string">"1:"</span> + Arrays.toString(jp.getArgs()));</span><br><span class="line">	    </span><br><span class="line">	<span class="comment">/* 해당 Advice의 타입을 알아낸다. */</span></span><br><span class="line">	logger.info(<span class="string">"2:"</span> + jp.getKind());</span><br><span class="line">	    </span><br><span class="line">	<span class="comment">/* 실행하는 대상 객체의 메소드에 대한 정보를 알아낼 때 사용 */</span></span><br><span class="line">	logger.info(<span class="string">"3:"</span> + jp.getSignature().getName());</span><br><span class="line">	    </span><br><span class="line">	<span class="comment">/* target 객체를 알아낼 때 사용 */</span></span><br><span class="line">	logger.info(<span class="string">"4:"</span> + jp.getTarget().toString());</span><br><span class="line">	    </span><br><span class="line">	<span class="comment">/* Advice를 행하는 객체를 알아낼 때 사용 */</span></span><br><span class="line">	logger.info(<span class="string">"5:"</span> + jp.getThis().toString());</span><br><span class="line">	    </span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"><span class="comment">//target 메소드의 동작 시간을 로그한다.</span></span><br><span class="line"><span class="meta">@Around</span>(<span class="string">"execution(* com.hanumoka.sample.service.*.*(..))"</span>)</span><br><span class="line"><span class="function"><span class="keyword">public</span> Object <span class="title">timeLog</span><span class="params">(ProceedingJoinPoint pjp)</span> <span class="keyword">throws</span> Throwable </span>&#123;		</span><br><span class="line">	<span class="keyword">long</span> startTime = System.currentTimeMillis();</span><br><span class="line">	logger.info(Arrays.toString(pjp.getArgs()));</span><br><span class="line">		</span><br><span class="line">	<span class="comment">//실제 타겟을 실행하는 부분이다. 이 부분이 없으면 advice가 적용된 메소드가 동작을 안할것 같다.</span></span><br><span class="line">	Object result = pjp.proceed();  <span class="comment">//proceed는 Exception 보다 상위 Throwable을 처리해야 한다.</span></span><br><span class="line">		</span><br><span class="line">	<span class="keyword">long</span> endTime = System.currentTimeMillis();</span><br><span class="line">	logger.info(pjp.getSignature().getName() + <span class="string">" : "</span> + ( endTime - startTime));  <span class="comment">//target 메소드의 동작 시간을 출력한다.</span></span><br><span class="line">	logger.info(<span class="string">"=============================="</span>);</span><br><span class="line">		</span><br><span class="line">	<span class="comment">//Around를 사용할 경우 반드시 Object를 리턴해야 한다.</span></span><br><span class="line">	<span class="keyword">return</span> result;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>스프링 컨테이너가 위 클래스를 인식할수 있도록, @Component 어노테이션이 적용되어 있다.<br>물론 root-context.xml에서 해당 패키지를 반드시 스캔 해야 한다.</p>
+<p>어노테이션은 @Before, @Around 두개만 사용하였다.<br>com.hanumoka.sample.service 패키지의 모든 클래스의 모든 메소드를 대상으로 한다.<br>코드의 주석을 보면 대충 내용을 알수 있을 것이다.</p>
+<p>위 소스가 적용되면 STS에서 Aop를 소스상 표시해준다.<br>(난 여태 이 의미를 모르고 있었다.)</p>
+<p><img src="/images/20180824-spring4-aop-logging_2.png" alt="이미지를 클릭하여, 노란색 마킹을 보라."></p>
+<p>Advice 클래스의 메소드에는 빨간 화살표가 바깥을 향하고, 이 Advice가 적용되는 Target클래스의 메소드는 빨간 화살표가 바깥에서 안쪽을 향하고 있다.<br>이것은 AOP관련 표시를 STS에서 자동으로 해주는 것이다.</p>
+<p>com.hanumoka.sample.service 를 사용하는 컨트롤러를 동작 시켜보자.</p>
+<p><img src="/images/20180824-spring4-aop-logging_3.png" alt="아래처럼 로그가 찍힌다."></p>
+<p>끝!!!</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/23/html-20180823-html-a-tag-no-action/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1223,123 +1340,11 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/08/15/vue-20180815-vue-what-is-the-vue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/08/15/vue-20180815-vue-what-is-the-vue/" class="post-title-link" itemprop="url">Vue.js 란?</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-08-15 07:54:18" itemprop="dateCreated datePublished" datetime="2018-08-15T07:54:18+09:00">2018-08-15</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/vue/" itemprop="url" rel="index">
-                    <span itemprop="name">vue</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 20200427hexo_post_head -->
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>3~4년전 Anuglar1이 나왔을때 한번 프로젝트에 적용하기 위해 공부했었던 적이 있다.<br>당시 Angular의 신박한 기능은 매력적이었지만, 한글 이슈등 다양한 문제점이 있어서 포기하고, 그냥 jsp + jquery 로 개발한 기억이 난다.</p>
-<p>요즘 다시 프론트엔드에 대한 관심이 생겨 이것저것 찾아보던중 Vue.js 라는 프론트엔드 프레임워크가 있어서 공부하는중이다.</p>
-<p>그래서 Vue.js는 머냐?</p>
-<p><img src="/images/20180815-vue-what-is-the-vue_1.png" alt="Vue.js로고"></p>
-<hr>
-<h1 id="Vue-js란"><a href="#Vue-js란" class="headerlink" title="Vue.js란?"></a>Vue.js란?</h1><p>Vue.js는 Anuglar, React와 같이 웹 페이지 화면을 개발하기 위한 프론트엔드 MVVM 프레임워크 중 하나이다.<br>여기저기 찾아보니 Vue는 프레임워크가 아니라 라이브러리라는 말도 있다.</p>
-<p>뷰 코어 라이브러리는 화면단 데이터 표현에 관한 기능들을 중점적으로 지원하지만 프레임워크의 기능인 라우터, 상태 관리, 테스팅 등을 쉽게 결합할 수 있는 형태로도 제공된다.</p>
-<p>따라서 구조상은 몰라도 기능상은 프레임워크의 기능을 하고 있는거 같기에 프레임워크가 맞다고 개인적으로 생각한다.</p>
-<hr>
-<h1 id="Vue의-장점"><a href="#Vue의-장점" class="headerlink" title="Vue의 장점"></a>Vue의 장점</h1><p><strong>1.일단 쉽단다.</strong></p>
-<p>프론트엔드의 대표적인 프레임워크인 Angular, React에 비해 쉽다고 한다.<br>angualr는 타입스크립트(TypeScript), ES6(ECMAScript 2015)에 대한 지식이 필요하다.<br>react또한 ES6와 JSX라는 리액트 전용 탬플릿 작성 언어를 알아야 한다.<br>Vue.js는 HTML, javascript, CSS 정도를 알면 배워볼만 하다.(물론 웹에 대한 지식이 필요하다.)<br>쉬운것은 항상 옳다고 본다.</p>
-<p><strong>2.타 프레임워크에 비해 성능면에서 빠르다.</strong></p>
-<p>뷰 제작팀에서 리액트와 앵귤러를 가지고 같은 테스트 케이스(test case)에서 성능을 비교한 결과 뷰가 가장 빨랐다고 한다.<br>(뷰 제작팀이 진행한 테스트라 별로 신빙성은 안가지만…)</p>
-<p>Vue.js 2버전 부터 스냅돔(snabbdom)기반의 가상돔을 통해 빠른 속도로 문서를 렌더링 하며, 메모리 소비 효율도가 최대 2~3배 정도 나온다고 하니 근거가 전혀 없는 것은 아닌것 같다.</p>
-<p><strong>3. 리액트의 장점과 앵귤러의 장점을 갖는다.</strong></p>
-<p>앵귤러의 데이터 바인딩과 리액트의 가상돔(Vitual DOM) 기반 렌더링의 특징을 모두 가지고 있다.<br>따라서 앵귤러, 리액트보다 쉽지만 기능상 뒤쳐지지 않는다.</p>
-<p><strong>4.Vue.js 공식 페이지에서 재공하는 한글문서</strong></p>
-<p>vue.js 공식페이지의 한글화가 잘 되어있어서, 별도의 책을 구입하지 않아도 공부하는데 용이 하다.</p>
-<p><a href="https://kr.vuejs.org/v2/guide/index.html" target="_blank" rel="external nofollow noopener noreferrer">Vue.js 공식 홈페이지 가이드 문서</a></p>
-<hr>
-<h1 id="Vue-js의-단점"><a href="#Vue-js의-단점" class="headerlink" title="Vue.js의 단점"></a>Vue.js의 단점</h1><p><strong>1.규모가 큰 웹 어플리케이션 구현이 어렵다.</strong></p>
-<p><strong>2.react.js 보다 생태계가 작다.</strong></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/10/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/12/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1405,20 +1410,20 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">200</span>
+          <span class="site-state-item-count">201</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">558</span>
+        <span class="site-state-item-count">566</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

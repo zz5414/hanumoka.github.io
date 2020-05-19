@@ -245,6 +245,107 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/07/webpack-20181107-webpack-error-Cannot-find-module-webapck/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/11/07/webpack-20181107-webpack-error-Cannot-find-module-webapck/" class="post-title-link" itemprop="url">webpack error: Cannot find module webapck</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2018-11-07 19:45:19" itemprop="dateCreated datePublished" datetime="2018-11-07T19:45:19+09:00">2018-11-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/webpack/" itemprop="url" rel="index">
+                    <span itemprop="name">webpack</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 20200427hexo_post_head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>Webpack을 공부하기 위해 Webpack을 설치 했다.<br>현재 webpack 은 4버전이다. </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm webpack -g</span><br><span class="line">npm webpack-cli -g</span><br></pre></td></tr></table></figure>
+
+<p>위 두 명령어로 webpack 개발환경을 클로벌로 설치한 뒤, 특정 프로젝트내에서 webpack 명령어를 입력했을때 다음과 같이 webpack 모듈을 찾을수 없다는 error가 발생했다.<br>음 보통 글로벌에 설정한 모듈은 어디서나 사용할수 있을텐데 왜 이러는지 모르겠다.</p>
+<p>아래는 오류 내용이다.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: Cannot find module 'webapck'</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/20181107-webpack-error-Cannot-find-module-webapck_1.png" alt="오류 내용"></p>
+<p>해결방법은 해당 프로젝트 경로에서 <strong>npm link webpack</strong> 명령을 입력하여 글로벌 모듈 webpack을 현재 프로젝트에서 require할수 있게 설정해주면 정상 동작 한다.</p>
+<p><img src="/images/20181107-webpack-error-Cannot-find-module-webapck_2.png" alt="npm link webpack 결과"></p>
+<p>webpack 설정파일이 없어서 에러가 나오긴 하는데 동작하지 않던 webpack 명령어가 동작하는 것을 확인 할 수 있다.</p>
+
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/11/06/atom-20181106-atom-live-server/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1357,112 +1458,11 @@ gtag('config', 'UA-100596920-1');
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2018/10/04/atom-20181004-atom-warning-The-package-spell-check-cannot-load-the-system-dictionary-for-en-US/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/10/04/atom-20181004-atom-warning-The-package-spell-check-cannot-load-the-system-dictionary-for-en-US/" class="post-title-link" itemprop="url">atom 경고창 - The package spell-check cannot load the system dictionary for en_US.</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2018-10-04 06:43:55" itemprop="dateCreated datePublished" datetime="2018-10-04T06:43:55+09:00">2018-10-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/atom/" itemprop="url" rel="index">
-                    <span itemprop="name">atom</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 20200427hexo_post_head -->
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>요즘 Node, Vue 공부를 위해 Atom 개발툴을 조물딱, 조물딱 하고 있다.<br>그런데 가끔 특정 확장자 파일을 열때 다음과 같은 warning이 뜨기 시작했다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The package spell-check cannot load the system dictionary for en_US. </span><br><span class="line">See the settings for ways of changing the languages used, resolving missing dictionaries, or hiding this warning.</span><br></pre></td></tr></table></figure>
-
-<p>대충 해석해보니 package spell-check 라는 녀석이 en_Us라는 system dictionary를 Load 하지 못한다는 말인데…</p>
-<p><img src="/images/util/wtf1.png" alt="WTF"></p>
-<p>사실 개발할 때에는 별로 문제가 되지 않지만, 계속 노란색 경고창이 떠서 상당히 거슬린다.</p>
-<hr>
-<h1 id="해결방법"><a href="#해결방법" class="headerlink" title="해결방법"></a>해결방법</h1><p>문제는 운영체제에 en_US, 즉 미국 영어 언어팩이 없어어 발생하는 경고이다.</p>
-<p>나와 같은 Windows10 인경우 </p>
-<p><strong>Windows 설정 -&gt; 시간 및 언어 -&gt; 언어 화면으로 이동해서 언어추가 버튼을 클릭하여 English 미국 언어팩을 추가하면 더이상 경고창이 뜨지 않는다.</strong></p>
-<p><img src="/images/20181004-atom-warning-The-package-spell-check-cannot-load-the-system-dictionary-for-en-US_1.png" alt="English 언어팩 추가"></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
+    <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left" aria-label="이전 페이지"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/21/">21</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right" aria-label="다음 페이지"></i></a>
   </nav>
 
 
@@ -1528,20 +1528,20 @@ gtag('config', 'UA-100596920-1');
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">200</span>
+          <span class="site-state-item-count">201</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">카테고리</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">558</span>
+        <span class="site-state-item-count">566</span>
         <span class="site-state-item-name">태그</span></a>
       </div>
   </nav>

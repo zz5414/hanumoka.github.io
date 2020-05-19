@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.hanumoka.net/"/>
-  <updated>2020-04-27T13:24:05.997Z</updated>
+  <updated>2020-05-19T14:26:34.180Z</updated>
   <id>https://www.hanumoka.net/</id>
   
   <author>
@@ -17,11 +17,52 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>개발시 HTTPS 테스트를 위한 SSL인증서(OpenSSL) 생성하기</title>
+    <link href="https://www.hanumoka.net/2020/05/19/security-20200519-make-ssl-crt-for-test-https/"/>
+    <id>https://www.hanumoka.net/2020/05/19/security-20200519-make-ssl-crt-for-test-https/</id>
+    <published>2020-05-19T14:22:25.000Z</published>
+    <updated>2020-05-19T14:26:34.180Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;이 예제는 Nginx등과 같은 웹서버에 HTTPS를 적용하기 위한 테스트용 SSL 인증서를 생성하는
+        
+      
+    
+    </summary>
+    
+    
+      <category term="security" scheme="https://www.hanumoka.net/categories/security/"/>
+    
+    
+      <category term="https" scheme="https://www.hanumoka.net/tags/https/"/>
+    
+      <category term="ssl" scheme="https://www.hanumoka.net/tags/ssl/"/>
+    
+      <category term="openssl" scheme="https://www.hanumoka.net/tags/openssl/"/>
+    
+      <category term="crt" scheme="https://www.hanumoka.net/tags/crt/"/>
+    
+      <category term="pem" scheme="https://www.hanumoka.net/tags/pem/"/>
+    
+      <category term="인증서" scheme="https://www.hanumoka.net/tags/%EC%9D%B8%EC%A6%9D%EC%84%9C/"/>
+    
+      <category term="test" scheme="https://www.hanumoka.net/tags/test/"/>
+    
+      <category term="테스트" scheme="https://www.hanumoka.net/tags/%ED%85%8C%EC%8A%A4%ED%8A%B8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Docker를 이용해 React와 Nginx를 묶어서 이미지화 하고 컨테이너화 하기</title>
     <link href="https://www.hanumoka.net/2020/04/27/docker-20200427-docker-react-nginx/"/>
     <id>https://www.hanumoka.net/2020/04/27/docker-20200427-docker-react-nginx/</id>
     <published>2020-04-27T13:14:11.000Z</published>
-    <updated>2020-04-27T13:24:05.997Z</updated>
+    <updated>2020-04-28T11:23:49.348Z</updated>
     
     <summary type="html">
     
@@ -274,9 +315,9 @@
       <category term="ubuntu" scheme="https://www.hanumoka.net/categories/ubuntu/"/>
     
     
-      <category term="port" scheme="https://www.hanumoka.net/tags/port/"/>
-    
       <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
+    
+      <category term="port" scheme="https://www.hanumoka.net/tags/port/"/>
     
       <category term="iptables" scheme="https://www.hanumoka.net/tags/iptables/"/>
     
@@ -646,37 +687,6 @@
       <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
     
       <category term="nexus" scheme="https://www.hanumoka.net/tags/nexus/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu 18.04 docker compose install</title>
-    <link href="https://www.hanumoka.net/2019/10/05/ubuntu-20191005-ubuntu-docker-compose-install/"/>
-    <id>https://www.hanumoka.net/2019/10/05/ubuntu-20191005-ubuntu-docker-compose-install/</id>
-    <published>2019-10-05T13:15:54.000Z</published>
-    <updated>2020-04-15T16:50:12.036Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;ubuntu-18-04-docker-compose-install&quot;&gt;&lt;a href=&quot;#ubuntu-18-04-docker-compose-install&quot; class=&quot;headerlink&quot; title=&quot;ubuntu 18.04 docker
-        
-      
-    
-    </summary>
-    
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/categories/ubuntu/"/>
-    
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
-    
-      <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
-    
-      <category term="docker-compose" scheme="https://www.hanumoka.net/tags/docker-compose/"/>
     
   </entry>
   
