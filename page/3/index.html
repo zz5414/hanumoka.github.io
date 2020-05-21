@@ -245,6 +245,169 @@ gtag('config', 'UA-100596920-1');
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
+    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/10/12/docker-20191012-docker-compose-ubuntu-nexus/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Hanumoka">
+      <meta itemprop="description" content="아마추어 개발자의 블로그">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hanumoka, IT Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/12/docker-20191012-docker-compose-ubuntu-nexus/" class="post-title-link" itemprop="url">dockercompose로 ubuntu에 nexus 설치하기</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">작성일</span>
+
+              <time title="Post created: 2019-10-12 22:01:46" itemprop="dateCreated datePublished" datetime="2019-10-12T22:01:46+09:00">2019-10-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Updated at: 2020-04-16 01:50:11" itemprop="dateModified" datetime="2020-04-16T01:50:11+09:00">2020-04-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/docker/" itemprop="url" rel="index">
+                    <span itemprop="name">docker</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <!-- 20200427hexo_post_head -->
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>
+          (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ubuntu-1804-dockercompose-nexus-설치"><a href="#ubuntu-1804-dockercompose-nexus-설치" class="headerlink" title="ubuntu 1804 dockercompose nexus 설치"></a>ubuntu 1804 dockercompose nexus 설치</h1><h1 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h1><p>ubuntu 18.04 버전에 docker compose를 사용해서 nexus를 도커로 설치하고 실행해 보려 한다.</p>
+<p>미리 ubuntu에 docker와 docker compose 가 미리 설치되어 있어야 한다. 해당 내용은 이 글에 포함되어 있지 않다.</p>
+<h1 id="실습"><a href="#실습" class="headerlink" title="실습"></a>실습</h1><h2 id="1-도커-관리용-폴더-만들기"><a href="#1-도커-관리용-폴더-만들기" class="headerlink" title="1. 도커 관리용 폴더 만들기"></a>1. 도커 관리용 폴더 만들기</h2><p>생성할 도커 컨테이너의 설정파일과 볼륨을 관리하기 위해 폴더를 만들 것이다.</p>
+<p>나느 아래처럼 홈디렉토리에 생성할 것이다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~&#x2F;docker&#x2F;nexus&#x2F;nexus-data</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-70ca2a61-754c-4167-94e9-4ec44da6b194.png" alt></p>
+<p>그리고 nexus폴더 내부에 docker-compose.yml 파일을 생성하고, 그 내용을 아래처럼 만들어 준다.</p>
+<h1 id="2-docker-compose-yml-파일"><a href="#2-docker-compose-yml-파일" class="headerlink" title="2. docker-compose.yml 파일"></a>2. docker-compose.yml 파일</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">version: &#39;2&#39;</span><br><span class="line"></span><br><span class="line">services:</span><br><span class="line">  nexus3:</span><br><span class="line">    image: &#39;sonatype&#x2F;nexus3:latest&#39;</span><br><span class="line">    container_name: &#39;nexus3&#39;</span><br><span class="line">    restart: always</span><br><span class="line">    expose:</span><br><span class="line">      - &#39;8081&#39;</span><br><span class="line">    ports:</span><br><span class="line">      - &#39;8081:8081&#39;</span><br><span class="line">    volumes:</span><br><span class="line">      - &#39;.&#x2F;nexus-data:&#x2F;nexus-data&#39;</span><br><span class="line">    environment:</span><br><span class="line">      TZ: &quot;Asia&#x2F;Seoul&quot;</span><br><span class="line">networks:</span><br><span class="line">  default:</span><br><span class="line">    external:</span><br><span class="line">      name: devops</span><br></pre></td></tr></table></figure>
+
+<p>포트를 8081로 셋팅하였고, nexus-data를 /home/docker/nexus-data 에 볼륨으로 연결 하였다.</p>
+<p>네트워크를 쓸지는 모르겠지만 devops로 설정했다. </p>
+<p>다음 명령어로 devops라는 docker network를 생성하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker network create devops</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-b3949388-6c87-4d76-9cff-53be3d0aae86.png" alt></p>
+<h2 id="3-docker-compose-yml로-nexus-컨테이너-생성"><a href="#3-docker-compose-yml로-nexus-컨테이너-생성" class="headerlink" title="3. docker-compose.yml로 nexus 컨테이너 생성"></a>3. docker-compose.yml로 nexus 컨테이너 생성</h2><p>아래 명령어를 docker-compose.yml이 있는 경로에서 실행하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>위 명령얼 실행하면 자동으로 nexus 이미지를 다운받고 nexus 컨테이너를 실행 시킬 것이다.</p>
+<p><img src="/images/2019/Untitled-6d1f7ace-7f56-4e50-9433-8331ea513494.png" alt></p>
+<p>아래 명령으로 docker compose로 실행한 컨테이너를 확인하자.</p>
+<p>물론 docker-compose.yml 이 있는 경로에서 명령어를 입력해야 한다.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose ps</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-2862e07c-78ec-4d50-a737-5f759e95fa4f.png" alt></p>
+<p>state에 up으로 컨티에너가 실행 되었다는 것을 알 수 있다.</p>
+<p>docker-compose.yml 파일이 있는 경로에서 아래 명령어를 치면 해당 컨테이너의 log를 볼수도 있다. 만약 컨테이너에 문제가 있다고 생각하면 로그를 확인 하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose logs -f -t --tail&#x3D;&quot;all&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-6f653713-f6c7-47a6-acde-02b79834e0ac.png" alt></p>
+<p>음 브라우저에 아래 주소로</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;localhost:8081</span><br></pre></td></tr></table></figure>
+
+<p>접근했는데 페이지가 열리지 않아서 로그를 확인해보니 위와 같은 오류가 로그로 나오고 있다.</p>
+<p>아마 nexus컨테이너가 동작하면서 호스트의 nexus-data 에 파일을 생성해야 하는데 권한 문제가 있나보다.</p>
+<p>일단 실행중인 컨테이너를 멈추고 해당 폴더에 권한을 부여해봐야 겠다.</p>
+<p>아래 명령어로 실행시킨 nexus 컨테이너를 정지 시키자.</p>
+<p>물론 docker-compose.yml 이 있는 경로에서 실행하자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose down</span><br></pre></td></tr></table></figure>
+
+<p>위 명령어로 해당 컨테이너를 종료하고 이미지를 삭제한다.</p>
+<p>그리고 아까 생성했던 /home/docker/nexus/nexus-data 폴더의 권한을 수정해보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod 777 &#x2F;home&#x2F;docker&#x2F;nexus&#x2F;nexus-data</span><br></pre></td></tr></table></figure>
+
+<p>무언가 도커에 다른 방법이 있을거 같은데, 나는 공부가 적어 위처럼 모든 권한을 다 부여했다.</p>
+<p><img src="/images/2019/Untitled-a01c1e7b-d781-4ab0-b263-0c4eb82e99fc.png" alt></p>
+<p>다시 도커 컨테이너를 올려보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose up -d</span><br></pre></td></tr></table></figure>
+
+<p>그리고 로그를 확인해보자.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker-compose logs -f -t --tail&#x3D;&quot;all&quot;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2019/Untitled-2b91f682-0a09-4ee5-b30b-c2f91e0a7935.png" alt></p>
+<p>뭔가 에러 없이 넥서스가 실행 되었다고 나온다.</p>
+<p>이제 브라우저에서 <a href="http://localhost:8081" target="_blank" rel="external nofollow noopener noreferrer">http://localhost:8081</a>로 접근해보자.</p>
+<p><img src="/images/2019/Untitled-c93cc593-fb0e-435a-a1e1-d32689faa5d1.png" alt></p>
+<p>위 처럼 동작을 확인 할 수 있다.</p>
+<p>우측 오른쪽의 sign in 을 클릭하면 다음처럼 나온다.</p>
+<p><img src="/images/2019/Untitled-2859049b-05c1-4a71-8277-dd2f83453e2d.png" alt></p>
+<p>/nexus-data/admin.password 파일을 확인해서 admin의 비밀번호를 확인해 보라고 한다.</p>
+<p>예전 버전의 nexus는 기본으로 admin/1234 인데 요즘 버전은 이렇게 나온다.</p>
+<p>초기에 생성한 볼륨 폴더인 /home/docker/nexus/nexus-data 폴더로 이동해보자.</p>
+<p><img src="/images/2019/Untitled-6858174d-4044-4f89-a284-30072790b543.png" alt></p>
+<p>admin.password 파일이 있다. 해당 파일을 열어보면 admin 초기 비밀번호가 나온다.</p>
+<p>admin/초기비밀번호를 입력하면 새로 생성한 넥서스에 관리자로 로그인 할 수 있다.</p>
+<p>로그인에 성공하면 다음처럼 나온다.</p>
+<p><img src="/images/2019/Untitled-b1c4ba78-aa53-465a-9981-16bbb19314af.png" alt></p>
+<p>새 비밀번호를 입력한다.</p>
+<p><img src="/images/2019/Untitled-421a9f44-549a-4a33-a3a5-f48e4e2fe97a.png" alt></p>
+<p>그리고 대충 next 버튼을 눌러주면 된다. </p>
+<h2 id="4-이제-관리는-어떻게"><a href="#4-이제-관리는-어떻게" class="headerlink" title="4. 이제 관리는 어떻게?"></a>4. 이제 관리는 어떻게?</h2><p>도커 컨테이너의 볼륨을 호스트와 연결했으니, 컨테이너를 지워도 호스트 볼륨이 살아 있으니, 문제 없다.</p>
+<p>나중에 백업을 하거나 컨테이너를 다른곳으로 옮겨야 할 경우 /home/docker 폴더를 전체 복사해서 이동시켜 컨테이너를 올리면 작업중엔 넥서스의 상태를 보존할수 있을거 같다.</p>
+<h2 id="5-docker-compose-명령어-요약"><a href="#5-docker-compose-명령어-요약" class="headerlink" title="5. docker compose 명령어 요약"></a>5. docker compose 명령어 요약</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker-compose up -d      &#x2F;&#x2F; 도커컴포즈 컨테이너 생성 및 실행   </span><br><span class="line">docker-compose down       &#x2F;&#x2F; 도커컴포즈 컨테이너 종료 및 삭제</span><br><span class="line"></span><br><span class="line">docker-compose start      &#x2F;&#x2F; 도커컴포즈 컨테이너 실행</span><br><span class="line">docker-compose stop       &#x2F;&#x2F; 도커컴포즈 컨테이너 종료</span><br><span class="line"></span><br><span class="line">docker-compose ps         &#x2F;&#x2F; 도커컴포즈 프로스스 확인</span><br><span class="line">docker-compsos logs -f -t --tail&#x3D;&quot;all&quot;  &#x2F;&#x2F;도커컴포즈 로그 확인</span><br></pre></td></tr></table></figure>
+      
+      
+          
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+
+  
+      
+
+
+  
+  
+  
+  
+
+        
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
     <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/10/05/ubuntu-20191005-ubuntu-docker-compose-install/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1445,163 +1608,6 @@ public class HomeController {
   
   
 
-        
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="ko">
-    <link itemprop="mainEntityOfPage" href="https://www.hanumoka.net/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-unity-tweak-tool/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Hanumoka">
-      <meta itemprop="description" content="아마추어 개발자의 블로그">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hanumoka, IT Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2019/08/17/ubuntu-20190817-ubuntu-virtualbox-unity-tweak-tool/" class="post-title-link" itemprop="url">Ubuntu1804 Unity tweak tool 설치 및 테마변경</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">작성일</span>
-
-              <time title="Post created: 2019-08-17 19:04:36" itemprop="dateCreated datePublished" datetime="2019-08-17T19:04:36+09:00">2019-08-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Updated at: 2020-04-16 01:50:12" itemprop="dateModified" datetime="2020-04-16T01:50:12+09:00">2020-04-16</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ubuntu/" itemprop="url" rel="index">
-                    <span itemprop="name">ubuntu</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      <!-- 20200427hexo_post_head -->
-      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6388187282606796" data-ad-slot="4907587145" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="들어가기"><a href="#들어가기" class="headerlink" title="들어가기"></a>들어가기</h3><p>우분투 데스크탑을 설치한 김에 나도 테마같은걸 바꿔보고 싶었다.</p>
-<p>이번에는 Unity twak tool 과 기타 익스텐션을 이용해서 우분투 테마등을 변경해 보겠다.</p>
-<h3 id="Unity-tweak-tool-란"><a href="#Unity-tweak-tool-란" class="headerlink" title="Unity tweak tool 란?"></a>Unity tweak tool 란?</h3><p>유니티 트윅은 윈도우로 치자면 제어판과 유사한 역할을 하는 프로그램이다.</p>
-<p>특히 우분투 데스크탑의 테바변경에서 핵심적으로 사용된다.</p>
-<p>테마를 설정할 수 있고, 폰트변경, 아이콘 변경, 프로그램 메뉴의 크기조정, 바로가기 및 전처 설정 등을 할 수 있다.</p>
-<p>우분투에 기본적으로 설정이 있지만 그것에 강화판 제어판 정도로 생각이된다.</p>
-<h3 id="Unity-tweak-tool-설치"><a href="#Unity-tweak-tool-설치" class="headerlink" title="Unity tweak tool 설치"></a>Unity tweak tool 설치</h3><p>우선 터미널을 열고 아래 명령어를 입력해서 Unity tweak tool을 설치하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install gnome-tweak-tool</span><br></pre></td></tr></table></figure>
-
-<p><img src="/images/2019/2/Untitled-a899ecea-645a-4b1d-b063-9f02cbf3f58c.png" alt></p>
-<p>설치가 완료되면 아래처럼 기능개선 이라는 프로그램을 확인 할 수 있다.</p>
-<p><img src="/images/2019/2/Untitled-23ea743c-dcfe-4ee3-9357-985188c3eb26.png" alt></p>
-<p><img src="/images/2019/2/Untitled-bd05a3f7-3128-488d-9604-9264fab6c0dc.png" alt></p>
-<p>기능개선은 위와 같은 부가적인 환경설정 기능등을 제공한다.</p>
-<h3 id="Adapta-테마-설치하기"><a href="#Adapta-테마-설치하기" class="headerlink" title="Adapta 테마 설치하기"></a>Adapta 테마 설치하기</h3><p>터미널에서 아래명령어3줄을 차례로 입력하자</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get-repository ppa:tista&#x2F;adapta</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get inatall adapta-gtk-theme</span><br></pre></td></tr></table></figure>
-
-<p>아까 설치한 기능개선 프로그램을 종료하고 다시 킨다.</p>
-<p>모양새 → 테마→ 프로그램 에서 방금 설치한 Adapta 테마를 선택할수 있다. </p>
-<p><img src="/images/2019/2/Untitled-b8f0d0f1-db58-493b-bc5d-f364e482eb4f.png" alt></p>
-<p>위처럼 프로그램 창이 어두운 형태로 변한것을 확인 할 수 있다. </p>
-<p>여러 색상이 있으니 원하는 것을 선택하면 된다.</p>
-<h3 id="Gnome-shell-Extention-설치로-상단-봐-테마-변경"><a href="#Gnome-shell-Extention-설치로-상단-봐-테마-변경" class="headerlink" title="Gnome shell Extention 설치로 상단 봐 테마 변경"></a>Gnome shell Extention 설치로 상단 봐 테마 변경</h3><p>우분투 상단바 테마는 Gnome 쉘에 포함되어 있다고 한다.</p>
-<p>위 상단바 테마를 수정하려면 Gnome shell Extention 을 설치해야 한다.</p>
-<p>터미널에서 아래명령어를 입력하자.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install chrome-gnome-shell</span><br></pre></td></tr></table></figure>
-
-<p>패키지명이 왜 크롬인지는 잘 모르겠다.</p>
-<p>그리고 우분투에서 파이어폭스 브라우저를 열고 아래 링크에 접속하자.</p>
-<p><a href="https://extensions.gnome.org/extension/19/user-themes" target="_blank" rel="external nofollow noopener noreferrer">https://extensions.gnome.org/extension/19/user-themes</a></p>
-<p><img src="/images/2019/2/Untitled-20e83fc3-36f5-48d7-b339-7fafbb519c82.png" alt></p>
-<p>Click here install borwer extension을 클릭해서 브라우저 익스텐션을 설치하자.</p>
-<p><img src="/images/2019/2/Untitled-750d8935-e401-4617-ad4e-475ee481f662.png" alt></p>
-<p><img src="/images/2019/2/Untitled-b80becd2-2c58-48fa-b367-22e15b32c64c.png" alt></p>
-<p><a href="https://addons.mozilla.org/ko/firefox/addon/gnome-shell-integration/" target="_blank" rel="external nofollow noopener noreferrer">https://addons.mozilla.org/ko/firefox/addon/gnome-shell-integration/</a></p>
-<p>반드시 파이어폭스 브라우저를 사용해야 한다.</p>
-<p>설치가 끝난뒤 파이어폭스 브라우저에서 아래 처럼 User Themes로 접근한다.</p>
-<p><img src="/images/2019/2/Untitled-ac641281-1c0c-4946-b0b2-8043aa6e6610.png" alt></p>
-<p><img src="/images/2019/2/Untitled-73afb19e-70c5-4153-884c-cbca7048afe7.png" alt></p>
-<p>Off로 되어있던 설정을 On으로 변경해준다.</p>
-<p><img src="/images/2019/2/Untitled-90b3072f-38d3-46fb-a112-0274c3147090.png" alt></p>
-<p>설치하자.</p>
-<p>설치가 완료된 다음, 다시 기능개선 프로그램을 종료하고 다시 열자.</p>
-<p><img src="/images/2019/2/Untitled-add8aac2-9e1e-40f7-b75e-e57c1fcc1ae2.png" alt></p>
-<p>모양세에 다시 들어가보면 쉘 항목이 활성화 되어있다. </p>
-<p>여기서 이것저것 바꿔보면 우분투의 상단바의 테마가 변경하는 것을 알 수 있다.</p>
-<h3 id="Flat-remix-아이콘-테마-적용하기"><a href="#Flat-remix-아이콘-테마-적용하기" class="headerlink" title="Flat remix 아이콘 테마 적용하기"></a>Flat remix 아이콘 테마 적용하기</h3><p>Flat remix라는 패키지를 설치해서 우분투의 아이콘 테마도 변경 할 수 있다.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:daniruiz&#x2F;flat-remix</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install flat-remix</span><br></pre></td></tr></table></figure>
-
-<p>위 명령을 순차적으로 입력해서 flat remix를 설치하자.</p>
-<p>설치가 완료된되 기능개선을 재시작하면 아래처럼 아이콘 테마를 설정 할 수 있다.</p>
-<p><img src="/images/2019/2/Untitled-5ac33c1d-fa00-46e9-8457-b9fe5423319f.png" alt></p>
-<h3 id="Dash-to-Dock-설치고-Dock-테마-변경하기"><a href="#Dash-to-Dock-설치고-Dock-테마-변경하기" class="headerlink" title="Dash to Dock 설치고 Dock 테마 변경하기"></a>Dash to Dock 설치고 Dock 테마 변경하기</h3><p>아래 링크애 파이어폭스로 접근하자.</p>
-<p><a href="https://extensions.gnome.org/extension/307/dash-to-dock" target="_blank" rel="external nofollow noopener noreferrer">https://extensions.gnome.org/extension/307/dash-to-dock</a></p>
-<p><img src="/images/2019/2/Untitled-28ffa173-de0c-463a-a7fb-57be01b43d3c.png" alt></p>
-<p>상태를 on으로 변경하고 설치하자.</p>
-<p><img src="/images/2019/2/Untitled-714f30f2-0983-41df-a10a-72ddd9fa85f7.png" alt></p>
-<p>설치가 되면 벌써 왼쪽의 독의모양이 변경된 것을 확인 할 수있다.</p>
-<p>다시 기능개선에 들어가서 확장 → Dash to dock에 환경설정에 들어가자.</p>
-<p><img src="/images/2019/2/Untitled-e7b91086-2866-4fce-871a-1c95fd406c8e.png" alt></p>
-<p>위처럼 독의 위치를 왼쪽이 아니라 아래로 옮길수 있다.</p>
-<p>최종적으로 아래와 같은 화면을 만들었다. 바탕화면이 마음에 안들지만 그건 나중에 바꿔야 겠다.</p>
-<p><img src="/images/2019/2/Untitled-b94bd3e9-0691-48f4-9f3c-51e55b7fd426.png" alt></p>
-<p>끝!!!</p>
-<h3 id="참고자료"><a href="#참고자료" class="headerlink" title="참고자료"></a>참고자료</h3><p><a href="https://smartaedi.tistory.com/137" target="_blank" rel="external nofollow noopener noreferrer">https://smartaedi.tistory.com/137</a></p>
-<p><a href="https://programmingsummaries.tistory.com/389" target="_blank" rel="external nofollow noopener noreferrer">https://programmingsummaries.tistory.com/389</a></p>
-<p><a href="https://codevkr.tistory.com/89" target="_blank" rel="external nofollow noopener noreferrer">https://codevkr.tistory.com/89</a></p>
-
-      
-      
-          
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-
-  
-      
-
-
-  
-  
-  
-  
-
   </div>
 
   
@@ -1672,7 +1678,7 @@ public class HomeController {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">201</span>
+          <span class="site-state-item-count">202</span>
           <span class="site-state-item-name">포스트</span>
         </a>
       </div>

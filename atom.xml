@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.hanumoka.net/"/>
-  <updated>2020-05-19T14:31:49.415Z</updated>
+  <updated>2020-05-21T14:29:12.187Z</updated>
   <id>https://www.hanumoka.net/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Springboot에 thymeleaf-layout-dialect적용하기</title>
+    <link href="https://www.hanumoka.net/2020/05/21/springBoot-20200521-springboot-thymeleaf-layout-dialect/"/>
+    <id>https://www.hanumoka.net/2020/05/21/springBoot-20200521-springboot-thymeleaf-layout-dialect/</id>
+    <published>2020-05-21T14:19:44.000Z</published>
+    <updated>2020-05-21T14:29:12.187Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;들어가기&quot;&gt;&lt;a href=&quot;#들어가기&quot; class=&quot;headerlink&quot; title=&quot;들어가기&quot;&gt;&lt;/a&gt;들어가기&lt;/h1&gt;&lt;p&gt;springboot 프로젝트에 thymeleaf-layout-dialectt이라는 라이브러리를 사용해서
+        
+      
+    
+    </summary>
+    
+    
+      <category term="springBoot" scheme="https://www.hanumoka.net/categories/springBoot/"/>
+    
+    
+      <category term="layout" scheme="https://www.hanumoka.net/tags/layout/"/>
+    
+      <category term="thymeleaf-layout-dialect" scheme="https://www.hanumoka.net/tags/thymeleaf-layout-dialect/"/>
+    
+      <category term="thymeleaf" scheme="https://www.hanumoka.net/tags/thymeleaf/"/>
+    
+      <category term="springboot" scheme="https://www.hanumoka.net/tags/springboot/"/>
+    
+  </entry>
   
   <entry>
     <title>개발시 HTTPS 테스트를 위한 SSL인증서(OpenSSL) 생성하기</title>
@@ -654,39 +687,6 @@
       <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
     
       <category term="gitlab" scheme="https://www.hanumoka.net/tags/gitlab/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>dockercompose로 ubuntu에 nexus 설치하기</title>
-    <link href="https://www.hanumoka.net/2019/10/12/docker-20191012-docker-compose-ubuntu-nexus/"/>
-    <id>https://www.hanumoka.net/2019/10/12/docker-20191012-docker-compose-ubuntu-nexus/</id>
-    <published>2019-10-12T13:01:46.000Z</published>
-    <updated>2020-04-15T16:50:11.979Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;h1 id=&quot;ubuntu-1804-dockercompose-nexus-설치&quot;&gt;&lt;a href=&quot;#ubuntu-1804-dockercompose-nexus-설치&quot; class=&quot;headerlink&quot; title=&quot;ubuntu 1804
-        
-      
-    
-    </summary>
-    
-    
-      <category term="docker" scheme="https://www.hanumoka.net/categories/docker/"/>
-    
-    
-      <category term="ubuntu" scheme="https://www.hanumoka.net/tags/ubuntu/"/>
-    
-      <category term="docker" scheme="https://www.hanumoka.net/tags/docker/"/>
-    
-      <category term="dockercompose" scheme="https://www.hanumoka.net/tags/dockercompose/"/>
-    
-      <category term="nexus" scheme="https://www.hanumoka.net/tags/nexus/"/>
     
   </entry>
   
